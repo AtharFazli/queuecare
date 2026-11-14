@@ -5,38 +5,71 @@
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
   <main>
-    <section class="wadah my-5">
-      <h1>Antrean rapi, tanpa bertanya.</h1>
-      <p class="teks-redup">QueueCare membantu pelanggan tahu gilirannya dan membantu bisnis mengatur reservasi serta antrean.</p>
-      <a class="tombol" th:href="@{/register}">Daftar sebagai customer</a>
-      <a class="tombol tombol--sekunder" th:href="@{/login}">Masuk</a>
+    <section class="hero">
+      <div class="wadah hero__isi">
+        <div class="hero__teks">
+          <h1 class="hero__judul">Tahu giliranmu tanpa bertanya.</h1>
+          <p class="hero__subteks">QueueCare memberi kode reservasi dan nomor antrean untuk barbershop, salon, servis, dan klinik. Cek estimasi tunggu sebelum kamu datang.</p>
+          <div class="hero__tindakan">
+            <a class="tombol" th:href="@{/#cara-kerja}">Lihat cara kerja</a>
+            <a class="tombol tombol--sekunder" th:href="@{/register}">Daftar</a>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <p class="contoh">Contoh</p>
+          <div class="tiket">
+            <div class="tiket__info">
+              <div class="tiket__kode">QC-20261110-0001</div>
+              <div class="tiket__nama">Bisnis contoh</div>
+              <div>Layanan contoh · 10 November 2026, 10.00</div>
+              <span class="lencana lencana--waiting">WAITING</span>
+            </div>
+            <div class="tiket__nomor"><span>Antrean</span><strong>07</strong></div>
+          </div>
+          <div class="smartwait">
+            <div class="smartwait__menit">30</div>
+            <div>
+              <p class="smartwait__teks"><b>menit lagi</b> sampai giliran kamu. 4 orang di depan.</p>
+              <p class="smartwait__catatan">Ini perkiraan, bukan jaminan waktu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="wadah mb-5">
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <article class="kartu">
-            <div class="kartu__badan">
-              <h3 class="kartu__judul">Cari bisnis</h3>
-              <p>Lihat katalog barbershop, salon, servis, dan klinik beserta layanannya.</p>
-            </div>
-          </article>
+    <section class="wadah" id="cara-kerja">
+      <h2>Cara kerja</h2>
+      <div class="langkah">
+        <div class="langkah__item">
+          <h3 class="langkah__judul">Pilih layanan</h3>
+          <p class="langkah__teks">Cari bisnis, tentukan layanan dan jadwal yang cocok.</p>
         </div>
-        <div class="col-md-4 mb-3">
-          <article class="kartu">
-            <div class="kartu__badan">
-              <h3 class="kartu__judul">Buat reservasi</h3>
-              <p>Pilih layanan dan jadwal, lalu dapat kode reservasi serta nomor antrean.</p>
-            </div>
-          </article>
+        <div class="langkah__item">
+          <h3 class="langkah__judul">Ambil nomor</h3>
+          <p class="langkah__teks">Dapat kode reservasi dan nomor antrean dalam satu langkah.</p>
         </div>
-        <div class="col-md-4 mb-3">
-          <article class="kartu">
-            <div class="kartu__badan">
-              <h3 class="kartu__judul">Pantau giliran</h3>
-              <p>Lihat posisi antrean dan estimasi waktu tunggu tanpa harus datang lebih awal.</p>
+        <div class="langkah__item">
+          <h3 class="langkah__judul">Pantau giliran</h3>
+          <p class="langkah__teks">Lihat posisi antrean dan estimasi waktu tunggu.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sorotan">
+      <div class="wadah sorotan__isi">
+        <div>
+          <h2>Estimasi tunggu yang masuk akal</h2>
+          <p class="sorotan__teks">SmartWait menjumlahkan durasi layanan orang di depanmu, lalu membaginya dengan jumlah petugas aktif. Hasilnya perkiraan, bukan jaminan.</p>
+        </div>
+        <div class="hero__visual">
+          <p class="contoh">Contoh</p>
+          <div class="smartwait">
+            <div class="smartwait__menit">30</div>
+            <div>
+              <p class="smartwait__teks"><b>menit lagi</b> sampai giliran kamu. 4 orang di depan.</p>
+              <p class="smartwait__catatan">Ini perkiraan, bukan jaminan waktu.</p>
             </div>
-          </article>
+          </div>
         </div>
       </div>
     </section>

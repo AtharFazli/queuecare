@@ -225,11 +225,64 @@ Komponen utama untuk `/reservation/success/{id}` dan `/queue/{id}`.
 - Catatan "perkiraan, bukan jaminan" selalu tampil, sesuai master planning bagian 5.6.
 - Jika petugas aktif = 0, ganti angka dengan teks "Estimasi belum tersedia". Jangan tampilkan error atau "Infinity".
 
+### Landing (hero, langkah, sorotan)
+
+Halaman `/` memakai komponen tambahan ini. Semua nilai tetap lewat `var(--...)`.
+
+```html
+<section class="hero">
+  <div class="wadah hero__isi">
+    <div class="hero__teks">
+      <h1 class="hero__judul">[Pesan utama]</h1>
+      <p class="hero__subteks">[Satu kalimat penjelas, maksimal 20 kata.]</p>
+      <div class="hero__tindakan">
+        <a class="tombol" href="#cara-kerja">[Aksi utama]</a>
+        <a class="tombol tombol--sekunder" href="/register">Daftar</a>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <p class="contoh">Contoh</p>
+      <div class="tiket">...</div>
+      <div class="smartwait">...</div>
+    </div>
+  </div>
+</section>
+
+<section class="wadah" id="cara-kerja">
+  <h2>Cara kerja</h2>
+  <div class="langkah">
+    <div class="langkah__item">
+      <h3 class="langkah__judul">[Kata kerja] [objek]</h3>
+      <p class="langkah__teks">[Satu kalimat pendek.]</p>
+    </div>
+  </div>
+</section>
+
+<section class="sorotan">
+  <div class="wadah sorotan__isi">
+    <div>
+      <h2>[Judul]</h2>
+      <p class="sorotan__teks">[Penjelas]</p>
+    </div>
+    <div class="hero__visual">
+      <p class="contoh">Contoh</p>
+      <div class="smartwait">...</div>
+    </div>
+  </div>
+</section>
+```
+
+- `.hero__isi` dua kolom (teks dan visual), jadi hero tidak terpusat. Di bawah 720px jadi satu kolom, visual rata kiri.
+- `.langkah` tiga kolom bergaris atas, bukan kartu. Judul langkah memakai kata kerja langsung, bukan "Langkah 1".
+- `.sorotan` pita lembut `--warna-primer-lembut` untuk SmartWait.
+- `.contoh` label kecil untuk menandai visual yang contoh, bukan data nyata.
+- Daftar file: `templates/home.html`, `static/css/components.css`.
+
 ## 5. Pemakaian per halaman
 
 | Halaman | Komponen utama |
 |---|---|
-| `/` Homepage | `navbar`, `kartu-grid`, `tombol`, `footer` |
+| `/` Homepage | `navbar`, `hero`, `tiket`, `smartwait`, `langkah`, `sorotan`, `tombol`, `footer` |
 | `/businesses` | `field` (search), `kartu-grid` + `kartu` |
 | `/businesses/{id}` | `kartu`, `tabel` (layanan), `tombol` |
 | `/login`, `/register` | `kartu`, `field`, `tombol` |
