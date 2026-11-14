@@ -4,15 +4,25 @@
 <body>
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
-  <main class="wadah">
-    <div class="row justify-content-center my-5">
-      <div class="col-md-8 col-lg-6">
-        <div class="kartu">
-          <div class="kartu__badan">
-            <h1 class="kartu__judul">Halo, <span sec:authentication="name">customer@queuecare.id</span></h1>
-            <p>Akun kamu punya peran Customer. Katalog bisnis dan reservasi menyusul di fase berikutnya.</p>
-            <a class="tombol" th:href="@{/}">Kembali ke beranda</a>
-          </div>
+  <main class="wadah my-5">
+    <div class="dash">
+      <nav class="sidebar" aria-label="Menu Customer">
+        <p class="sidebar__judul">Menu Customer</p>
+        <ul class="sidebar__menu">
+          <li><a th:href="@{/customer}" aria-current="page">Dashboard</a></li>
+        </ul>
+      </nav>
+      <div class="dash__isi">
+        <h1>Halo, <span th:text="${nama}">Customer</span></h1>
+        <p class="teks-redup">Peran kamu Customer.</p>
+        <div class="statistik-grid">
+          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Reservasi</span></div>
+          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Antrean aktif</span></div>
+          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Riwayat</span></div>
+        </div>
+        <div class="kosong">
+          <h2 class="kosong__judul">Belum ada data</h2>
+          <p class="kosong__teks">Katalog bisnis dan reservasi menyusul di fase berikutnya.</p>
         </div>
       </div>
     </div>

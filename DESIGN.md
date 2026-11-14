@@ -278,6 +278,46 @@ Halaman `/` memakai komponen tambahan ini. Semua nilai tetap lewat `var(--...)`.
 - `.contoh` label kecil untuk menandai visual yang contoh, bukan data nyata.
 - Daftar file: `templates/home.html`, `static/css/components.css`.
 
+### Autentikasi (auth)
+
+Login dan register memakai komposisi dua kolom seperti hero landing: panel teal di kiri berisi tiket contoh, form di kanan.
+
+```html
+<main class="auth">
+  <div class="wadah auth__isi">
+    <div class="auth__panel">
+      <p class="contoh">Contoh</p>
+      <div class="tiket">...</div>
+      <h2 class="auth__judul">[Pesan]</h2>
+      <p class="auth__teks">[Penjelas]</p>
+    </div>
+    <div class="auth__form">
+      <div class="kartu">
+        <div class="kartu__badan">[Form]</div>
+      </div>
+    </div>
+  </div>
+</main>
+```
+
+- Di bawah 720px jadi satu kolom. Form tampil lebih dulu (`order`), panel di bawahnya.
+- Pesan galat memakai `.lencana`, sama seperti sebelumnya.
+
+### Empty state (kosong)
+
+Dashboard tiap role memakai `.kosong` untuk keadaan belum ada data. Angka statistik diisi 0, bukan placeholder.
+
+```html
+<div class="kosong">
+  <h2 class="kosong__judul">Belum ada data</h2>
+  <p class="kosong__teks">[Penjelas]</p>
+</div>
+```
+
+### Navbar HP (tombol menu)
+
+Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. Tombol toggle class `navbar__menu--terbuka` lewat `static/js/navbar.js`, tanpa library. `aria-expanded` ikut diperbarui.
+
 ## 5. Pemakaian per halaman
 
 | Halaman | Komponen utama |
@@ -285,13 +325,13 @@ Halaman `/` memakai komponen tambahan ini. Semua nilai tetap lewat `var(--...)`.
 | `/` Homepage | `navbar`, `hero`, `tiket`, `smartwait`, `langkah`, `sorotan`, `tombol`, `footer` |
 | `/businesses` | `field` (search), `kartu-grid` + `kartu` |
 | `/businesses/{id}` | `kartu`, `tabel` (layanan), `tombol` |
-| `/login`, `/register` | `kartu`, `field`, `tombol` |
+| `/login`, `/register` | `auth`, `auth__panel`, `tiket`, `kartu`, `field`, `tombol` |
 | `/reservation/create/{serviceId}` | `kartu`, `field`, `tombol` |
 | `/reservation/success/{id}` | `tiket`, `tombol` |
 | `/queue/{id}` | `tiket`, `smartwait`, `lencana` |
 | `/reservations` | `tabel`, `lencana` |
 | `/reservations/{id}` | `tiket`, `smartwait`, `tombol--bahaya`, `modal` |
-| `/owner/*`, `/admin/*` | `dash`, `sidebar`, `statistik`, `tabel`, `modal`, `field` |
+| `/owner/*`, `/admin/*`, `/customer/*` | `dash`, `sidebar`, `statistik`, `kosong`, `tabel`, `modal`, `field` |
 | `/owner/queues` | `tabel`, `lencana`, `tombol--kecil` |
 
 ## 6. Aksesibilitas dan responsif

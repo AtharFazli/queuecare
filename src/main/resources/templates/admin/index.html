@@ -13,13 +13,16 @@
         </ul>
       </nav>
       <div class="dash__isi">
-        <h2>Dashboard</h2>
-        <p class="teks-redup">Masuk sebagai <span sec:authentication="name">admin@queuecare.id</span> (Admin).</p>
+        <h1>Halo, <span th:text="${nama}">Admin</span></h1>
+        <p class="teks-redup">Peran kamu Admin.</p>
         <div class="statistik-grid">
-          <div class="statistik">
-            <span class="statistik__angka">—</span>
-            <span class="statistik__label">Belum ada data, statistik menyusul di Fase 7</span>
-          </div>
+          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Pengguna</span></div>
+          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Bisnis</span></div>
+          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Reservasi</span></div>
+        </div>
+        <div class="kosong">
+          <h2 class="kosong__judul">Belum ada data</h2>
+          <p class="kosong__teks">Statistik di atas terisi otomatis setelah ada aktivitas di platform.</p>
         </div>
       </div>
     </div>

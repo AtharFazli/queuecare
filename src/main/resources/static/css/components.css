@@ -70,6 +70,8 @@ a { color: var(--warna-primer); }
 .navbar__menu { display: flex; gap: var(--jarak-4); list-style: none; margin: 0; padding: 0; }
 .navbar__menu a { color: var(--warna-teks); text-decoration: none; font-size: var(--teks-sm); font-weight: 600; padding: var(--jarak-2) 0; border-bottom: 2px solid transparent; }
 .navbar__menu a:hover, .navbar__menu a[aria-current="page"] { border-bottom-color: var(--warna-aksen); }
+/* .navbar__menu a menimpa warna .tombol, jadi tombol di navbar ditegaskan teksnya putih */
+.navbar__menu a.tombol { color: var(--warna-teks-terbalik); }
 .footer { padding: var(--jarak-8) 0; background: var(--warna-primer-gelap); color: var(--warna-primer-lembut); font-size: var(--teks-sm); }
 .footer a { color: var(--warna-teks-terbalik); }
 
@@ -136,4 +138,32 @@ a { color: var(--warna-primer); }
   .hero__isi, .sorotan__isi { grid-template-columns: 1fr; }
   .langkah { grid-template-columns: 1fr; }
   .hero__visual { justify-items: start; }
+}
+
+/* ===== Autentikasi: dua kolom ===== */
+.auth { padding: var(--jarak-12) 0; }
+.auth__isi { display: grid; grid-template-columns: 1fr 1fr; gap: var(--jarak-8); align-items: center; }
+.auth__panel { display: grid; gap: var(--jarak-4); justify-items: center; text-align: center; padding: var(--jarak-8); background: var(--warna-primer-gelap); border-radius: var(--radius-lg); }
+.auth__panel .contoh { color: var(--warna-primer-lembut); }
+.auth__judul { font: 800 var(--teks-xl) var(--font-judul); color: var(--warna-teks-terbalik); margin: 0; }
+.auth__teks { margin: 0; max-width: 44ch; }
+.auth__form { min-width: 0; }
+
+/* ===== Dashboard: empty state ===== */
+.kosong { margin-top: var(--jarak-6); padding: var(--jarak-6); border: 1px dashed var(--warna-batas); border-radius: var(--radius-lg); text-align: center; }
+.kosong__judul { font: 700 var(--teks-lg) var(--font-judul); margin: 0 0 var(--jarak-2); }
+.kosong__teks { margin: 0; color: var(--warna-teks-redup); font-size: var(--teks-sm); }
+
+/* ===== Navbar: tombol menu HP ===== */
+.navbar__tombol-menu { display: none; }
+
+@media (max-width: 720px) {
+  .navbar { height: auto; }
+  .navbar__isi { flex-wrap: wrap; height: auto; padding-top: var(--jarak-2); padding-bottom: var(--jarak-2); }
+  .navbar__tombol-menu { display: inline-flex; margin-left: auto; }
+  .navbar__menu { display: none; flex-basis: 100%; flex-direction: column; gap: var(--jarak-1); margin-top: var(--jarak-3); padding-top: var(--jarak-3); border-top: 1px solid var(--warna-batas); }
+  .navbar__menu--terbuka { display: flex; }
+  .auth__isi { grid-template-columns: 1fr; }
+  .auth__form { order: 1; }
+  .auth__panel { order: 2; }
 }

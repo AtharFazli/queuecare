@@ -13,7 +13,8 @@
   <nav th:fragment="navbar" class="navbar">
     <div class="navbar__isi wadah">
       <a class="navbar__merek" th:href="@{/}">QueueCare</a>
-      <div class="navbar__menu">
+      <button class="navbar__tombol-menu tombol tombol--kecil tombol--sekunder" type="button" aria-expanded="false" aria-controls="menu-utama">Menu</button>
+      <div class="navbar__menu" id="menu-utama">
         <a th:href="@{/}">Beranda</a>
         <th:block sec:authorize="!isAuthenticated()">
           <a th:href="@{/login}">Masuk</a>
@@ -31,9 +32,11 @@
 
   <footer th:fragment="footer" class="footer">
     <div class="wadah">
-      <p>QueueCare — reservasi dan antrean untuk bisnis jasa.</p>
+      <p>QueueCare: reservasi dan antrean untuk bisnis jasa.</p>
       <p class="teks-redup">© 2026 QueueCare. Dibuat untuk tugas PBO.</p>
     </div>
+    <!-- layout.html dipakai lewat fragment, jadi script harus di dalam fragment agar ikut ter-render -->
+    <script th:src="@{/js/navbar.js}" defer></script>
   </footer>
 </body>
 </html>

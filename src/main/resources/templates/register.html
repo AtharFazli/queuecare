@@ -4,9 +4,23 @@
 <body>
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
-  <main class="wadah">
-    <div class="row justify-content-center my-5">
-      <div class="col-md-6 col-lg-5">
+  <main class="auth">
+    <div class="wadah auth__isi">
+      <div class="auth__panel">
+        <p class="contoh">Contoh</p>
+        <div class="tiket">
+          <div class="tiket__info">
+            <div class="tiket__kode">QC-20261110-0001</div>
+            <div class="tiket__nama">Bisnis contoh</div>
+            <div>Layanan contoh · 10 November 2026, 10.00</div>
+            <span class="lencana lencana--waiting">WAITING</span>
+          </div>
+          <div class="tiket__nomor"><span>Antrean</span><strong>07</strong></div>
+        </div>
+        <h2 class="auth__judul">Tahu giliranmu tanpa bertanya.</h2>
+        <p class="auth__teks">Kode reservasi dan nomor antrean datang bersamaan, jadi kamu tidak perlu menebak giliran.</p>
+      </div>
+      <div class="auth__form">
         <div class="kartu">
           <div class="kartu__badan">
             <h1 class="kartu__judul">Daftar</h1>
