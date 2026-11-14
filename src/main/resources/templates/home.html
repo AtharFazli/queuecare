@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Beranda')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main>
+    <section class="wadah my-5">
+      <h1>Antrean rapi, tanpa bertanya.</h1>
+      <p class="teks-redup">QueueCare membantu pelanggan tahu gilirannya dan membantu bisnis mengatur reservasi serta antrean.</p>
+      <a class="tombol" th:href="@{/register}">Daftar sebagai customer</a>
+      <a class="tombol tombol--sekunder" th:href="@{/login}">Masuk</a>
+    </section>
+
+    <section class="wadah mb-5">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <article class="kartu">
+            <div class="kartu__badan">
+              <h3 class="kartu__judul">Cari bisnis</h3>
+              <p>Lihat katalog barbershop, salon, servis, dan klinik beserta layanannya.</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-md-4 mb-3">
+          <article class="kartu">
+            <div class="kartu__badan">
+              <h3 class="kartu__judul">Buat reservasi</h3>
+              <p>Pilih layanan dan jadwal, lalu dapat kode reservasi serta nomor antrean.</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-md-4 mb-3">
+          <article class="kartu">
+            <div class="kartu__badan">
+              <h3 class="kartu__judul">Pantau giliran</h3>
+              <p>Lihat posisi antrean dan estimasi waktu tunggu tanpa harus datang lebih awal.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

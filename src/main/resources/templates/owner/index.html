@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Dashboard Owner')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <div class="dash">
+      <nav class="sidebar" aria-label="Menu Owner">
+        <p class="sidebar__judul">Menu Owner</p>
+        <ul class="sidebar__menu">
+          <li><a th:href="@{/owner}" aria-current="page">Dashboard</a></li>
+        </ul>
+      </nav>
+      <div class="dash__isi">
+        <h2>Dashboard</h2>
+        <p class="teks-redup">Masuk sebagai <span sec:authentication="name">owner@queuecare.id</span> (Owner).</p>
+        <div class="statistik-grid">
+          <div class="statistik">
+            <span class="statistik__angka">—</span>
+            <span class="statistik__label">Belum ada data, statistik menyusul di Fase 7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Daftar')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah">
+    <div class="row justify-content-center my-5">
+      <div class="col-md-6 col-lg-5">
+        <div class="kartu">
+          <div class="kartu__badan">
+            <h1 class="kartu__judul">Daftar</h1>
+            <p class="kartu__meta">Akun baru otomatis punya peran Customer.</p>
+
+            <form th:action="@{/register}" method="post" th:object="${registerRequest}" class="mt-4">
+              <div class="field" th:classappend="${#fields.hasErrors('name')} ? 'field--galat'">
+                <label class="field__label" for="name">Nama</label>
+                <input class="field__input" id="name" type="text" th:field="*{name}" required>
+                <p class="field__bantuan" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+              </div>
+
+              <div class="field" th:classappend="${#fields.hasErrors('email')} ? 'field--galat'">
+                <label class="field__label" for="email">Email</label>
+                <input class="field__input" id="email" type="email" th:field="*{email}" autocomplete="email" required>
+                <p class="field__bantuan" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+              </div>
+
+              <div class="field" th:classappend="${#fields.hasErrors('password')} ? 'field--galat'">
+                <label class="field__label" for="password">Password</label>
+                <input class="field__input" id="password" type="password" th:field="*{password}" autocomplete="new-password" required>
+                <p class="field__bantuan" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Minimal 8 karakter.</p>
+              </div>
+
+              <div class="field" th:classappend="${#fields.hasErrors('confirmPassword')} ? 'field--galat'">
+                <label class="field__label" for="confirmPassword">Konfirmasi password</label>
+                <input class="field__input" id="confirmPassword" type="password" th:field="*{confirmPassword}" autocomplete="new-password" required>
+                <p class="field__bantuan" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
+              </div>
+
+              <button class="tombol" type="submit">Buat akun</button>
+              <p class="field__bantuan mt-3">Sudah punya akun? <a th:href="@{/login}">Masuk.</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

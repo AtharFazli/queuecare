@@ -1,0 +1,58 @@
+/* QueueCare design tokens. Nama menurut PERAN, bukan nilai. */
+:root {
+  /* Warna */
+  --warna-primer: #0E5A66;
+  --warna-primer-gelap: #0A444D;
+  --warna-primer-lembut: #DDEFF0;
+  --warna-aksen: #F2B134;
+  --warna-aksen-lembut: #FDF0D5;
+  --warna-aksen-teks: #6B4700;
+  --warna-teks: #14262B;
+  --warna-teks-redup: #546A6F;
+  --warna-teks-terbalik: #FFFFFF;
+  --warna-latar: #F4F8F8;
+  --warna-permukaan: #FFFFFF;
+  --warna-batas: #D3DFE1;
+  --warna-sukses: #2E7D4F;
+  --warna-sukses-lembut: #DFF1E5;
+  --warna-bahaya: #B3402F;
+  --warna-bahaya-lembut: #FADFDA;
+  --warna-netral-lembut: #E8EEEF;
+
+  /* Font */
+  --font-judul: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-dasar: "Public Sans", "Segoe UI", system-ui, sans-serif;
+
+  /* Ukuran teks */
+  --teks-xs: 0.75rem;
+  --teks-sm: 0.875rem;
+  --teks-md: 1rem;
+  --teks-lg: 1.25rem;
+  --teks-xl: 1.75rem;
+  --teks-2xl: 2.5rem;
+
+  /* Jarak (skala 4px) */
+  --jarak-1: 4px;
+  --jarak-2: 8px;
+  --jarak-3: 12px;
+  --jarak-4: 16px;
+  --jarak-6: 24px;
+  --jarak-8: 32px;
+  --jarak-12: 48px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-penuh: 999px;
+
+  /* Bayangan */
+  --bayangan-sm: 0 1px 2px rgba(20, 38, 43, 0.08);
+  --bayangan-md: 0 6px 18px rgba(20, 38, 43, 0.10);
+  --bayangan-lg: 0 16px 40px rgba(20, 38, 43, 0.18);
+
+  /* Layout */
+  --lebar-konten: 1140px;
+  --lebar-sidebar: 248px;
+  --tinggi-navbar: 64px;
+}

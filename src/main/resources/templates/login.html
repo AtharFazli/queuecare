@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Masuk')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah">
+    <div class="row justify-content-center my-5">
+      <div class="col-md-6 col-lg-5">
+        <div class="kartu">
+          <div class="kartu__badan">
+            <h1 class="kartu__judul">Masuk</h1>
+            <p class="kartu__meta">Gunakan email dan password akun kamu.</p>
+
+            <p th:if="${param.error}" class="lencana lencana--no-show" role="alert">Email atau password salah.</p>
+            <p th:if="${param.logout}" class="lencana lencana--completed" role="alert">Kamu sudah keluar.</p>
+            <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
+
+            <form th:action="@{/login}" method="post" class="mt-4">
+              <div class="field">
+                <label class="field__label" for="email">Email</label>
+                <input class="field__input" id="email" name="username" type="email" autocomplete="email" required>
+              </div>
+              <div class="field">
+                <label class="field__label" for="password">Password</label>
+                <input class="field__input" id="password" name="password" type="password" autocomplete="current-password" required>
+                <p class="field__bantuan">Belum punya akun? <a th:href="@{/register}">Daftar dulu.</a></p>
+              </div>
+              <button class="tombol" type="submit">Masuk</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

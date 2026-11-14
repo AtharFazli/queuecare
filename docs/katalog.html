@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QueueCare Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* QueueCare design tokens. Nama menurut PERAN, bukan nilai. */
+:root {
+  /* Warna */
+  --warna-primer: #0E5A66;
+  --warna-primer-gelap: #0A444D;
+  --warna-primer-lembut: #DDEFF0;
+  --warna-aksen: #F2B134;
+  --warna-aksen-lembut: #FDF0D5;
+  --warna-aksen-teks: #6B4700;
+  --warna-teks: #14262B;
+  --warna-teks-redup: #546A6F;
+  --warna-teks-terbalik: #FFFFFF;
+  --warna-latar: #F4F8F8;
+  --warna-permukaan: #FFFFFF;
+  --warna-batas: #D3DFE1;
+  --warna-sukses: #2E7D4F;
+  --warna-sukses-lembut: #DFF1E5;
+  --warna-bahaya: #B3402F;
+  --warna-bahaya-lembut: #FADFDA;
+  --warna-netral-lembut: #E8EEEF;
+
+  /* Font */
+  --font-judul: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-dasar: "Public Sans", "Segoe UI", system-ui, sans-serif;
+
+  /* Ukuran teks */
+  --teks-xs: 0.75rem;
+  --teks-sm: 0.875rem;
+  --teks-md: 1rem;
+  --teks-lg: 1.25rem;
+  --teks-xl: 1.75rem;
+  --teks-2xl: 2.5rem;
+
+  /* Jarak (skala 4px) */
+  --jarak-1: 4px;
+  --jarak-2: 8px;
+  --jarak-3: 12px;
+  --jarak-4: 16px;
+  --jarak-6: 24px;
+  --jarak-8: 32px;
+  --jarak-12: 48px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-penuh: 999px;
+
+  /* Bayangan */
+  --bayangan-sm: 0 1px 2px rgba(20, 38, 43, 0.08);
+  --bayangan-md: 0 6px 18px rgba(20, 38, 43, 0.10);
+  --bayangan-lg: 0 16px 40px rgba(20, 38, 43, 0.18);
+
+  /* Layout */
+  --lebar-konten: 1140px;
+  --lebar-sidebar: 248px;
+  --tinggi-navbar: 64px;
+}
+
+/* ===== Dasar ===== */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font-dasar); font-size: var(--teks-md); line-height: 1.6; color: var(--warna-teks); background: var(--warna-latar); }
+h1, h2, h3, h4 { font-family: var(--font-judul); line-height: 1.2; margin: 0 0 var(--jarak-3); }
+h1 { font-size: var(--teks-2xl); } h2 { font-size: var(--teks-xl); } h3 { font-size: var(--teks-lg); }
+p { margin: 0 0 var(--jarak-3); }
+a { color: var(--warna-primer); }
+:focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }
+.wadah { max-width: var(--lebar-konten); margin: 0 auto; padding: 0 var(--jarak-4); }
+.teks-redup { color: var(--warna-teks-redup); }
+
+/* ===== Tombol ===== */
+.tombol { display: inline-flex; align-items: center; justify-content: center; gap: var(--jarak-2); padding: var(--jarak-2) var(--jarak-4); min-height: 40px; border: 2px solid var(--warna-primer); border-radius: var(--radius-md); background: var(--warna-primer); color: var(--warna-teks-terbalik); font: 600 var(--teks-sm) var(--font-dasar); text-decoration: none; cursor: pointer; }
+.tombol:hover { background: var(--warna-primer-gelap); border-color: var(--warna-primer-gelap); }
+.tombol--sekunder { background: transparent; color: var(--warna-primer); }
+.tombol--sekunder:hover { background: var(--warna-primer-lembut); color: var(--warna-primer-gelap); }
+.tombol--bahaya { background: var(--warna-bahaya); border-color: var(--warna-bahaya); }
+.tombol--bahaya:hover { background: #8F3022; border-color: #8F3022; }
+.tombol--kecil { min-height: 32px; padding: var(--jarak-1) var(--jarak-3); font-size: var(--teks-xs); }
+.tombol:disabled { opacity: .5; cursor: not-allowed; }
+
+/* ===== Kartu ===== */
+.kartu { background: var(--warna-permukaan); border: 1px solid var(--warna-batas); border-radius: var(--radius-lg); box-shadow: var(--bayangan-sm); overflow: hidden; }
+.kartu__badan { padding: var(--jarak-4) var(--jarak-6); }
+.kartu__judul { font: 700 var(--teks-lg) var(--font-judul); margin: 0 0 var(--jarak-1); }
+.kartu__meta { color: var(--warna-teks-redup); font-size: var(--teks-sm); margin: 0 0 var(--jarak-3); }
+.kartu__kaki { display: flex; justify-content: space-between; align-items: center; gap: var(--jarak-3); padding: var(--jarak-3) var(--jarak-6); border-top: 1px solid var(--warna-batas); background: var(--warna-latar); }
+.kartu__gambar { height: 120px; background: var(--warna-primer-lembut); display: flex; align-items: center; justify-content: center; color: var(--warna-primer); font: 700 var(--teks-xl) var(--font-judul); }
+.kartu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--jarak-6); }
+
+/* ===== Lencana status (antrean dan reservasi) ===== */
+.lencana { display: inline-block; padding: 2px var(--jarak-3); border-radius: var(--radius-penuh); font-size: var(--teks-xs); font-weight: 600; white-space: nowrap; background: var(--warna-netral-lembut); color: var(--warna-teks-redup); }
+.lencana--waiting, .lencana--cancelled { background: var(--warna-netral-lembut); color: var(--warna-teks-redup); }
+.lencana--called { background: var(--warna-aksen-lembut); color: var(--warna-aksen-teks); }
+.lencana--in-service { background: var(--warna-primer-lembut); color: var(--warna-primer-gelap); }
+.lencana--completed { background: var(--warna-sukses-lembut); color: var(--warna-sukses); }
+.lencana--no-show { background: var(--warna-bahaya-lembut); color: var(--warna-bahaya); }
+.lencana--cancelled { text-decoration: line-through; }
+
+/* ===== Form ===== */
+.field { margin-bottom: var(--jarak-4); }
+.field__label { display: block; margin-bottom: var(--jarak-1); font-size: var(--teks-sm); font-weight: 600; }
+.field__input { width: 100%; min-height: 42px; padding: var(--jarak-2) var(--jarak-3); border: 1px solid var(--warna-batas); border-radius: var(--radius-md); background: var(--warna-permukaan); color: var(--warna-teks); font: inherit; }
+.field__input:focus { outline: 3px solid var(--warna-primer-lembut); border-color: var(--warna-primer); }
+.field__bantuan { margin: var(--jarak-1) 0 0; font-size: var(--teks-xs); color: var(--warna-teks-redup); }
+.field--galat .field__input { border-color: var(--warna-bahaya); }
+.field--galat .field__bantuan { color: var(--warna-bahaya); }
+
+/* ===== Tabel ===== */
+.tabel-bungkus { overflow-x: auto; border: 1px solid var(--warna-batas); border-radius: var(--radius-lg); background: var(--warna-permukaan); }
+.tabel { width: 100%; border-collapse: collapse; font-size: var(--teks-sm); }
+.tabel th { text-align: left; padding: var(--jarak-3) var(--jarak-4); background: var(--warna-latar); border-bottom: 1px solid var(--warna-batas); font-weight: 600; white-space: nowrap; }
+.tabel td { padding: var(--jarak-3) var(--jarak-4); border-bottom: 1px solid var(--warna-batas); }
+.tabel tr:last-child td { border-bottom: 0; }
+.tabel__angka { font-variant-numeric: tabular-nums; font-weight: 700; }
+
+/* ===== Modal (pakai elemen <dialog>) ===== */
+.modal { width: min(480px, calc(100% - 32px)); padding: 0; border: 0; border-radius: var(--radius-lg); box-shadow: var(--bayangan-lg); color: var(--warna-teks); }
+.modal::backdrop { background: rgba(20, 38, 43, .55); }
+.modal__kepala { padding: var(--jarak-4) var(--jarak-6); border-bottom: 1px solid var(--warna-batas); }
+.modal__kepala h3 { margin: 0; }
+.modal__badan { padding: var(--jarak-4) var(--jarak-6); }
+.modal__kaki { display: flex; justify-content: flex-end; gap: var(--jarak-2); padding: var(--jarak-3) var(--jarak-6); background: var(--warna-latar); }
+
+/* ===== Navbar dan footer ===== */
+.navbar { position: sticky; top: 0; z-index: 10; height: var(--tinggi-navbar); background: var(--warna-permukaan); border-bottom: 1px solid var(--warna-batas); }
+.navbar__isi { display: flex; align-items: center; justify-content: space-between; gap: var(--jarak-4); height: 100%; }
+.navbar__merek { font: 800 var(--teks-lg) var(--font-judul); color: var(--warna-primer); text-decoration: none; }
+.navbar__menu { display: flex; gap: var(--jarak-4); list-style: none; margin: 0; padding: 0; }
+.navbar__menu a { color: var(--warna-teks); text-decoration: none; font-size: var(--teks-sm); font-weight: 600; padding: var(--jarak-2) 0; border-bottom: 2px solid transparent; }
+.navbar__menu a:hover, .navbar__menu a[aria-current="page"] { border-bottom-color: var(--warna-aksen); }
+.footer { padding: var(--jarak-8) 0; background: var(--warna-primer-gelap); color: var(--warna-primer-lembut); font-size: var(--teks-sm); }
+.footer a { color: var(--warna-teks-terbalik); }
+
+/* ===== Dashboard: sidebar + statistik ===== */
+.dash { display: grid; grid-template-columns: var(--lebar-sidebar) 1fr; min-height: 360px; border: 1px solid var(--warna-batas); border-radius: var(--radius-lg); overflow: hidden; background: var(--warna-latar); }
+.sidebar { background: var(--warna-primer-gelap); padding: var(--jarak-4); }
+.sidebar__judul { margin: 0 0 var(--jarak-3); color: var(--warna-primer-lembut); font-size: var(--teks-xs); }
+.sidebar__menu { list-style: none; margin: 0; padding: 0; }
+.sidebar__menu a { display: block; padding: var(--jarak-2) var(--jarak-3); border-radius: var(--radius-md); color: var(--warna-primer-lembut); text-decoration: none; font-size: var(--teks-sm); }
+.sidebar__menu a:hover { background: rgba(255, 255, 255, .1); }
+.sidebar__menu a[aria-current="page"] { background: var(--warna-aksen); color: var(--warna-teks); font-weight: 700; }
+.dash__isi { padding: var(--jarak-6); }
+.statistik-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--jarak-4); }
+.statistik { padding: var(--jarak-4); background: var(--warna-permukaan); border: 1px solid var(--warna-batas); border-radius: var(--radius-md); }
+.statistik__angka { display: block; font: 800 var(--teks-xl) var(--font-judul); font-variant-numeric: tabular-nums; }
+.statistik__label { font-size: var(--teks-sm); color: var(--warna-teks-redup); }
+
+/* ===== Tiket antrean (ciri khas QueueCare) ===== */
+.tiket { display: grid; grid-template-columns: 1fr auto; max-width: 440px; background: var(--warna-permukaan); border: 2px solid var(--warna-primer); border-radius: var(--radius-lg); position: relative; }
+.tiket__info { padding: var(--jarak-4) var(--jarak-6); }
+.tiket__kode { font-size: var(--teks-xs); color: var(--warna-teks-redup); letter-spacing: .04em; }
+.tiket__nama { font: 700 var(--teks-md) var(--font-judul); margin: var(--jarak-1) 0; }
+.tiket__nomor { display: flex; flex-direction: column; justify-content: center; align-items: center; min-width: 120px; padding: var(--jarak-4); background: var(--warna-aksen); color: var(--warna-teks); border-left: 2px dashed var(--warna-primer); border-radius: 0 calc(var(--radius-lg) - 2px) calc(var(--radius-lg) - 2px) 0; }
+.tiket__nomor strong { font: 800 var(--teks-2xl) var(--font-judul); line-height: 1; font-variant-numeric: tabular-nums; }
+.tiket__nomor span { font-size: var(--teks-xs); font-weight: 600; }
+.tiket::before, .tiket::after { content: ""; position: absolute; right: 108px; width: 20px; height: 20px; background: var(--warna-latar); border: 2px solid var(--warna-primer); border-radius: var(--radius-penuh); }
+.tiket::before { top: -11px; clip-path: inset(50% 0 0 0); }
+.tiket::after { bottom: -11px; clip-path: inset(0 0 50% 0); }
+
+/* ===== SmartWait ===== */
+.smartwait { display: flex; align-items: center; gap: var(--jarak-4); max-width: 440px; padding: var(--jarak-4) var(--jarak-6); background: var(--warna-primer-lembut); border-radius: var(--radius-lg); }
+.smartwait__menit { font: 800 var(--teks-2xl) var(--font-judul); line-height: 1; color: var(--warna-primer-gelap); font-variant-numeric: tabular-nums; }
+.smartwait__teks { margin: 0; font-size: var(--teks-sm); }
+.smartwait__catatan { margin: var(--jarak-1) 0 0; font-size: var(--teks-xs); color: var(--warna-teks-redup); }
+
+/* ===== Responsif ===== */
+@media (max-width: 720px) {
+  .dash { grid-template-columns: 1fr; }
+  .navbar__menu { display: none; }
+  h1 { font-size: var(--teks-xl); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Hanya untuk halaman katalog */
+.kat section { padding: var(--jarak-8) 0; border-bottom: 1px solid var(--warna-batas); }
+.kat pre { margin: var(--jarak-3) 0 0; padding: var(--jarak-3) var(--jarak-4); background: var(--warna-teks); color: #E6F1F2; border-radius: var(--radius-md); overflow-x: auto; font-size: var(--teks-xs); }
+.kat .demo { display: flex; flex-wrap: wrap; gap: var(--jarak-3); align-items: center; }
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: var(--jarak-3); }
+.swatch { border: 1px solid var(--warna-batas); border-radius: var(--radius-md); overflow: hidden; background: var(--warna-permukaan); font-size: var(--teks-xs); }
+.swatch i { display: block; height: 48px; }
+.swatch b, .swatch span { display: block; padding: 0 var(--jarak-2); }
+.swatch b { padding-top: var(--jarak-1); font-size: var(--teks-xs); }
+.swatch span { padding-bottom: var(--jarak-1); color: var(--warna-teks-redup); }
+.kotak { display: inline-block; width: 64px; height: 48px; background: var(--warna-primer-lembut); border: 1px solid var(--warna-primer); }
+</style>
+</head>
+<body class="kat">
+<header class="navbar">
+  <div class="wadah navbar__isi">
+    <a class="navbar__merek" href="#">QueueCare</a>
+    <ul class="navbar__menu">
+      <li><a href="#warna" aria-current="page">Design System</a></li>
+      <li><a href="#tipografi">Tipografi</a></li>
+      <li><a href="#komponen">Komponen</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wadah">
+<section>
+  <h1>QueueCare Design System</h1>
+  <p class="teks-redup">Token dan komponen untuk website reservasi dan antrean, dibuat dari master planning. Pakai <code>css/tokens.css</code> lalu <code>css/components.css</code>. Cocok berdampingan dengan grid Bootstrap 5 di template Thymeleaf.</p>
+  <p>Arah desain: tenang dan jelas, dengan satu ciri khas, yaitu <strong>tiket antrean</strong>. Warna amber dipakai hemat, khusus untuk nomor antrean dan status yang butuh perhatian.</p>
+</section>
+
+<section id="warna">
+  <h2>Warna</h2>
+  <div class="swatch-grid">
+    <div class="swatch"><i style="background:var(--warna-primer)"></i><b>--warna-primer</b><span>#0E5A66 · tombol, tautan</span></div>
+    <div class="swatch"><i style="background:var(--warna-primer-gelap)"></i><b>--warna-primer-gelap</b><span>#0A444D · hover, sidebar</span></div>
+    <div class="swatch"><i style="background:var(--warna-primer-lembut)"></i><b>--warna-primer-lembut</b><span>#DDEFF0 · latar lembut</span></div>
+    <div class="swatch"><i style="background:var(--warna-aksen)"></i><b>--warna-aksen</b><span>#F2B134 · nomor antrean</span></div>
+    <div class="swatch"><i style="background:var(--warna-aksen-lembut)"></i><b>--warna-aksen-lembut</b><span>#FDF0D5 · status CALLED</span></div>
+    <div class="swatch"><i style="background:var(--warna-teks)"></i><b>--warna-teks</b><span>#14262B · teks utama</span></div>
+    <div class="swatch"><i style="background:var(--warna-teks-redup)"></i><b>--warna-teks-redup</b><span>#546A6F · keterangan</span></div>
+    <div class="swatch"><i style="background:var(--warna-latar)"></i><b>--warna-latar</b><span>#F4F8F8 · latar halaman</span></div>
+    <div class="swatch"><i style="background:var(--warna-batas)"></i><b>--warna-batas</b><span>#D3DFE1 · garis, border</span></div>
+    <div class="swatch"><i style="background:var(--warna-sukses)"></i><b>--warna-sukses</b><span>#2E7D4F · COMPLETED</span></div>
+    <div class="swatch"><i style="background:var(--warna-bahaya)"></i><b>--warna-bahaya</b><span>#B3402F · error, NO_SHOW</span></div>
+  </div>
+</section>
+
+<section id="tipografi">
+  <h2>Tipografi</h2>
+  <p><b>--font-judul:</b> Bricolage Grotesque, untuk judul dan angka besar. <b>--font-dasar:</b> Public Sans, untuk isi dan form.</p>
+  <h1>Judul 1 · 2.5rem</h1>
+  <h2>Judul 2 · 1.75rem</h2>
+  <h3>Judul 3 · 1.25rem</h3>
+  <p>Teks isi 1rem. Panjang baris dijaga di bawah 80 karakter supaya enak dibaca.</p>
+  <p class="teks-redup" style="font-size:var(--teks-sm)">Teks kecil 0.875rem untuk keterangan dan meta.</p>
+</section>
+
+<section>
+  <h2>Jarak, radius, bayangan</h2>
+  <p>Jarak memakai skala 4px: <code>--jarak-1</code> (4) sampai <code>--jarak-12</code> (48).</p>
+  <div class="demo">
+    <span class="kotak" style="border-radius:var(--radius-sm)"></span>
+    <span class="kotak" style="border-radius:var(--radius-md)"></span>
+    <span class="kotak" style="border-radius:var(--radius-lg)"></span>
+    <span class="kotak" style="border-radius:var(--radius-penuh)"></span>
+    <span class="kotak" style="box-shadow:var(--bayangan-sm)"></span>
+    <span class="kotak" style="box-shadow:var(--bayangan-md)"></span>
+    <span class="kotak" style="box-shadow:var(--bayangan-lg)"></span>
+  </div>
+  <p class="teks-redup" style="font-size:var(--teks-sm);margin-top:var(--jarak-2)">Radius: sm 6, md 10, lg 16, penuh. Bayangan: sm, md, lg.</p>
+</section>
+
+<section id="komponen">
+  <h2>Tombol</h2>
+  <div class="demo">
+    <button class="tombol">Buat reservasi</button>
+    <button class="tombol tombol--sekunder">Lihat detail</button>
+    <button class="tombol tombol--bahaya">Batalkan reservasi</button>
+    <button class="tombol tombol--kecil">Panggil</button>
+    <button class="tombol" disabled>Tidak tersedia</button>
+  </div>
+<pre>&lt;button class="tombol"&gt;Buat reservasi&lt;/button&gt;
+&lt;button class="tombol tombol--sekunder"&gt;Lihat detail&lt;/button&gt;</pre>
+</section>
+
+<section>
+  <h2>Lencana status</h2>
+  <p class="teks-redup">Enam status antrean dari master planning. Status reservasi memakai gaya yang sama: PENDING = waiting, CONFIRMED = in-service, CANCELLED = cancelled, COMPLETED = completed (usulan, bisa diganti).</p>
+  <div class="demo">
+    <span class="lencana lencana--waiting">WAITING</span>
+    <span class="lencana lencana--called">CALLED</span>
+    <span class="lencana lencana--in-service">IN_SERVICE</span>
+    <span class="lencana lencana--completed">COMPLETED</span>
+    <span class="lencana lencana--cancelled">CANCELLED</span>
+    <span class="lencana lencana--no-show">NO_SHOW</span>
+  </div>
+<pre>&lt;span class="lencana lencana--called"&gt;CALLED&lt;/span&gt;</pre>
+</section>
+
+<section>
+  <h2>Kartu bisnis</h2>
+  <div class="kartu-grid">
+    <article class="kartu">
+      <div class="kartu__gambar">Barbershop</div>
+      <div class="kartu__badan">
+        <h3 class="kartu__judul">[Nama bisnis]</h3>
+        <p class="kartu__meta">Barbershop · [alamat singkat]</p>
+        <p>Deskripsi singkat bisnis, dua baris saja.</p>
+      </div>
+      <div class="kartu__kaki"><span class="teks-redup">Mulai dari [harga]</span><a class="tombol tombol--kecil" href="#">Lihat detail</a></div>
+    </article>
+  </div>
+<pre>&lt;article class="kartu"&gt;
+  &lt;div class="kartu__gambar"&gt;...&lt;/div&gt;
+  &lt;div class="kartu__badan"&gt;&lt;h3 class="kartu__judul"&gt;...&lt;/h3&gt;&lt;/div&gt;
+  &lt;div class="kartu__kaki"&gt;...&lt;/div&gt;
+&lt;/article&gt;</pre>
+</section>
+
+<section>
+  <h2>Form</h2>
+  <div style="max-width:420px">
+    <div class="field">
+      <label class="field__label" for="e1">Email</label>
+      <input class="field__input" id="e1" type="email" placeholder="nama@email.com">
+      <p class="field__bantuan">Dipakai untuk login.</p>
+    </div>
+    <div class="field field--galat">
+      <label class="field__label" for="e2">Jumlah petugas aktif</label>
+      <input class="field__input" id="e2" type="number" value="-1">
+      <p class="field__bantuan">Isi angka 0 atau lebih.</p>
+    </div>
+  </div>
+<pre>&lt;div class="field field--galat"&gt;
+  &lt;label class="field__label"&gt;...&lt;/label&gt;
+  &lt;input class="field__input"&gt;
+  &lt;p class="field__bantuan"&gt;Pesan galat&lt;/p&gt;
+&lt;/div&gt;</pre>
+</section>
+
+<section>
+  <h2>Tabel</h2>
+  <div class="tabel-bungkus">
+    <table class="tabel">
+      <thead><tr><th>No.</th><th>Customer</th><th>Layanan</th><th>Waktu</th><th>Status</th><th></th></tr></thead>
+      <tbody>
+        <tr><td class="tabel__angka">1</td><td>[Nama customer]</td><td>[Layanan]</td><td>10:00</td><td><span class="lencana lencana--in-service">IN_SERVICE</span></td><td><button class="tombol tombol--kecil">Selesai</button></td></tr>
+        <tr><td class="tabel__angka">2</td><td>[Nama customer]</td><td>[Layanan]</td><td>10:30</td><td><span class="lencana lencana--waiting">WAITING</span></td><td><button class="tombol tombol--kecil">Panggil</button></td></tr>
+      </tbody>
+    </table>
+  </div>
+<pre>&lt;div class="tabel-bungkus"&gt;&lt;table class="tabel"&gt;...&lt;/table&gt;&lt;/div&gt;</pre>
+</section>
+
+<section>
+  <h2>Modal</h2>
+  <button class="tombol tombol--sekunder" onclick="document.getElementById('m1').showModal()">Buka contoh modal</button>
+  <dialog class="modal" id="m1">
+    <div class="modal__kepala"><h3>Batalkan reservasi?</h3></div>
+    <div class="modal__badan"><p>Reservasi dan nomor antrean akan dibatalkan. Tindakan ini tidak bisa diulang.</p></div>
+    <div class="modal__kaki">
+      <button class="tombol tombol--sekunder" onclick="this.closest('dialog').close()">Kembali</button>
+      <button class="tombol tombol--bahaya" onclick="this.closest('dialog').close()">Batalkan reservasi</button>
+    </div>
+  </dialog>
+<pre>&lt;dialog class="modal" id="m1"&gt;...&lt;/dialog&gt;
+&lt;script&gt;document.getElementById('m1').showModal()&lt;/script&gt;</pre>
+</section>
+
+<section>
+  <h2>Tiket antrean</h2>
+  <p class="teks-redup">Komponen utama untuk halaman reservasi berhasil dan monitoring antrean.</p>
+  <div class="tiket">
+    <div class="tiket__info">
+      <div class="tiket__kode">QC-20261110-0001</div>
+      <div class="tiket__nama">[Nama bisnis]</div>
+      <div>[Layanan] · 10 Nov 2026, 10:00</div>
+      <div style="margin-top:var(--jarak-2)"><span class="lencana lencana--waiting">WAITING</span></div>
+    </div>
+    <div class="tiket__nomor"><span>Antrean</span><strong>07</strong></div>
+  </div>
+<pre>&lt;div class="tiket"&gt;
+  &lt;div class="tiket__info"&gt;...&lt;/div&gt;
+  &lt;div class="tiket__nomor"&gt;&lt;span&gt;Antrean&lt;/span&gt;&lt;strong&gt;07&lt;/strong&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+</section>
+
+<section>
+  <h2>SmartWait</h2>
+  <div class="smartwait">
+    <div class="smartwait__menit">30</div>
+    <div>
+      <p class="smartwait__teks"><b>menit lagi</b> sampai giliran kamu. 4 orang di depan.</p>
+      <p class="smartwait__catatan">Ini perkiraan, bukan jaminan waktu.</p>
+    </div>
+  </div>
+  <p style="margin-top:var(--jarak-3)" class="teks-redup">Kalau petugas aktif = 0, tampilkan "Estimasi belum tersedia" di tempat angka.</p>
+<pre>&lt;div class="smartwait"&gt;
+  &lt;div class="smartwait__menit"&gt;30&lt;/div&gt;
+  &lt;div&gt;&lt;p class="smartwait__teks"&gt;...&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+</section>
+
+<section>
+  <h2>Dashboard: sidebar dan statistik</h2>
+  <div class="dash">
+    <nav class="sidebar" aria-label="Menu Owner">
+      <p class="sidebar__judul">Menu Owner</p>
+      <ul class="sidebar__menu">
+        <li><a href="#" aria-current="page">Dashboard</a></li>
+        <li><a href="#">Business Profile</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Schedules</a></li>
+        <li><a href="#">Capacity</a></li>
+        <li><a href="#">Reservations</a></li>
+        <li><a href="#">Queue Management</a></li>
+        <li><a href="#">Reports</a></li>
+      </ul>
+    </nav>
+    <div class="dash__isi">
+      <div class="statistik-grid">
+        <div class="statistik"><span class="statistik__angka">12</span><span class="statistik__label">Reservasi hari ini</span></div>
+        <div class="statistik"><span class="statistik__angka">5</span><span class="statistik__label">Antrean menunggu</span></div>
+        <div class="statistik"><span class="statistik__angka">1</span><span class="statistik__label">Sedang dilayani</span></div>
+        <div class="statistik"><span class="statistik__angka">6</span><span class="statistik__label">Pelayanan selesai</span></div>
+      </div>
+    </div>
+  </div>
+<pre>&lt;div class="dash"&gt;
+  &lt;nav class="sidebar"&gt;&lt;ul class="sidebar__menu"&gt;...&lt;/ul&gt;&lt;/nav&gt;
+  &lt;div class="dash__isi"&gt;&lt;div class="statistik-grid"&gt;...&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+  <p class="teks-redup" style="margin-top:var(--jarak-3)">Admin memakai sidebar yang sama dengan menu Users, Businesses, Categories, Reservations, Reports. Angka di atas hanya contoh.</p>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wadah">QueueCare · Reservasi dan antrean untuk bisnis jasa</div>
+</footer>
+</body>
+</html>
