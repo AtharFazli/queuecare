@@ -9,4 +9,7 @@ import java.util.List;
 public interface ServiceRepository extends JpaRepository<Service, Long> {
 
     List<Service> findByBusinessOrderByIdAsc(Business business);
+
+    /** Hanya layanan aktif yang boleh tampil di katalog publik. */
+    List<Service> findByBusinessAndActiveTrueOrderByIdAsc(Business business);
 }

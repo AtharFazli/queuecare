@@ -126,6 +126,10 @@ a { color: var(--warna-primer); }
 .hero__visual { display: grid; gap: var(--jarak-4); justify-items: center; }
 .contoh { margin: 0; font-size: var(--teks-xs); color: var(--warna-teks-redup); }
 
+/* ===== Katalog: bar pencarian ===== */
+.pencarian { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--jarak-3); }
+.pencarian .field { flex: 1 1 220px; margin-bottom: 0; }
+
 /* ===== Landing: langkah ===== */
 .langkah { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--jarak-6); margin-top: var(--jarak-8); padding-top: var(--jarak-6); border-top: 1px solid var(--warna-batas); }
 .langkah__judul { font: 700 var(--teks-md) var(--font-judul); margin: 0 0 var(--jarak-2); }

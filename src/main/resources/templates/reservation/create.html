@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Reservasi')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah">
+    <div class="row justify-content-center my-5">
+      <div class="col-md-6">
+        <div class="kartu">
+          <div class="kartu__badan">
+            <h1 class="kartu__judul">Reservasi</h1>
+            <p th:if="${layanan != null}">Layanan: <b th:text="${layanan.name}">Cukur rambut</b></p>
+            <p>Fitur reservasi segera hadir.</p>
+            <a class="tombol" th:href="@{/businesses}">Kembali ke katalog</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

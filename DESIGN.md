@@ -314,6 +314,22 @@ Dashboard tiap role memakai `.kosong` untuk keadaan belum ada data. Angka statis
 </div>
 ```
 
+### Katalog (pencarian dan detail)
+
+Halaman `/businesses` memakai `.kartu-grid`, `.kartu`, dan `.pencarian`. Detail `/businesses/{id}` memakai `.kartu`, `.tabel`, `.lencana`, dan `.kartu-grid`.
+
+```html
+<form action="/businesses" method="get" class="pencarian">
+  <div class="field"><label class="field__label" for="q">Nama bisnis</label><input class="field__input" id="q" name="q"></div>
+  <div class="field"><label class="field__label" for="kategori">Kategori</label><select class="field__input" id="kategori" name="kategori"></select></div>
+  <button class="tombol" type="submit">Cari</button>
+</form>
+```
+
+- `.pencarian` baris fleksibel, lalu membungkus di layar sempit. Setiap `.field` tumbuh minimal 220px.
+- Pencarian dan filter lewat parameter GET (`q`, `kategori`), jadi hasil bisa di-bookmark.
+- Katalog hanya menampilkan bisnis ACTIVE; detail non-ACTIVE menghasilkan 404.
+
 ### Bisnis aktif (Owner)
 
 Satu Owner boleh punya banyak bisnis. Owner memilih salah satu, dan pilihan ini disimpan di session. Halaman `/owner/business`, `/owner/services`, `/owner/schedules`, dan `/owner/capacity` bekerja untuk bisnis yang dipilih.
@@ -356,6 +372,9 @@ Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. To
 | `/admin/categories` | `kartu`, `field`, `tabel`, `tombol--kecil`, `tombol--bahaya` |
 | `/admin/businesses` | `tabel`, `lencana`, `field`, `tombol--kecil`, `kosong` |
 | `/owner/businesses` | `tabel`, `lencana`, `tombol`, `tombol--kecil`, `kosong` |
+| `/businesses` | `pencarian`, `kartu-grid`, `kartu`, `kosong` |
+| `/businesses/{id}` | `kartu`, `tabel`, `lencana`, `kartu-grid`, `tombol` |
+| `/reservation/create/{serviceId}` | `kartu`, `tombol` |
 
 ## 6. Aksesibilitas dan responsif
 

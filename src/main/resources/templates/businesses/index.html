@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Katalog bisnis')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Cari bisnis</h1>
+    <p class="teks-redup">Pilih bisnis untuk melihat layanan, harga, dan jam operasional.</p>
+
+    <div class="kartu">
+      <div class="kartu__badan">
+        <form th:action="@{/businesses}" method="get" class="pencarian">
+          <div class="field">
+            <label class="field__label" for="q">Nama bisnis</label>
+            <input class="field__input" id="q" name="q" type="text" th:value="${q}" placeholder="misal barbershop">
+          </div>
+          <div class="field">
+            <label class="field__label" for="kategori">Kategori</label>
+            <select class="field__input" id="kategori" name="kategori">
+              <option value="">Semua kategori</option>
+              <option th:each="k : ${kategori}" th:value="${k.id}" th:text="${k.name}" th:selected="${kategoriId != null and kategoriId == k.id}">Barbershop</option>
+            </select>
+          </div>
+          <button class="tombol" type="submit">Cari</button>
+        </form>
+      </div>
+    </div>
+
+    <div th:if="${#lists.isEmpty(bisnis)}" class="kosong mt-4">
+      <h2 class="kosong__judul">Bisnis tidak ditemukan</h2>
+      <p class="kosong__teks">Coba kata kunci lain atau pilih kategori yang berbeda.</p>
+    </div>
+
+    <div class="kartu-grid mt-4" th:unless="${#lists.isEmpty(bisnis)}">
+      <article class="kartu" th:each="b : ${bisnis}">
+        <div class="kartu__gambar" th:text="${b.category.name}">Barbershop</div>
+        <div class="kartu__badan">
+          <h3 class="kartu__judul" th:text="${b.name}">Barbershop Senja</h3>
+          <p class="kartu__meta" th:text="${b.category.name} + ' · ' + ${b.address}">Barbershop · Jl. Kemangi</p>
+          <p th:text="${b.description}">Deskripsi singkat bisnis.</p>
+        </div>
+        <div class="kartu__kaki">
+          <a class="tombol tombol--kecil" th:href="@{/businesses/{id}(id=${b.id})}">Lihat detail</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

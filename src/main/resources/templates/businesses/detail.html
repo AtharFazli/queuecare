@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head(${bisnis.name})}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <p><a th:href="@{/businesses}">Kembali ke katalog</a></p>
+
+    <h1 th:text="${bisnis.name}">Barbershop Senja</h1>
+    <p class="kartu__meta" th:text="${bisnis.category.name} + ' · ' + ${bisnis.address}">Barbershop · Jl. Kemangi</p>
+    <p th:if="${bisnis.phone != null}">Telepon: <span th:text="${bisnis.phone}">0812-0000-0001</span></p>
+    <p th:text="${bisnis.description}">Deskripsi bisnis.</p>
+
+    <h2 class="mt-4">Jam operasional</h2>
+    <div class="tabel-bungkus">
+      <table class="tabel">
+        <thead>
+          <tr><th>Hari</th><th>Jam</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr th:each="j : ${jadwal}">
+            <td th:text="${j.dayOfWeek}">SENIN</td>
+            <td th:text="${j.closed} ? 'Libur' : ${#temporals.format(j.openTime, 'HH:mm')} + ' - ' + ${#temporals.format(j.closeTime, 'HH:mm')}">09:00 - 17:00</td>
+            <td>
+              <span class="lencana" th:classappend="${j.closed} ? 'lencana--cancelled' : 'lencana--completed'" th:text="${j.closed} ? 'Libur' : 'Buka'">Buka</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="mt-4">Layanan</h2>
+    <div th:if="${#lists.isEmpty(layanan)}" class="kosong">
+      <h2 class="kosong__judul">Belum ada layanan aktif</h2>
+      <p class="kosong__teks">Bisnis ini belum membuka layanan yang bisa dipesan.</p>
+    </div>
+    <div class="kartu-grid" th:unless="${#lists.isEmpty(layanan)}">
+      <article class="kartu" th:each="s : ${layanan}">
+        <div class="kartu__badan">
+          <h3 class="kartu__judul" th:text="${s.name}">Cukur rambut</h3>
+          <p class="kartu__meta">Rp <span th:text="${#numbers.formatDecimal(s.price, 1, 2)}">45000,00</span> · <span th:text="${s.estimatedDurationMinutes}">30</span> menit</p>
+          <p th:text="${s.description}">Deskripsi layanan.</p>
+        </div>
+        <div class="kartu__kaki">
+          <a class="tombol tombol--kecil" th:href="@{/reservation/create/{id}(id=${s.id})}">Reservasi</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>
