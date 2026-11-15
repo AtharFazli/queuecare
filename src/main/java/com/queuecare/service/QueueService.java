@@ -1,5 +1,6 @@
 package com.queuecare.service;
 
+import com.queuecare.dto.HasilEstimasi;
 import com.queuecare.dto.QueueStatusDto;
 import com.queuecare.entity.Business;
 import com.queuecare.entity.Queue;
@@ -29,8 +30,7 @@ import java.util.Set;
 public class QueueService {
 
     /** Status yang masih dihitung sebagai "masih antre" pada posisi. */
-    private static final Set<QueueStatus> STATUS_AKTIF =
-            EnumSet.of(QueueStatus.WAITING, QueueStatus.CALLED, QueueStatus.IN_SERVICE);
+    private static final Set<QueueStatus> STATUS_AKTIF = SmartWaitService.STATUS_DI_HITUNG;
 
     /** Status yang sudah tidak bisa diubah lagi. */
     private static final Set<QueueStatus> STATUS_FINAL =
@@ -53,13 +53,16 @@ public class QueueService {
     private final QueueRepository queueRepository;
     private final ReservationRepository reservationRepository;
     private final TransactionTemplate transactionTemplate;
+    private final SmartWaitService smartWaitService;
 
     public QueueService(QueueRepository queueRepository,
                         ReservationRepository reservationRepository,
-                        TransactionTemplate transactionTemplate) {
+                        TransactionTemplate transactionTemplate,
+                        SmartWaitService smartWaitService) {
         this.queueRepository = queueRepository;
         this.reservationRepository = reservationRepository;
         this.transactionTemplate = transactionTemplate;
+        this.smartWaitService = smartWaitService;
     }
 
     // ===== pembacaan =====
@@ -89,10 +92,15 @@ public class QueueService {
         return queue;
     }
 
+    /** Jumlah pelanggan yang masih di depan antrean ini. */
+    public int orangDepan(Queue queue) {
+        return (int) queueRepository.countPosisi(queue.getBusiness(), queue.getQueueDate(),
+                queue.getQueueNumber(), STATUS_AKTIF);
+    }
+
     /** Posisi antrean: berapa yang masih aktif di depannya, lalu ditambah satu. */
     public int posisi(Queue queue) {
-        return (int) queueRepository.countPosisi(queue.getBusiness(), queue.getQueueDate(),
-                queue.getQueueNumber(), STATUS_AKTIF) + 1;
+        return orangDepan(queue) + 1;
     }
 
     public String keterangan(QueueStatus status) {
@@ -104,7 +112,9 @@ public class QueueService {
     }
 
     public QueueStatusDto statusDto(Queue queue) {
-        return new QueueStatusDto(queue.getStatus().name(), posisi(queue), keterangan(queue.getStatus()));
+        HasilEstimasi estimasi = smartWaitService.untuk(queue);
+        return new QueueStatusDto(queue.getStatus().name(), posisi(queue), keterangan(queue.getStatus()),
+                estimasi.menit(), estimasi.pesan(), orangDepan(queue));
     }
 
     // ===== perubahan status =====

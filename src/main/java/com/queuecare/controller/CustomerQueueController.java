@@ -1,8 +1,10 @@
 package com.queuecare.controller;
 
+import com.queuecare.dto.HasilEstimasi;
 import com.queuecare.dto.QueueStatusDto;
 import com.queuecare.entity.Queue;
 import com.queuecare.service.QueueService;
+import com.queuecare.service.SmartWaitService;
 import com.queuecare.service.UserContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,20 +19,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class CustomerQueueController {
 
     private final QueueService queueService;
+    private final SmartWaitService smartWaitService;
     private final UserContext userContext;
 
-    public CustomerQueueController(QueueService queueService, UserContext userContext) {
+    public CustomerQueueController(QueueService queueService, SmartWaitService smartWaitService,
+                                   UserContext userContext) {
         this.queueService = queueService;
+        this.smartWaitService = smartWaitService;
         this.userContext = userContext;
     }
 
     @GetMapping("/{id}")
     public String lihat(@PathVariable Long id, Model model) {
         Queue queue = queueService.milikCustomer(id, userContext.currentUser());
+        isiModel(model, queue);
+        return "queue/show";
+    }
+
+    private void isiModel(Model model, Queue queue) {
+        HasilEstimasi estimasi = smartWaitService.untuk(queue);
         model.addAttribute("antrean", queue);
         model.addAttribute("posisi", queueService.posisi(queue));
         model.addAttribute("keterangan", queueService.keterangan(queue.getStatus()));
-        return "queue/show";
+        model.addAttribute("estimasiMenit", estimasi.menit());
+        model.addAttribute("estimasiPesan", estimasi.pesan());
+        model.addAttribute("orangDepan", queueService.orangDepan(queue));
     }
 
     /** Dipakai JavaScript halaman monitoring untuk memuat ulang status dan posisi. */

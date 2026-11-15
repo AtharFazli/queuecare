@@ -232,7 +232,7 @@ public class ReservationService {
     }
 
     public Queue antrean(Reservation reservation) {
-        return queueRepository.findByReservation(reservation).orElse(null);
+        return queueRepository.findByReservationLengkap(reservation).orElse(null);
     }
 
     // ===== pembatalan =====

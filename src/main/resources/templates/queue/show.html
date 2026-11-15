@@ -26,6 +26,17 @@
       </div>
     </div>
 
+    <div class="smartwait" id="smartwait" th:if="${estimasiMenit != null or estimasiPesan != null}">
+      <div class="smartwait__menit" id="smartwait-menit" th:text="${estimasiMenit != null ? estimasiMenit : '-'}">30</div>
+      <div>
+        <p class="smartwait__teks" id="smartwait-teks-angka" th:if="${estimasiMenit != null}">
+          <b>menit lagi</b> sampai giliran kamu. <span id="smartwait-orang" th:text="${orangDepan}">4</span> orang di depan.
+        </p>
+        <p class="smartwait__teks" id="smartwait-teks-pesan" th:if="${estimasiMenit == null}" th:text="${estimasiPesan}">Estimasi belum tersedia</p>
+        <p class="smartwait__catatan" id="smartwait-catatan" th:if="${estimasiMenit != null}">Ini perkiraan, bukan jaminan waktu.</p>
+      </div>
+    </div>
+
     <h2 class="mt-4">Status antrean</h2>
     <p>Posisi antrean kamu: <b id="antrean-posisi" th:text="${posisi}">1</b></p>
     <p id="antrean-keterangan" th:text="${keterangan}">Menunggu dipanggil.</p>

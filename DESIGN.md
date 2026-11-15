@@ -365,7 +365,7 @@ Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. To
 | `/reservations/{id}` | `tiket`, `lencana`, `tombol--bahaya`, `modal` |
 | `/owner/*`, `/admin/*`, `/customer/*` | `dash`, `sidebar`, `statistik`, `kosong`, `tabel`, `modal`, `field` |
 | `/owner/queues` | `tabel`, `tabel__aksi`, `lencana`, `field`, `tombol--kecil`, `tombol--bahaya`, `modal` |
-| `/queue/{id}` | `tiket`, `lencana`, `tombol` |
+| `/queue/{id}` | `tiket`, `lencana`, `smartwait`, `tombol` |
 | `/owner/business` | `kartu`, `tombol`, `kosong` |
 | `/owner/services` | `tabel`, `lencana`, `tombol--kecil`, `kosong` |
 | `/owner/schedules` | `tabel`, `lencana`, `tombol--kecil`, `kosong` |
@@ -380,6 +380,8 @@ Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. To
 Catatan Fase 4: `/reservation/create/{serviceId}` memuat ulang halaman lewat parameter `?tanggal=` supaya daftar slot muncul tanpa JavaScript. Slot penuh atau yang sudah lewat tampil sebagai pilihan nonaktif dengan keterangan "Penuh" atau "Lewat". Harga di seluruh aplikasi ditulis dengan pemisah ribuan titik, misalnya "Rp 45.000".
 
 Catatan Fase 5: `/owner/queues` memakai parameter `?tanggal=` untuk memilih hari, dan tombol "Muat ulang" mengirim ulang form tanggal. `/queue/{id}` memuat ulang status dan posisi lewat `static/js/antrean.js`: `fetch` ke `/queue/{id}/status` tiap 10 detik, berhenti saat `document.hidden` atau status sudah final (COMPLETED, CANCELLED, NO_SHOW). Tombol "Pantau antrean" hanya tampil selama antrean belum final. Pesan flash dibersihkan saat ada POST baru lewat `FlashBersihInterceptor`, supaya pesan lama tidak muncul di halaman berikutnya.
+
+Catatan Fase 6: SmartWait dihitung di `SmartWaitService.hitungMenit` (fungsi murni, tanpa database) lalu dibungkus `SmartWaitService.untuk(Queue)` yang mengambil durasi layanan pelanggan di depan dari `QueueRepository.antreanDepan`. Hasilnya masuk ke `/queue/{id}/status` sehingga ikut diperbarui polling, dan ditampilkan di `/queue/{id}` serta `/reservations/{id}` memakai komponen `.smartwait`. Catatan "Ini perkiraan, bukan jaminan waktu." tampil bila ada angka.
 
 ## 6. Aksesibilitas dan responsif
 

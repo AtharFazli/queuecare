@@ -183,6 +183,8 @@ public class DummyDataSeeder implements CommandLineRunner {
             antrean(senja, cukur, dummy2, hariA, jamA, QueueStatus.COMPLETED);
             antrean(senja, cukur, dummy1, hariA, jamA, QueueStatus.NO_SHOW);
             antrean(senja, cukur, dummy2, hariA, jamA, QueueStatus.CANCELLED);
+            // Satu antrean WAITING di belakang, supaya estimasi SmartWait punya angka nyata.
+            antrean(senja, cukur, dummy2, hariA, jamA, QueueStatus.WAITING);
         }
 
         // Gelombang kedua: hari berikutnya setelah gelombang pertama.

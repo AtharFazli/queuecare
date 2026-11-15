@@ -19,6 +19,11 @@ public interface QueueRepository extends JpaRepository<Queue, Long> {
 
     Optional<Queue> findByReservation(Reservation reservation);
 
+    /** Antrean beserta reservasi, layanan, dan bisnis, supaya aman dipakai di luar transaksi. */
+    @Query("select q from Queue q join fetch q.reservation r "
+            + "join fetch r.service join fetch q.business where q.reservation = :reservation")
+    Optional<Queue> findByReservationLengkap(@Param("reservation") Reservation reservation);
+
     /** Nomor antrean terbesar pada bisnis dan tanggal, dipakai untuk nomor berikutnya. */
     @Query("select max(q.queueNumber) from Queue q where q.business = :business and q.queueDate = :tanggal")
     Optional<Integer> maxNomor(@Param("business") Business business, @Param("tanggal") LocalDate tanggal);
@@ -46,4 +51,13 @@ public interface QueueRepository extends JpaRepository<Queue, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select q from Queue q where q.id = :id")
     Optional<Queue> lockById(@Param("id") Long id);
+
+    /** Antrean yang masih dihitung sebagai pelanggan di depan, beserta durasi layanannya. */
+    @Query("select q from Queue q join fetch q.reservation r join fetch r.service join fetch q.business "
+            + "where q.business = :business and q.queueDate = :tanggal "
+            + "and q.queueNumber < :nomor and q.status in :status order by q.queueNumber asc")
+    List<Queue> antreanDepan(@Param("business") Business business,
+                             @Param("tanggal") LocalDate tanggal,
+                             @Param("nomor") int nomor,
+                             @Param("status") Set<QueueStatus> status);
 }

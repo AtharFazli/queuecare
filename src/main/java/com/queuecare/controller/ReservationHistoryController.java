@@ -1,8 +1,11 @@
 package com.queuecare.controller;
 
+import com.queuecare.dto.HasilEstimasi;
 import com.queuecare.entity.Reservation;
+import com.queuecare.enums.QueueStatus;
 import com.queuecare.service.QueueService;
 import com.queuecare.service.ReservationService;
+import com.queuecare.service.SmartWaitService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +20,13 @@ public class ReservationHistoryController {
 
     private final ReservationService reservationService;
     private final QueueService queueService;
+    private final SmartWaitService smartWaitService;
 
-    public ReservationHistoryController(ReservationService reservationService, QueueService queueService) {
+    public ReservationHistoryController(ReservationService reservationService, QueueService queueService,
+                                        SmartWaitService smartWaitService) {
         this.reservationService = reservationService;
         this.queueService = queueService;
+        this.smartWaitService = smartWaitService;
     }
 
     @GetMapping
@@ -36,6 +42,13 @@ public class ReservationHistoryController {
         var antrean = reservationService.antrean(reservation);
         model.addAttribute("antrean", antrean);
         model.addAttribute("bisaPantau", antrean != null && !queueService.sudahFinal(antrean));
+        if (antrean != null && (antrean.getStatus() == QueueStatus.WAITING
+                || antrean.getStatus() == QueueStatus.CALLED)) {
+            HasilEstimasi estimasi = smartWaitService.untuk(antrean);
+            model.addAttribute("estimasiMenit", estimasi.menit());
+            model.addAttribute("estimasiPesan", estimasi.pesan());
+            model.addAttribute("orangDepan", queueService.orangDepan(antrean));
+        }
         return "reservations/detail";
     }
 
