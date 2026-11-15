@@ -3,6 +3,7 @@ package com.queuecare.controller;
 import com.queuecare.dto.ReservationForm;
 import com.queuecare.entity.Reservation;
 import com.queuecare.entity.Service;
+import com.queuecare.service.QueueService;
 import com.queuecare.service.ReservationService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -23,9 +24,11 @@ import java.time.format.DateTimeParseException;
 public class ReservationController {
 
     private final ReservationService reservationService;
+    private final QueueService queueService;
 
-    public ReservationController(ReservationService reservationService) {
+    public ReservationController(ReservationService reservationService, QueueService queueService) {
         this.reservationService = reservationService;
+        this.queueService = queueService;
     }
 
     @GetMapping("/create/{serviceId}")
@@ -67,7 +70,13 @@ public class ReservationController {
         Reservation reservation = reservationService.milikSaya(id);
         model.addAttribute("reservasi", reservation);
         model.addAttribute("antrean", reservationService.antrean(reservation));
+        model.addAttribute("bisaPantau", bisaPantau(reservation));
         return "reservation/success";
+    }
+
+    private boolean bisaPantau(Reservation reservation) {
+        var antrean = reservationService.antrean(reservation);
+        return antrean != null && !queueService.sudahFinal(antrean);
     }
 
     private void isiModel(Model model, Service service, LocalDate tanggal, ReservationForm form) {

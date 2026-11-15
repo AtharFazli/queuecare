@@ -1,6 +1,7 @@
 package com.queuecare.controller;
 
 import com.queuecare.entity.Reservation;
+import com.queuecare.service.QueueService;
 import com.queuecare.service.ReservationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +16,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ReservationHistoryController {
 
     private final ReservationService reservationService;
+    private final QueueService queueService;
 
-    public ReservationHistoryController(ReservationService reservationService) {
+    public ReservationHistoryController(ReservationService reservationService, QueueService queueService) {
         this.reservationService = reservationService;
+        this.queueService = queueService;
     }
 
     @GetMapping
@@ -30,7 +33,9 @@ public class ReservationHistoryController {
     public String detail(@PathVariable Long id, Model model) {
         Reservation reservation = reservationService.milikSaya(id);
         model.addAttribute("reservasi", reservation);
-        model.addAttribute("antrean", reservationService.antrean(reservation));
+        var antrean = reservationService.antrean(reservation);
+        model.addAttribute("antrean", antrean);
+        model.addAttribute("bisaPantau", antrean != null && !queueService.sudahFinal(antrean));
         return "reservations/detail";
     }
 

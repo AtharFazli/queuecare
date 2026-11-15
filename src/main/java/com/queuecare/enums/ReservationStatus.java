@@ -3,7 +3,7 @@ package com.queuecare.enums;
 /** Status reservasi beserta kelas lencana yang sesuai di DESIGN.md. */
 public enum ReservationStatus {
     PENDING("lencana--waiting"),
-    CONFIRMED("lencana--in-service"),
+    CONFIRMED("lencana--confirmed"),
     CANCELLED("lencana--cancelled"),
     COMPLETED("lencana--completed");
 

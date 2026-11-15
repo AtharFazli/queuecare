@@ -36,6 +36,8 @@ a { color: var(--warna-primer); }
 .lencana--completed { background: var(--warna-sukses-lembut); color: var(--warna-sukses); }
 .lencana--no-show { background: var(--warna-bahaya-lembut); color: var(--warna-bahaya); }
 .lencana--cancelled { text-decoration: line-through; }
+/* CONFIRMED beda dari IN_SERVICE: latar putih dengan border primer, bukan isi lembut. */
+.lencana--confirmed { background: var(--warna-permukaan); color: var(--warna-primer); border: 1px solid var(--warna-primer); }
 
 /* ===== Form ===== */
 .field { margin-bottom: var(--jarak-4); }
@@ -53,6 +55,7 @@ a { color: var(--warna-primer); }
 .tabel td { padding: var(--jarak-3) var(--jarak-4); border-bottom: 1px solid var(--warna-batas); }
 .tabel tr:last-child td { border-bottom: 0; }
 .tabel__angka { font-variant-numeric: tabular-nums; font-weight: 700; }
+.tabel__aksi { display: flex; flex-wrap: wrap; gap: var(--jarak-2); }
 
 /* ===== Modal (pakai elemen <dialog>) ===== */
 .modal { width: min(480px, calc(100% - 32px)); padding: 0; border: 0; border-radius: var(--radius-lg); box-shadow: var(--bayangan-lg); color: var(--warna-teks); }

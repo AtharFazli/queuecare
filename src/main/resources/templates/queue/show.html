@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Pantau antrean')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <p><a th:href="@{/reservations}">Kembali ke riwayat</a></p>
+    <h1>Pantau antrean</h1>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+    <div class="tiket" th:attr="data-antrean-url=@{/queue/{id}/status(id=${antrean.id})}">
+      <div class="tiket__info">
+        <div class="tiket__kode" th:text="${antrean.reservation.reservationCode}">QC-20261116-0001</div>
+        <div class="tiket__nama" th:text="${antrean.business.name}">Barbershop Senja</div>
+        <div>
+          <span th:text="${antrean.reservation.service.name}">Cukur rambut</span> ·
+          <span th:text="${#temporals.format(antrean.queueDate, 'dd/MM/yyyy')}">16/11/2026</span>,
+          <span th:text="${antrean.reservation.reservationTime}">09:00</span>
+        </div>
+        <span class="lencana" id="antrean-status" th:classappend="${antrean.status.kelas}" th:text="${antrean.status}">WAITING</span>
+      </div>
+      <div class="tiket__nomor">
+        <span>Antrean</span>
+        <strong th:text="${#numbers.formatInteger(antrean.queueNumber, 2, 'POINT')}">01</strong>
+      </div>
+    </div>
+
+    <h2 class="mt-4">Status antrean</h2>
+    <p>Posisi antrean kamu: <b id="antrean-posisi" th:text="${posisi}">1</b></p>
+    <p id="antrean-keterangan" th:text="${keterangan}">Menunggu dipanggil.</p>
+    <p class="teks-redup" id="antrean-muat" th:if="${bisaPantau}">Halaman ini memperbarui status dan posisi setiap 10 detik.</p>
+    <p class="teks-redup" th:unless="${bisaPantau}">Status antrean sudah final.</p>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+  <script src="/js/antrean.js" defer></script>
+</body>
+</html>

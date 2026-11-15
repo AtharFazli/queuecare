@@ -1,31 +1,40 @@
 package com.queuecare.config;
 
+import com.queuecare.dto.ReservationForm;
 import com.queuecare.entity.Business;
 import com.queuecare.entity.BusinessSchedule;
 import com.queuecare.entity.Category;
+import com.queuecare.entity.Queue;
+import com.queuecare.entity.Reservation;
 import com.queuecare.entity.Service;
 import com.queuecare.entity.User;
 import com.queuecare.enums.BusinessStatus;
+import com.queuecare.enums.QueueStatus;
 import com.queuecare.enums.Role;
 import com.queuecare.repository.BusinessRepository;
 import com.queuecare.repository.BusinessScheduleRepository;
 import com.queuecare.repository.CategoryRepository;
+import com.queuecare.repository.QueueRepository;
+import com.queuecare.repository.ReservationRepository;
 import com.queuecare.repository.ServiceRepository;
 import com.queuecare.repository.UserRepository;
+import com.queuecare.service.QueueService;
+import com.queuecare.service.ReservationService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
 /**
- * Data dummy untuk demo. Hanya jalan bila app.seed-dummy=true dan belum ada bisnis,
- * sehingga aman dijalankan berulang. Semua data dummy bertanda "(Data dummy)".
+ * Data dummy untuk demo. Bisnis dibuat bila belum ada, antrean dibuat bila tabel
+ * reservasi masih kosong, sehingga aman dijalankan berulang. Semua data dummy
+ * bertanda "(Data dummy)".
  */
 @Component
 @Order(2)
@@ -36,6 +45,10 @@ public class DummyDataSeeder implements CommandLineRunner {
     private final BusinessScheduleRepository scheduleRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    private final ReservationRepository reservationRepository;
+    private final QueueRepository queueRepository;
+    private final ReservationService reservationService;
+    private final QueueService queueService;
     private final PasswordEncoder passwordEncoder;
 
     @Value("${app.seed-dummy:false}")
@@ -46,12 +59,20 @@ public class DummyDataSeeder implements CommandLineRunner {
                             BusinessScheduleRepository scheduleRepository,
                             CategoryRepository categoryRepository,
                             UserRepository userRepository,
+                            ReservationRepository reservationRepository,
+                            QueueRepository queueRepository,
+                            ReservationService reservationService,
+                            QueueService queueService,
                             PasswordEncoder passwordEncoder) {
         this.businessRepository = businessRepository;
         this.serviceRepository = serviceRepository;
         this.scheduleRepository = scheduleRepository;
         this.categoryRepository = categoryRepository;
         this.userRepository = userRepository;
+        this.reservationRepository = reservationRepository;
+        this.queueRepository = queueRepository;
+        this.reservationService = reservationService;
+        this.queueService = queueService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -62,10 +83,20 @@ public class DummyDataSeeder implements CommandLineRunner {
         }
         User owner1 = userRepository.findByEmail("owner@queuecare.id").orElse(null);
         User owner2 = userRepository.findByEmail("owner2@queuecare.id").orElse(null);
-        if (owner1 == null || owner2 == null || businessRepository.count() > 0) {
+        if (owner1 == null || owner2 == null) {
             return;
         }
+        if (businessRepository.count() == 0) {
+            seedBisnis(owner1, owner2);
+        }
+        if (reservationRepository.count() == 0) {
+            seedAntrean();
+        }
+    }
 
+    // ===== bisnis, layanan, jadwal =====
+
+    private void seedBisnis(User owner1, User owner2) {
         Category barbershop = categoryRepository.findAllByOrderByNameAsc().stream()
                 .filter(c -> c.getName().equals("Barbershop")).findFirst().orElseThrow();
         Category salon = categoryRepository.findAllByOrderByNameAsc().stream()
@@ -117,6 +148,138 @@ public class DummyDataSeeder implements CommandLineRunner {
         for (Business business : List.of(b1, b2, b3, b4, b5, b6)) {
             buatJadwal(business);
         }
+    }
+
+    // ===== antrean dummy =====
+
+    /** Dua Customer dummy, lalu delapan antrean dua bisnis ACTIVE untuk hari ini dan besok. */
+    private void seedAntrean() {
+        User dummy1 = pelanggan("Dummy Satu (Data dummy)", "dummy1@queuecare.id");
+        User dummy2 = pelanggan("Dummy Dua (Data dummy)", "dummy2@queuecare.id");
+
+        Business senja = cariBisnis("Barbershop Senja");
+        Business lestari = cariBisnis("Salon Lestari");
+        Service cukur = cariLayanan(senja, "Cukur rambut");
+        Service gunting = cariLayanan(lestari, "Gunting rambut");
+        if (cukur == null || gunting == null) {
+            return;
+        }
+
+        LocalDate hariIni = LocalDate.now();
+        LocalDate besok = hariIni.plusDays(1);
+        LocalTime jamBesok = LocalTime.of(10, 0);
+
+        // Gelombang pertama: hari ini kalau masih ada slot, kalau libur pakai hari buka berikutnya.
+        LocalDate hariA = hariIni;
+        LocalTime jamA = slotBerikut(senja, hariIni);
+        if (jamA == null) {
+            hariA = hariBuka(senja, besok);
+            jamA = hariA == null ? null : jamBesok;
+        }
+        if (hariA != null && jamA != null) {
+            antrean(senja, cukur, dummy1, hariA, jamA, QueueStatus.WAITING);
+            antrean(senja, cukur, dummy2, hariA, jamA, QueueStatus.CALLED);
+            antrean(senja, cukur, dummy1, hariA, jamA, QueueStatus.IN_SERVICE);
+            antrean(senja, cukur, dummy2, hariA, jamA, QueueStatus.COMPLETED);
+            antrean(senja, cukur, dummy1, hariA, jamA, QueueStatus.NO_SHOW);
+            antrean(senja, cukur, dummy2, hariA, jamA, QueueStatus.CANCELLED);
+        }
+
+        // Gelombang kedua: hari berikutnya setelah gelombang pertama.
+        LocalDate mulaiB = hariA == null ? besok : hariA.plusDays(1);
+        LocalDate hariB = jamValid(senja, mulaiB, jamBesok)
+                ? mulaiB : hariBuka(senja, mulaiB.plusDays(1));
+        if (hariB != null) {
+            antrean(senja, cukur, dummy1, hariB, jamBesok, QueueStatus.WAITING);
+            antrean(lestari, gunting, dummy2, hariB, jamBesok, QueueStatus.COMPLETED);
+        }
+    }
+
+    /** Satu antrean dibuat lewat service reservasi, lalu statusnya dibawa ke target. */
+    private void antrean(Business business, Service service, User customer,
+                         LocalDate tanggal, LocalTime jam, QueueStatus target) {
+        ReservationForm form = new ReservationForm();
+        form.setTanggal(tanggal);
+        form.setJam(jam);
+        form.setCatatan("Antrean (Data dummy)");
+        Reservation reservation = reservationService.buat(service.getId(), form, customer);
+        Queue queue = queueRepository.findByReservation(reservation).orElseThrow();
+        Long id = queue.getId();
+        if (target == QueueStatus.CALLED || target == QueueStatus.IN_SERVICE
+                || target == QueueStatus.NO_SHOW || target == QueueStatus.COMPLETED) {
+            queueService.panggil(id, business);
+        }
+        // NO_SHOW hanya bisa dari CALLED, jadi "Mulai" tidak dipanggil untuk jalur ini.
+        if (target == QueueStatus.IN_SERVICE || target == QueueStatus.COMPLETED) {
+            queueService.mulai(id, business);
+        }
+        if (target == QueueStatus.NO_SHOW) {
+            queueService.tidakHadir(id, business);
+        }
+        if (target == QueueStatus.COMPLETED) {
+            queueService.selesai(id, business);
+        }
+        if (target == QueueStatus.CANCELLED) {
+            queueService.batalkan(id, business);
+        }
+    }
+
+    private User pelanggan(String nama, String email) {
+        return userRepository.findByEmail(email).orElseGet(() ->
+                userRepository.save(new User(nama, email, passwordEncoder.encode("customer123"), Role.CUSTOMER)));
+    }
+
+    private Business cariBisnis(String nama) {
+        return businessRepository.findAll().stream()
+                .filter(b -> b.getName().equals(nama)).findFirst().orElse(null);
+    }
+
+    private Service cariLayanan(Business business, String nama) {
+        if (business == null) {
+            return null;
+        }
+        return serviceRepository.findByBusinessAndActiveTrueOrderByIdAsc(business).stream()
+                .filter(s -> s.getName().equals(nama)).findFirst().orElse(null);
+    }
+
+    /** Slot 30 menit berikutnya untuk hari ini, atau null kalau hari ini sudah habis. */
+    private LocalTime slotBerikut(Business business, LocalDate tanggal) {
+        BusinessSchedule jadwal = scheduleRepository
+                .findByBusinessAndDayOfWeek(business, BusinessSchedule.namaHari(tanggal)).orElse(null);
+        if (jadwal == null || jadwal.isClosed()
+                || jadwal.getOpenTime() == null || jadwal.getCloseTime() == null) {
+            return null;
+        }
+        LocalTime sekarang = LocalTime.now();
+        for (LocalTime t = jadwal.getOpenTime();
+             !t.plusMinutes(30).isAfter(jadwal.getCloseTime());
+             t = t.plusMinutes(30)) {
+            if (tanggal.equals(LocalDate.now()) && !t.isAfter(sekarang)) {
+                continue;
+            }
+            return t;
+        }
+        return null;
+    }
+
+    private boolean jamValid(Business business, LocalDate tanggal, LocalTime jam) {
+        BusinessSchedule jadwal = scheduleRepository
+                .findByBusinessAndDayOfWeek(business, BusinessSchedule.namaHari(tanggal)).orElse(null);
+        return jadwal != null && !jadwal.isClosed()
+                && jadwal.getOpenTime() != null && jadwal.getCloseTime() != null
+                && !jam.isBefore(jadwal.getOpenTime())
+                && !jam.plusMinutes(30).isAfter(jadwal.getCloseTime());
+    }
+
+    /** Hari buka pertama pada atau setelah `mulai` yang bisa dipakai pada jam 10:00. */
+    private LocalDate hariBuka(Business business, LocalDate mulai) {
+        for (int i = 0; i < 7; i++) {
+            LocalDate t = mulai.plusDays(i);
+            if (jamValid(business, t, LocalTime.of(10, 0))) {
+                return t;
+            }
+        }
+        return null;
     }
 
     private Business bisnis(User owner, Category category, String nama, BusinessStatus status,

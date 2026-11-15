@@ -101,7 +101,7 @@ Enam status antrean dari master planning:
 | CANCELLED | `lencana--cancelled` |
 | NO_SHOW | `lencana--no-show` |
 
-Status reservasi memakai gaya yang sama (usulan, perlu disepakati kelompok): PENDING = waiting, CONFIRMED = in-service, CANCELLED = cancelled, COMPLETED = completed.
+Status reservasi memakai gaya yang sama: PENDING = `lencana--waiting`, CONFIRMED = `lencana--confirmed` (latar putih dengan border primer, supaya tampil beda dari IN_SERVICE), CANCELLED = `lencana--cancelled`, COMPLETED = `lencana--completed`.
 
 ```html
 <span class="lencana lencana--called">CALLED</span>
@@ -364,7 +364,8 @@ Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. To
 | `/reservations` | `tabel`, `lencana` |
 | `/reservations/{id}` | `tiket`, `lencana`, `tombol--bahaya`, `modal` |
 | `/owner/*`, `/admin/*`, `/customer/*` | `dash`, `sidebar`, `statistik`, `kosong`, `tabel`, `modal`, `field` |
-| `/owner/queues` | `tabel`, `lencana`, `tombol--kecil` |
+| `/owner/queues` | `tabel`, `tabel__aksi`, `lencana`, `field`, `tombol--kecil`, `tombol--bahaya`, `modal` |
+| `/queue/{id}` | `tiket`, `lencana`, `tombol` |
 | `/owner/business` | `kartu`, `tombol`, `kosong` |
 | `/owner/services` | `tabel`, `lencana`, `tombol--kecil`, `kosong` |
 | `/owner/schedules` | `tabel`, `lencana`, `tombol--kecil`, `kosong` |
@@ -377,6 +378,8 @@ Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. To
 | `/reservation/create/{serviceId}` | `kartu`, `tombol` |
 
 Catatan Fase 4: `/reservation/create/{serviceId}` memuat ulang halaman lewat parameter `?tanggal=` supaya daftar slot muncul tanpa JavaScript. Slot penuh atau yang sudah lewat tampil sebagai pilihan nonaktif dengan keterangan "Penuh" atau "Lewat". Harga di seluruh aplikasi ditulis dengan pemisah ribuan titik, misalnya "Rp 45.000".
+
+Catatan Fase 5: `/owner/queues` memakai parameter `?tanggal=` untuk memilih hari, dan tombol "Muat ulang" mengirim ulang form tanggal. `/queue/{id}` memuat ulang status dan posisi lewat `static/js/antrean.js`: `fetch` ke `/queue/{id}/status` tiap 10 detik, berhenti saat `document.hidden` atau status sudah final (COMPLETED, CANCELLED, NO_SHOW). Tombol "Pantau antrean" hanya tampil selama antrean belum final. Pesan flash dibersihkan saat ada POST baru lewat `FlashBersihInterceptor`, supaya pesan lama tidak muncul di halaman berikutnya.
 
 ## 6. Aksesibilitas dan responsif
 

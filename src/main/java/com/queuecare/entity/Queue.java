@@ -116,12 +116,24 @@ public class Queue {
         return calledAt;
     }
 
+    public void setCalledAt(LocalDateTime calledAt) {
+        this.calledAt = calledAt;
+    }
+
     public LocalDateTime getStartedAt() {
         return startedAt;
     }
 
+    public void setStartedAt(LocalDateTime startedAt) {
+        this.startedAt = startedAt;
+    }
+
     public LocalDateTime getCompletedAt() {
         return completedAt;
+    }
+
+    public void setCompletedAt(LocalDateTime completedAt) {
+        this.completedAt = completedAt;
     }
 
     public LocalDateTime getCreatedAt() {

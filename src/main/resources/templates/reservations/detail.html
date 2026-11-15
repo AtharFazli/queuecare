@@ -41,6 +41,8 @@
       <button class="tombol tombol--bahaya" type="button" onclick="document.getElementById('batal').showModal()">Batalkan reservasi</button>
     </div>
 
+    <a class="tombol mt-4" th:if="${antrean != null and bisaPantau}" th:href="@{/queue/{id}(id=${antrean.id})}">Pantau antrean</a>
+
     <dialog class="modal" id="batal">
       <div class="modal__kepala"><h3>Batalkan reservasi?</h3></div>
       <div class="modal__badan"><p>Tindakan ini tidak bisa diulang.</p></div>

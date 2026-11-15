@@ -26,6 +26,7 @@
 
     <p class="teks-redup mt-3">Nomor antrean akan dipanggil oleh petugas. Simpan kode reservasi ini.</p>
     <a class="tombol mt-3" th:href="@{/reservations}">Lihat riwayat reservasi</a>
+    <a class="tombol mt-3" th:if="${antrean != null and bisaPantau}" th:href="@{/queue/{id}(id=${antrean.id})}">Pantau antrean</a>
   </main>
 
   <footer th:replace="~{fragments/layout :: footer}"></footer>

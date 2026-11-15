@@ -247,6 +247,8 @@ Catatan: karena `queues` tidak punya `business_id`, keunikan nomor antrean per b
 
 Keputusan Fase 4 (2026-11-15): `business_id` ditambahkan ke `queues`, dan dibuat constraint unik `(business_id, queue_date, queue_number)` bernama `uk_queues_nomor` supaya aturan nomor berurutan per bisnis per tanggal dijaga database, bukan hanya aplikasi. Isi lama di atas sengaja tidak dihapus.
 
+Keputusan Fase 5 (2026-11-15): transisi antrean yang diizinkan hanya WAITING → CALLED, WAITING → CANCELLED, CALLED → IN_SERVICE, CALLED → NO_SHOW, CALLED → CANCELLED, dan IN_SERVICE → COMPLETED. Status COMPLETED, CANCELLED, dan NO_SHOW tidak bisa diubah lagi. Setiap perubahan antrean menyelaraskan status reservasi dalam transaksi yang sama: antrean COMPLETED membuat reservasi COMPLETED, antrean CANCELLED membuat reservasi CANCELLED, dan antrean NO_SHOW membuat reservasi CANCELLED (jalur NO_SHOW ini usulan, perlu persetujuan kelompok). `called_at`, `started_at`, dan `completed_at` diisi saat status yang bersangkutan ditetapkan. Isi lama di atas sengaja tidak dihapus.
+
 **Tabel opsional:** `reservation_status_histories` dan `queue_status_histories` untuk riwayat perubahan status (dipakai bila Khalisa dan Miftah memutuskan perlu).
 
 **Relasi:** users 1:M businesses, businesses 1:M services, businesses 1:M business_schedules, users 1:M reservations, businesses 1:M reservations, services 1:M reservations, reservations 1:0..1 queues.

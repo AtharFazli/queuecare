@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Antrean')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Antrean</h1>
+    <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+    <div th:if="${bisnis == null}" class="kosong">
+      <h2 class="kosong__judul">Belum ada bisnis aktif</h2>
+      <p class="kosong__teks">Pilih bisnis dulu sebelum melihat antrean.</p>
+      <a class="tombol" th:href="@{/owner/businesses}">Pilih bisnis</a>
+    </div>
+
+    <div th:if="${bisnis != null}">
+      <p class="teks-redup">
+        Bisnis: <span th:text="${bisnis.name}">Barbershop Senja</span>
+        · kapasitas <span th:text="${bisnis.maxCapacity}">6</span> reservasi per slot
+      </p>
+
+      <form th:action="@{/owner/queues}" method="get" class="mt-3">
+        <div class="field">
+          <label class="field__label" for="tanggal">Tanggal</label>
+          <input class="field__input" id="tanggal" name="tanggal" type="date" th:value="${tanggal}">
+        </div>
+        <button class="tombol" type="submit">Muat ulang</button>
+      </form>
+
+      <div th:if="${#lists.isEmpty(antrean)}" class="kosong mt-4">
+        <h2 class="kosong__judul">Belum ada antrean</h2>
+        <p class="kosong__teks">Tidak ada reservasi pada tanggal ini.</p>
+      </div>
+
+      <div class="tabel-bungkus mt-4" th:unless="${#lists.isEmpty(antrean)}">
+        <table class="tabel">
+          <thead>
+            <tr><th>No</th><th>Pelanggan</th><th>Layanan</th><th>Jam</th><th>Status</th><th>Aksi</th></tr>
+          </thead>
+          <tbody>
+            <tr th:each="q : ${antrean}">
+              <td class="tabel__angka" th:text="${q.queueNumber}">1</td>
+              <td th:text="${q.reservation.customer.name}">Pelanggan</td>
+              <td th:text="${q.reservation.service.name}">Cukur rambut</td>
+              <td th:text="${q.reservation.reservationTime}">09:00</td>
+              <td><span class="lencana" th:classappend="${q.status.kelas}" th:text="${q.status}">WAITING</span></td>
+              <td>
+                <div class="tabel__aksi">
+                  <form th:if="${q.status.name() == 'WAITING'}"
+                        th:action="@{/owner/queues/{id}/panggil(id=${q.id})}" method="post">
+                    <input type="hidden" name="tanggal" th:value="${tanggal}">
+                    <button class="tombol tombol--kecil" type="submit">Panggil</button>
+                  </form>
+                  <form th:if="${q.status.name() == 'CALLED'}"
+                        th:action="@{/owner/queues/{id}/mulai(id=${q.id})}" method="post">
+                    <input type="hidden" name="tanggal" th:value="${tanggal}">
+                    <button class="tombol tombol--kecil" type="submit">Mulai</button>
+                  </form>
+                  <form th:if="${q.status.name() == 'IN_SERVICE'}"
+                        th:action="@{/owner/queues/{id}/selesai(id=${q.id})}" method="post">
+                    <input type="hidden" name="tanggal" th:value="${tanggal}">
+                    <button class="tombol tombol--kecil" type="submit">Selesai</button>
+                  </form>
+                  <form th:if="${q.status.name() == 'CALLED'}"
+                        th:action="@{/owner/queues/{id}/tidak-hadir(id=${q.id})}" method="post">
+                    <input type="hidden" name="tanggal" th:value="${tanggal}">
+                    <button class="tombol tombol--kecil" type="submit">Tidak hadir</button>
+                  </form>
+                  <button th:if="${q.status.name() == 'WAITING' or q.status.name() == 'CALLED'}"
+                          class="tombol tombol--kecil tombol--bahaya" type="button"
+                          th:onclick="|document.getElementById('batal-' + ${q.id}).showModal()|">Batalkan</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <dialog class="modal" th:each="q : ${antrean}" th:id="|batal-${q.id}|">
+        <div class="modal__kepala"><h3>Batalkan antrean <span th:text="${q.queueNumber}">1</span>?</h3></div>
+        <div class="modal__badan"><p>Reservasi ikut dibatalkan. Tindakan ini tidak bisa diulang.</p></div>
+        <div class="modal__kaki">
+          <button class="tombol tombol--sekunder" type="button" onclick="this.closest('dialog').close()">Kembali</button>
+          <form th:action="@{/owner/queues/{id}/batalkan(id=${q.id})}" method="post">
+            <input type="hidden" name="tanggal" th:value="${tanggal}">
+            <button class="tombol tombol--bahaya" type="submit">Batalkan antrean</button>
+          </form>
+        </div>
+      </dialog>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

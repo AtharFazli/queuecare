@@ -108,7 +108,11 @@ public class ReservationService {
      * bentrok karena dua request bersamaan, transaksi diulang dari awal.
      */
     public Reservation buat(Long serviceId, ReservationForm form) {
-        User customer = userContext.currentUser();
+        return buat(serviceId, form, userContext.currentUser());
+    }
+
+    /** Versi dengan pembeli eksplisit, dipakai seed dummy yang tidak punya sesi login. */
+    public Reservation buat(Long serviceId, ReservationForm form, User customer) {
         for (int coba = 1; coba <= MAKS_COBA; coba++) {
             try {
                 return transactionTemplate.execute(status -> buatTransaksi(customer, serviceId, form));

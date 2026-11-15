@@ -14,6 +14,7 @@
           <li><a th:href="@{/owner/services}">Layanan</a></li>
           <li><a th:href="@{/owner/schedules}">Jadwal</a></li>
           <li><a th:href="@{/owner/capacity}">Kapasitas</a></li>
+          <li><a th:href="@{/owner/queues}">Antrean</a></li>
         </ul>
         <p class="sidebar__judul" th:if="${bisnisAktif != null}">Bisnis aktif</p>
         <a class="sidebar__bisnis" th:if="${bisnisAktif != null}" th:href="@{/owner/business}" th:text="${bisnisAktif.name}">Nama bisnis</a>
