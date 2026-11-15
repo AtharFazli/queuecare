@@ -6,6 +6,7 @@ import com.queuecare.enums.Role;
 import com.queuecare.repository.CategoryRepository;
 import com.queuecare.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.util.List;
  * Password sengaja sederhana karena ini akun demo lokal.
  */
 @Component
+@Order(1)
 public class DataInitializer implements CommandLineRunner {
 
     private final UserRepository userRepository;

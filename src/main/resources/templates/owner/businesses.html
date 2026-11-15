@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Bisnis kamu')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Bisnis kamu</h1>
+    <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+    <p><a class="tombol" th:href="@{/owner/business/baru}">Tambah bisnis</a></p>
+
+    <div th:if="${#lists.isEmpty(bisnis)}" class="kosong">
+      <h2 class="kosong__judul">Belum ada bisnis</h2>
+      <p class="kosong__teks">Buat bisnis pertama kamu.</p>
+    </div>
+
+    <div class="tabel-bungkus" th:unless="${#lists.isEmpty(bisnis)}">
+      <table class="tabel">
+        <thead>
+          <tr><th>Nama</th><th>Kategori</th><th>Status</th><th>Aksi</th></tr>
+        </thead>
+        <tbody>
+          <tr th:each="b : ${bisnis}">
+            <td th:text="${b.name}">Barbershop Senja</td>
+            <td th:text="${b.category.name}">Barbershop</td>
+            <td>
+              <span class="lencana" th:classappend="${b.status.name() == 'ACTIVE'} ? 'lencana--completed' : (${b.status.name() == 'INACTIVE'} ? 'lencana--cancelled' : 'lencana--waiting')" th:text="${b.status}">ACTIVE</span>
+            </td>
+            <td>
+              <form th:action="@{/owner/businesses/{id}/pilih(id=${b.id})}" method="post">
+                <button class="tombol tombol--kecil" type="submit" th:text="${bisnisAktif != null and bisnisAktif.id == b.id} ? 'Terpilih' : 'Pilih'">Pilih</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

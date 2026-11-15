@@ -314,6 +314,22 @@ Dashboard tiap role memakai `.kosong` untuk keadaan belum ada data. Angka statis
 </div>
 ```
 
+### Bisnis aktif (Owner)
+
+Satu Owner boleh punya banyak bisnis. Owner memilih salah satu, dan pilihan ini disimpan di session. Halaman `/owner/business`, `/owner/services`, `/owner/schedules`, dan `/owner/capacity` bekerja untuk bisnis yang dipilih.
+
+```html
+<nav class="sidebar">
+  <p class="sidebar__judul">Bisnis aktif</p>
+  <a class="sidebar__bisnis" href="/owner/business">[Nama bisnis]</a>
+  <a class="sidebar__ganti" href="/owner/businesses">Ganti bisnis</a>
+</nav>
+```
+
+- `/owner/businesses` menampilkan semua bisnis milik Owner dengan tombol "Pilih" dan "Tambah bisnis".
+- Kalau Owner hanya punya satu bisnis, bisnis itu dipilih otomatis. Kalau belum punya, diarahkan ke form buat bisnis.
+- Pilihan di session selalu dicek kepemilikannya di service, jadi membuka atau memilih bisnis milik Owner lain menghasilkan 403.
+
 ### Navbar HP (tombol menu)
 
 Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. Tombol toggle class `navbar__menu--terbuka` lewat `static/js/navbar.js`, tanpa library. `aria-expanded` ikut diperbarui. Di layar ≤720px navbar menampilkan nama pengguna (`.navbar__nama`) dan menyembunyikan email (`.navbar__email`).
@@ -339,6 +355,7 @@ Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. To
 | `/owner/capacity` | `kartu`, `field`, `tombol`, `kosong` |
 | `/admin/categories` | `kartu`, `field`, `tabel`, `tombol--kecil`, `tombol--bahaya` |
 | `/admin/businesses` | `tabel`, `lencana`, `field`, `tombol--kecil`, `kosong` |
+| `/owner/businesses` | `tabel`, `lencana`, `tombol`, `tombol--kecil`, `kosong` |
 
 ## 6. Aksesibilitas dan responsif
 
@@ -361,3 +378,7 @@ Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. To
 - `css/components.css`: gaya dasar dan semua komponen di bagian 4.
 - `katalog.html`: halaman contoh yang bisa dibuka di browser.
 - `prd.md`: kebutuhan, fase, dan skema database.
+
+## 9. Data dummy
+
+Seed data dummy untuk demo diatur lewat properti `app.seed-dummy` di `application.properties` (nilai awal `true`). Set `app.seed-dummy=false` untuk menonaktifkannya. Seed hanya jalan bila tabel `businesses` masih kosong, jadi aman dijalankan berulang tanpa menggandakan data.

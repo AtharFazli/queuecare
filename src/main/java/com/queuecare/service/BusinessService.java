@@ -8,7 +8,6 @@ import com.queuecare.entity.Business;
 import com.queuecare.entity.BusinessSchedule;
 import com.queuecare.entity.Category;
 import com.queuecare.entity.Service;
-import com.queuecare.entity.User;
 import com.queuecare.enums.BusinessStatus;
 import com.queuecare.repository.BusinessRepository;
 import com.queuecare.repository.BusinessScheduleRepository;
@@ -17,7 +16,6 @@ import com.queuecare.repository.ServiceRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 // Annotation Spring dipakai lengkap karena entity layanan juga bernama Service.
 @org.springframework.stereotype.Service
@@ -44,20 +42,12 @@ public class BusinessService {
         this.userContext = userContext;
     }
 
-    // ===== bisnis (Owner) =====
+    // ===== bisnis =====
 
-    public Optional<Business> bisnisSaya() {
-        return businessRepository.findByOwner(userContext.currentUser());
-    }
-
-    /** Owner cukup punya satu bisnis, dibuat dengan status PENDING (K3). */
+    /** Owner boleh punya lebih dari satu bisnis. Bisnis baru berstatus PENDING (K3). */
     public Business buatBisnis(BusinessForm form) {
-        User owner = userContext.currentUser();
-        if (businessRepository.findByOwner(owner).isPresent()) {
-            throw new IllegalStateException("Kamu sudah punya bisnis. Ubah data bisnis yang ada.");
-        }
         Business business = new Business();
-        business.setOwner(owner);
+        business.setOwner(userContext.currentUser());
         business.setStatus(BusinessStatus.PENDING);
         isiBisnis(business, form);
         return businessRepository.save(business);
@@ -91,13 +81,13 @@ public class BusinessService {
 
     // ===== layanan =====
 
-    public List<Service> layananSaya() {
-        return bisnisSaya().map(serviceRepository::findByBusinessOrderByIdAsc).orElse(List.of());
+    public List<Service> layananSaya(Business business) {
+        return serviceRepository.findByBusinessOrderByIdAsc(business);
     }
 
-    public Service buatLayanan(ServiceForm form) {
+    public Service buatLayanan(Business business, ServiceForm form) {
         Service service = new Service();
-        service.setBusiness(bisnisAtauGagal());
+        service.setBusiness(business);
         isiLayanan(service, form);
         return serviceRepository.save(service);
     }
@@ -123,7 +113,7 @@ public class BusinessService {
         return service;
     }
 
-    /** Layanan dinonaktifkan, bukan dihapus. */
+    /** Layanan cukup dinonaktifkan, tidak dihapus. */
     public void ubahStatusLayanan(Long id, boolean aktif) {
         Service service = layananSaya(id);
         service.setActive(aktif);
@@ -132,21 +122,26 @@ public class BusinessService {
 
     // ===== jadwal operasional =====
 
-    public List<BusinessSchedule> jadwalSaya() {
-        return bisnisSaya().map(scheduleRepository::findByBusinessOrderByIdAsc).orElse(List.of());
+    public List<BusinessSchedule> jadwalSaya(Business business) {
+        return scheduleRepository.findByBusinessOrderByIdAsc(business);
     }
 
-    public BusinessSchedule simpanJadwal(Long id, ScheduleForm form) {
+    public BusinessSchedule simpanJadwal(Business business, Long id, ScheduleForm form) {
         if (!HARI.contains(form.getDayOfWeek())) {
             throw new IllegalArgumentException("Hari tidak valid.");
         }
-        if (!form.isClosed() && !form.getOpenTime().isBefore(form.getCloseTime())) {
-            throw new IllegalArgumentException("Jam buka harus lebih awal dari jam tutup.");
+        if (!form.isClosed()) {
+            if (form.getOpenTime() == null || form.getCloseTime() == null) {
+                throw new IllegalArgumentException("Jam buka dan jam tutup wajib diisi.");
+            }
+            if (!form.getOpenTime().isBefore(form.getCloseTime())) {
+                throw new IllegalArgumentException("Jam buka harus lebih awal dari jam tutup.");
+            }
         }
         BusinessSchedule schedule;
         if (id == null) {
             schedule = new BusinessSchedule();
-            schedule.setBusiness(bisnisAtauGagal());
+            schedule.setBusiness(business);
         } else {
             schedule = jadwalSaya(id);
         }
@@ -168,18 +163,12 @@ public class BusinessService {
         scheduleRepository.delete(jadwalSaya(id));
     }
 
-    // ===== kapasitas dan petugas =====
+    // ===== kapasitas dan petugas aktif =====
 
-    public Business ubahKapasitas(CapacityForm form) {
-        Business business = bisnisAtauGagal();
+    public Business ubahKapasitas(Business business, CapacityForm form) {
         business.setMaxCapacity(form.getMaxCapacity());
         business.setActiveStaffCount(form.getActiveStaffCount());
         return businessRepository.save(business);
-    }
-
-    private Business bisnisAtauGagal() {
-        return bisnisSaya().orElseThrow(() ->
-                new IllegalStateException("Buat bisnis dulu sebelum mengisi data ini."));
     }
 
     // ===== admin =====

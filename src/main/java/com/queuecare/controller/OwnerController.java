@@ -7,8 +7,10 @@ import com.queuecare.dto.ServiceForm;
 import com.queuecare.entity.Business;
 import com.queuecare.entity.BusinessSchedule;
 import com.queuecare.entity.Service;
+import com.queuecare.service.ActiveBusiness;
 import com.queuecare.service.BusinessService;
 import com.queuecare.service.CategoryService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
@@ -27,23 +29,58 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class OwnerController {
 
     private static final String BISNIS = "/owner/business";
+    private static final String DAFTAR_BISNIS = "/owner/businesses";
     private static final String LAYANAN = "/owner/services";
     private static final String JADWAL = "/owner/schedules";
     private static final String KAPASITAS = "/owner/capacity";
 
     private final BusinessService businessService;
     private final CategoryService categoryService;
+    private final ActiveBusiness activeBusiness;
 
-    public OwnerController(BusinessService businessService, CategoryService categoryService) {
+    public OwnerController(BusinessService businessService,
+                           CategoryService categoryService,
+                           ActiveBusiness activeBusiness) {
         this.businessService = businessService;
         this.categoryService = categoryService;
+        this.activeBusiness = activeBusiness;
+    }
+
+    /** Mengalihkan Owner yang belum punya atau belum memilih bisnis. */
+    private String tanpaBisnis(HttpSession session) {
+        String tujuan = activeBusiness.semuaMilikSaya().isEmpty() ? BISNIS + "/baru" : DAFTAR_BISNIS;
+        return "redirect:" + tujuan;
+    }
+
+    // ===== daftar bisnis dan pilihan =====
+
+    @GetMapping("/businesses")
+    public String daftarBisnis(Model model) {
+        model.addAttribute("bisnis", activeBusiness.semuaMilikSaya());
+        return "owner/businesses";
+    }
+
+    @PostMapping("/businesses/{id}/pilih")
+    public String pilihBisnis(@PathVariable Long id, HttpSession session, RedirectAttributes flash) {
+        try {
+            activeBusiness.pilih(session, id);
+        } catch (AccessDeniedException ex) {
+            throw ex;
+        } catch (RuntimeException ex) {
+            flash.addFlashAttribute("error", ex.getMessage());
+        }
+        return "redirect:" + BISNIS;
     }
 
     // ===== bisnis =====
 
     @GetMapping("/business")
-    public String ringkasan(Model model) {
-        model.addAttribute("bisnis", businessService.bisnisSaya().orElse(null));
+    public String ringkasan(HttpSession session, Model model) {
+        Business business = activeBusiness.bisnisAktif(session);
+        if (business == null) {
+            return tanpaBisnis(session);
+        }
+        model.addAttribute("bisnis", business);
         return "owner/business";
     }
 
@@ -59,12 +96,16 @@ public class OwnerController {
 
     @PostMapping("/business/baru")
     public String simpanBisnisBaru(@Valid @ModelAttribute("businessForm") BusinessForm form,
-                                   BindingResult hasil, Model model, RedirectAttributes flash) {
+                                   BindingResult hasil, Model model, HttpSession session,
+                                   RedirectAttributes flash) {
         if (hasil.hasErrors()) {
             return formulirBisnis(model, null, form);
         }
-        return simpan(() -> businessService.buatBisnis(form),
-                "Bisnis dibuat dengan status PENDING. Admin akan mengubahnya menjadi ACTIVE.", BISNIS, flash);
+        Business business = businessService.buatBisnis(form);
+        activeBusiness.pilih(session, business.getId());
+        flash.addFlashAttribute("sukses",
+                "Bisnis dibuat dengan status PENDING. Admin akan mengubahnya menjadi ACTIVE.");
+        return "redirect:" + BISNIS;
     }
 
     @PostMapping("/business/{id}")
@@ -101,35 +142,54 @@ public class OwnerController {
     // ===== layanan =====
 
     @GetMapping("/services")
-    public String layanan(Model model) {
-        model.addAttribute("layanan", businessService.layananSaya());
-        model.addAttribute("bisnis", businessService.bisnisSaya().orElse(null));
+    public String layanan(HttpSession session, Model model) {
+        Business business = activeBusiness.bisnisAktif(session);
+        if (business == null) {
+            return tanpaBisnis(session);
+        }
+        model.addAttribute("bisnis", business);
+        model.addAttribute("layanan", businessService.layananSaya(business));
         return "owner/services";
     }
 
     @GetMapping("/services/baru")
-    public String layananBaru(Model model) {
+    public String layananBaru(HttpSession session, Model model) {
+        if (activeBusiness.bisnisAktif(session) == null) {
+            return tanpaBisnis(session);
+        }
         return formulirLayanan(model, null, null);
     }
 
     @GetMapping("/services/{id}")
-    public String ubahLayanan(@PathVariable Long id, Model model) {
+    public String ubahLayanan(@PathVariable Long id, HttpSession session, Model model) {
+        if (activeBusiness.bisnisAktif(session) == null) {
+            return tanpaBisnis(session);
+        }
         return formulirLayanan(model, businessService.layananSaya(id), null);
     }
 
     @PostMapping("/services/baru")
     public String simpanLayananBaru(@Valid @ModelAttribute("serviceForm") ServiceForm form,
-                                    BindingResult hasil, Model model, RedirectAttributes flash) {
+                                    BindingResult hasil, Model model, HttpSession session,
+                                    RedirectAttributes flash) {
+        Business business = activeBusiness.bisnisAktif(session);
+        if (business == null) {
+            return tanpaBisnis(session);
+        }
         if (hasil.hasErrors()) {
             return formulirLayanan(model, null, form);
         }
-        return simpan(() -> businessService.buatLayanan(form), "Layanan disimpan.", LAYANAN, flash);
+        return simpan(() -> businessService.buatLayanan(business, form), "Layanan disimpan.", LAYANAN, flash);
     }
 
     @PostMapping("/services/{id}")
     public String simpanLayanan(@PathVariable Long id,
                                 @Valid @ModelAttribute("serviceForm") ServiceForm form,
-                                BindingResult hasil, Model model, RedirectAttributes flash) {
+                                BindingResult hasil, Model model, HttpSession session,
+                                RedirectAttributes flash) {
+        if (activeBusiness.bisnisAktif(session) == null) {
+            return tanpaBisnis(session);
+        }
         if (hasil.hasErrors()) {
             return formulirLayanan(model, businessService.layananSaya(id), form);
         }
@@ -140,7 +200,10 @@ public class OwnerController {
     @PostMapping("/services/{id}/status")
     public String statusLayanan(@PathVariable Long id,
                                 @RequestParam(value = "aktif", defaultValue = "false") boolean aktif,
-                                RedirectAttributes flash) {
+                                HttpSession session, RedirectAttributes flash) {
+        if (activeBusiness.bisnisAktif(session) == null) {
+            return tanpaBisnis(session);
+        }
         return simpan(() -> businessService.ubahStatusLayanan(id, aktif),
                 aktif ? "Layanan diaktifkan." : "Layanan dinonaktifkan.", LAYANAN, flash);
     }
@@ -166,43 +229,66 @@ public class OwnerController {
     // ===== jadwal operasional =====
 
     @GetMapping("/schedules")
-    public String jadwal(Model model) {
-        model.addAttribute("jadwal", businessService.jadwalSaya());
-        model.addAttribute("bisnis", businessService.bisnisSaya().orElse(null));
+    public String jadwal(HttpSession session, Model model) {
+        Business business = activeBusiness.bisnisAktif(session);
+        if (business == null) {
+            return tanpaBisnis(session);
+        }
+        model.addAttribute("bisnis", business);
+        model.addAttribute("jadwal", businessService.jadwalSaya(business));
         return "owner/schedules";
     }
 
     @GetMapping("/schedules/baru")
-    public String jadwalBaru(Model model) {
+    public String jadwalBaru(HttpSession session, Model model) {
+        if (activeBusiness.bisnisAktif(session) == null) {
+            return tanpaBisnis(session);
+        }
         return formulirJadwal(model, null, null);
     }
 
     @GetMapping("/schedules/{id}")
-    public String ubahJadwal(@PathVariable Long id, Model model) {
+    public String ubahJadwal(@PathVariable Long id, HttpSession session, Model model) {
+        if (activeBusiness.bisnisAktif(session) == null) {
+            return tanpaBisnis(session);
+        }
         return formulirJadwal(model, businessService.jadwalSaya(id), null);
     }
 
     @PostMapping("/schedules/baru")
     public String simpanJadwalBaru(@Valid @ModelAttribute("scheduleForm") ScheduleForm form,
-                                   BindingResult hasil, Model model, RedirectAttributes flash) {
+                                   BindingResult hasil, Model model, HttpSession session,
+                                   RedirectAttributes flash) {
+        Business business = activeBusiness.bisnisAktif(session);
+        if (business == null) {
+            return tanpaBisnis(session);
+        }
         if (hasil.hasErrors()) {
             return formulirJadwal(model, null, form);
         }
-        return simpan(() -> businessService.simpanJadwal(null, form), "Jadwal disimpan.", JADWAL, flash);
+        return simpan(() -> businessService.simpanJadwal(business, null, form), "Jadwal disimpan.", JADWAL, flash);
     }
 
     @PostMapping("/schedules/{id}")
     public String simpanJadwal(@PathVariable Long id,
                                @Valid @ModelAttribute("scheduleForm") ScheduleForm form,
-                               BindingResult hasil, Model model, RedirectAttributes flash) {
+                               BindingResult hasil, Model model, HttpSession session,
+                               RedirectAttributes flash) {
+        Business business = activeBusiness.bisnisAktif(session);
+        if (business == null) {
+            return tanpaBisnis(session);
+        }
         if (hasil.hasErrors()) {
             return formulirJadwal(model, businessService.jadwalSaya(id), form);
         }
-        return simpan(() -> businessService.simpanJadwal(id, form), "Jadwal diperbarui.", JADWAL, flash);
+        return simpan(() -> businessService.simpanJadwal(business, id, form), "Jadwal diperbarui.", JADWAL, flash);
     }
 
     @PostMapping("/schedules/{id}/hapus")
-    public String hapusJadwal(@PathVariable Long id, RedirectAttributes flash) {
+    public String hapusJadwal(@PathVariable Long id, HttpSession session, RedirectAttributes flash) {
+        if (activeBusiness.bisnisAktif(session) == null) {
+            return tanpaBisnis(session);
+        }
         return simpan(() -> businessService.hapusJadwal(id), "Jadwal dihapus.", JADWAL, flash);
     }
 
@@ -226,26 +312,32 @@ public class OwnerController {
     // ===== kapasitas dan petugas aktif =====
 
     @GetMapping("/capacity")
-    public String kapasitas(Model model) {
-        Business business = businessService.bisnisSaya().orElse(null);
+    public String kapasitas(HttpSession session, Model model) {
+        Business business = activeBusiness.bisnisAktif(session);
+        if (business == null) {
+            return tanpaBisnis(session);
+        }
         model.addAttribute("bisnis", business);
         CapacityForm form = new CapacityForm();
-        if (business != null) {
-            form.setMaxCapacity(business.getMaxCapacity());
-            form.setActiveStaffCount(business.getActiveStaffCount());
-        }
+        form.setMaxCapacity(business.getMaxCapacity());
+        form.setActiveStaffCount(business.getActiveStaffCount());
         model.addAttribute("capacityForm", form);
         return "owner/capacity";
     }
 
     @PostMapping("/capacity")
     public String simpanKapasitas(@Valid @ModelAttribute("capacityForm") CapacityForm form,
-                                  BindingResult hasil, Model model, RedirectAttributes flash) {
+                                  BindingResult hasil, Model model, HttpSession session,
+                                  RedirectAttributes flash) {
+        Business business = activeBusiness.bisnisAktif(session);
+        if (business == null) {
+            return tanpaBisnis(session);
+        }
         if (hasil.hasErrors()) {
-            model.addAttribute("bisnis", businessService.bisnisSaya().orElse(null));
+            model.addAttribute("bisnis", business);
             return "owner/capacity";
         }
-        return simpan(() -> businessService.ubahKapasitas(form),
+        return simpan(() -> businessService.ubahKapasitas(business, form),
                 "Kapasitas dan petugas aktif disimpan.", KAPASITAS, flash);
     }
 

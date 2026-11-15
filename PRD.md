@@ -53,6 +53,8 @@ QueueCare adalah website reservasi dan antrean untuk banyak bisnis jasa (barbers
 | K5 | Kategori disimpan sebagai teks atau tabel `categories`? | Tabel `categories`, karena Admin mengelola kategori (R12) | [isi: keputusan kelompok] |
 | K6 | Aturan batas waktu pembatalan | Boleh sebelum status IN_SERVICE | [isi: misal minimal berapa jam sebelum jadwal] |
 
+Catatan revisi (Fase 2): satu Owner boleh mengelola lebih dari satu bisnis (asumsi operasional nomor 3). K3 tetap memakai usulan awal, yaitu Owner mendaftar dan membuat bisnisnya sendiri, lalu bisnis menunggu verifikasi Admin. Owner memilih salah satu bisnis sebagai "bisnis aktif" untuk mengisi layanan, jadwal, dan kapasitas.
+
 ## 3. Core Features
 
 Urutan fase mengikuti prioritas di master planning: alur reservasi dan antrean dulu, SmartWait dan laporan setelah datanya benar.
