@@ -67,6 +67,8 @@ bash scripts/reset-demo.sh
 
 Skrip ini mengosongkan `queues` dan `reservations`, membuang dan membuat ulang akun dummy, lalu anda restart aplikasi supaya `DummyDataSeeder` mengisi antrean demo untuk hari ini. Lihat `scripts/reset-demo.sql`.
 
+Catatan: jadwal demo adalah Senin sampai Sabtu pukul 09.00-17.00, Minggu libur. Bila reset dilakukan pada hari Minggu atau setelah jam tutup, antrean demo dibuat pada hari buka berikutnya, bukan tanggal hari ini. Ini perilaku `DummyDataSeeder`, bukan kerusakan.
+
 ## Struktur proyek
 
 ```
@@ -98,7 +100,7 @@ Token warna, font, dan radius ada di `src/main/resources/static/css/tokens.css`.
 mvn clean package
 ```
 
-Hasil ada di `target/queuecare-0.0.1-SNAPSHOT.jar`. Folder `target/` tidak masuk Git.
+Hasil ada di `target/queuecare-0.1.0.jar`. Folder `target/` tidak masuk Git.
 
 ## Dokumentasi dan pengujian
 

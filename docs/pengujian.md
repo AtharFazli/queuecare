@@ -189,4 +189,4 @@ Status: LOLOS.
 2. Restart aplikasi.
 3. Hasil: 9 antrean dan 9 reservasi dengan `queue_date` hari ini (atau hari buka berikutnya), status campur WAITING, CALLED, IN_SERVICE, COMPLETED, NO_SHOW, CANCELLED.
 
-Status: LOLOS.
+Status: LOLOS. Diuji pada Minggu, 15 November 2026 pukul 13.28; karena Minggu libur pada jadwal demo, `queue_date` jatuh pada Senin 16 November 2026 (7 antrean) dan Selasa 17 November 2026 (2 antrean). Perilaku ini memang aturan `DummyDataSeeder`.
