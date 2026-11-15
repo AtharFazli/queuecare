@@ -1,0 +1,40 @@
+flowchart TB
+    Customer(["Customer"])
+    Owner(["Owner"])
+    Admin(["Administrator"])
+    UC0["Melihat katalog bisnis tanpa login"]
+    UC1["Mencari dan memfilter katalog"]
+    UC2["Registrasi dan login"]
+    UC3["Ubah profil dan ganti password"]
+    UC4["Mengelola bisnis miliknya"]
+    UC5["Mengelola layanan jadwal kapasitas"]
+    UC6["Membuat reservasi"]
+    UC7["Membatalkan reservasi"]
+    UC8["Memantau antrean dan estimasi SmartWait"]
+    UC9["Melihat riwayat reservasi"]
+    UC10["Mengoperasikan antrean"]
+    UC11["Melihat dashboard dan laporan bisnis"]
+    UC12["Mengelola kategori dan status bisnis"]
+    UC13["Mengelola akun pengguna"]
+    UC14["Melihat dashboard dan laporan platform"]
+    UC15["Melihat daftar reservasi platform"]
+    Customer --> UC0
+    Customer --> UC1
+    Customer --> UC2
+    Customer --> UC3
+    Customer --> UC6
+    Customer --> UC7
+    Customer --> UC8
+    Customer --> UC9
+    Owner --> UC2
+    Owner --> UC3
+    Owner --> UC4
+    Owner --> UC5
+    Owner --> UC10
+    Owner --> UC11
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC12
+    Admin --> UC13
+    Admin --> UC14
+    Admin --> UC15

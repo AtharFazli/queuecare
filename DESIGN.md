@@ -393,6 +393,8 @@ Catatan Fase 7: semua angka dashboard dan laporan berasal dari query agregat (`C
 
 Catatan Fase 7b: halaman akun memakai komponen yang sudah ada (`.tabel`, `.pencarian`, `.kartu`, `.field`, `.modal`, `.lencana`, `.tombol--kecil`, `.tombol--bahaya`), kelas CSS baru tidak ada. Modal aktif/nonaktif pengguna memakai `<dialog class="modal">` seperti `/owner/queues` dan `/reservations/{id}`.
 
+Catatan Fase 8: Bootstrap 5 mempunyai class `.modal` sendiri dengan `display: none` untuk overlay-nya, sehingga `<dialog class="modal">` pernah tidak pernah tampil. Ditambah aturan `dialog.modal` di `components.css` yang memaksa dialog tampil dan memusatkannya. Yang tampak di layar ialah `<dialog>` beserta `.modal__kepala`, `.modal__badan`, dan `.modal__kaki`; class `.modal` dipinjam sebagai penanda elemen, bukan sebagai overlay Bootstrap.
+
 ## 6. Aksesibilitas dan responsif
 
 - Fokus keyboard selalu terlihat (outline amber). Jangan dihapus.

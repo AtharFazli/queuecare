@@ -1,0 +1,108 @@
+classDiagram
+    class User {
+        +Long id
+        +String name
+        +String email
+        +String passwordHash
+        +Role role
+        +boolean active
+        +LocalDateTime createdAt
+    }
+    class Category {
+        +Long id
+        +String name
+    }
+    class Business {
+        +Long id
+        +User owner
+        +String name
+        +Category category
+        +String description
+        +String address
+        +String phone
+        +BusinessStatus status
+        +Integer activeStaffCount
+        +Integer maxCapacity
+    }
+    class Service {
+        +Long id
+        +Business business
+        +String name
+        +String description
+        +BigDecimal price
+        +Integer estimatedDurationMinutes
+        +boolean active
+    }
+    class BusinessSchedule {
+        +Long id
+        +Business business
+        +String dayOfWeek
+        +LocalTime openTime
+        +LocalTime closeTime
+        +boolean closed
+        +String namaHari(LocalDate)
+    }
+    class Reservation {
+        +Long id
+        +User customer
+        +Business business
+        +Service service
+        +String reservationCode
+        +LocalDate reservationDate
+        +LocalTime reservationTime
+        +ReservationStatus status
+        +String notes
+    }
+    class Queue {
+        +Long id
+        +Reservation reservation
+        +Business business
+        +Integer queueNumber
+        +LocalDate queueDate
+        +QueueStatus status
+        +LocalDateTime calledAt
+        +LocalDateTime startedAt
+        +LocalDateTime completedAt
+    }
+    class Role {
+        <<enumeration>>
+        ADMIN
+        OWNER
+        CUSTOMER
+    }
+    class BusinessStatus {
+        <<enumeration>>
+        ACTIVE
+        PENDING
+        INACTIVE
+    }
+    class ReservationStatus {
+        <<enumeration>>
+        PENDING
+        CONFIRMED
+        CANCELLED
+        COMPLETED
+    }
+    class QueueStatus {
+        <<enumeration>>
+        WAITING
+        CALLED
+        IN_SERVICE
+        COMPLETED
+        CANCELLED
+        NO_SHOW
+    }
+
+    User "1" --> "*" Business : owner
+    User "1" --> "*" Reservation : customer
+    Category "1" --> "*" Business
+    Business "1" --> "*" Service
+    Business "1" --> "*" BusinessSchedule
+    Business "1" --> "*" Reservation
+    Service "1" --> "*" Reservation
+    Reservation "1" --> "0..1" Queue
+    Business "1" --> "*" Queue
+    User --> Role
+    Business --> BusinessStatus
+    Reservation --> ReservationStatus
+    Queue --> QueueStatus
