@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Laporan')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Laporan</h1>
+    <p class="teks-redup">
+      Bisnis: <span th:text="${bisnis.name}">Barbershop Senja</span>
+      · rentang <span th:text="${laporan.dari}">2026-10-17</span> sampai <span th:text="${laporan.sampai}">2026-11-16</span>
+    </p>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+    <form th:action="@{/owner/reports}" method="get" class="mt-3">
+      <div class="field">
+        <label class="field__label" for="dari">Dari tanggal</label>
+        <input class="field__input" id="dari" name="dari" type="date" th:value="${laporan.dari}">
+      </div>
+      <div class="field">
+        <label class="field__label" for="sampai">Sampai tanggal</label>
+        <input class="field__input" id="sampai" name="sampai" type="date" th:value="${laporan.sampai}">
+      </div>
+      <button class="tombol" type="submit">Terapkan</button>
+    </form>
+
+    <div th:if="${laporan.totalReservasi == 0}" class="kosong mt-4">
+      <h2 class="kosong__judul">Belum ada data</h2>
+      <p class="kosong__teks">Tidak ada reservasi pada rentang tanggal ini.</p>
+    </div>
+
+    <div th:unless="${laporan.totalReservasi == 0}">
+      <div class="statistik-grid mt-4">
+        <div class="statistik"><span class="statistik__angka" th:text="${laporan.totalReservasi}">0</span><span class="statistik__label">Total reservasi</span></div>
+        <div class="statistik"><span class="statistik__angka" th:text="${laporan.reservasiHariIni}">0</span><span class="statistik__label">Reservasi hari ini</span></div>
+        <div class="statistik"><span class="statistik__angka" th:text="${laporan.selesai}">0</span><span class="statistik__label">Antrean selesai</span></div>
+        <div class="statistik"><span class="statistik__angka" th:text="${laporan.dibatalkan}">0</span><span class="statistik__label">Dibatalkan</span></div>
+        <div class="statistik"><span class="statistik__angka" th:text="${laporan.tidakHadir}">0</span><span class="statistik__label">Tidak hadir</span></div>
+        <div class="statistik"><span class="statistik__angka" th:text="${laporan.pelangganUnik}">0</span><span class="statistik__label">Pelanggan unik</span></div>
+      </div>
+
+      <h2 class="mt-4">Layanan paling banyak dipilih</h2>
+      <div th:if="${#lists.isEmpty(laporan.layananTerpopuler)}" class="kosong mt-3">
+        <h2 class="kosong__judul">Belum ada data</h2>
+        <p class="kosong__teks">Belum ada layanan yang dipilih pada rentang ini.</p>
+      </div>
+      <div class="tabel-bungkus mt-3" th:unless="${#lists.isEmpty(laporan.layananTerpopuler)}">
+        <table class="tabel">
+          <thead><tr><th>Layanan</th><th>Jumlah</th></tr></thead>
+          <tbody>
+            <tr th:each="l : ${laporan.layananTerpopuler}">
+              <td th:text="${l.layanan}">Cukur rambut</td>
+              <td class="tabel__angka" th:text="${l.jumlah}">3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

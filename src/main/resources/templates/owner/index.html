@@ -15,6 +15,7 @@
           <li><a th:href="@{/owner/schedules}">Jadwal</a></li>
           <li><a th:href="@{/owner/capacity}">Kapasitas</a></li>
           <li><a th:href="@{/owner/queues}">Antrean</a></li>
+          <li><a th:href="@{/owner/reports}">Laporan</a></li>
         </ul>
         <p class="sidebar__judul" th:if="${bisnisAktif != null}">Bisnis aktif</p>
         <a class="sidebar__bisnis" th:if="${bisnisAktif != null}" th:href="@{/owner/business}" th:text="${bisnisAktif.name}">Nama bisnis</a>
@@ -23,14 +24,19 @@
       <div class="dash__isi">
         <h1>Halo, <span th:text="${nama}">Owner</span></h1>
         <p class="teks-redup">Peran kamu Owner.</p>
-        <div class="statistik-grid">
-          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Layanan</span></div>
-          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Reservasi</span></div>
-          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Antrean hari ini</span></div>
+        <div th:if="${stats == null}" class="kosong">
+          <h2 class="kosong__judul">Belum ada bisnis aktif</h2>
+          <p class="kosong__teks">Pilih atau buat bisnis dulu, statistik diisi otomatis dari data bisnis itu.</p>
+          <a class="tombol" th:href="@{/owner/businesses}">Pilih bisnis</a>
         </div>
-        <div class="kosong">
-          <h2 class="kosong__judul">Belum ada data</h2>
-          <p class="kosong__teks">Statistik di atas terisi otomatis setelah bisnis kamu menerima reservasi.</p>
+        <div th:unless="${stats == null}">
+          <div class="statistik-grid">
+            <div class="statistik"><span class="statistik__angka" th:text="${stats.reservasiHariIni}">0</span><span class="statistik__label">Reservasi hari ini</span></div>
+            <div class="statistik"><span class="statistik__angka" th:text="${stats.menunggu}">0</span><span class="statistik__label">Antrean menunggu</span></div>
+            <div class="statistik"><span class="statistik__angka" th:text="${stats.sedangDilayani}">0</span><span class="statistik__label">Sedang dilayani</span></div>
+            <div class="statistik"><span class="statistik__angka" th:text="${stats.selesaiHariIni}">0</span><span class="statistik__label">Selesai hari ini</span></div>
+          </div>
+          <p class="teks-redup mt-3"><a th:href="@{/owner/reports}">Lihat laporan lengkap</a></p>
         </div>
       </div>
     </div>

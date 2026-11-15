@@ -12,20 +12,44 @@
           <li><a th:href="@{/admin}" aria-current="page">Dashboard</a></li>
           <li><a th:href="@{/admin/businesses}">Bisnis</a></li>
           <li><a th:href="@{/admin/categories}">Kategori</a></li>
+          <li><a th:href="@{/admin/reservations}">Reservasi</a></li>
+          <li><a th:href="@{/admin/reports}">Laporan</a></li>
         </ul>
       </nav>
       <div class="dash__isi">
         <h1>Halo, <span th:text="${nama}">Admin</span></h1>
         <p class="teks-redup">Peran kamu Admin.</p>
         <div class="statistik-grid">
-          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Pengguna</span></div>
-          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Bisnis</span></div>
-          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Reservasi</span></div>
+          <div class="statistik"><span class="statistik__angka" th:text="${stats.totalPengguna}">0</span><span class="statistik__label">Pengguna</span></div>
+          <div class="statistik"><span class="statistik__angka" th:text="${stats.customer}">0</span><span class="statistik__label">Customer</span></div>
+          <div class="statistik"><span class="statistik__angka" th:text="${stats.owner}">0</span><span class="statistik__label">Owner</span></div>
+          <div class="statistik"><span class="statistik__angka" th:text="${stats.totalBisnis}">0</span><span class="statistik__label">Bisnis</span></div>
+          <div class="statistik"><span class="statistik__angka" th:text="${stats.bisnisActive}">0</span><span class="statistik__label">Bisnis aktif</span></div>
+          <div class="statistik"><span class="statistik__angka" th:text="${stats.bisnisPending}">0</span><span class="statistik__label">Bisnis pending</span></div>
+          <div class="statistik"><span class="statistik__angka" th:text="${stats.bisnisInactive}">0</span><span class="statistik__label">Bisnis nonaktif</span></div>
+          <div class="statistik"><span class="statistik__angka" th:text="${stats.totalReservasi}">0</span><span class="statistik__label">Reservasi</span></div>
         </div>
-        <div class="kosong">
+
+        <h2 class="mt-4">Aktivitas terbaru</h2>
+        <div th:if="${#lists.isEmpty(stats.aktivitasTerbaru)}" class="kosong mt-3">
           <h2 class="kosong__judul">Belum ada data</h2>
-          <p class="kosong__teks">Statistik di atas terisi otomatis setelah ada aktivitas di platform.</p>
+          <p class="kosong__teks">Belum ada reservasi di platform.</p>
         </div>
+        <div class="tabel-bungkus mt-3" th:unless="${#lists.isEmpty(stats.aktivitasTerbaru)}">
+          <table class="tabel">
+            <thead><tr><th>Kode</th><th>Customer</th><th>Bisnis</th><th>Tanggal</th><th>Reservasi</th></tr></thead>
+            <tbody>
+              <tr th:each="r : ${stats.aktivitasTerbaru}">
+                <td th:text="${r.reservationCode}">QC-20261116-0001</td>
+                <td th:text="${r.customer.name}">Dummy Satu</td>
+                <td th:text="${r.business.name}">Barbershop Senja</td>
+                <td th:text="${#temporals.format(r.reservationDate, 'dd/MM/yyyy')}">16/11/2026</td>
+                <td><span class="lencana" th:classappend="${r.status.kelas}" th:text="${r.status}">CONFIRMED</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="teks-redup mt-3"><a th:href="@{/admin/reports}">Lihat laporan lengkap</a></p>
       </div>
     </div>
   </main>

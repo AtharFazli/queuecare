@@ -19,6 +19,8 @@ public interface BusinessRepository extends JpaRepository<Business, Long> {
 
     List<Business> findAllByOrderByIdAsc();
 
+    long countByStatus(BusinessStatus status);
+
     /** Katalog publik: hanya bisnis ACTIVE, dengan pencarian nama dan filter kategori opsional. */
     @Query("select b from Business b join fetch b.owner join fetch b.category "
             + "where b.status = :status "
