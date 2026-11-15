@@ -155,7 +155,7 @@ Master planning bagian 11 tidak ada di repository, jadi daftar ini disusun ulang
 
 ## Ringkasan
 
-- LOLOS: 6 skenario utama, 68 butir checklist.
+- LOLOS: 6 skenario utama, 28 butir checklist (C1–C24, C26, C31, C32, C33).
 - GAGAL: 0.
 - BELUM DIUJI: 5 butir (C25, C27, C28, C29, C30).
 
