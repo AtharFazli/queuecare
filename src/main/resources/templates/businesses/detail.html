@@ -39,7 +39,7 @@
       <article class="kartu" th:each="s : ${layanan}">
         <div class="kartu__badan">
           <h3 class="kartu__judul" th:text="${s.name}">Cukur rambut</h3>
-          <p class="kartu__meta">Rp <span th:text="${#numbers.formatDecimal(s.price, 1, 2)}">45000,00</span> · <span th:text="${s.estimatedDurationMinutes}">30</span> menit</p>
+          <p class="kartu__meta">Rp <span th:text="${#numbers.formatInteger(s.price, 1, 'POINT')}">45.000</span> · <span th:text="${s.estimatedDurationMinutes}">30</span> menit</p>
           <p th:text="${s.description}">Deskripsi layanan.</p>
         </div>
         <div class="kartu__kaki">

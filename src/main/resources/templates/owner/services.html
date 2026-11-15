@@ -31,7 +31,7 @@
           <tbody>
             <tr th:each="s : ${layanan}">
               <td th:text="${s.name}">Potong rambut</td>
-              <td th:text="${#numbers.formatDecimal(s.price, 1, 2)}">100,00</td>
+              <td th:text="'Rp ' + ${#numbers.formatInteger(s.price, 1, 'POINT')}">Rp 45.000</td>
               <td class="tabel__angka" th:text="${s.estimatedDurationMinutes}">30</td>
               <td>
                 <span class="lencana" th:classappend="${s.active} ? 'lencana--completed' : 'lencana--cancelled'" th:text="${s.active} ? 'Aktif' : 'Nonaktif'">Aktif</span>

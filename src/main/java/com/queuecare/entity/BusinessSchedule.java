@@ -12,6 +12,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
@@ -22,6 +23,19 @@ public class BusinessSchedule {
 
     public static final List<String> HARI = List.of(
             "SENIN", "SELASA", "RABU", "KAMIS", "JUMAT", "SABTU", "MINGGU");
+
+    /** Nama hari dalam bahasa Indonesia untuk tanggal tertentu. */
+    public static String namaHari(LocalDate tanggal) {
+        return switch (tanggal.getDayOfWeek()) {
+            case MONDAY -> HARI.get(0);
+            case TUESDAY -> HARI.get(1);
+            case WEDNESDAY -> HARI.get(2);
+            case THURSDAY -> HARI.get(3);
+            case FRIDAY -> HARI.get(4);
+            case SATURDAY -> HARI.get(5);
+            case SUNDAY -> HARI.get(6);
+        };
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

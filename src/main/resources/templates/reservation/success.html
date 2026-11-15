@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Reservasi berhasil')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Reservasi berhasil</h1>
+
+    <div class="tiket">
+      <div class="tiket__info">
+        <div class="tiket__kode" th:text="${reservasi.reservationCode}">QC-20261116-0001</div>
+        <div class="tiket__nama" th:text="${reservasi.business.name}">Barbershop Senja</div>
+        <div>
+          <span th:text="${reservasi.service.name}">Cukur rambut</span> ·
+          <span th:text="${#temporals.format(reservasi.reservationDate, 'dd/MM/yyyy')}">16/11/2026</span>,
+          <span th:text="${reservasi.reservationTime}">09:00</span>
+        </div>
+        <span class="lencana" th:classappend="${reservasi.status.kelas}" th:text="${reservasi.status}">CONFIRMED</span>
+      </div>
+      <div class="tiket__nomor">
+        <span>Antrean</span>
+        <strong th:text="${#numbers.formatInteger(antrean.queueNumber, 2, 'POINT')}">01</strong>
+      </div>
+    </div>
+
+    <p class="teks-redup mt-3">Nomor antrean akan dipanggil oleh petugas. Simpan kode reservasi ini.</p>
+    <a class="tombol mt-3" th:href="@{/reservations}">Lihat riwayat reservasi</a>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

@@ -1,21 +1,55 @@
 <!doctype html>
 <html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{fragments/layout :: head('Reservasi')}"></head>
+<head th:replace="~{fragments/layout :: head('Buat reservasi')}"></head>
 <body>
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
-  <main class="wadah">
-    <div class="row justify-content-center my-5">
-      <div class="col-md-6">
-        <div class="kartu">
-          <div class="kartu__badan">
-            <h1 class="kartu__judul">Reservasi</h1>
-            <p th:if="${layanan != null}">Layanan: <b th:text="${layanan.name}">Cukur rambut</b></p>
-            <p>Fitur reservasi segera hadir.</p>
-            <a class="tombol" th:href="@{/businesses}">Kembali ke katalog</a>
-          </div>
+  <main class="wadah my-5">
+    <h1>Buat reservasi</h1>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+    <p th:if="${layanan == null}" class="kosong">Layanan tidak tersedia.</p>
+
+    <div th:if="${layanan != null}">
+      <div class="kartu">
+        <div class="kartu__badan">
+          <h2 class="kartu__judul" th:text="${layanan.name}">Cukur rambut</h2>
+          <p class="kartu__meta"><span th:text="${bisnis.name}">Barbershop Senja</span> · <span th:text="${bisnis.address}">Jl. Kemangi</span></p>
+          <p>Rp <span th:text="${#numbers.formatInteger(layanan.price, 1, 'POINT')}">45.000</span> · <span th:text="${layanan.estimatedDurationMinutes}">30</span> menit</p>
         </div>
       </div>
+
+      <form th:action="@{/reservation/create/{id}(id=${layanan.id})}" method="get" class="mt-4">
+        <div class="field">
+          <label class="field__label" for="tanggal">Pilih tanggal</label>
+          <input class="field__input" id="tanggal" name="tanggal" type="date" th:value="${tanggal}">
+          <p class="field__bantuan">Tanggal bisa hari ini sampai 14 hari ke depan.</p>
+        </div>
+        <button class="tombol" type="submit">Cek slot</button>
+      </form>
+
+      <h2 class="mt-4">Slot pada <span th:text="${tanggal}">16/11/2026</span></h2>
+      <div th:if="${#lists.isEmpty(slot)}" class="kosong">
+        <h2 class="kosong__judul">Tidak ada slot</h2>
+        <p class="kosong__teks">Bisnis libur atau belum mengatur jam operasional pada hari itu. Coba tanggal lain.</p>
+      </div>
+
+      <form th:action="@{/reservation/create/{id}(id=${layanan.id})}" method="post" th:object="${form}" th:unless="${#lists.isEmpty(slot)}">
+        <input type="hidden" name="tanggal" th:value="${tanggal}">
+        <div class="field">
+          <label class="field__label" for="jam">Pilih jam</label>
+          <select class="field__input" id="jam" th:field="*{jam}">
+            <option value="">Pilih jam</option>
+            <option th:each="s : ${slot}" th:value="${s.jam}" th:text="${s.label}" th:disabled="${s.penuh or s.lewat}">09:00</option>
+          </select>
+          <p class="field__bantuan">Slot berdurasi 30 menit. Slot penuh atau yang sudah lewat tidak bisa dipilih.</p>
+          <p class="field__bantuan" th:if="${#fields.hasErrors('jam')}" th:errors="*{jam}"></p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="catatan">Catatan (opsional)</label>
+          <textarea class="field__input" id="catatan" rows="2" th:field="*{catatan}"></textarea>
+        </div>
+        <button class="tombol" type="submit">Buat reservasi</button>
+      </form>
     </div>
   </main>
 

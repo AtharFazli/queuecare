@@ -234,6 +234,7 @@ Database: MySQL. Tabel berikut diambil dari master planning. Field bertanda **(u
 |---|---|---|---|
 | id | BIGINT PK | ID antrean | 4 |
 | reservation_id | BIGINT FK UNIQUE → reservations | Satu reservasi, paling banyak satu antrean | 4 |
+| business_id | BIGINT FK → businesses | Bisnis tempat antrean, dipakai untuk keunikan nomor per bisnis per tanggal | 4 |
 | queue_number | INT | Nomor, unik per bisnis per tanggal | 4 |
 | queue_date | DATE | Tanggal antrean | 4 |
 | status | VARCHAR(20) | WAITING, CALLED, IN_SERVICE, COMPLETED, CANCELLED, NO_SHOW | 4 |
@@ -243,6 +244,8 @@ Database: MySQL. Tabel berikut diambil dari master planning. Field bertanda **(u
 | created_at | DATETIME | Waktu dibuat | 4 |
 
 Catatan: karena `queues` tidak punya `business_id`, keunikan nomor antrean per bisnis harus lewat `reservation_id` ke `reservations.business_id`. Kelompok bisa memilih menambah `business_id` ke `queues` agar pengecekan lebih mudah: [isi: keputusan kelompok].
+
+Keputusan Fase 4 (2026-11-15): `business_id` ditambahkan ke `queues`, dan dibuat constraint unik `(business_id, queue_date, queue_number)` bernama `uk_queues_nomor` supaya aturan nomor berurutan per bisnis per tanggal dijaga database, bukan hanya aplikasi. Isi lama di atas sengaja tidak dihapus.
 
 **Tabel opsional:** `reservation_status_histories` dan `queue_status_histories` untuk riwayat perubahan status (dipakai bila Khalisa dan Miftah memutuskan perlu).
 

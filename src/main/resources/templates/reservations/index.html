@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Riwayat reservasi')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Riwayat reservasi</h1>
+    <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+    <div th:if="${#lists.isEmpty(daftar)}" class="kosong">
+      <h2 class="kosong__judul">Belum ada reservasi</h2>
+      <p class="kosong__teks">Cari bisnis dan buat reservasi pertama kamu.</p>
+      <a class="tombol" th:href="@{/businesses}">Cari bisnis</a>
+    </div>
+
+    <div class="tabel-bungkus" th:unless="${#lists.isEmpty(daftar)}">
+      <table class="tabel">
+        <thead>
+          <tr><th>Kode</th><th>Bisnis</th><th>Layanan</th><th>Tanggal</th><th>Jam</th><th>Harga</th><th>Status</th><th>Aksi</th></tr>
+        </thead>
+        <tbody>
+          <tr th:each="r : ${daftar}">
+            <td th:text="${r.reservationCode}">QC-20261116-0001</td>
+            <td th:text="${r.business.name}">Barbershop Senja</td>
+            <td th:text="${r.service.name}">Cukur rambut</td>
+            <td th:text="${#temporals.format(r.reservationDate, 'dd/MM/yyyy')}">16/11/2026</td>
+            <td th:text="${r.reservationTime}">09:00</td>
+            <td th:text="'Rp ' + ${#numbers.formatInteger(r.service.price, 1, 'POINT')}">Rp 45.000</td>
+            <td><span class="lencana" th:classappend="${r.status.kelas}" th:text="${r.status}">CONFIRMED</span></td>
+            <td><a class="tombol tombol--kecil" th:href="@{/reservations/{id}(id=${r.id})}">Detail</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

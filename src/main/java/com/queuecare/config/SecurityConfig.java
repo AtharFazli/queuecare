@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .requestMatchers("/", "/login", "/register", "/businesses", "/businesses/**", "/css/**", "/js/**", "/error", "/403").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/owner/**").hasRole("OWNER")
-                .requestMatchers("/reservation/**").hasRole("CUSTOMER")
+                .requestMatchers("/reservation/**", "/reservations/**").hasRole("CUSTOMER")
                 .anyRequest().authenticated())
             .formLogin(form -> form
                 .loginPage("/login")

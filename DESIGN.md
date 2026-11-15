@@ -362,7 +362,7 @@ Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. To
 | `/reservation/success/{id}` | `tiket`, `tombol` |
 | `/queue/{id}` | `tiket`, `smartwait`, `lencana` |
 | `/reservations` | `tabel`, `lencana` |
-| `/reservations/{id}` | `tiket`, `smartwait`, `tombol--bahaya`, `modal` |
+| `/reservations/{id}` | `tiket`, `lencana`, `tombol--bahaya`, `modal` |
 | `/owner/*`, `/admin/*`, `/customer/*` | `dash`, `sidebar`, `statistik`, `kosong`, `tabel`, `modal`, `field` |
 | `/owner/queues` | `tabel`, `lencana`, `tombol--kecil` |
 | `/owner/business` | `kartu`, `tombol`, `kosong` |
@@ -375,6 +375,8 @@ Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. To
 | `/businesses` | `pencarian`, `kartu-grid`, `kartu`, `kosong` |
 | `/businesses/{id}` | `kartu`, `tabel`, `lencana`, `kartu-grid`, `tombol` |
 | `/reservation/create/{serviceId}` | `kartu`, `tombol` |
+
+Catatan Fase 4: `/reservation/create/{serviceId}` memuat ulang halaman lewat parameter `?tanggal=` supaya daftar slot muncul tanpa JavaScript. Slot penuh atau yang sudah lewat tampil sebagai pilihan nonaktif dengan keterangan "Penuh" atau "Lewat". Harga di seluruh aplikasi ditulis dengan pemisah ribuan titik, misalnya "Rp 45.000".
 
 ## 6. Aksesibilitas dan responsif
 

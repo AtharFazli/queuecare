@@ -7,7 +7,9 @@ import com.queuecare.enums.BusinessStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.Lock;
 
+import jakarta.persistence.LockModeType;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,4 +40,9 @@ public interface BusinessRepository extends JpaRepository<Business, Long> {
     List<Category> kategoriDipakai(@Param("status") BusinessStatus status);
 
     boolean existsByCategory(Category category);
+
+    /** Mengunci baris bisnis supaya hitung kapasitas dan nomor antrean tidak berlomba. */
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("select b from Business b where b.id = :id")
+    Optional<Business> lockById(@Param("id") Long id);
 }
