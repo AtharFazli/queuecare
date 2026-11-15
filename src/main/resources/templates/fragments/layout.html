@@ -21,7 +21,10 @@
           <a class="tombol tombol--kecil" th:href="@{/register}">Daftar</a>
         </th:block>
         <th:block sec:authorize="isAuthenticated()">
-          <span class="teks-redup" sec:authentication="name">nama@example.com</span>
+          <span class="teks-redup navbar__pengguna">
+            <span class="navbar__email" sec:authentication="name">nama@example.com</span>
+            <span class="navbar__nama" th:text="${nama}">Nama pengguna</span>
+          </span>
           <form th:action="@{/logout}" method="post">
             <button class="tombol tombol--kecil tombol--sekunder" type="submit">Keluar</button>
           </form>

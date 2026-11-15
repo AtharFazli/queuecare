@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Kategori bisnis')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Kategori bisnis</h1>
+    <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+    <div class="kartu">
+      <div class="kartu__badan">
+        <h2 class="kartu__judul" th:text="${ubahId == null} ? 'Tambah kategori' : 'Ubah kategori'">Tambah kategori</h2>
+        <form th:action="@{/admin/categories}" method="post" th:object="${categoryForm}" class="mt-4">
+          <input type="hidden" name="id" th:value="${ubahId}">
+          <div class="field" th:classappend="${#fields.hasErrors('name')} ? 'field--galat'">
+            <label class="field__label" for="name">Nama kategori</label>
+            <input class="field__input" id="name" type="text" th:field="*{name}" required>
+            <p class="field__bantuan" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+          </div>
+          <button class="tombol" type="submit">Simpan kategori</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="tabel-bungkus mt-4">
+      <table class="tabel">
+        <thead>
+          <tr><th>Nama</th><th>Aksi</th></tr>
+        </thead>
+        <tbody>
+          <tr th:each="k : ${kategori}">
+            <td th:text="${k.name}">Barbershop</td>
+            <td>
+              <a class="tombol tombol--kecil" th:href="@{/admin/categories(ubah=${k.id})}">Ubah</a>
+              <form th:action="@{/admin/categories/{id}/hapus(id=${k.id})}" method="post">
+                <button class="tombol tombol--kecil tombol--bahaya" type="submit">Hapus</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

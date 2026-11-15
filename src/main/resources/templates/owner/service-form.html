@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head(${layanan == null} ? 'Tambah layanan' : 'Ubah layanan')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <div class="kartu">
+      <div class="kartu__badan">
+        <h1 class="kartu__judul" th:text="${layanan == null} ? 'Tambah layanan' : 'Ubah layanan'">Tambah layanan</h1>
+        <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+        <form th:action="${layanan == null} ? @{/owner/services/baru} : @{/owner/services/{id}(id=${layanan.id})}" method="post" th:object="${serviceForm}" class="mt-4">
+          <div class="field" th:classappend="${#fields.hasErrors('name')} ? 'field--galat'">
+            <label class="field__label" for="name">Nama layanan</label>
+            <input class="field__input" id="name" type="text" th:field="*{name}" required>
+            <p class="field__bantuan" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="description">Deskripsi</label>
+            <textarea class="field__input" id="description" rows="3" th:field="*{description}"></textarea>
+          </div>
+
+          <div class="field" th:classappend="${#fields.hasErrors('price')} ? 'field--galat'">
+            <label class="field__label" for="price">Harga</label>
+            <input class="field__input" id="price" type="number" min="0" step="0.01" th:field="*{price}">
+            <p class="field__bantuan" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Isi 0 atau lebih.</p>
+          </div>
+
+          <div class="field" th:classappend="${#fields.hasErrors('estimatedDurationMinutes')} ? 'field--galat'">
+            <label class="field__label" for="estimatedDurationMinutes">Durasi (menit)</label>
+            <input class="field__input" id="estimatedDurationMinutes" type="number" min="1" th:field="*{estimatedDurationMinutes}">
+            <p class="field__bantuan" th:if="${#fields.hasErrors('estimatedDurationMinutes')}" th:errors="*{estimatedDurationMinutes}">Isi lebih dari 0.</p>
+          </div>
+
+          <div class="field">
+            <input type="checkbox" id="active" th:field="*{active}">
+            <label class="field__label" for="active">Layanan aktif</label>
+            <p class="field__bantuan">Centang bila layanan bisa dipilih pelanggan. Bila tidak, layanan disimpan sebagai nonaktif.</p>
+          </div>
+
+          <button class="tombol" type="submit">Simpan layanan</button>
+          <p class="field__bantuan mt-3"><a th:href="@{/owner/services}">Kembali ke daftar layanan</a></p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

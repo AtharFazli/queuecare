@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head(${bisnis == null} ? 'Buat bisnis' : 'Ubah bisnis')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="auth">
+    <div class="wadah auth__isi">
+      <div class="auth__panel">
+        <p class="contoh">Contoh</p>
+        <div th:replace="~{fragments/contoh :: tiket}"></div>
+        <h2 class="auth__judul">Tahu giliranmu tanpa bertanya.</h2>
+        <p class="auth__teks">Kode reservasi dan nomor antrean datang bersamaan, jadi kamu tidak perlu menebak giliran.</p>
+      </div>
+      <div class="auth__form">
+        <div class="kartu">
+          <div class="kartu__badan">
+            <h1 class="kartu__judul" th:text="${bisnis == null} ? 'Buat bisnis' : 'Ubah bisnis'">Buat bisnis</h1>
+            <p th:if="${bisnis != null}" class="kartu__meta">
+              Status: <span th:text="${bisnis.status}">PENDING</span> (diubah oleh Admin)
+            </p>
+            <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+            <form th:action="${bisnis == null} ? @{/owner/business/baru} : @{/owner/business/{id}(id=${bisnis.id})}" method="post" th:object="${businessForm}" class="mt-4">
+              <div class="field" th:classappend="${#fields.hasErrors('name')} ? 'field--galat'">
+                <label class="field__label" for="name">Nama bisnis</label>
+                <input class="field__input" id="name" type="text" th:field="*{name}" required>
+                <p class="field__bantuan" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+              </div>
+
+              <div class="field" th:classappend="${#fields.hasErrors('categoryId')} ? 'field--galat'">
+                <label class="field__label" for="categoryId">Kategori</label>
+                <select class="field__input" id="categoryId" th:field="*{categoryId}">
+                  <option value="">Pilih kategori</option>
+                  <option th:each="k : ${kategori}" th:value="${k.id}" th:text="${k.name}" th:selected="${k.id == businessForm.categoryId}">Barbershop</option>
+                </select>
+                <p class="field__bantuan" th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}"></p>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="description">Deskripsi</label>
+                <textarea class="field__input" id="description" rows="3" th:field="*{description}"></textarea>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="address">Alamat</label>
+                <textarea class="field__input" id="address" rows="2" th:field="*{address}"></textarea>
+              </div>
+
+              <div class="field" th:classappend="${#fields.hasErrors('phone')} ? 'field--galat'">
+                <label class="field__label" for="phone">Telepon</label>
+                <input class="field__input" id="phone" type="text" th:field="*{phone}">
+                <p class="field__bantuan" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+              </div>
+
+              <div class="field" th:classappend="${#fields.hasErrors('maxCapacity')} ? 'field--galat'">
+                <label class="field__label" for="maxCapacity">Kapasitas maksimum</label>
+                <input class="field__input" id="maxCapacity" type="number" min="0" th:field="*{maxCapacity}">
+                <p class="field__bantuan" th:if="${#fields.hasErrors('maxCapacity')}" th:errors="*{maxCapacity}">Isi angka 0 atau lebih.</p>
+              </div>
+
+              <div class="field" th:classappend="${#fields.hasErrors('activeStaffCount')} ? 'field--galat'">
+                <label class="field__label" for="activeStaffCount">Jumlah petugas aktif</label>
+                <input class="field__input" id="activeStaffCount" type="number" min="0" th:field="*{activeStaffCount}">
+                <p class="field__bantuan" th:if="${#fields.hasErrors('activeStaffCount')}" th:errors="*{activeStaffCount}">Isi angka 0 atau lebih.</p>
+              </div>
+
+              <button class="tombol" type="submit">Simpan bisnis</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

@@ -156,11 +156,14 @@ a { color: var(--warna-primer); }
 
 /* ===== Navbar: tombol menu HP ===== */
 .navbar__tombol-menu { display: none; }
+.navbar__nama { display: none; }
 
 @media (max-width: 720px) {
   .navbar { height: auto; }
   .navbar__isi { flex-wrap: wrap; height: auto; padding-top: var(--jarak-2); padding-bottom: var(--jarak-2); }
   .navbar__tombol-menu { display: inline-flex; margin-left: auto; }
+  .navbar__email { display: none; }
+  .navbar__nama { display: inline; }
   .navbar__menu { display: none; flex-basis: 100%; flex-direction: column; gap: var(--jarak-1); margin-top: var(--jarak-3); padding-top: var(--jarak-3); border-top: 1px solid var(--warna-batas); }
   .navbar__menu--terbuka { display: flex; }
   .auth__isi { grid-template-columns: 1fr; }

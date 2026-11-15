@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head(${jadwal == null} ? 'Tambah jadwal' : 'Ubah jadwal')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <div class="kartu">
+      <div class="kartu__badan">
+        <h1 class="kartu__judul" th:text="${jadwal == null} ? 'Tambah jadwal' : 'Ubah jadwal'">Tambah jadwal</h1>
+        <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+        <form th:action="${jadwal == null} ? @{/owner/schedules/baru} : @{/owner/schedules/{id}(id=${jadwal.id})}" method="post" th:object="${scheduleForm}" class="mt-4">
+          <div class="field" th:classappend="${#fields.hasErrors('dayOfWeek')} ? 'field--galat'">
+            <label class="field__label" for="dayOfWeek">Hari</label>
+            <select class="field__input" id="dayOfWeek" th:field="*{dayOfWeek}">
+              <option value="">Pilih hari</option>
+              <option th:each="h : ${T(com.queuecare.entity.BusinessSchedule).HARI}" th:value="${h}" th:text="${h}" th:selected="${h == scheduleForm.dayOfWeek}">SENIN</option>
+            </select>
+            <p class="field__bantuan" th:if="${#fields.hasErrors('dayOfWeek')}" th:errors="*{dayOfWeek}"></p>
+          </div>
+
+          <div class="field">
+            <input type="checkbox" id="closed" th:field="*{closed}">
+            <label class="field__label" for="closed">Libur</label>
+            <p class="field__bantuan">Centang bila bisnis libur di hari ini. Jam buka dan tutup boleh dikosongkan.</p>
+          </div>
+
+          <div class="field" th:classappend="${#fields.hasErrors('openTime')} ? 'field--galat'">
+            <label class="field__label" for="openTime">Jam buka</label>
+            <input class="field__input" id="openTime" type="time" th:field="*{openTime}">
+            <p class="field__bantuan" th:if="${#fields.hasErrors('openTime')}" th:errors="*{openTime}"></p>
+          </div>
+
+          <div class="field" th:classappend="${#fields.hasErrors('closeTime')} ? 'field--galat'">
+            <label class="field__label" for="closeTime">Jam tutup</label>
+            <input class="field__input" id="closeTime" type="time" th:field="*{closeTime}">
+            <p class="field__bantuan" th:if="${#fields.hasErrors('closeTime')}" th:errors="*{closeTime}"></p>
+          </div>
+
+          <button class="tombol" type="submit">Simpan jadwal</button>
+          <p class="field__bantuan mt-3"><a th:href="@{/owner/schedules}">Kembali ke daftar jadwal</a></p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Layanan')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Layanan</h1>
+    <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+    <div th:if="${bisnis == null}" class="kosong">
+      <h2 class="kosong__judul">Belum ada bisnis</h2>
+      <p class="kosong__teks">Buat bisnis dulu sebelum menambah layanan.</p>
+      <a class="tombol" th:href="@{/owner/business/baru}">Buat bisnis</a>
+    </div>
+
+    <div th:if="${bisnis != null}">
+      <p><a class="tombol" th:href="@{/owner/services/baru}">Tambah layanan</a></p>
+
+      <div th:if="${#lists.isEmpty(layanan)}" class="kosong">
+        <h2 class="kosong__judul">Belum ada layanan</h2>
+        <p class="kosong__teks">Tambah layanan pertama untuk bisnis kamu.</p>
+      </div>
+
+      <div class="tabel-bungkus" th:unless="${#lists.isEmpty(layanan)}">
+        <table class="tabel">
+          <thead>
+            <tr><th>Nama</th><th>Harga</th><th>Durasi (menit)</th><th>Status</th><th>Aksi</th></tr>
+          </thead>
+          <tbody>
+            <tr th:each="s : ${layanan}">
+              <td th:text="${s.name}">Potong rambut</td>
+              <td th:text="${#numbers.formatDecimal(s.price, 1, 2)}">100,00</td>
+              <td class="tabel__angka" th:text="${s.estimatedDurationMinutes}">30</td>
+              <td>
+                <span class="lencana" th:classappend="${s.active} ? 'lencana--completed' : 'lencana--cancelled'" th:text="${s.active} ? 'Aktif' : 'Nonaktif'">Aktif</span>
+              </td>
+              <td>
+                <a class="tombol tombol--kecil" th:href="@{/owner/services/{id}(id=${s.id})}">Ubah</a>
+                <form th:action="@{/owner/services/{id}/status(id=${s.id})}" method="post">
+                  <input type="hidden" name="aktif" th:value="${!s.active}">
+                  <button class="tombol tombol--kecil tombol--sekunder" type="submit" th:text="${s.active} ? 'Nonaktifkan' : 'Aktifkan'">Nonaktifkan</button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

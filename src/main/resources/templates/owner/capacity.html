@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Kapasitas')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Kapasitas dan petugas aktif</h1>
+    <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+    <div th:if="${bisnis == null}" class="kosong">
+      <h2 class="kosong__judul">Belum ada bisnis</h2>
+      <p class="kosong__teks">Buat bisnis dulu sebelum mengatur kapasitas.</p>
+      <a class="tombol" th:href="@{/owner/business/baru}">Buat bisnis</a>
+    </div>
+
+    <div th:if="${bisnis != null}" class="kartu">
+      <div class="kartu__badan">
+        <h2 class="kartu__judul" th:text="${bisnis.name}">Nama bisnis</h2>
+        <form th:action="@{/owner/capacity}" method="post" th:object="${capacityForm}" class="mt-4">
+          <div class="field" th:classappend="${#fields.hasErrors('maxCapacity')} ? 'field--galat'">
+            <label class="field__label" for="maxCapacity">Kapasitas maksimum</label>
+            <input class="field__input" id="maxCapacity" type="number" min="0" th:field="*{maxCapacity}">
+            <p class="field__bantuan" th:if="${#fields.hasErrors('maxCapacity')}" th:errors="*{maxCapacity}">Isi angka 0 atau lebih.</p>
+          </div>
+          <div class="field" th:classappend="${#fields.hasErrors('activeStaffCount')} ? 'field--galat'">
+            <label class="field__label" for="activeStaffCount">Jumlah petugas aktif</label>
+            <input class="field__input" id="activeStaffCount" type="number" min="0" th:field="*{activeStaffCount}">
+            <p class="field__bantuan" th:if="${#fields.hasErrors('activeStaffCount')}" th:errors="*{activeStaffCount}">Isi angka 0 atau lebih.</p>
+          </div>
+          <button class="tombol" type="submit">Simpan</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

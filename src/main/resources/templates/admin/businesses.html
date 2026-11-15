@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Bisnis')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Bisnis</h1>
+    <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+    <div th:if="${#lists.isEmpty(bisnis)}" class="kosong">
+      <h2 class="kosong__judul">Belum ada bisnis</h2>
+      <p class="kosong__teks">Belum ada Owner yang membuat bisnis.</p>
+    </div>
+
+    <div class="tabel-bungkus" th:unless="${#lists.isEmpty(bisnis)}">
+      <table class="tabel">
+        <thead>
+          <tr><th>Nama</th><th>Pemilik</th><th>Kategori</th><th>Status</th><th>Ubah status</th></tr>
+        </thead>
+        <tbody>
+          <tr th:each="b : ${bisnis}">
+            <td th:text="${b.name}">Bisnis contoh</td>
+            <td th:text="${b.owner.name}">Owner Demo</td>
+            <td th:text="${b.category.name}">Barbershop</td>
+            <td>
+              <span class="lencana" th:classappend="${b.status.name() == 'ACTIVE'} ? 'lencana--completed' : (${b.status.name() == 'INACTIVE'} ? 'lencana--cancelled' : 'lencana--waiting')" th:text="${b.status}">PENDING</span>
+            </td>
+            <td>
+              <form th:action="@{/admin/businesses/{id}/status(id=${b.id})}" method="post">
+                <select class="field__input" name="status">
+                  <option th:each="s : ${T(com.queuecare.enums.BusinessStatus).values()}" th:value="${s}" th:text="${s}" th:selected="${s == b.status}">ACTIVE</option>
+                </select>
+                <button class="tombol tombol--kecil" type="submit">Simpan status</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

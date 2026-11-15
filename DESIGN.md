@@ -316,7 +316,7 @@ Dashboard tiap role memakai `.kosong` untuk keadaan belum ada data. Angka statis
 
 ### Navbar HP (tombol menu)
 
-Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. Tombol toggle class `navbar__menu--terbuka` lewat `static/js/navbar.js`, tanpa library. `aria-expanded` ikut diperbarui.
+Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. Tombol toggle class `navbar__menu--terbuka` lewat `static/js/navbar.js`, tanpa library. `aria-expanded` ikut diperbarui. Di layar ≤720px navbar menampilkan nama pengguna (`.navbar__nama`) dan menyembunyikan email (`.navbar__email`).
 
 ## 5. Pemakaian per halaman
 
@@ -333,6 +333,12 @@ Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. To
 | `/reservations/{id}` | `tiket`, `smartwait`, `tombol--bahaya`, `modal` |
 | `/owner/*`, `/admin/*`, `/customer/*` | `dash`, `sidebar`, `statistik`, `kosong`, `tabel`, `modal`, `field` |
 | `/owner/queues` | `tabel`, `lencana`, `tombol--kecil` |
+| `/owner/business` | `kartu`, `tombol`, `kosong` |
+| `/owner/services` | `tabel`, `lencana`, `tombol--kecil`, `kosong` |
+| `/owner/schedules` | `tabel`, `lencana`, `tombol--kecil`, `kosong` |
+| `/owner/capacity` | `kartu`, `field`, `tombol`, `kosong` |
+| `/admin/categories` | `kartu`, `field`, `tabel`, `tombol--kecil`, `tombol--bahaya` |
+| `/admin/businesses` | `tabel`, `lencana`, `field`, `tombol--kecil`, `kosong` |
 
 ## 6. Aksesibilitas dan responsif
 

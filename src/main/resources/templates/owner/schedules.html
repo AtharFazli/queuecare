@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Jadwal operasional')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Jadwal operasional</h1>
+    <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+    <div th:if="${bisnis == null}" class="kosong">
+      <h2 class="kosong__judul">Belum ada bisnis</h2>
+      <p class="kosong__teks">Buat bisnis dulu sebelum mengatur jadwal.</p>
+      <a class="tombol" th:href="@{/owner/business/baru}">Buat bisnis</a>
+    </div>
+
+    <div th:if="${bisnis != null}">
+      <p><a class="tombol" th:href="@{/owner/schedules/baru}">Tambah jadwal</a></p>
+
+      <div th:if="${#lists.isEmpty(jadwal)}" class="kosong">
+        <h2 class="kosong__judul">Belum ada jadwal</h2>
+        <p class="kosong__teks">Tambah jam buka untuk setiap hari operasional.</p>
+      </div>
+
+      <div class="tabel-bungkus" th:unless="${#lists.isEmpty(jadwal)}">
+        <table class="tabel">
+          <thead>
+            <tr><th>Hari</th><th>Jam buka</th><th>Jam tutup</th><th>Status</th><th>Aksi</th></tr>
+          </thead>
+          <tbody>
+            <tr th:each="j : ${jadwal}">
+              <td th:text="${j.dayOfWeek}">SENIN</td>
+              <td th:text="${j.closed} ? 'Libur' : ${#temporals.format(j.openTime, 'HH:mm')}">09:00</td>
+              <td th:text="${j.closed} ? 'Libur' : ${#temporals.format(j.closeTime, 'HH:mm')}">17:00</td>
+              <td>
+                <span class="lencana" th:classappend="${j.closed} ? 'lencana--cancelled' : 'lencana--completed'" th:text="${j.closed} ? 'Libur' : 'Buka'">Buka</span>
+              </td>
+              <td>
+                <a class="tombol tombol--kecil" th:href="@{/owner/schedules/{id}(id=${j.id})}">Ubah</a>
+                <form th:action="@{/owner/schedules/{id}/hapus(id=${j.id})}" method="post">
+                  <button class="tombol tombol--kecil tombol--bahaya" type="submit">Hapus</button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>
