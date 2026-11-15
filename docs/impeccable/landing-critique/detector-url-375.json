@@ -1,0 +1,47 @@
+[
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "http://localhost:8080/",
+    "line": 0,
+    "snippet": "border-left: 2px + border-radius: 14px",
+    "selector": "div.tiket__nomor"
+  },
+  {
+    "antipattern": "straggler",
+    "name": "Straggler",
+    "description": "The last line of this paragraph holds one word, which leaves a hole under the block. Set text-wrap: pretty on body copy (Chrome, Safari) to pull a word down beside it. Where a browser ignores it, edit the last sentence or bind the last two words with a no-break space. Keep it if the break is intended.",
+    "severity": "advisory",
+    "category": "quality",
+    "file": "http://localhost:8080/",
+    "line": 0,
+    "snippet": "\"langkah.\" alone on the last of 2 lines (16% of the measure)",
+    "advisory": true,
+    "selector": "div.langkah__item:nth-of-type(2) > p.langkah__teks"
+  },
+  {
+    "antipattern": "gray-on-color",
+    "name": "Gray text on colored background",
+    "description": "Gray text looks washed out on colored backgrounds. Use a darker shade of the background color instead, or white/near-white for contrast.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "http://localhost:8080/",
+    "line": 0,
+    "snippet": "text #546a6f on bg #0a444d",
+    "selector": "p.teks-redup"
+  },
+  {
+    "antipattern": "low-contrast",
+    "name": "Low contrast text",
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background.",
+    "severity": "warning",
+    "category": "quality",
+    "file": "http://localhost:8080/",
+    "line": 0,
+    "snippet": "1.9:1 (need 4.5:1) — text #546a6f on #0a444d",
+    "selector": "p.teks-redup"
+  }
+]

@@ -1,0 +1,696 @@
+[
+  {
+    "width": 375,
+    "scrollWidth": 375,
+    "height": 1729,
+    "title": "Beranda · QueueCare",
+    "text": "QueueCare\nMenu\nTahu giliranmu tanpa bertanya.\n\nQueueCare memberi kode reservasi dan nomor antrean untuk barbershop, salon, servis, dan klinik. Cek estimasi tunggu sebelum kamu datang.\n\nCari bisnis\nDaftar\n\nContoh\n\nQC-20261110-0001\nBisnis contoh\nLayanan contoh · 10 November 2026, 10.00\nWAITING\nAntrean\n07\n30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.\n\nCara kerja\nPilih layanan\n\nCari bisnis, tentukan layanan dan jadwal yang cocok.\n\nAmbil nomor\n\nDapat kode reservasi dan nomor antrean dalam satu langkah.\n\nPantau giliran\n\nLihat posisi antrean dan estimasi waktu tunggu.\n\nEstimasi tunggu yang masuk akal\n\nSmartWait menjumlahkan durasi layanan orang di depanmu, lalu membaginya dengan jumlah petugas aktif. Hasilnya perkiraan, bukan jaminan.\n\nContoh\n\n30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.\n\nQueueCare: reservasi dan antrean untuk bisnis jasa.\n\n© 2026 QueueCare. Dibuat untuk tugas PBO.",
+    "links": [
+      {
+        "text": "QueueCare",
+        "href": "/",
+        "rect": {
+          "x": 16,
+          "y": 20,
+          "width": 109.765625,
+          "height": 24,
+          "top": 20,
+          "right": 125.765625,
+          "bottom": 44,
+          "left": 16
+        }
+      },
+      {
+        "text": "Beranda",
+        "href": "/",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "text": "Masuk",
+        "href": "/login",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "text": "Daftar",
+        "href": "/register",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "text": "Cari bisnis",
+        "href": "/businesses",
+        "rect": {
+          "x": 16,
+          "y": 351.375,
+          "width": 104.4375,
+          "height": 40,
+          "top": 351.375,
+          "right": 120.4375,
+          "bottom": 391.375,
+          "left": 16
+        }
+      },
+      {
+        "text": "Daftar",
+        "href": "/register",
+        "rect": {
+          "x": 132.4375,
+          "y": 351.375,
+          "width": 77.953125,
+          "height": 40,
+          "top": 351.375,
+          "right": 210.390625,
+          "bottom": 391.375,
+          "left": 132.4375
+        }
+      }
+    ],
+    "elements": [
+      {
+        "selector": "SECTION.hero",
+        "text": "Tahu giliranmu tanpa bertanya.\n\nQueueCare memberi kode reservasi dan nomor antrean untuk barbershop, salon, servis, dan klinik. Cek estimasi tunggu sebelum kamu datang.\n\nCari bisnis\nDaftar\n\nContoh\n\nQC-20261110-0001\nBisnis contoh\nLayanan contoh · 10 November 2026, 10.00\nWAITING\nAntrean\n07\n30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.",
+        "rect": {
+          "x": 0,
+          "y": 65,
+          "width": 375,
+          "height": 701.09375,
+          "top": 65,
+          "right": 375,
+          "bottom": 766.09375,
+          "left": 0
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "H1.hero__judul",
+        "text": "Tahu giliranmu tanpa bertanya.",
+        "rect": {
+          "x": 16,
+          "y": 113,
+          "width": 343,
+          "height": 96,
+          "top": 113,
+          "right": 359,
+          "bottom": 209,
+          "left": 16
+        },
+        "fontSize": "40px",
+        "fontWeight": "500",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "DIV.hero__tindakan",
+        "text": "Cari bisnis\nDaftar",
+        "rect": {
+          "x": 16,
+          "y": 351.375,
+          "width": 343,
+          "height": 40,
+          "top": 351.375,
+          "right": 359,
+          "bottom": 391.375,
+          "left": 16
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "DIV.tiket",
+        "text": "QC-20261110-0001\nBisnis contoh\nLayanan contoh · 10 November 2026, 10.00\nWAITING\nAntrean\n07",
+        "rect": {
+          "x": 16,
+          "y": 458.5625,
+          "width": 343,
+          "height": 159.5625,
+          "top": 458.5625,
+          "right": 359,
+          "bottom": 618.125,
+          "left": 16
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "selector": "DIV.smartwait",
+        "text": "30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.",
+        "rect": {
+          "x": 16,
+          "y": 634.125,
+          "width": 343,
+          "height": 99.96875,
+          "top": 634.125,
+          "right": 359,
+          "bottom": 734.09375,
+          "left": 16
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgb(221, 239, 240)"
+      },
+      {
+        "selector": "H2.",
+        "text": "Cara kerja",
+        "rect": {
+          "x": 16,
+          "y": 766.09375,
+          "width": 343,
+          "height": 33.59375,
+          "top": 766.09375,
+          "right": 359,
+          "bottom": 799.6875,
+          "left": 16
+        },
+        "fontSize": "28px",
+        "fontWeight": "500",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "DIV.langkah",
+        "text": "Pilih layanan\n\nCari bisnis, tentukan layanan dan jadwal yang cocok.\n\nAmbil nomor\n\nDapat kode reservasi dan nomor antrean dalam satu langkah.\n\nPantau giliran\n\nLihat posisi antrean dan estimasi waktu tunggu.",
+        "rect": {
+          "x": 16,
+          "y": 831.6875,
+          "width": 343,
+          "height": 243.5625,
+          "top": 831.6875,
+          "right": 359,
+          "bottom": 1075.25,
+          "left": 16
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "H3.langkah__judul",
+        "text": "Pilih layanan",
+        "rect": {
+          "x": 16,
+          "y": 856.6875,
+          "width": 343,
+          "height": 19,
+          "top": 856.6875,
+          "right": 359,
+          "bottom": 875.6875,
+          "left": 16
+        },
+        "fontSize": "16px",
+        "fontWeight": "700",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "H3.langkah__judul",
+        "text": "Ambil nomor",
+        "rect": {
+          "x": 16,
+          "y": 930.078125,
+          "width": 343,
+          "height": 19,
+          "top": 930.078125,
+          "right": 359,
+          "bottom": 949.078125,
+          "left": 16
+        },
+        "fontSize": "16px",
+        "fontWeight": "700",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "H3.langkah__judul",
+        "text": "Pantau giliran",
+        "rect": {
+          "x": 16,
+          "y": 1025.859375,
+          "width": 343,
+          "height": 19,
+          "top": 1025.859375,
+          "right": 359,
+          "bottom": 1044.859375,
+          "left": 16
+        },
+        "fontSize": "16px",
+        "fontWeight": "700",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "SECTION.sorotan",
+        "text": "Estimasi tunggu yang masuk akal\n\nSmartWait menjumlahkan durasi layanan orang di depanmu, lalu membaginya dengan jumlah petugas aktif. Hasilnya perkiraan, bukan jaminan.\n\nContoh\n\n30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.",
+        "rect": {
+          "x": 0,
+          "y": 1123.25,
+          "width": 375,
+          "height": 424.71875,
+          "top": 1123.25,
+          "right": 375,
+          "bottom": 1547.96875,
+          "left": 0
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgb(221, 239, 240)"
+      },
+      {
+        "selector": "H2.",
+        "text": "Estimasi tunggu yang masuk akal",
+        "rect": {
+          "x": 16,
+          "y": 1155.25,
+          "width": 343,
+          "height": 67.1875,
+          "top": 1155.25,
+          "right": 359,
+          "bottom": 1222.4375,
+          "left": 16
+        },
+        "fontSize": "28px",
+        "fontWeight": "500",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "DIV.smartwait",
+        "text": "30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.",
+        "rect": {
+          "x": 16,
+          "y": 1416,
+          "width": 343,
+          "height": 99.96875,
+          "top": 1416,
+          "right": 359,
+          "bottom": 1515.96875,
+          "left": 16
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgb(221, 239, 240)"
+      },
+      {
+        "selector": "FOOTER.footer",
+        "text": "QueueCare: reservasi dan antrean untuk bisnis jasa.\n\n© 2026 QueueCare. Dibuat untuk tugas PBO.",
+        "rect": {
+          "x": 0,
+          "y": 1595.96875,
+          "width": 375,
+          "height": 132.78125,
+          "top": 1595.96875,
+          "right": 375,
+          "bottom": 1728.75,
+          "left": 0
+        },
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "color": "rgb(221, 239, 240)",
+        "background": "rgb(10, 68, 77)"
+      }
+    ]
+  },
+  {
+    "width": 1280,
+    "scrollWidth": 1280,
+    "height": 1022,
+    "title": "Beranda · QueueCare",
+    "text": "QueueCare\nBeranda\nMasuk\nDaftar\nTahu giliranmu tanpa bertanya.\n\nQueueCare memberi kode reservasi dan nomor antrean untuk barbershop, salon, servis, dan klinik. Cek estimasi tunggu sebelum kamu datang.\n\nCari bisnis\nDaftar\n\nContoh\n\nQC-20261110-0001\nBisnis contoh\nLayanan contoh · 10 November 2026, 10.00\nWAITING\nAntrean\n07\n30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.\n\nCara kerja\nPilih layanan\n\nCari bisnis, tentukan layanan dan jadwal yang cocok.\n\nAmbil nomor\n\nDapat kode reservasi dan nomor antrean dalam satu langkah.\n\nPantau giliran\n\nLihat posisi antrean dan estimasi waktu tunggu.\n\nEstimasi tunggu yang masuk akal\n\nSmartWait menjumlahkan durasi layanan orang di depanmu, lalu membaginya dengan jumlah petugas aktif. Hasilnya perkiraan, bukan jaminan.\n\nContoh\n\n30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.\n\nQueueCare: reservasi dan antrean untuk bisnis jasa.\n\n© 2026 QueueCare. Dibuat untuk tugas PBO.",
+    "links": [
+      {
+        "text": "QueueCare",
+        "href": "/",
+        "rect": {
+          "x": 86,
+          "y": 19.5,
+          "width": 109.765625,
+          "height": 24,
+          "top": 19.5,
+          "right": 195.765625,
+          "bottom": 43.5,
+          "left": 86
+        }
+      },
+      {
+        "text": "Beranda",
+        "href": "/",
+        "rect": {
+          "x": 1016.78125,
+          "y": 11.296875,
+          "width": 55.328125,
+          "height": 40.390625,
+          "top": 11.296875,
+          "right": 1072.109375,
+          "bottom": 51.6875,
+          "left": 1016.78125
+        }
+      },
+      {
+        "text": "Masuk",
+        "href": "/login",
+        "rect": {
+          "x": 1088.109375,
+          "y": 11.296875,
+          "width": 43.9375,
+          "height": 40.390625,
+          "top": 11.296875,
+          "right": 1132.046875,
+          "bottom": 51.6875,
+          "left": 1088.109375
+        }
+      },
+      {
+        "text": "Daftar",
+        "href": "/register",
+        "rect": {
+          "x": 1148.046875,
+          "y": 11.296875,
+          "width": 45.953125,
+          "height": 40.390625,
+          "top": 11.296875,
+          "right": 1194,
+          "bottom": 51.6875,
+          "left": 1148.046875
+        }
+      },
+      {
+        "text": "Cari bisnis",
+        "href": "/businesses",
+        "rect": {
+          "x": 86,
+          "y": 329.75,
+          "width": 104.4375,
+          "height": 40,
+          "top": 329.75,
+          "right": 190.4375,
+          "bottom": 369.75,
+          "left": 86
+        }
+      },
+      {
+        "text": "Daftar",
+        "href": "/register",
+        "rect": {
+          "x": 202.4375,
+          "y": 329.75,
+          "width": 77.953125,
+          "height": 40,
+          "top": 329.75,
+          "right": 280.390625,
+          "bottom": 369.75,
+          "left": 202.4375
+        }
+      }
+    ],
+    "elements": [
+      {
+        "selector": "SECTION.hero",
+        "text": "Tahu giliranmu tanpa bertanya.\n\nQueueCare memberi kode reservasi dan nomor antrean untuk barbershop, salon, servis, dan klinik. Cek estimasi tunggu sebelum kamu datang.\n\nCari bisnis\nDaftar\n\nContoh\n\nQC-20261110-0001\nBisnis contoh\nLayanan contoh · 10 November 2026, 10.00\nWAITING\nAntrean\n07\n30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.",
+        "rect": {
+          "x": 0,
+          "y": 64,
+          "width": 1280,
+          "height": 368.328125,
+          "top": 64,
+          "right": 1280,
+          "bottom": 432.328125,
+          "left": 0
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "H1.hero__judul",
+        "text": "Tahu giliranmu tanpa bertanya.",
+        "rect": {
+          "x": 86,
+          "y": 142.5625,
+          "width": 564.890625,
+          "height": 96,
+          "top": 142.5625,
+          "right": 650.890625,
+          "bottom": 238.5625,
+          "left": 86
+        },
+        "fontSize": "40px",
+        "fontWeight": "500",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "DIV.hero__tindakan",
+        "text": "Cari bisnis\nDaftar",
+        "rect": {
+          "x": 86,
+          "y": 329.75,
+          "width": 564.890625,
+          "height": 40,
+          "top": 329.75,
+          "right": 650.890625,
+          "bottom": 369.75,
+          "left": 86
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "DIV.tiket",
+        "text": "QC-20261110-0001\nBisnis contoh\nLayanan contoh · 10 November 2026, 10.00\nWAITING\nAntrean\n07",
+        "rect": {
+          "x": 718.4375,
+          "y": 147.1875,
+          "width": 440,
+          "height": 159.5625,
+          "top": 147.1875,
+          "right": 1158.4375,
+          "bottom": 306.75,
+          "left": 718.4375
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "selector": "DIV.smartwait",
+        "text": "30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.",
+        "rect": {
+          "x": 722.78125,
+          "y": 322.75,
+          "width": 431.3125,
+          "height": 77.578125,
+          "top": 322.75,
+          "right": 1154.09375,
+          "bottom": 400.328125,
+          "left": 722.78125
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgb(221, 239, 240)"
+      },
+      {
+        "selector": "H2.",
+        "text": "Cara kerja",
+        "rect": {
+          "x": 86,
+          "y": 432.328125,
+          "width": 1108,
+          "height": 33.59375,
+          "top": 432.328125,
+          "right": 1194,
+          "bottom": 465.921875,
+          "left": 86
+        },
+        "fontSize": "28px",
+        "fontWeight": "500",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "DIV.langkah",
+        "text": "Pilih layanan\n\nCari bisnis, tentukan layanan dan jadwal yang cocok.\n\nAmbil nomor\n\nDapat kode reservasi dan nomor antrean dalam satu langkah.\n\nPantau giliran\n\nLihat posisi antrean dan estimasi waktu tunggu.",
+        "rect": {
+          "x": 86,
+          "y": 497.921875,
+          "width": 1108,
+          "height": 96.78125,
+          "top": 497.921875,
+          "right": 1194,
+          "bottom": 594.703125,
+          "left": 86
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "H3.langkah__judul",
+        "text": "Pilih layanan",
+        "rect": {
+          "x": 86,
+          "y": 522.921875,
+          "width": 353.328125,
+          "height": 19,
+          "top": 522.921875,
+          "right": 439.328125,
+          "bottom": 541.921875,
+          "left": 86
+        },
+        "fontSize": "16px",
+        "fontWeight": "700",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "H3.langkah__judul",
+        "text": "Ambil nomor",
+        "rect": {
+          "x": 463.328125,
+          "y": 522.921875,
+          "width": 353.328125,
+          "height": 19,
+          "top": 522.921875,
+          "right": 816.65625,
+          "bottom": 541.921875,
+          "left": 463.328125
+        },
+        "fontSize": "16px",
+        "fontWeight": "700",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "H3.langkah__judul",
+        "text": "Pantau giliran",
+        "rect": {
+          "x": 840.65625,
+          "y": 522.921875,
+          "width": 353.34375,
+          "height": 19,
+          "top": 522.921875,
+          "right": 1194,
+          "bottom": 541.921875,
+          "left": 840.65625
+        },
+        "fontSize": "16px",
+        "fontWeight": "700",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "SECTION.sorotan",
+        "text": "Estimasi tunggu yang masuk akal\n\nSmartWait menjumlahkan durasi layanan orang di depanmu, lalu membaginya dengan jumlah petugas aktif. Hasilnya perkiraan, bukan jaminan.\n\nContoh\n\n30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.",
+        "rect": {
+          "x": 0,
+          "y": 642.703125,
+          "width": 1280,
+          "height": 198.375,
+          "top": 642.703125,
+          "right": 1280,
+          "bottom": 841.078125,
+          "left": 0
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgb(221, 239, 240)"
+      },
+      {
+        "selector": "H2.",
+        "text": "Estimasi tunggu yang masuk akal",
+        "rect": {
+          "x": 86,
+          "y": 674.703125,
+          "width": 538,
+          "height": 33.59375,
+          "top": 674.703125,
+          "right": 624,
+          "bottom": 708.296875,
+          "left": 86
+        },
+        "fontSize": "28px",
+        "fontWeight": "500",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "selector": "DIV.smartwait",
+        "text": "30\n\nmenit lagi sampai giliran kamu. 4 orang di depan.\n\nIni perkiraan, bukan jaminan waktu.",
+        "rect": {
+          "x": 709.34375,
+          "y": 720.6875,
+          "width": 431.3125,
+          "height": 77.578125,
+          "top": 720.6875,
+          "right": 1140.65625,
+          "bottom": 798.265625,
+          "left": 709.34375
+        },
+        "fontSize": "16px",
+        "fontWeight": "400",
+        "color": "rgb(20, 38, 43)",
+        "background": "rgb(221, 239, 240)"
+      },
+      {
+        "selector": "FOOTER.footer",
+        "text": "QueueCare: reservasi dan antrean untuk bisnis jasa.\n\n© 2026 QueueCare. Dibuat untuk tugas PBO.",
+        "rect": {
+          "x": 0,
+          "y": 889.078125,
+          "width": 1280,
+          "height": 132.78125,
+          "top": 889.078125,
+          "right": 1280,
+          "bottom": 1021.859375,
+          "left": 0
+        },
+        "fontSize": "14px",
+        "fontWeight": "400",
+        "color": "rgb(221, 239, 240)",
+        "background": "rgb(10, 68, 77)"
+      }
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+tracked_diff_exit=0
+?? docs/impeccable/landing-critique/
+served_components_match_exit=0
+served_tokens_match_exit=0
+critique_live_server_started=false
+critique_live_server_stop_required=false

@@ -1,0 +1,58 @@
+{
+  "assessment": "B",
+  "sourceTarget": "src/main/resources/templates/home.html",
+  "url": "http://localhost:8080/",
+  "browserNavigate": {
+    "success": false,
+    "error": "Cannot connect to Camofox at http://localhost:9377. Is the server running?",
+    "freshTabCreated": false
+  },
+  "mutationPreflight": {
+    "attemptedVia": "browser_console",
+    "attempt": "set document.title and append script setting window.__assessmentBMutable",
+    "success": false,
+    "error": "No browser session. Call browser_navigate first."
+  },
+  "playwrightFallback": {
+    "dependencyAvailable": true,
+    "execution": "blocked_before_execution",
+    "error": "BLOCKED: execute_code script approval was withdrawn before the user answered (the turn ended before the prompt was answered). The user has NOT consented to running this code. Do NOT retry, do NOT rephrase the script, and do NOT attempt the same outcome via a different tool.",
+    "retried": false
+  },
+  "overlay": {
+    "liveServerStarted": false,
+    "injected": false,
+    "visibleOverlayClaimed": false,
+    "cleanup": "Not applicable: no critique live-server was started. Existing application on port 8080 left running.",
+    "approvedStopMethodIfStarted": ".hermes/skills/impeccable/scripts/impeccable live-server stop --keep-inject",
+    "consoleLimitation": "Camofox browser_console does not expose captured logs or JavaScript errors. No impeccable console findings collected."
+  },
+  "fallbackUrlDetector": {
+    "viewportsRequested": ["375x812", "1280x900"],
+    "exitCodes": [2, 2],
+    "primaryCounts": [3, 3],
+    "advisoryCounts": [1, 1],
+    "artifacts": ["detector-url-375.json", "detector-url-1280.json"],
+    "limitation": "Rendered detector evidence only; no interactive visual inspection, screenshot, bounding boxes, computed-style dump or keyboard interaction verified by B."
+  },
+  "bScreenshots": [],
+  "bDomCapture": null,
+  "domJsonNote": "dom.json already exists from another assessment; B did not read, create, overwrite or use it.",
+  "renderedHttp": {"landing": 200, "businesses": 200, "register": 200},
+  "cssByteComparisons": {"components": "identical", "tokens": "identical"},
+  "declaredColorContrast": {
+    "method": "WCAG relative luminance formula on declared opaque source color pairs; not pixel sampling",
+    "footerMuted": 1.8841,
+    "body": 14.6281,
+    "heroMuted": 5.3513,
+    "primaryCta": 7.8563,
+    "amberFocusOnWhite": 1.8895,
+    "amberFocusOnBackground": 1.7662
+  },
+  "readOnlyVerification": {
+    "baseline": "43b837ab238ed1fa1d0a202ebd64d0e3bfe03835",
+    "branch": "desain-impeccable",
+    "trackedDiffExit": 0,
+    "status": "?? docs/impeccable/landing-critique/"
+  }
+}
