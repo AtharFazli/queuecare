@@ -65,6 +65,10 @@ a { color: var(--warna-primer); }
 .modal__badan { padding: var(--jarak-4) var(--jarak-6); }
 .modal__kaki { display: flex; justify-content: flex-end; gap: var(--jarak-2); padding: var(--jarak-3) var(--jarak-6); background: var(--warna-latar); }
 
+/* Bootstrap punya class .modal sendiri (display:none untuk overlay) dan menimpa
+   dialog kita. Aturan ini memaksa <dialog class="modal"> tampil dan di tengah. */
+dialog.modal { display: block; position: fixed; inset: 0; width: min(480px, calc(100% - 32px)); height: auto; max-height: calc(100% - 48px); margin: auto; padding: 0; overflow: visible; background: var(--warna-permukaan); color: var(--warna-teks); border: 0; border-radius: var(--radius-lg); box-shadow: var(--bayangan-lg); pointer-events: auto; }
+
 /* ===== Navbar dan footer ===== */
 /* display:block menimpa .navbar milik Bootstrap, supaya isi navbar selebar konten, bukan menyusut di tengah */
 .navbar { display: block; position: sticky; top: 0; z-index: 10; height: var(--tinggi-navbar); background: var(--warna-permukaan); border-bottom: 1px solid var(--warna-batas); }

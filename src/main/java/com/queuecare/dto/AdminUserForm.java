@@ -53,7 +53,8 @@ public class AdminUserForm {
         return password;
     }
 
+    /** Kosong berarti tidak diubah, jadi dibiarkan null agar @Size tidak menolaknya. */
     public void setPassword(String password) {
-        this.password = password;
+        this.password = (password == null || password.isBlank()) ? null : password;
     }
 }
