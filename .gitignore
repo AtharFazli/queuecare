@@ -3,3 +3,8 @@ target/
 *.iml
 nbproject/
 .DS_Store
+
+.env
+*.log
+logs/
+application-local.properties
