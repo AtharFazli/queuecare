@@ -24,7 +24,9 @@ public class SecurityBeans {
                         .username(user.getEmail())
                         .password(user.getPasswordHash())
                         .roles(user.getRole().name())
+                        // Akun nonaktif ditolak saat login (R1, R12).
+                        .disabled(!user.isActive())
                         .build())
-                .orElseThrow(() -> new UsernameNotFoundException("Email tidak terdaftar."));
+                .orElseThrow(() -> new UsernameNotFoundException("Email atau password salah."));
     }
 }

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head(${judul})}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <div class="kartu" style="max-width: 560px;">
+      <div class="kartu__badan">
+        <h1 class="kartu__judul" th:text="${judul}">Tambah pengguna</h1>
+        <p class="kartu__meta">Password disimpan sebagai hash. Kosongkan password saat ubah bila tidak diganti.</p>
+
+        <form th:action="${id != null} ? @{/admin/users/{id}/ubah(id=${id})} : @{/admin/users}"
+              method="post" th:object="${form}" class="mt-4">
+          <div class="field" th:classappend="${#fields.hasErrors('name')} ? 'field--galat'">
+            <label class="field__label" for="name">Nama</label>
+            <input class="field__input" id="name" name="name" th:value="*{name}">
+            <p class="field__bantuan" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+          </div>
+          <div class="field" th:classappend="${#fields.hasErrors('email')} ? 'field--galat'">
+            <label class="field__label" for="email">Email</label>
+            <input class="field__input" id="email" name="email" type="email" th:value="*{email}">
+            <p class="field__bantuan" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+          </div>
+          <div class="field" th:classappend="${#fields.hasErrors('role')} ? 'field--galat'">
+            <label class="field__label" for="role">Role</label>
+            <select class="field__input" id="role" name="role">
+              <option th:each="r : ${daftarRole}" th:value="${r}" th:text="${r}" th:selected="${r.name() == form.role}">OWNER</option>
+            </select>
+            <p class="field__bantuan" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></p>
+          </div>
+          <div class="field" th:classappend="${#fields.hasErrors('password')} ? 'field--galat'">
+            <label class="field__label" for="password">
+              <span th:text="${id != null} ? 'Password baru (opsional)' : 'Password awal'">Password</span>
+            </label>
+            <input class="field__input" id="password" name="password" type="password" autocomplete="new-password">
+            <p class="field__bantuan" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Minimal 8 karakter.</p>
+          </div>
+          <div class="tabel__aksi">
+            <button class="tombol" type="submit" th:text="${id != null} ? 'Simpan perubahan' : 'Tambah pengguna'">Tambah pengguna</button>
+            <a class="tombol tombol--sekunder" th:href="@{/admin/users}">Kembali</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

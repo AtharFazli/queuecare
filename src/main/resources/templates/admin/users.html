@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Pengguna Admin')}"></head>
+<body>
+  <nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+  <main class="wadah my-5">
+    <h1>Pengguna</h1>
+    <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
+    <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
+
+    <form th:action="@{/admin/users}" method="get" class="pencarian mt-3">
+      <div class="field">
+        <label class="field__label" for="q">Cari nama atau email</label>
+        <input class="field__input" id="q" name="q" th:value="${q}">
+      </div>
+      <div class="field">
+        <label class="field__label" for="role">Role</label>
+        <select class="field__input" id="role" name="role">
+          <option value="">Semua role</option>
+          <option th:each="r : ${daftarRole}" th:value="${r}" th:text="${r}" th:selected="${r.name() == role}">ADMIN</option>
+        </select>
+      </div>
+      <button class="tombol" type="submit">Terapkan</button>
+      <a class="tombol tombol--kecil" th:href="@{/admin/users/tambah}">Tambah pengguna</a>
+    </form>
+
+    <div th:if="${baris.totalElements == 0}" class="kosong mt-4">
+      <h2 class="kosong__judul">Belum ada data</h2>
+      <p class="kosong__teks">Tidak ada pengguna yang cocok dengan pencarian atau filter.</p>
+    </div>
+
+    <div class="tabel-bungkus mt-4" th:unless="${baris.totalElements == 0}">
+      <table class="tabel">
+        <thead>
+          <tr><th>Nama</th><th>Email</th><th>Role</th><th>Status</th><th>Dibuat</th><th>Aksi</th></tr>
+        </thead>
+        <tbody>
+          <tr th:each="u : ${baris}">
+            <td th:text="${u.name}">Owner Demo</td>
+            <td th:text="${u.email}">owner@queuecare.id</td>
+            <td th:text="${u.role}">OWNER</td>
+            <td>
+              <span class="lencana" th:classappend="${u.active} ? 'lencana--completed' : 'lencana--cancelled'"
+                    th:text="${u.active} ? 'Aktif' : 'Nonaktif'">Aktif</span>
+            </td>
+            <td th:text="${#temporals.format(u.createdAt, 'dd/MM/yyyy HH:mm')}">01/01/2026 08.00</td>
+            <td class="tabel__aksi">
+              <a class="tombol tombol--kecil" th:href="@{/admin/users/{id}/ubah(id=${u.id})}">Ubah</a>
+              <button class="tombol tombol--kecil" type="button"
+                      th:classappend="${u.active} ? 'tombol--bahaya' : 'tombol--sekunder'"
+                      th:onclick="|document.getElementById('status-' + ${u.id}).showModal()|"
+                      th:text="${u.active} ? 'Nonaktifkan' : 'Aktifkan'">Nonaktifkan</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="teks-redup mt-3" th:if="${baris.totalElements > 0}">
+      Halaman <span th:text="${baris.number + 1}">1</span> dari <span th:text="${baris.totalPages}">1</span>
+      · <span th:text="${baris.totalElements}">6</span> pengguna
+    </p>
+    <div class="tabel__aksi mt-3" th:if="${baris.totalPages > 1}">
+      <a class="tombol tombol--kecil" th:if="${!baris.first}"
+         th:href="@{/admin/users(hal=${baris.number}, q=${q}, role=${role})}">Sebelumnya</a>
+      <a class="tombol tombol--kecil" th:if="${!baris.last}"
+         th:href="@{/admin/users(hal=${baris.number + 2}, q=${q}, role=${role})}">Berikutnya</a>
+    </div>
+
+    <dialog class="modal" th:each="u : ${baris}" th:id="|status-${u.id}|">
+      <div class="modal__kepala">
+        <h3 th:text="|${u.active ? 'Nonaktifkan' : 'Aktifkan'} ${u.email}?|">Nonaktifkan akun?</h3>
+      </div>
+      <div class="modal__badan">
+        <p th:if="${u.active}">Akun ini tidak bisa masuk sampai diaktifkan lagi. Bisnis yang dimilikinya tidak dihapus.</p>
+        <p th:unless="${u.active}">Akun ini bisa masuk lagi setelah diaktifkan.</p>
+      </div>
+      <div class="modal__kaki">
+        <button class="tombol tombol--sekunder" type="button" onclick="this.closest('dialog').close()">Kembali</button>
+        <form th:action="@{/admin/users/{id}/status(id=${u.id})}" method="post">
+          <input type="hidden" name="aktif" th:value="${u.active} ? 'false' : 'true'">
+          <button class="tombol" type="submit" th:classappend="${u.active} ? 'tombol--bahaya' : 'tombol--sekunder'"
+                  th:text="${u.active} ? 'Nonaktifkan' : 'Aktifkan'">Nonaktifkan</button>
+        </form>
+      </div>
+    </dialog>
+  </main>
+
+  <footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

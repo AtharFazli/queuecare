@@ -368,6 +368,9 @@ Di bawah 720px `.navbar__menu` tersembunyi dan `.navbar__tombol-menu` muncul. To
 | `/owner/reports` | `statistik`, `tabel`, `field`, `kosong` |
 | `/admin/reservations` | `tabel`, `tabel-bungkus`, `field`, `kosong`, `tombol--kecil` |
 | `/admin/reports` | `statistik`, `tabel`, `field`, `kosong` |
+| `/admin/users` | `tabel`, `tabel-bungkus`, `pencarian`, `field`, `lencana`, `tombol--kecil`, `tombol--bahaya`, `modal`, `kosong` |
+| `/admin/users/tambah`, `/admin/users/{id}/ubah` | `kartu`, `field`, `tombol`, `tombol--sekunder` |
+| `/profile` | `dash`, `sidebar`, `kartu`, `field`, `tombol` |
 | `/queue/{id}` | `tiket`, `lencana`, `smartwait`, `tombol` |
 | `/owner/business` | `kartu`, `tombol`, `kosong` |
 | `/owner/services` | `tabel`, `lencana`, `tombol--kecil`, `kosong` |
@@ -387,6 +390,8 @@ Catatan Fase 5: `/owner/queues` memakai parameter `?tanggal=` untuk memilih hari
 Catatan Fase 6: SmartWait dihitung di `SmartWaitService.hitungMenit` (fungsi murni, tanpa database) lalu dibungkus `SmartWaitService.untuk(Queue)` yang mengambil durasi layanan pelanggan di depan dari `QueueRepository.antreanDepan`. Hasilnya masuk ke `/queue/{id}/status` sehingga ikut diperbarui polling, dan ditampilkan di `/queue/{id}` serta `/reservations/{id}` memakai komponen `.smartwait`. Catatan "Ini perkiraan, bukan jaminan waktu." tampil bila ada angka.
 
 Catatan Fase 7: semua angka dashboard dan laporan berasal dari query agregat (`COUNT`, `COUNT DISTINCT`, `GROUP BY`) di repository, bukan dihitung di Java. Dashboard Owner menghitung "reservasi hari ini" dan "selesai hari ini" dengan `reservation_date = hari ini`; "antrean menunggu" dan "sedang dilayani" dihitung seluruh antrean bisnis tanpa filter tanggal. Laporan Owner dan Admin memakai `reservation_date` untuk rentang tanggal, dengan bawaan 30 hari terakhir di laporan Owner. Tabel lebar di `/admin/reservations` digeser di dalam `.tabel-bungkus`, halaman tidak melebar.
+
+Catatan Fase 7b: halaman akun memakai komponen yang sudah ada (`.tabel`, `.pencarian`, `.kartu`, `.field`, `.modal`, `.lencana`, `.tombol--kecil`, `.tombol--bahaya`), kelas CSS baru tidak ada. Modal aktif/nonaktif pengguna memakai `<dialog class="modal">` seperti `/owner/queues` dan `/reservations/{id}`.
 
 ## 6. Aksesibilitas dan responsif
 

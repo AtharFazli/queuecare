@@ -43,6 +43,9 @@ public interface BusinessRepository extends JpaRepository<Business, Long> {
 
     boolean existsByCategory(Category category);
 
+    /** Owner yang masih memegang bisnis tidak boleh diubah jadi role lain. */
+    boolean existsByOwner(User owner);
+
     /** Mengunci baris bisnis supaya hitung kapasitas dan nomor antrean tidak berlomba. */
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select b from Business b where b.id = :id")

@@ -21,6 +21,7 @@
           <a class="tombol tombol--kecil" th:href="@{/register}">Daftar</a>
         </th:block>
         <th:block sec:authorize="isAuthenticated()">
+          <a th:href="@{/profile}">Profil</a>
           <span class="teks-redup navbar__pengguna">
             <span class="navbar__email" sec:authentication="name">nama@example.com</span>
             <span class="navbar__nama" th:text="${nama}">Nama pengguna</span>

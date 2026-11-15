@@ -35,6 +35,10 @@ public class User {
     @Column(nullable = false, length = 20)
     private Role role;
 
+    // Akun nonaktif tidak bisa masuk. default true supaya baris lama ikut aktif saat kolom ditambahkan.
+    @Column(nullable = false, columnDefinition = "boolean default true")
+    private boolean active = true;
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
@@ -97,6 +101,14 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public LocalDateTime getCreatedAt() {

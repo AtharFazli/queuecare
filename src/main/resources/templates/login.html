@@ -27,6 +27,8 @@
             <p class="kartu__meta">Gunakan email dan password akun kamu.</p>
 
             <p th:if="${param.error}" class="lencana lencana--no-show" role="alert">Email atau password salah.</p>
+            <p th:if="${param.disabled}" class="lencana lencana--no-show" role="alert">Akun dinonaktifkan. Hubungi Administrator.</p>
+            <p th:if="${param.profil}" class="lencana lencana--completed" role="alert">Profil diperbarui. Masuk lagi dengan email baru.</p>
             <p th:if="${param.logout}" class="lencana lencana--completed" role="alert">Kamu sudah keluar.</p>
             <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
 
