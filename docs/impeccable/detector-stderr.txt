@@ -1,0 +1,2 @@
+npm notice run npx
+npm notice run impeccable detect --json src/main/resources/templates src/main/resources/static/css

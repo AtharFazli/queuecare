@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-15T06:53:38.986752+00:00",
+  "title": "Design System: QueueCare",
+  "extensions": {
+    "shadows": [
+      {
+        "name": "bayangan-sm",
+        "value": "0 1px 2px rgba(20, 38, 43, 0.08)",
+        "purpose": "Kartu."
+      },
+      {
+        "name": "bayangan-md",
+        "value": "0 6px 18px rgba(20, 38, 43, 0.10)",
+        "purpose": "Dideklarasikan; belum dipakai pada components.css."
+      },
+      {
+        "name": "bayangan-lg",
+        "value": "0 16px 40px rgba(20, 38, 43, 0.18)",
+        "purpose": "Dialog."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "hp",
+        "value": "720px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Tombol utama",
+      "kind": "button",
+      "description": "Cuplikan komponen yang sudah ada; nilai mengikuti CSS custom properties proyek.",
+      "html": "<div class=\"ds-preview\"><button class=\"ds-tombol\">Buat reservasi</button></div>",
+      "css": ".ds-tombol { display: inline-flex; align-items: center; justify-content: center; gap: var(--jarak-2); padding: var(--jarak-2) var(--jarak-4); min-height: 40px; border: 2px solid var(--warna-primer); border-radius: var(--radius-md); background: var(--warna-primer); color: var(--warna-teks-terbalik); font: 600 var(--teks-sm) var(--font-dasar); text-decoration: none; cursor: pointer; }\n.ds-tombol:hover { background: var(--warna-primer-gelap); border-color: var(--warna-primer-gelap); }\n.ds-tombol--sekunder { background: transparent; color: var(--warna-primer); }\n.ds-tombol--sekunder:hover { background: var(--warna-primer-lembut); color: var(--warna-primer-gelap); }\n.ds-tombol--bahaya { background: var(--warna-bahaya); border-color: var(--warna-bahaya); }\n.ds-tombol--bahaya:hover { background: #8F3022; border-color: #8F3022; }\n.ds-tombol--kecil { min-height: 32px; padding: var(--jarak-1) var(--jarak-3); font-size: var(--teks-xs); }\n.ds-tombol:disabled { opacity: .5; cursor: not-allowed; }\n.ds-navbar__menu a.ds-tombol { color: var(--warna-teks-terbalik); }\n.ds-preview:focus-visible, .ds-preview :focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }",
+      "refersTo": "tombol"
+    },
+    {
+      "name": "Tombol sekunder",
+      "kind": "button",
+      "description": "Cuplikan komponen yang sudah ada; nilai mengikuti CSS custom properties proyek.",
+      "html": "<div class=\"ds-preview\"><button class=\"ds-tombol ds-tombol--sekunder\">Kembali</button></div>",
+      "css": ".ds-tombol { display: inline-flex; align-items: center; justify-content: center; gap: var(--jarak-2); padding: var(--jarak-2) var(--jarak-4); min-height: 40px; border: 2px solid var(--warna-primer); border-radius: var(--radius-md); background: var(--warna-primer); color: var(--warna-teks-terbalik); font: 600 var(--teks-sm) var(--font-dasar); text-decoration: none; cursor: pointer; }\n.ds-tombol:hover { background: var(--warna-primer-gelap); border-color: var(--warna-primer-gelap); }\n.ds-tombol--sekunder { background: transparent; color: var(--warna-primer); }\n.ds-tombol--sekunder:hover { background: var(--warna-primer-lembut); color: var(--warna-primer-gelap); }\n.ds-tombol--bahaya { background: var(--warna-bahaya); border-color: var(--warna-bahaya); }\n.ds-tombol--bahaya:hover { background: #8F3022; border-color: #8F3022; }\n.ds-tombol--kecil { min-height: 32px; padding: var(--jarak-1) var(--jarak-3); font-size: var(--teks-xs); }\n.ds-tombol:disabled { opacity: .5; cursor: not-allowed; }\n.ds-navbar__menu a.ds-tombol { color: var(--warna-teks-terbalik); }\n.ds-preview:focus-visible, .ds-preview :focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }",
+      "refersTo": "tombol-sekunder"
+    },
+    {
+      "name": "Tombol bahaya",
+      "kind": "button",
+      "description": "Cuplikan komponen yang sudah ada; nilai mengikuti CSS custom properties proyek.",
+      "html": "<div class=\"ds-preview\"><button class=\"ds-tombol ds-tombol--bahaya\">Batalkan reservasi</button></div>",
+      "css": ".ds-tombol { display: inline-flex; align-items: center; justify-content: center; gap: var(--jarak-2); padding: var(--jarak-2) var(--jarak-4); min-height: 40px; border: 2px solid var(--warna-primer); border-radius: var(--radius-md); background: var(--warna-primer); color: var(--warna-teks-terbalik); font: 600 var(--teks-sm) var(--font-dasar); text-decoration: none; cursor: pointer; }\n.ds-tombol:hover { background: var(--warna-primer-gelap); border-color: var(--warna-primer-gelap); }\n.ds-tombol--sekunder { background: transparent; color: var(--warna-primer); }\n.ds-tombol--sekunder:hover { background: var(--warna-primer-lembut); color: var(--warna-primer-gelap); }\n.ds-tombol--bahaya { background: var(--warna-bahaya); border-color: var(--warna-bahaya); }\n.ds-tombol--bahaya:hover { background: #8F3022; border-color: #8F3022; }\n.ds-tombol--kecil { min-height: 32px; padding: var(--jarak-1) var(--jarak-3); font-size: var(--teks-xs); }\n.ds-tombol:disabled { opacity: .5; cursor: not-allowed; }\n.ds-navbar__menu a.ds-tombol { color: var(--warna-teks-terbalik); }\n.ds-preview:focus-visible, .ds-preview :focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }",
+      "refersTo": "tombol-bahaya"
+    },
+    {
+      "name": "Tombol kecil",
+      "kind": "button",
+      "description": "Cuplikan komponen yang sudah ada; nilai mengikuti CSS custom properties proyek.",
+      "html": "<div class=\"ds-preview\"><button class=\"ds-tombol ds-tombol--kecil\">Lihat detail</button></div>",
+      "css": ".ds-tombol { display: inline-flex; align-items: center; justify-content: center; gap: var(--jarak-2); padding: var(--jarak-2) var(--jarak-4); min-height: 40px; border: 2px solid var(--warna-primer); border-radius: var(--radius-md); background: var(--warna-primer); color: var(--warna-teks-terbalik); font: 600 var(--teks-sm) var(--font-dasar); text-decoration: none; cursor: pointer; }\n.ds-tombol:hover { background: var(--warna-primer-gelap); border-color: var(--warna-primer-gelap); }\n.ds-tombol--sekunder { background: transparent; color: var(--warna-primer); }\n.ds-tombol--sekunder:hover { background: var(--warna-primer-lembut); color: var(--warna-primer-gelap); }\n.ds-tombol--bahaya { background: var(--warna-bahaya); border-color: var(--warna-bahaya); }\n.ds-tombol--bahaya:hover { background: #8F3022; border-color: #8F3022; }\n.ds-tombol--kecil { min-height: 32px; padding: var(--jarak-1) var(--jarak-3); font-size: var(--teks-xs); }\n.ds-tombol:disabled { opacity: .5; cursor: not-allowed; }\n.ds-navbar__menu a.ds-tombol { color: var(--warna-teks-terbalik); }\n.ds-preview:focus-visible, .ds-preview :focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "description": "Cuplikan komponen yang sudah ada; nilai mengikuti CSS custom properties proyek.",
+      "html": "<div class=\"ds-preview\"><label class=\"ds-field__label\" for=\"ds-preview-nama\">Nama</label><input class=\"ds-field__input\" id=\"ds-preview-nama\" placeholder=\"Nama\"></div>",
+      "css": ".ds-field { margin-bottom: var(--jarak-4); }\n.ds-field__label { display: block; margin-bottom: var(--jarak-1); font-size: var(--teks-sm); font-weight: 600; }\n.ds-field__input { width: 100%; min-height: 42px; padding: var(--jarak-2) var(--jarak-3); border: 1px solid var(--warna-batas); border-radius: var(--radius-md); background: var(--warna-permukaan); color: var(--warna-teks); font: inherit; }\n.ds-field__input:focus { outline: 3px solid var(--warna-primer-lembut); border-color: var(--warna-primer); }\n.ds-field__bantuan { margin: var(--jarak-1) 0 0; font-size: var(--teks-xs); color: var(--warna-teks-redup); }\n.ds-field--galat .ds-field__input { border-color: var(--warna-bahaya); }\n.ds-field--galat .ds-field__bantuan { color: var(--warna-bahaya); }\n.ds-preview:focus-visible, .ds-preview :focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }",
+      "refersTo": "field-input"
+    },
+    {
+      "name": "Navigasi",
+      "kind": "nav",
+      "description": "Cuplikan komponen yang sudah ada; nilai mengikuti CSS custom properties proyek.",
+      "html": "<div class=\"ds-preview\"><nav class=\"ds-navbar\"><div class=\"ds-navbar__isi\"><a class=\"ds-navbar__merek\" href=\"#\">QueueCare</a><div class=\"ds-navbar__menu\"><a href=\"#\" aria-current=\"page\">Beranda</a><a href=\"#\">Masuk</a></div></div></nav></div>",
+      "css": ".ds-navbar { display: block; position: sticky; top: 0; z-index: 10; height: var(--tinggi-navbar); background: var(--warna-permukaan); border-bottom: 1px solid var(--warna-batas); }\n.ds-navbar__isi { display: flex; align-items: center; justify-content: space-between; gap: var(--jarak-4); height: 100%; }\n.ds-navbar__merek { font: 800 var(--teks-lg) var(--font-judul); color: var(--warna-primer); text-decoration: none; }\n.ds-navbar__menu { display: flex; gap: var(--jarak-4); list-style: none; margin: 0; padding: 0; }\n.ds-navbar__menu a { color: var(--warna-teks); text-decoration: none; font-size: var(--teks-sm); font-weight: 600; padding: var(--jarak-2) 0; border-bottom: 2px solid transparent; }\n.ds-navbar__menu a:hover, .ds-navbar__menu a[aria-current=\"page\"] { border-bottom-color: var(--warna-aksen); }\n.ds-navbar__menu a.ds-tombol { color: var(--warna-teks-terbalik); }\n.ds-preview:focus-visible, .ds-preview :focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }"
+    },
+    {
+      "name": "Lencana status",
+      "kind": "chip",
+      "description": "Cuplikan komponen yang sudah ada; nilai mengikuti CSS custom properties proyek.",
+      "html": "<div class=\"ds-preview\"><span class=\"ds-lencana ds-lencana--called\">CALLED</span> <span class=\"ds-lencana ds-lencana--confirmed\">CONFIRMED</span></div>",
+      "css": ".ds-lencana { display: inline-block; padding: 2px var(--jarak-3); border-radius: var(--radius-penuh); font-size: var(--teks-xs); font-weight: 600; white-space: nowrap; background: var(--warna-netral-lembut); color: var(--warna-teks-redup); }\n.ds-lencana--waiting, .ds-lencana--cancelled { background: var(--warna-netral-lembut); color: var(--warna-teks-redup); }\n.ds-lencana--called { background: var(--warna-aksen-lembut); color: var(--warna-aksen-teks); }\n.ds-lencana--in-service { background: var(--warna-primer-lembut); color: var(--warna-primer-gelap); }\n.ds-lencana--completed { background: var(--warna-sukses-lembut); color: var(--warna-sukses); }\n.ds-lencana--no-show { background: var(--warna-bahaya-lembut); color: var(--warna-bahaya); }\n.ds-lencana--cancelled { text-decoration: line-through; }\n.ds-lencana--confirmed { background: var(--warna-permukaan); color: var(--warna-primer); border: 1px solid var(--warna-primer); }\n.ds-preview:focus-visible, .ds-preview :focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }",
+      "refersTo": "lencana"
+    },
+    {
+      "name": "Kartu",
+      "kind": "card",
+      "description": "Cuplikan komponen yang sudah ada; nilai mengikuti CSS custom properties proyek.",
+      "html": "<div class=\"ds-preview\"><article class=\"ds-kartu\"><div class=\"ds-kartu__badan\"><h3 class=\"ds-kartu__judul\">Nama bisnis</h3><p class=\"ds-kartu__meta\">Contoh, bukan data nyata</p></div></article></div>",
+      "css": ".ds-kartu { background: var(--warna-permukaan); border: 1px solid var(--warna-batas); border-radius: var(--radius-lg); box-shadow: var(--bayangan-sm); overflow: hidden; }\n.ds-kartu__badan { padding: var(--jarak-4) var(--jarak-6); }\n.ds-kartu__judul { font: 700 var(--teks-lg) var(--font-judul); margin: 0 0 var(--jarak-1); }\n.ds-kartu__meta { color: var(--warna-teks-redup); font-size: var(--teks-sm); margin: 0 0 var(--jarak-3); }\n.ds-kartu__kaki { display: flex; justify-content: space-between; align-items: center; gap: var(--jarak-3); padding: var(--jarak-3) var(--jarak-6); border-top: 1px solid var(--warna-batas); background: var(--warna-latar); }\n.ds-kartu__gambar { height: 120px; background: var(--warna-primer-lembut); display: flex; align-items: center; justify-content: center; color: var(--warna-primer); font: 700 var(--teks-xl) var(--font-judul); }\n.ds-kartu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--jarak-6); }\n.ds-preview:focus-visible, .ds-preview :focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }",
+      "refersTo": "kartu"
+    },
+    {
+      "name": "Tiket antrean",
+      "kind": "custom",
+      "description": "Cuplikan komponen yang sudah ada; nilai mengikuti CSS custom properties proyek.",
+      "html": "<div class=\"ds-preview\"><div class=\"ds-tiket\"><div class=\"ds-tiket__info\"><div class=\"ds-tiket__kode\">Contoh</div><div class=\"ds-tiket__nama\">Nama bisnis</div></div><div class=\"ds-tiket__nomor\"><span>Antrean</span><strong>07</strong></div></div></div>",
+      "css": ".ds-tiket { display: grid; grid-template-columns: 1fr auto; max-width: 440px; background: var(--warna-permukaan); border: 2px solid var(--warna-primer); border-radius: var(--radius-lg); position: relative; }\n.ds-tiket__info { padding: var(--jarak-4) var(--jarak-6); }\n.ds-tiket__kode { font-size: var(--teks-xs); color: var(--warna-teks-redup); letter-spacing: .04em; }\n.ds-tiket__nama { font: 700 var(--teks-md) var(--font-judul); margin: var(--jarak-1) 0; }\n.ds-tiket__nomor { display: flex; flex-direction: column; justify-content: center; align-items: center; min-width: 120px; padding: var(--jarak-4); background: var(--warna-aksen); color: var(--warna-teks); border-left: 2px dashed var(--warna-primer); border-radius: 0 calc(var(--radius-lg) - 2px) calc(var(--radius-lg) - 2px) 0; }\n.ds-tiket__nomor strong { font: 800 var(--teks-2xl) var(--font-judul); line-height: 1; font-variant-numeric: tabular-nums; }\n.ds-tiket__nomor span { font-size: var(--teks-xs); font-weight: 600; }\n.ds-tiket::before, .ds-tiket::after { content: \"\"; position: absolute; right: 108px; width: 20px; height: 20px; background: var(--warna-latar); border: 2px solid var(--warna-primer); border-radius: var(--radius-penuh); }\n.ds-tiket::before { top: -11px; clip-path: inset(50% 0 0 0); }\n.ds-tiket::after { bottom: -11px; clip-path: inset(0 0 50% 0); }\n.ds-preview:focus-visible, .ds-preview :focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }"
+    },
+    {
+      "name": "SmartWait",
+      "kind": "custom",
+      "description": "Cuplikan komponen yang sudah ada; nilai mengikuti CSS custom properties proyek.",
+      "html": "<div class=\"ds-preview\"><div class=\"ds-smartwait\"><div class=\"ds-smartwait__menit\">30</div><div><p class=\"ds-smartwait__teks\">menit lagi, contoh</p><p class=\"ds-smartwait__catatan\">Ini perkiraan, bukan jaminan waktu.</p></div></div></div>",
+      "css": ".ds-smartwait { display: flex; align-items: center; gap: var(--jarak-4); max-width: 440px; padding: var(--jarak-4) var(--jarak-6); background: var(--warna-primer-lembut); border-radius: var(--radius-lg); }\n.ds-smartwait__menit { font: 800 var(--teks-2xl) var(--font-judul); line-height: 1; color: var(--warna-primer-gelap); font-variant-numeric: tabular-nums; }\n.ds-smartwait__teks { margin: 0; font-size: var(--teks-sm); }\n.ds-smartwait__catatan { margin: var(--jarak-1) 0 0; font-size: var(--teks-xs); color: var(--warna-teks-redup); }\n.ds-preview:focus-visible, .ds-preview :focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "overview": "Tenang, jelas, dan mudah dibaca di HP maupun desktop. Tiket antrean menjadi ciri khas.",
+    "keyCharacteristics": [
+      "Tiket antrean",
+      "Token bernama menurut peran",
+      "Bahasa Indonesia sehari-hari"
+    ]
+  }
+}

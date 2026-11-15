@@ -1,3 +1,111 @@
+---
+# --bayangan-sm: 0 1px 2px rgba(20, 38, 43, 0.08)
+# --bayangan-md: 0 6px 18px rgba(20, 38, 43, 0.10)
+# --bayangan-lg: 0 16px 40px rgba(20, 38, 43, 0.18)
+# --lebar-konten: 1140px; components.wadah.width adalah max-width.
+# --lebar-sidebar: 248px; components.sidebar.width adalah kolom desktop.
+# --tinggi-navbar: 64px; components.navbar.height berlaku desktop, HP auto.
+name: QueueCare
+description: "Rekaman sistem visual yang sudah ada; bukan persetujuan warna atau font final."
+colors:
+  warna-primer: "#0E5A66"
+  warna-primer-gelap: "#0A444D"
+  warna-primer-lembut: "#DDEFF0"
+  warna-aksen: "#F2B134"
+  warna-aksen-lembut: "#FDF0D5"
+  warna-aksen-teks: "#6B4700"
+  warna-teks: "#14262B"
+  warna-teks-redup: "#546A6F"
+  warna-teks-terbalik: "#FFFFFF"
+  warna-latar: "#F4F8F8"
+  warna-permukaan: "#FFFFFF"
+  warna-batas: "#D3DFE1"
+  warna-sukses: "#2E7D4F"
+  warna-sukses-lembut: "#DFF1E5"
+  warna-bahaya: "#B3402F"
+  warna-bahaya-lembut: "#FADFDA"
+  warna-netral-lembut: "#E8EEEF"
+typography:
+  font-judul:
+    fontFamily: "\"Bricolage Grotesque\", \"Segoe UI\", system-ui, sans-serif"
+  font-dasar:
+    fontFamily: "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif"
+  teks-xs:
+    fontSize: "0.75rem"
+  teks-sm:
+    fontSize: "0.875rem"
+  teks-md:
+    fontSize: "1rem"
+  teks-lg:
+    fontSize: "1.25rem"
+  teks-xl:
+    fontSize: "1.75rem"
+  teks-2xl:
+    fontSize: "2.5rem"
+  body:
+    fontFamily: "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif"
+    fontSize: "1rem"
+    lineHeight: 1.6
+  judul-kartu:
+    fontFamily: "\"Bricolage Grotesque\", \"Segoe UI\", system-ui, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 700
+  angka-antrean:
+    fontFamily: "\"Bricolage Grotesque\", \"Segoe UI\", system-ui, sans-serif"
+    fontSize: "2.5rem"
+    fontWeight: 800
+    lineHeight: 1
+  tombol:
+    fontFamily: "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 600
+rounded:
+  radius-sm: "6px"
+  radius-md: "10px"
+  radius-lg: "16px"
+  radius-penuh: "999px"
+spacing:
+  jarak-1: "4px"
+  jarak-2: "8px"
+  jarak-3: "12px"
+  jarak-4: "16px"
+  jarak-6: "24px"
+  jarak-8: "32px"
+  jarak-12: "48px"
+components:
+  tombol:
+    backgroundColor: "{colors.warna-primer}"
+    textColor: "{colors.warna-teks-terbalik}"
+    rounded: "{rounded.radius-md}"
+    typography: "{typography.tombol}"
+    padding: "8px 16px"
+  tombol-hover:
+    backgroundColor: "{colors.warna-primer-gelap}"
+  tombol-sekunder:
+    backgroundColor: "transparent"
+    textColor: "{colors.warna-primer}"
+  tombol-bahaya:
+    backgroundColor: "{colors.warna-bahaya}"
+  kartu:
+    backgroundColor: "{colors.warna-permukaan}"
+    rounded: "{rounded.radius-lg}"
+  field-input:
+    backgroundColor: "{colors.warna-permukaan}"
+    textColor: "{colors.warna-teks}"
+    rounded: "{rounded.radius-md}"
+    padding: "8px 12px"
+  lencana:
+    backgroundColor: "{colors.warna-netral-lembut}"
+    textColor: "{colors.warna-teks-redup}"
+    rounded: "{rounded.radius-penuh}"
+  wadah:
+    width: "1140px"
+  sidebar:
+    width: "248px"
+  navbar:
+    height: "64px"
+---
+
 # Design System: QueueCare
 
 Panduan tampilan untuk website QueueCare (Spring Boot + Thymeleaf + Bootstrap 5). Dokumen ini pelengkap `prd.md`. Nilai warna, font, dan bentuk di bawah adalah usulan, karena master planning tidak menentukannya. Semua bisa diganti lewat `css/tokens.css`.
@@ -420,3 +528,68 @@ Catatan Fase 8: Bootstrap 5 mempunyai class `.modal` sendiri dengan `display: no
 ## 9. Data dummy
 
 Seed data dummy untuk demo diatur lewat properti `app.seed-dummy` di `application.properties` (nilai awal `true`). Set `app.seed-dummy=false` untuk menonaktifkannya. Seed hanya jalan bila tabel `businesses` masih kosong, jadi aman dijalankan berulang tanpa menggandakan data.
+
+<!-- impeccable:document scan; isi lama di atas dipertahankan utuh -->
+
+## Overview
+
+Rekaman implementasi yang ada, bukan desain ulang. Arah yang sudah tertulis: tenang, jelas, mudah dibaca; tiket antrean menjadi ciri khas. Nilai warna dan font tetap usulan sampai kelompok memutuskan. Tidak ditambahkan metafora merek atau keputusan visual baru.
+
+Bagian 1–9 dan semua catatan fase di atas adalah riwayat yang dipertahankan. Rekaman ini memperjelas keadaan kode terbaru saat ada catatan lama yang bertentangan. Sumber: `src/main/resources/static/css/tokens.css`, `components.css`, `templates/fragments/layout.html`, serta pemeriksaan browser pada 375px dan 1280px.
+
+## Colors
+
+Warna memakai nama peran yang sama dengan CSS; seluruh deklarasi `--warna-*` tercatat di frontmatter tanpa mengganti nilainya. Teal untuk aksi utama dan identitas, warna netral untuk isi, hijau untuk selesai, merah untuk galat dan aksi berbahaya.
+
+Aturan aksen pada bagian 1 lebih sempit dari pemakaian yang juga sudah dicatat pada bagian 3 dan kode: amber ada pada nomor antrean, CALLED, menu aktif atau bisnis aktif di sidebar, garis menu navbar, dan fokus keyboard. Ini rekaman pemakaian yang sudah ada, bukan izin memakai amber sebagai dekorasi baru.
+
+Nilai literal hover tombol bahaya `#8F3022`, backdrop dialog, dan putih transparan hover sidebar tetap dicatat sebagai detail implementasi yang belum menjadi token. Nilai tersebut tidak dimasukkan sebagai token merek baru atau dibuatkan pengecualian detector.
+
+## Typography
+
+Frontmatter mempertahankan dua stack font dan enam ukuran `--teks-*` dari `tokens.css`. Peran tambahan diambil dari deklarasi komponen, bukan dibuat dari ukuran kebetulan satu layar. Judul dan angka besar memakai Bricolage Grotesque; isi memakai Public Sans; fallback Segoe UI, system-ui, sans-serif.
+
+Body berukuran `teks-md` dengan line-height 1.6. Judul kartu memakai `teks-lg` dan bobot 700. Nomor tiket memakai `teks-2xl`, bobot 800, line-height 1. Angka antrean dan statistik memakai tabular-nums.
+
+Bobot 500 yang teramati pada H1 umum berasal dari Bootstrap, bukan token judul baru. Google Fonts saat ini memuat Bricolage Grotesque 600/800 dan Public Sans 400/500/600; permintaan bobot lain pada CSS tidak dianggap bukti adanya aset font tambahan.
+
+## Layout
+
+Jarak mengikuti tujuh token skala 4px yang ada. `wadah.width` merekam batas maksimum konten, bukan lebar tetap semua layar. `sidebar.width` merekam kolom dashboard desktop. `navbar.height` merekam tinggi desktop; pada media query HP tingginya auto. Nilai ketiganya berasal dari token layout, tanpa token baru.
+
+Breakpoint utama adalah `max-width: 720px`. Dashboard menjadi satu kolom, sidebar berada di atas isi; hero, sorotan, dan autentikasi menjadi satu kolom; form autentikasi lebih dulu. Navbar memakai tombol Menu dan toggle `navbar__menu--terbuka` dari `navbar.js`. Catatan “menu HP belum dibuat” pada bagian 4 dan placeholder bagian 7 adalah catatan lama, bukan pekerjaan yang masih belum ada.
+
+Grid katalog memakai auto-fill minmax 260px; tabel digeser di `.tabel-bungkus`. Halaman `/`, `/businesses`, dan `/login` diperiksa di 375px serta 1280px tanpa overflow horizontal. Angka ini adalah ukuran pemeriksaan, bukan breakpoint tambahan. H1 katalog mengecil ke `teks-xl` pada HP; `.hero__judul` tetap `teks-2xl` karena aturan komponen yang lebih akhir, bukan skala tipografi global baru.
+
+## Elevation & Depth
+
+Kartu memakai `--bayangan-sm`; dialog memakai `--bayangan-lg`. Token `--bayangan-md` memang dideklarasikan, tetapi belum ditemukan pemakaiannya pada `components.css`. Ketiga nilai tetap direkam di komentar frontmatter dan `extensions.shadows` pada `.impeccable/design.json`; tidak dibuat aturan pemakaian baru untuk token yang belum dipakai.
+
+Permukaan putih, latar lembut, dan border membedakan area isi. Bayangan tidak dipromosikan menjadi efek hover baru. Format token Impeccable tidak menyediakan grup shadows tingkat atas; nilai lengkap berada di metadata pendamping, dengan salinan sumber di komentar frontmatter.
+
+## Shapes
+
+Empat token radius dipertahankan. Tombol dan input memakai radius-md; kartu, tabel, dan modal memakai radius-lg; lencana memakai radius-penuh. Radius-sm tersedia di sumber, tetapi belum ditemukan pemakaiannya pada komponen saat scan.
+
+Tiket mempunyai tepi putus-putus dan lekukan lingkaran pada sambungan nomor. Geometri khusus tiket tetap detail komponen, bukan token radius global. Ukuran sekali pakai seperti tinggi placeholder gambar dan geometri potongan tiket tidak dijadikan skala baru.
+
+## Components
+
+Pola, contoh HTML, pemakaian per halaman, dan catatan fase pada bagian 4–5 tetap berlaku. Metadata pendamping menampilkan cuplikan komponen yang sudah ada; kelas preview diberi awalan `ds-` hanya di metadata, tidak di template atau CSS aplikasi.
+
+- Tombol: utama, sekunder, bahaya, dan kecil tetap memakai kelas sekarang. Hover, focus-visible, disabled, border, dan validasi tidak diubah.
+- Input: border warna batas, permukaan putih, fokus primer lembut, galat memakai warna bahaya. Label tetap berhubungan dengan input.
+- Lencana: keenam status antrean tetap punya teks. CONFIRMED reservasi tetap putih dengan border primer agar berbeda dari IN_SERVICE.
+- Kartu: badan dan kaki memakai token jarak; gambar bisnis masih placeholder. Placeholder bukan aset merek final.
+- Navbar dan sidebar: pemilihan menu dan bisnis aktif mengikuti pola yang sudah ada. Urutan CSS pada fragment head harus Bootstrap 5.3.3, lalu tokens.css, lalu components.css; Google Fonts dimuat setelahnya.
+- Dialog: `dialog.modal` pada `components.css` adalah perbaikan B10 yang dilindungi. Jangan dihapus atau diganti dalam tahap persiapan ini. Pemeriksaan browser menemukan enam dialog tanpa `[open]` masih memiliki display block pada halaman Admin pengguna; di 375px salah satunya menghalangi klik tombol Nonaktifkan. Ini cacat yang teramati, bukan keputusan desain. Tidak dijadikan pola preview dan tidak diperbaiki di sini.
+- Tiket dan SmartWait: nomor antrean, status, estimasi atau pesan belum tersedia tetap mengikuti komponen dan aturan pada bagian 4. Data contoh tidak menjadi klaim pengguna nyata.
+
+## Do's and Don'ts
+
+- Do pakai token dan komponen yang sudah ada; pertahankan teks status, fokus keyboard, reduced motion, serta pembungkus tabel.
+- Do bedakan rekaman kode sekarang, usulan kelompok, catatan historis, dan cacat yang ditemukan.
+- Do pertahankan urutan Bootstrap, tokens.css, components.css serta aturan B10 sampai ada tugas perbaikan yang disetujui.
+- Don't ubah warna, font, layout, komponen, kelas, ID, JavaScript, atau skrip pengujian dalam persiapan ini.
+- Don't menjadikan literal sekali pakai, bobot warisan Bootstrap, atau bug dialog sebagai token atau keputusan baru.
+- Don't menganggap scan sumber menggantikan uji browser, atau nilai demo sebagai bukti produk dipakai pelanggan nyata.

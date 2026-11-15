@@ -1,0 +1,258 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "width": 375,
+    "scrollWidth": 375,
+    "stylesheets": [
+      "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+      "http://localhost:8080/css/tokens.css",
+      "http://localhost:8080/css/components.css",
+      "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;500;600&display=swap"
+    ],
+    "body": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "backgroundColor": "rgb(244, 248, 248)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "h1": {
+      "fontFamily": "\"Bricolage Grotesque\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "40px",
+      "fontWeight": "500",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "button": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "12px",
+      "fontWeight": "600",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(14, 90, 102)",
+      "borderRadius": "10px"
+    }
+  },
+  {
+    "route": "/businesses",
+    "status": 200,
+    "width": 375,
+    "scrollWidth": 375,
+    "stylesheets": [
+      "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+      "http://localhost:8080/css/tokens.css",
+      "http://localhost:8080/css/components.css",
+      "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;500;600&display=swap"
+    ],
+    "body": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "backgroundColor": "rgb(244, 248, 248)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "h1": {
+      "fontFamily": "\"Bricolage Grotesque\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "28px",
+      "fontWeight": "500",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "button": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "12px",
+      "fontWeight": "600",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(14, 90, 102)",
+      "borderRadius": "10px"
+    }
+  },
+  {
+    "route": "/login",
+    "status": 200,
+    "width": 375,
+    "scrollWidth": 375,
+    "stylesheets": [
+      "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+      "http://localhost:8080/css/tokens.css",
+      "http://localhost:8080/css/components.css",
+      "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;500;600&display=swap"
+    ],
+    "body": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "backgroundColor": "rgb(244, 248, 248)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "h1": {
+      "fontFamily": "\"Bricolage Grotesque\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "20px",
+      "fontWeight": "700",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "button": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "12px",
+      "fontWeight": "600",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(14, 90, 102)",
+      "borderRadius": "10px"
+    }
+  },
+  {
+    "route": "/admin/users",
+    "viewport": 375,
+    "closedDialogsVisible": 6,
+    "clickError": "Locator.click: Timeout 3000ms exceeded.\nCall log:\n  - waiting for locator(\"button[onclick*=showModal]\").first\n    - locator resolved to <button type=\"button\" class=\"tombol tombol--kecil tombol--bahaya\" onclick=\"document.getElementById('status-' + 1).showModal()\">Nonaktifkan</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <dialog class=\"modal\" id=\"status-294\">…</dialog> intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <dialog class=\"modal\" id=\"status-294\">…</dialog> intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    - waiting for element to be visible, enabled and stable\n    - element is not stable\n  - retrying click action\n    - waiting 500ms\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <p>Akun ini tidak bisa masuk sampai diaktifkan lagi.…</p> from <dialog class=\"modal\" id=\"status-294\">…</dialog> subtree intercepts pointer events\n  2 × retrying click action\n      - waiting 500ms\n      - waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <dialog class=\"modal\" id=\"status-294\">…</dialog> intercepts pointer events\n  - retrying click action\n    - waiting 500ms\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <p>Akun ini tidak bisa masuk sampai diaktifkan lagi.…</p> from <dialog class=\"modal\" id=\"status-294\">…</dialog> subtree intercepts pointer events\n  - retrying click action\n    - waiting 500ms\n    - waiting for element to be visible, enabled and stable\n",
+    "note": "Tidak ada perubahan CSS; showModal langsung hanya mengukur gaya dialog jika klik terhalang."
+  },
+  {
+    "route": "/admin/users",
+    "viewport": 375,
+    "status": 200,
+    "dialog": {
+      "display": "block",
+      "position": "fixed",
+      "width": 337,
+      "height": 852,
+      "left": 19,
+      "right": 356
+    }
+  },
+  {
+    "route": "/",
+    "status": 200,
+    "width": 1280,
+    "scrollWidth": 1280,
+    "stylesheets": [
+      "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+      "http://localhost:8080/css/tokens.css",
+      "http://localhost:8080/css/components.css",
+      "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;500;600&display=swap"
+    ],
+    "body": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "backgroundColor": "rgb(244, 248, 248)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "h1": {
+      "fontFamily": "\"Bricolage Grotesque\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "40px",
+      "fontWeight": "500",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "button": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "12px",
+      "fontWeight": "600",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(14, 90, 102)",
+      "borderRadius": "10px"
+    }
+  },
+  {
+    "route": "/businesses",
+    "status": 200,
+    "width": 1280,
+    "scrollWidth": 1280,
+    "stylesheets": [
+      "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+      "http://localhost:8080/css/tokens.css",
+      "http://localhost:8080/css/components.css",
+      "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;500;600&display=swap"
+    ],
+    "body": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "backgroundColor": "rgb(244, 248, 248)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "h1": {
+      "fontFamily": "\"Bricolage Grotesque\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "40px",
+      "fontWeight": "500",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "button": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "12px",
+      "fontWeight": "600",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(14, 90, 102)",
+      "borderRadius": "10px"
+    }
+  },
+  {
+    "route": "/login",
+    "status": 200,
+    "width": 1280,
+    "scrollWidth": 1280,
+    "stylesheets": [
+      "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+      "http://localhost:8080/css/tokens.css",
+      "http://localhost:8080/css/components.css",
+      "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;500;600&display=swap"
+    ],
+    "body": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "backgroundColor": "rgb(244, 248, 248)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "h1": {
+      "fontFamily": "\"Bricolage Grotesque\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "20px",
+      "fontWeight": "700",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(20, 38, 43)",
+      "borderRadius": "0px"
+    },
+    "button": {
+      "fontFamily": "\"Public Sans\", \"Segoe UI\", system-ui, sans-serif",
+      "fontSize": "12px",
+      "fontWeight": "600",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "color": "rgb(14, 90, 102)",
+      "borderRadius": "10px"
+    }
+  },
+  {
+    "route": "/admin/users",
+    "viewport": 1280,
+    "closedDialogsVisible": 6,
+    "clickError": null,
+    "note": "Tidak ada perubahan CSS; showModal langsung hanya mengukur gaya dialog jika klik terhalang."
+  },
+  {
+    "route": "/admin/users",
+    "viewport": 1280,
+    "status": 200,
+    "dialog": {
+      "display": "block",
+      "position": "fixed",
+      "width": 480,
+      "height": 852,
+      "left": 400,
+      "right": 880
+    }
+  }
+]

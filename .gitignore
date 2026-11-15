@@ -8,3 +8,6 @@ nbproject/
 *.log
 logs/
 application-local.properties
+
+# Impeccable mengunduh engine sesuai OS; bukan sumber proyek.
+.hermes/skills/impeccable/scripts/bin/
