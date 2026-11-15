@@ -1,0 +1,77 @@
+[
+  {
+    "script": "qc_test.sh",
+    "exit": 0,
+    "totals": [],
+    "failures": [],
+    "scope": "Salinan persis dengan penggantian port, database, dan scratch; assertion tidak diubah."
+  },
+  {
+    "script": "qc_fase3b.sh",
+    "exit": 0,
+    "totals": [],
+    "failures": [],
+    "scope": "Salinan persis dengan penggantian port, database, dan scratch; assertion tidak diubah.",
+    "notes": "Skrip observasi tanpa assertion total; lihat status dan isi raw log. Masih mencari placeholder Fase 3 lama."
+  },
+  {
+    "script": "f4c.sh",
+    "exit": 0,
+    "totals": [
+      [
+        "40",
+        "0"
+      ]
+    ],
+    "failures": [],
+    "scope": "Salinan persis dengan penggantian port, database, dan scratch; assertion tidak diubah."
+  },
+  {
+    "script": "f5c.sh",
+    "exit": 0,
+    "totals": [
+      [
+        "32",
+        "0"
+      ]
+    ],
+    "failures": [],
+    "scope": "Salinan persis dengan penggantian port, database, dan scratch; assertion tidak diubah."
+  },
+  {
+    "script": "f6.sh",
+    "exit": 0,
+    "totals": [
+      [
+        "15",
+        "0"
+      ]
+    ],
+    "failures": [],
+    "scope": "Salinan persis dengan penggantian port, database, dan scratch; assertion tidak diubah."
+  },
+  {
+    "script": "f7.sh",
+    "exit": 0,
+    "totals": [
+      [
+        "45",
+        "0"
+      ]
+    ],
+    "failures": [],
+    "scope": "Salinan persis dengan penggantian port, database, dan scratch; assertion tidak diubah."
+  },
+  {
+    "script": "f7b.sh",
+    "exit": 0,
+    "totals": [
+      [
+        "57",
+        "0"
+      ]
+    ],
+    "failures": [],
+    "scope": "Salinan persis dengan penggantian port, database, dan scratch; assertion tidak diubah."
+  }
+]

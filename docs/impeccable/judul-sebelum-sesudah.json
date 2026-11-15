@@ -1,7 +1,7 @@
 {
   "old_body_byte_identical": true,
   "old_heading_count": 29,
-  "new_heading_count": 37,
+  "new_heading_count": 38,
   "before": [
     "# Design System: QueueCare\r",
     "## 1. Arah desain\r",
@@ -70,7 +70,8 @@
     "## Elevation & Depth\r",
     "## Shapes\r",
     "## Components\r",
-    "## Do's and Don'ts\r"
+    "## Do's and Don'ts\r",
+    "### Pembaruan document: dialog tertutup dan token hover bahaya\r"
   ],
   "added": [
     "## Overview\r",
@@ -80,8 +81,9 @@
     "## Elevation & Depth\r",
     "## Shapes\r",
     "## Components\r",
-    "## Do's and Don'ts\r"
+    "## Do's and Don'ts\r",
+    "### Pembaruan document: dialog tertutup dan token hover bahaya\r"
   ],
-  "css_token_count": 42,
+  "css_token_count": 43,
   "protected_diff_empty": true
 }

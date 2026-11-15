@@ -1,0 +1,46 @@
+== 1. halaman register tampil ==
+GET /register -> 200
+   ok: judul Daftar ada
+== 2. email duplikat ditolak ==
+POST /register (admin@queuecare.id) -> 200 
+   ok: pesan email duplikat ada
+== 3. registrasi baru ==
+POST /register (baru@queuecare.id) -> 302 http://localhost:8081/login
+GET /login -> 200
+   ok: flash sukses tampil
+== 4. password tidak sama ==
+POST /register (beda) -> 200 
+   ok: pesan konfirmasi tampil
+== 5. login salah password ==
+POST /login (salah) -> 302 http://localhost:8081/login?error
+GET /login?error -> 200
+   ok: pesan salah tampil
+== 6. login customer ==
+POST /login -> 302 http://localhost:8081/customer
+GET /customer -> 200
+   ok: halaman customer
+GET /admin (customer) -> 403
+   ok: 403 + halaman akses ditolak
+GET /owner (customer) -> 403
+   ok: 403 + halaman akses ditolak
+== 7. logout ==
+POST /logout -> 302 http://localhost:8081/login?logout
+GET /customer (sudah keluar) -> 302
+GET /login?logout -> 200
+   ok: pesan logout tampil
+== 8. login admin ==
+POST /login -> 302 http://localhost:8081/admin
+GET /admin -> 200
+   ok: dashboard admin
+GET /owner (admin) -> 403
+   ok: admin ditolak di /owner
+== 9. login owner ==
+POST /login -> 302 http://localhost:8081/owner
+GET /owner -> 200
+   ok: dashboard owner
+GET /admin (owner) -> 403
+   ok: owner ditolak di /admin
+== 10. akun baru dari registrasi bisa login ==
+POST /login (baru@queuecare.id) -> 302 http://localhost:8081/customer
+GET /customer -> 200
+   ok: akun baru masuk ke /customer

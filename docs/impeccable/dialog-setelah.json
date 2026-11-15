@@ -1,0 +1,164 @@
+[
+  {
+    "viewport": 375,
+    "route": "/admin/users",
+    "closed": [
+      {
+        "id": "status-1",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "status-2",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "status-10",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "status-109",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "status-293",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "status-294",
+        "display": "none",
+        "rects": 0
+      }
+    ],
+    "open_back_confirm": true,
+    "status_restored": true
+  },
+  {
+    "viewport": 375,
+    "route": "/owner/queues",
+    "closed": [
+      {
+        "id": "batal-553",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-554",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-555",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-556",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-557",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-558",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-559",
+        "display": "none",
+        "rects": 0
+      }
+    ],
+    "dialog": "batal-553",
+    "open_back_confirm": true
+  },
+  {
+    "viewport": 1280,
+    "route": "/admin/users",
+    "closed": [
+      {
+        "id": "status-1",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "status-2",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "status-10",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "status-109",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "status-293",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "status-294",
+        "display": "none",
+        "rects": 0
+      }
+    ],
+    "open_back_confirm": true,
+    "status_restored": true
+  },
+  {
+    "viewport": 1280,
+    "route": "/owner/queues",
+    "closed": [
+      {
+        "id": "batal-553",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-554",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-555",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-556",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-557",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-558",
+        "display": "none",
+        "rects": 0
+      },
+      {
+        "id": "batal-559",
+        "display": "none",
+        "rects": 0
+      }
+    ],
+    "dialog": "batal-554",
+    "open_back_confirm": true
+  }
+]

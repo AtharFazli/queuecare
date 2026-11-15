@@ -1,0 +1,61 @@
+tanggal uji: 2026-11-16 (kode 20261116)  minggu: 2026-11-22  luar: 2026-11-30
+== 1. register dan login ==
+register=302 -> http://localhost:8081/login
+OK    - akun customer kedua dibuat
+login customer=302
+OK    - login customer berhasil
+== 2. halaman form ==
+OK    - form reservasi terbuka
+OK    - slot 09:00 ada
+OK    - harga format ribuan di form
+OK    - tanpa login diarahkan ke login
+== 3. buat reservasi ==
+post=302 http://localhost:8081/reservation/success/565
+OK    - reservasi berhasil, redirect ke halaman sukses
+OK    - kode reservasi QC-YYYYMMDD-0001
+OK    - halaman sukses menampilkan nomor antrean
+OK    - baris reservasi tersimpan CONFIRMED
+OK    - antrean 1 WAITING milik bisnis 20
+== 4. validasi ditolak ==
+OK    - layanan nonaktif ditolak (200 )
+OK    - bisnis INACTIVE ditolak (200 )
+OK    - bisnis PENDING ditolak (200 )
+OK    - hari libur ditolak (200 )
+OK    - tanggal > 14 hari ditolak (200 )
+OK    - tanggal lampau ditolak (200 )
+OK    - jam bukan kelipatan 30 ditolak (200 )
+OK    - jam di luar jadwal ditolak (200 )
+== 5. kapasitas dan balapan (bisnis 24, kapasitas 5) ==
+OK    - 4 reservasi isi sebagian kapasitas
+balapan: 302 http://localhost:8081/reservation/success/570 | 200 
+OK    - hanya satu dari dua request bersamaan yang lolos
+OK    - slot penuh tetap 5, tidak meluber
+OK    - lima antrean aktif
+OK    - nomor antrean berurutan 1..5
+OK    - kode reservasi unik (6 reservasi)
+OK    - tidak ada nomor antrean duplikat per bisnis per tanggal
+== 6. riwayat dan kepemilikan ==
+OK    - riwayat menampilkan kode
+OK    - riwayat menampilkan harga format ribuan
+login customer2=302
+OK    - customer lain membuka detail orang lain -> 404
+OK    - halaman detail menampilkan status antrean
+== 7. pembatalan ==
+OK    - pembatalan redirect ke riwayat
+OK    - reservasi jadi CANCELLED
+OK    - antrean jadi CANCELLED
+OK    - pesan sukses pembatalan tampil
+pesan setelah batal2 (302): role="alert">Antrean sudah tidak bisa dibatalkan.
+OK    - antrean non-WAITING tidak bisa dibatalkan
+OK    - slot yang dibatalkan kembali tersedia
+== 8. antrean CALLED ==
+OK    - antrean CALLED tidak bisa dibatalkan (302)
+OK    - reservasi CALLED tidak ikut berubah
+== 9. format harga ==
+OK    - detail bisnis format ribuan
+login owner=302
+OK    - halaman layanan Owner format ribuan
+
+TOTAL OK=40 GAGAL=0
+BERSIHKAN
+sisa reservasi: 0  sisa antrean: 0  sisa users f4: 0

@@ -1,0 +1,75 @@
+login admin=302 owner=302 owner2=302 customer=302
+== 1. dashboard Admin vs SQL ==
+OK    - admin pengguna: halaman 6 = SQL 6
+OK    - admin customer: halaman 3 = SQL 3
+OK    - admin owner: halaman 2 = SQL 2
+OK    - admin bisnis: halaman 6 = SQL 6
+OK    - admin bisnis aktif: halaman 4 = SQL 4
+OK    - admin bisnis pending: halaman 1 = SQL 1
+OK    - admin bisnis nonaktif: halaman 1 = SQL 1
+OK    - admin reservasi: halaman 9 = SQL 9
+OK    - tabel aktivitas terbaru ada
+== 2. laporan Admin vs SQL ==
+OK    - laporan admin bisnis: halaman 6 = SQL 6
+OK    - laporan admin pengguna: halaman 6 = SQL 6
+OK    - laporan admin reservasi rentang: halaman 9 = SQL 9
+    per hari: ok
+    SQL per hari : 2026-11-16	7
+;2026-11-17	2;
+    HTML per hari: 2026-11-16 7;2026-11-17 2;
+OK    - reservasi per hari halaman = SQL (2026-11-1672026-11-172)
+    SQL status : CALLED	1
+;CANCELLED	1
+;COMPLETED	2
+;IN_SERVICE	1
+;NO_SHOW	1
+;WAITING	3;
+    HTML status: CALLED 1;CANCELLED 1;COMPLETED 2;IN_SERVICE 1;NO_SHOW 1;WAITING 3;
+OK    - ringkasan status antrean halaman = SQL (CALLED1CANCELLED1COMPLETED2IN_SERVICE1NO_SHOW1WAITING3)
+== 3. dashboard Owner vs SQL ==
+OK    - owner reservasi hari ini: halaman 0 = SQL 0
+OK    - owner menunggu: halaman 3 = SQL 3
+OK    - owner sedang dilayani: halaman 2 = SQL 2
+OK    - owner selesai hari ini: halaman 0 = SQL 0
+== 4. laporan Owner vs SQL ==
+OK    - owner total reservasi: halaman 8 = SQL 8
+OK    - owner selesai: halaman 1 = SQL 1
+OK    - owner dibatalkan: halaman 1 = SQL 1
+OK    - owner tidak hadir: halaman 1 = SQL 1
+OK    - owner pelanggan unik: halaman 2 = SQL 2
+    layanan terpopuler HTML: 
+    layanan terpopuler SQL : Cukur rambut	8
+;
+OK    - layanan terpopuler halaman = SQL (Cukur rambut8)
+== 5. filter tanggal ==
+OK    - rentang tanpa data -> empty state
+OK    - tanggal awal setelah akhir ditolak
+OK    - laporan admin rentang tanpa data -> empty state
+OK    - laporan admin tanggal tidak valid ditolak
+OK    - filter tanggal tepat: halaman 7 = SQL 7
+== 6. daftar reservasi Admin ==
+    total reservasi sekarang: 21
+OK    - paginasi tampil
+OK    - info halaman
+OK    - halaman 2 bisa dibuka
+    filter bisnis=20&status=CONFIRMED: halaman >17</span> reservasi | SQL 17
+OK    - filter status CANCELLED
+OK    - filter bisnis tanpa hasil -> empty state
+OK    - filter tanggal tampil
+== 7. akses ==
+OK    - customer -> /admin 403
+OK    - customer -> /admin/reports 403
+OK    - customer -> /admin/reservations 403
+OK    - owner -> /admin/reports 403
+OK    - customer -> /owner/reports 403
+OK    - admin -> /owner/reports 403
+== 8. owner hanya melihat bisnisnya ==
+    owner2: 
+OK    - owner2 total reservasi bisnis 23: halaman 1 = SQL 1
+OK    - laporan owner2 tidak memuat bisnis owner1
+    owner1: 
+OK    - owner1 total reservasi bisnis 20: halaman 20 = SQL 20
+OK    - laporan owner1 tidak memuat bisnis owner2
+
+TOTAL OK=45 GAGAL=0
+BERSIHKAN

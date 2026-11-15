@@ -1,0 +1,1418 @@
+{
+  "evidence": "Log installer sesi sebelumnya, file saat ini, timestamp, konfigurasi hook. Tidak ada snapshot global sebelum instalasi; daftar ini bukan diff historis lengkap dan tidak membuktikan file lama yang dihapus installer.",
+  "global_entries": [
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\adapt.md",
+      "bytes": 11312,
+      "sha256_now": "4cb1573bfb68a9c0625996bd849b5122de73bacd56f2474d853d9bef6793543b",
+      "modified_local": "2026-11-15T13:45:19.431660",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\adapt.native.md",
+      "bytes": 3910,
+      "sha256_now": "acbeecbcbf6558d438ed4aec6b85027d72587bf181b8ae12d4dfbe8dce62e9a5",
+      "modified_local": "2026-11-15T13:45:19.432670",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\android.md",
+      "bytes": 4203,
+      "sha256_now": "43780abcf10ac12a569d98001ae38af2b337727a0f7ce66268246ac1d54b5d34",
+      "modified_local": "2026-11-15T13:45:19.432670",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\animate.md",
+      "bytes": 5236,
+      "sha256_now": "94b4ce6299fea93d9f256b2d25705961a76bc5ea940c56db4145686ebc99df1b",
+      "modified_local": "2026-11-15T13:45:19.432670",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\audit.md",
+      "bytes": 11964,
+      "sha256_now": "e1637178d0b7588f0c07ff3bfcb93a16eed2917ffee3031dd93d74e9acb26e3a",
+      "modified_local": "2026-11-15T13:45:19.432670",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\audit.native.md",
+      "bytes": 8883,
+      "sha256_now": "b4ad84428c37b60c6fc6d2e5f517746593c654a7b448176ff8f0d0d259b0f45f",
+      "modified_local": "2026-11-15T13:45:19.436899",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\bolder.md",
+      "bytes": 3497,
+      "sha256_now": "bd217b7bc011c2346ce94902071ecd940aa017e8f563539e31c1ad38ce256401",
+      "modified_local": "2026-11-15T13:45:19.436899",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\clarify.md",
+      "bytes": 4590,
+      "sha256_now": "6c382f8283756e8a693d832b750f7e4cbff1ca5bdcc3825b2b4ef4da9f21876a",
+      "modified_local": "2026-11-15T13:45:19.436899",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\colorize.md",
+      "bytes": 4537,
+      "sha256_now": "d1fbd55074abb2251bdaa03749d34acc42c38e46e47549f18f5848df57d43c42",
+      "modified_local": "2026-11-15T13:45:19.436899",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\component-review.md",
+      "bytes": 8017,
+      "sha256_now": "6996198844d6459392b816e7bfb7d256f07b6884614e88069ffab5544b4886df",
+      "modified_local": "2026-11-15T13:45:19.440641",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\craft-floor.md",
+      "bytes": 4516,
+      "sha256_now": "ba01bbab98671095b76c2170324abdcceb55fd39fd281bc46daddc2b3c2b0753",
+      "modified_local": "2026-11-15T13:45:19.440641",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\craft.md",
+      "bytes": 555,
+      "sha256_now": "9205e222bc6565b37fb504ceec93233c2d2a456802b69d16e6b1c44723907c4c",
+      "modified_local": "2026-11-15T13:45:19.440641",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\critique.md",
+      "bytes": 45685,
+      "sha256_now": "9fe5d7af0f2bb3618bfec633626ae157c0ae4effb18fd8f40e404ac69b8d0802",
+      "modified_local": "2026-11-15T13:45:19.443158",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\degraded\\asset-producer.md",
+      "bytes": 8478,
+      "sha256_now": "153936d4487fd9bf495f50b96c0c4fee258144583192d7f040310fc08384a02d",
+      "modified_local": "2026-11-15T13:45:19.443158",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\degraded\\documenter.md",
+      "bytes": 3733,
+      "sha256_now": "17b6328d809c86622789dcbe1bb1b12ec8937118ef6aa4b37bfd9130d79a205c",
+      "modified_local": "2026-11-15T13:45:19.445210",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\degraded\\finish-reviewer.md",
+      "bytes": 16200,
+      "sha256_now": "cb47276e5195f65b42c54b693f8f9b2078f93b6aa55a301ada797790df2bf37b",
+      "modified_local": "2026-11-15T13:45:19.447217",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\degraded\\manual-edit-applier.md",
+      "bytes": 7685,
+      "sha256_now": "357b19acc7ef688c337a4f020633a49db23c84620b13636f9ff20d3ab934df1a",
+      "modified_local": "2026-11-15T13:45:19.447217",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\delight.md",
+      "bytes": 3716,
+      "sha256_now": "56500b1f9d2fcec8324d7f448d813048b5831a46d3feeb1055bd3eb17ec3660f",
+      "modified_local": "2026-11-15T13:45:19.447217",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\distill.md",
+      "bytes": 5626,
+      "sha256_now": "a5702d46b5a17a38c555044439c2e76585848ee8c5a74b8470fa5de06aaa03f8",
+      "modified_local": "2026-11-15T13:45:19.449224",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\doctor.md",
+      "bytes": 5617,
+      "sha256_now": "5b89d4b4c2acd125bc6a4f4839b2312b8b95ea94160960e987163c714dd98f54",
+      "modified_local": "2026-11-15T13:45:19.449224",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\document.md",
+      "bytes": 27985,
+      "sha256_now": "65c1d2faf3761f04d0d8708eb07ec9c6c01eef6f808b04c41625fe6b46040744",
+      "modified_local": "2026-11-15T13:45:19.451232",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\extract.md",
+      "bytes": 3337,
+      "sha256_now": "29044a3df6598786b2f9023af89aa6683b9745b7cd9a0c89386da2d0e50e0166",
+      "modified_local": "2026-11-15T13:45:19.451232",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\generate.md",
+      "bytes": 13152,
+      "sha256_now": "b174077972447e829db722dacbf6d6bb643184832b42686f17492348bab9bfe8",
+      "modified_local": "2026-11-15T13:45:19.453239",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\harden.md",
+      "bytes": 10748,
+      "sha256_now": "98244db22d907a134cac0c94ffb829ba480ba61cfac67ae155ac2f46444da7c9",
+      "modified_local": "2026-11-15T13:45:19.453239",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\hooks.md",
+      "bytes": 17337,
+      "sha256_now": "f96777015bbe74a31a4c285526dd73f5fd65c167effe339fc9ac10a11be9ebca",
+      "modified_local": "2026-11-15T13:45:19.455460",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\init.md",
+      "bytes": 12160,
+      "sha256_now": "72dfec68faf7fc58097d18961e7e1650af099b257a3b241bea813b00beae37a0",
+      "modified_local": "2026-11-15T13:45:19.455967",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\ios.md",
+      "bytes": 3812,
+      "sha256_now": "40c87038b5f75147a5952a96237acf312a327bf70c1bcd8e0a5f064625ae9668",
+      "modified_local": "2026-11-15T13:45:19.455967",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\layout.md",
+      "bytes": 5161,
+      "sha256_now": "64802d14087fc96b38ef3881fef8098b36068d07f3b942031637b18eef3dd2af",
+      "modified_local": "2026-11-15T13:45:19.455967",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\live-setup.md",
+      "bytes": 8447,
+      "sha256_now": "ceddbcf4515c3c45f5a2bb57c188a620f0cf8001f2288df73c58d530f895689e",
+      "modified_local": "2026-11-15T13:45:19.455967",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\live.md",
+      "bytes": 40716,
+      "sha256_now": "9b24dcf2207e2c1033d540e8d5303c6cb5b2c91e7e547e38adedf0c309ce477b",
+      "modified_local": "2026-11-15T13:45:19.458879",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\mode-operate.md",
+      "bytes": 4716,
+      "sha256_now": "7a52dd7a94ee75f6ae89542c86a1b6e1d306812b16e0d9dbf12d4acad44d148b",
+      "modified_local": "2026-11-15T13:45:19.460101",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\mode-persuade.md",
+      "bytes": 3638,
+      "sha256_now": "21e78c8a77badb3f83290cd4577ed3b24bd4dd3b57136d7da75733d4f3ee9ac0",
+      "modified_local": "2026-11-15T13:45:19.460101",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\mode-read.md",
+      "bytes": 4396,
+      "sha256_now": "a569989e6a3d6453b4c45e9474e162a15cc54e11732ac6baa7990a6e7cccc0b5",
+      "modified_local": "2026-11-15T13:45:19.461107",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\new-work.md",
+      "bytes": 66140,
+      "sha256_now": "38a3bab31ebd2c999f00c312125fd9c7034362225dc115e10acbb6d9e24133dc",
+      "modified_local": "2026-11-15T13:45:19.464623",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\onboard.md",
+      "bytes": 7966,
+      "sha256_now": "9fa9e5cd55b00cc17ddf0d8053b8f238ad833d0d4527933257d9f1622833c8de",
+      "modified_local": "2026-11-15T13:45:19.464623",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\operate.md",
+      "bytes": 4145,
+      "sha256_now": "a9d2203acd45ca33a13d5c68b02b23ed512425ac15f0e8438318ed124b43729d",
+      "modified_local": "2026-11-15T13:45:19.464623",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\optimize.md",
+      "bytes": 7577,
+      "sha256_now": "7ecc07226fa99b198eba37ea57f3c3e2465a80cc65093f0098dc888f7ee27273",
+      "modified_local": "2026-11-15T13:45:19.466624",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\overdrive.md",
+      "bytes": 9192,
+      "sha256_now": "3dcde0d10ba7098b8fc10557663ec10af3505d72cb78282e9a9168ade0ef1009",
+      "modified_local": "2026-11-15T13:45:19.467841",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\polish.md",
+      "bytes": 6646,
+      "sha256_now": "b8d49a3cab3428d9f351502e9c2c5802cef187e0d2af626ef3e1cd1837fd06bf",
+      "modified_local": "2026-11-15T13:45:19.467841",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\quieter.md",
+      "bytes": 4996,
+      "sha256_now": "51592b206ae91048701d221391a1ecd9011c6a103ecf8f2c29d7c0896198ecf5",
+      "modified_local": "2026-11-15T13:45:19.469864",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\region-map.md",
+      "bytes": 3361,
+      "sha256_now": "4ea8e05d0f88d24f182ad554da84317f90b9730e29fad262143ddf423a1f8645",
+      "modified_local": "2026-11-15T13:45:19.469864",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\routing.md",
+      "bytes": 3336,
+      "sha256_now": "56285b28b0ffe471761c2ad062d3f933ed2346ca1b617f1323a30fed99a1a852",
+      "modified_local": "2026-11-15T13:45:19.469864",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\shape.md",
+      "bytes": 3547,
+      "sha256_now": "a55f016c046cb6a27c55bd7f346375aeb506a755c4fbca19a5f92dbd42309c23",
+      "modified_local": "2026-11-15T13:45:19.471872",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\typeset.md",
+      "bytes": 6263,
+      "sha256_now": "c9943e06ca311258d8aa5a5c65f5beb7a46c57c5e9a2075d2a246bf1337f00bb",
+      "modified_local": "2026-11-15T13:45:19.471872",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\reference\\visualize.md",
+      "bytes": 14053,
+      "sha256_now": "3138cd268dd74f2726c480b4172742a36eb84b4a0ca9b55b644b409491389e6c",
+      "modified_local": "2026-11-15T13:45:19.473919",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\bin\\windows-x64\\impeccable.exe",
+      "bytes": 21967248,
+      "sha256_now": "e1364f415a838e080f394604f496bfa7dcc178c9bce62af673d54f2b5cbcd33c",
+      "modified_local": "2026-11-15T13:45:27.486009",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\command-metadata.json",
+      "bytes": 8318,
+      "sha256_now": "c6dcbeed7f13152205ca022c8f24d08683770835083f0a7325261c1c2d5f215c",
+      "modified_local": "2026-11-15T13:45:19.475926",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\data\\font-index-failures.json",
+      "bytes": 2437,
+      "sha256_now": "835f19a0a3812f3652dd6979a2ce5597f654fd01f26e1b420b92d5f42b997ce4",
+      "modified_local": "2026-11-15T13:45:19.476947",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\data\\font-index.json",
+      "bytes": 1100013,
+      "sha256_now": "47edbdfaf27073c47033d1ac7dfee881be49e2dcbda7671d1157300481dde6da",
+      "modified_local": "2026-11-15T13:45:19.480973",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\engine-checksums.txt",
+      "bytes": 787,
+      "sha256_now": "b752474ca856ee366808f94069da7cfd2a1a18159e608c964d692de41d15166e",
+      "modified_local": "2026-11-15T13:45:19.481501",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\impeccable",
+      "bytes": 13724,
+      "sha256_now": "9a82c1d8a5fc34b0edb3040cf25098c7c5a662e703118e99f96bacd543ed6d68",
+      "modified_local": "2026-11-15T13:45:19.481501",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\impeccable.cmd",
+      "bytes": 15459,
+      "sha256_now": "34ce99f691c2380e27108915fe921e3c716bbe532d7a7cfce3b7f0d5c68dccdd",
+      "modified_local": "2026-11-15T13:45:19.484528",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\live-browser-dom.js",
+      "bytes": 12283,
+      "sha256_now": "4b379aff87ce0f485008a2b6a0dc711d00a869f5cf0ec2459279d6364fbf0c9e",
+      "modified_local": "2026-11-15T13:45:19.486035",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\live-browser-ignores.js",
+      "bytes": 10423,
+      "sha256_now": "ba8905ab865fde5162e34fc17eb80eba26cc990b319b14a6eed6ca89fd491897",
+      "modified_local": "2026-11-15T13:45:19.486035",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\live-browser-session.js",
+      "bytes": 5838,
+      "sha256_now": "e042339a54d4521fc47555b602013ed5b51410ec9d7d8878d99a526f5f237f68",
+      "modified_local": "2026-11-15T13:45:19.487554",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\live-browser.js",
+      "bytes": 564400,
+      "sha256_now": "144335146f4f5a3a06be4b5daab24cac82653510c0007ad3786dbd3ef1a02f6e",
+      "modified_local": "2026-11-15T13:45:19.491061",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\modern-screenshot.umd.js",
+      "bytes": 29290,
+      "sha256_now": "bb36665889124a0b6e15f16045265737449c3bdcf2712cdb08af3cfa01563e2b",
+      "modified_local": "2026-11-15T13:45:19.492275",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\scripts\\VERSION",
+      "bytes": 7,
+      "sha256_now": "76f75753f47c5f9a402427e4ee481b463e5a164edabccbfeab33964eea31913e",
+      "modified_local": "2026-11-15T13:45:19.475926",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\skills\\impeccable\\SKILL.md",
+      "bytes": 11608,
+      "sha256_now": "427c27b611f4c708ef54f22e20cb6e06fcd41ca3e23d3e27aea7e313b3b2cce5",
+      "modified_local": "2026-11-15T13:45:19.427995",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\adapt.md",
+      "bytes": 11312,
+      "sha256_now": "4cb1573bfb68a9c0625996bd849b5122de73bacd56f2474d853d9bef6793543b",
+      "modified_local": "2026-11-15T13:45:19.518892",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\adapt.native.md",
+      "bytes": 3910,
+      "sha256_now": "acbeecbcbf6558d438ed4aec6b85027d72587bf181b8ae12d4dfbe8dce62e9a5",
+      "modified_local": "2026-11-15T13:45:19.518892",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\android.md",
+      "bytes": 4203,
+      "sha256_now": "43780abcf10ac12a569d98001ae38af2b337727a0f7ce66268246ac1d54b5d34",
+      "modified_local": "2026-11-15T13:45:19.520901",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\animate.md",
+      "bytes": 5236,
+      "sha256_now": "94b4ce6299fea93d9f256b2d25705961a76bc5ea940c56db4145686ebc99df1b",
+      "modified_local": "2026-11-15T13:45:19.520901",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\audit.md",
+      "bytes": 11964,
+      "sha256_now": "97aadb0c18b7107378a9959851316b786cbaf6334ccc769540bc1ff7f1cd7a7b",
+      "modified_local": "2026-11-15T13:45:19.522906",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\audit.native.md",
+      "bytes": 8883,
+      "sha256_now": "439bc0710087d6c88f6565a2f67ecd3fee9d21de3e64c6f60d972165918817e1",
+      "modified_local": "2026-11-15T13:45:19.524414",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\bolder.md",
+      "bytes": 3476,
+      "sha256_now": "37565671b09d983ea1ad83a9e9190bc37255d93c68445958c6facecc7e0f7c4f",
+      "modified_local": "2026-11-15T13:45:19.524414",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\clarify.md",
+      "bytes": 4590,
+      "sha256_now": "6c382f8283756e8a693d832b750f7e4cbff1ca5bdcc3825b2b4ef4da9f21876a",
+      "modified_local": "2026-11-15T13:45:19.526424",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\colorize.md",
+      "bytes": 4537,
+      "sha256_now": "d1fbd55074abb2251bdaa03749d34acc42c38e46e47549f18f5848df57d43c42",
+      "modified_local": "2026-11-15T13:45:19.527930",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\component-review.md",
+      "bytes": 8017,
+      "sha256_now": "d1b391b9f3a8301f5cda0269762fb57e6c5983f802bbe43ff0a451bb1bb4f2d7",
+      "modified_local": "2026-11-15T13:45:19.527930",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\craft-floor.md",
+      "bytes": 4516,
+      "sha256_now": "ba01bbab98671095b76c2170324abdcceb55fd39fd281bc46daddc2b3c2b0753",
+      "modified_local": "2026-11-15T13:45:19.527930",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\craft.md",
+      "bytes": 555,
+      "sha256_now": "9205e222bc6565b37fb504ceec93233c2d2a456802b69d16e6b1c44723907c4c",
+      "modified_local": "2026-11-15T13:45:19.531036",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\critique.md",
+      "bytes": 45664,
+      "sha256_now": "8cbd03a0a92cedb9651806afc2637b73d8fdd7802ae80333ec2665509a847364",
+      "modified_local": "2026-11-15T13:45:19.531036",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\degraded\\asset-producer.md",
+      "bytes": 8478,
+      "sha256_now": "f0cc8a3d78969a309fbd7336f37d09f0f9f8a103bb6dcad6e63b4a3110f8c7d7",
+      "modified_local": "2026-11-15T13:45:19.532457",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\degraded\\documenter.md",
+      "bytes": 3733,
+      "sha256_now": "17b6328d809c86622789dcbe1bb1b12ec8937118ef6aa4b37bfd9130d79a205c",
+      "modified_local": "2026-11-15T13:45:19.533563",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\degraded\\finish-reviewer.md",
+      "bytes": 16200,
+      "sha256_now": "cb47276e5195f65b42c54b693f8f9b2078f93b6aa55a301ada797790df2bf37b",
+      "modified_local": "2026-11-15T13:45:19.533563",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\degraded\\manual-edit-applier.md",
+      "bytes": 7685,
+      "sha256_now": "357b19acc7ef688c337a4f020633a49db23c84620b13636f9ff20d3ab934df1a",
+      "modified_local": "2026-11-15T13:45:19.536977",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\delight.md",
+      "bytes": 3716,
+      "sha256_now": "56500b1f9d2fcec8324d7f448d813048b5831a46d3feeb1055bd3eb17ec3660f",
+      "modified_local": "2026-11-15T13:45:19.538498",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\distill.md",
+      "bytes": 5605,
+      "sha256_now": "56361412a3b882f44d665de12f1f97fde69de6feee7666df8cc441eee1152761",
+      "modified_local": "2026-11-15T13:45:19.538498",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\doctor.md",
+      "bytes": 5617,
+      "sha256_now": "ac236ced32370a4810c56d7180ca045ba5f81260c5d7f5a27eb1e963ecba85b3",
+      "modified_local": "2026-11-15T13:45:19.540247",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\document.md",
+      "bytes": 27964,
+      "sha256_now": "597631596f2f5f3fea2fde6000aaea2d496cff6f3abe4defa7926c4e3136da19",
+      "modified_local": "2026-11-15T13:45:19.540247",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\extract.md",
+      "bytes": 3316,
+      "sha256_now": "6c943ab41da0b1de5d5f568c9801ff3566502a58ba9d4e82342a41dff1c93a6a",
+      "modified_local": "2026-11-15T13:45:19.542257",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\generate.md",
+      "bytes": 13131,
+      "sha256_now": "92b7ab84c828fa888f4882c417c3d7f8fde2e5445b40f96f4fc8181a3e058afc",
+      "modified_local": "2026-11-15T13:45:19.544266",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\harden.md",
+      "bytes": 10748,
+      "sha256_now": "98244db22d907a134cac0c94ffb829ba480ba61cfac67ae155ac2f46444da7c9",
+      "modified_local": "2026-11-15T13:45:19.544266",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\hooks.md",
+      "bytes": 17337,
+      "sha256_now": "11d87715dac6733f4cd1fb650ea050b0be96749c385013ee37d8e2b3495cc1c1",
+      "modified_local": "2026-11-15T13:45:19.544266",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\init.md",
+      "bytes": 12139,
+      "sha256_now": "68cc1a8e5c94b401084bc0e110309003b82d7d1ab4e71f1ce6153d7d1361945e",
+      "modified_local": "2026-11-15T13:45:19.544266",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\ios.md",
+      "bytes": 3812,
+      "sha256_now": "40c87038b5f75147a5952a96237acf312a327bf70c1bcd8e0a5f064625ae9668",
+      "modified_local": "2026-11-15T13:45:19.547767",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\layout.md",
+      "bytes": 5161,
+      "sha256_now": "e02ba7f4417e84b3bd5ec65287c4a14cf163ca3ac6f8ee37d8f709d0c8b0b6d2",
+      "modified_local": "2026-11-15T13:45:19.548777",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\live-setup.md",
+      "bytes": 8447,
+      "sha256_now": "0b5ed0b989eec8f7c4868d71fbdfc5fef480b1646d61afe9674b4982e967935e",
+      "modified_local": "2026-11-15T13:45:19.549963",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\live.md",
+      "bytes": 40716,
+      "sha256_now": "eeb642bffd76c2512e187f7a589032fedc70d1e3f8411df020e70fe9ae90e93c",
+      "modified_local": "2026-11-15T13:45:19.550467",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\mode-operate.md",
+      "bytes": 4716,
+      "sha256_now": "7a52dd7a94ee75f6ae89542c86a1b6e1d306812b16e0d9dbf12d4acad44d148b",
+      "modified_local": "2026-11-15T13:45:19.551481",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\mode-persuade.md",
+      "bytes": 3638,
+      "sha256_now": "21e78c8a77badb3f83290cd4577ed3b24bd4dd3b57136d7da75733d4f3ee9ac0",
+      "modified_local": "2026-11-15T13:45:19.552556",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\mode-read.md",
+      "bytes": 4396,
+      "sha256_now": "a569989e6a3d6453b4c45e9474e162a15cc54e11732ac6baa7990a6e7cccc0b5",
+      "modified_local": "2026-11-15T13:45:19.554565",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\new-work.md",
+      "bytes": 65486,
+      "sha256_now": "f24febf47b38df531fe163b401f17711eb1bd43f95a7c3a8e1e28c6dc6fabd99",
+      "modified_local": "2026-11-15T13:45:19.556315",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\onboard.md",
+      "bytes": 7966,
+      "sha256_now": "9fa9e5cd55b00cc17ddf0d8053b8f238ad833d0d4527933257d9f1622833c8de",
+      "modified_local": "2026-11-15T13:45:19.556315",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\operate.md",
+      "bytes": 4145,
+      "sha256_now": "a9d2203acd45ca33a13d5c68b02b23ed512425ac15f0e8438318ed124b43729d",
+      "modified_local": "2026-11-15T13:45:19.558322",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\optimize.md",
+      "bytes": 7577,
+      "sha256_now": "7ecc07226fa99b198eba37ea57f3c3e2465a80cc65093f0098dc888f7ee27273",
+      "modified_local": "2026-11-15T13:45:19.559667",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\overdrive.md",
+      "bytes": 9171,
+      "sha256_now": "daf38041ebf9bc031e3987c827cabb13b6dc2f3b958b79f53b49f59ed8e0ab24",
+      "modified_local": "2026-11-15T13:45:19.559667",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\polish.md",
+      "bytes": 6646,
+      "sha256_now": "79114c6bf78b5a1838fe19bf033f3be85b232560eebf190ff8586aaec34ea170",
+      "modified_local": "2026-11-15T13:45:19.559667",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\quieter.md",
+      "bytes": 4975,
+      "sha256_now": "ab23e5e2cf74224f23b4b0806598320b75700191916fd04e4b25ad9920000530",
+      "modified_local": "2026-11-15T13:45:19.559667",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\region-map.md",
+      "bytes": 3361,
+      "sha256_now": "c100b67a4ae248ad564182b181acb1ee2fe64c00049aeef62d4e7a3213726f37",
+      "modified_local": "2026-11-15T13:45:19.562953",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\routing.md",
+      "bytes": 3336,
+      "sha256_now": "1f6c3a1d7344f44eaa88b6f38334ad7d7b60201709589039a58cee73de486f5d",
+      "modified_local": "2026-11-15T13:45:19.562953",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\shape.md",
+      "bytes": 3547,
+      "sha256_now": "a55f016c046cb6a27c55bd7f346375aeb506a755c4fbca19a5f92dbd42309c23",
+      "modified_local": "2026-11-15T13:45:19.564960",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\typeset.md",
+      "bytes": 6263,
+      "sha256_now": "3225a364ef7e61c43d918bdc1f9bc583579fe0a6e6e550f4a9d7ad54a5a23c75",
+      "modified_local": "2026-11-15T13:45:19.564960",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\reference\\visualize.md",
+      "bytes": 14053,
+      "sha256_now": "c1334244a606521e92a6c1a630c5d7c3bfb4b9c820db636a17c236c0439adc0a",
+      "modified_local": "2026-11-15T13:45:19.566967",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\bin\\windows-x64\\impeccable.exe",
+      "bytes": 21967248,
+      "sha256_now": "e1364f415a838e080f394604f496bfa7dcc178c9bce62af673d54f2b5cbcd33c",
+      "modified_local": "2026-11-15T13:45:27.504941",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\command-metadata.json",
+      "bytes": 8318,
+      "sha256_now": "c6dcbeed7f13152205ca022c8f24d08683770835083f0a7325261c1c2d5f215c",
+      "modified_local": "2026-11-15T13:45:19.569936",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\data\\font-index-failures.json",
+      "bytes": 2437,
+      "sha256_now": "835f19a0a3812f3652dd6979a2ce5597f654fd01f26e1b420b92d5f42b997ce4",
+      "modified_local": "2026-11-15T13:45:19.572093",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\data\\font-index.json",
+      "bytes": 1100013,
+      "sha256_now": "47edbdfaf27073c47033d1ac7dfee881be49e2dcbda7671d1157300481dde6da",
+      "modified_local": "2026-11-15T13:45:19.574795",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\engine-checksums.txt",
+      "bytes": 787,
+      "sha256_now": "b752474ca856ee366808f94069da7cfd2a1a18159e608c964d692de41d15166e",
+      "modified_local": "2026-11-15T13:45:19.575308",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\impeccable",
+      "bytes": 13724,
+      "sha256_now": "9a82c1d8a5fc34b0edb3040cf25098c7c5a662e703118e99f96bacd543ed6d68",
+      "modified_local": "2026-11-15T13:45:19.576906",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\impeccable.cmd",
+      "bytes": 15459,
+      "sha256_now": "34ce99f691c2380e27108915fe921e3c716bbe532d7a7cfce3b7f0d5c68dccdd",
+      "modified_local": "2026-11-15T13:45:19.580589",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\live-browser-dom.js",
+      "bytes": 12283,
+      "sha256_now": "4b379aff87ce0f485008a2b6a0dc711d00a869f5cf0ec2459279d6364fbf0c9e",
+      "modified_local": "2026-11-15T13:45:19.581615",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\live-browser-ignores.js",
+      "bytes": 10423,
+      "sha256_now": "ba8905ab865fde5162e34fc17eb80eba26cc990b319b14a6eed6ca89fd491897",
+      "modified_local": "2026-11-15T13:45:19.583658",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\live-browser-session.js",
+      "bytes": 5838,
+      "sha256_now": "e042339a54d4521fc47555b602013ed5b51410ec9d7d8878d99a526f5f237f68",
+      "modified_local": "2026-11-15T13:45:19.584677",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\live-browser.js",
+      "bytes": 564400,
+      "sha256_now": "144335146f4f5a3a06be4b5daab24cac82653510c0007ad3786dbd3ef1a02f6e",
+      "modified_local": "2026-11-15T13:45:19.586696",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\modern-screenshot.umd.js",
+      "bytes": 29290,
+      "sha256_now": "bb36665889124a0b6e15f16045265737449c3bdcf2712cdb08af3cfa01563e2b",
+      "modified_local": "2026-11-15T13:45:19.588204",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\scripts\\VERSION",
+      "bytes": 7,
+      "sha256_now": "76f75753f47c5f9a402427e4ee481b463e5a164edabccbfeab33964eea31913e",
+      "modified_local": "2026-11-15T13:45:19.566967",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\skills\\impeccable\\SKILL.md",
+      "bytes": 11750,
+      "sha256_now": "deb8210eacd77df3ebf1a6d238b17f2628fe20567bad4b133d488a018851ed5d",
+      "modified_local": "2026-11-15T13:45:19.517380",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\adapt.md",
+      "bytes": 11312,
+      "sha256_now": "4cb1573bfb68a9c0625996bd849b5122de73bacd56f2474d853d9bef6793543b",
+      "modified_local": "2026-11-15T13:45:19.660568",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\adapt.native.md",
+      "bytes": 3910,
+      "sha256_now": "acbeecbcbf6558d438ed4aec6b85027d72587bf181b8ae12d4dfbe8dce62e9a5",
+      "modified_local": "2026-11-15T13:45:19.660568",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\android.md",
+      "bytes": 4203,
+      "sha256_now": "43780abcf10ac12a569d98001ae38af2b337727a0f7ce66268246ac1d54b5d34",
+      "modified_local": "2026-11-15T13:45:19.662576",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\animate.md",
+      "bytes": 5236,
+      "sha256_now": "94b4ce6299fea93d9f256b2d25705961a76bc5ea940c56db4145686ebc99df1b",
+      "modified_local": "2026-11-15T13:45:19.662576",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\audit.md",
+      "bytes": 11964,
+      "sha256_now": "8055b2dddafd96d595ce2785a3160817651b923f4346786ec848dc0b61db6fa7",
+      "modified_local": "2026-11-15T13:45:19.665088",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\audit.native.md",
+      "bytes": 8883,
+      "sha256_now": "b06384314b48aba26fccc46fe98333055706f55a4dcd2f03c8dfe7043efff958",
+      "modified_local": "2026-11-15T13:45:19.665088",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\bolder.md",
+      "bytes": 3476,
+      "sha256_now": "37565671b09d983ea1ad83a9e9190bc37255d93c68445958c6facecc7e0f7c4f",
+      "modified_local": "2026-11-15T13:45:19.666838",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\clarify.md",
+      "bytes": 4590,
+      "sha256_now": "6c382f8283756e8a693d832b750f7e4cbff1ca5bdcc3825b2b4ef4da9f21876a",
+      "modified_local": "2026-11-15T13:45:19.666838",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\colorize.md",
+      "bytes": 4537,
+      "sha256_now": "d1fbd55074abb2251bdaa03749d34acc42c38e46e47549f18f5848df57d43c42",
+      "modified_local": "2026-11-15T13:45:19.668847",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\component-review.md",
+      "bytes": 8017,
+      "sha256_now": "59a3cad4a27ce64c6844adb59584e0a7d0321881ab8b1f54152e94a2284933a8",
+      "modified_local": "2026-11-15T13:45:19.670855",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\craft-floor.md",
+      "bytes": 4516,
+      "sha256_now": "ba01bbab98671095b76c2170324abdcceb55fd39fd281bc46daddc2b3c2b0753",
+      "modified_local": "2026-11-15T13:45:19.670855",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\craft.md",
+      "bytes": 555,
+      "sha256_now": "9205e222bc6565b37fb504ceec93233c2d2a456802b69d16e6b1c44723907c4c",
+      "modified_local": "2026-11-15T13:45:19.672865",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\critique.md",
+      "bytes": 45664,
+      "sha256_now": "bc925df60bd090c0812088097d1f13a3695df72010d43d9b3a9b1b8ba2714a65",
+      "modified_local": "2026-11-15T13:45:19.674875",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\degraded\\asset-producer.md",
+      "bytes": 8478,
+      "sha256_now": "ec5952cb2193bc1d9e5855e53e4598556385895f08b586fe68dbd621a7dcb11a",
+      "modified_local": "2026-11-15T13:45:19.675380",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\degraded\\documenter.md",
+      "bytes": 3733,
+      "sha256_now": "17b6328d809c86622789dcbe1bb1b12ec8937118ef6aa4b37bfd9130d79a205c",
+      "modified_local": "2026-11-15T13:45:19.677398",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\degraded\\finish-reviewer.md",
+      "bytes": 16200,
+      "sha256_now": "cb47276e5195f65b42c54b693f8f9b2078f93b6aa55a301ada797790df2bf37b",
+      "modified_local": "2026-11-15T13:45:19.681423",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\degraded\\manual-edit-applier.md",
+      "bytes": 7685,
+      "sha256_now": "357b19acc7ef688c337a4f020633a49db23c84620b13636f9ff20d3ab934df1a",
+      "modified_local": "2026-11-15T13:45:19.682944",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\delight.md",
+      "bytes": 3716,
+      "sha256_now": "56500b1f9d2fcec8324d7f448d813048b5831a46d3feeb1055bd3eb17ec3660f",
+      "modified_local": "2026-11-15T13:45:19.682944",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\distill.md",
+      "bytes": 5605,
+      "sha256_now": "56361412a3b882f44d665de12f1f97fde69de6feee7666df8cc441eee1152761",
+      "modified_local": "2026-11-15T13:45:19.682944",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\doctor.md",
+      "bytes": 5617,
+      "sha256_now": "cd2491762668b5cec09290b793f40548fa240167f8340f14282cf75d130e312a",
+      "modified_local": "2026-11-15T13:45:19.685034",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\document.md",
+      "bytes": 27964,
+      "sha256_now": "597631596f2f5f3fea2fde6000aaea2d496cff6f3abe4defa7926c4e3136da19",
+      "modified_local": "2026-11-15T13:45:19.685034",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\extract.md",
+      "bytes": 3316,
+      "sha256_now": "6c943ab41da0b1de5d5f568c9801ff3566502a58ba9d4e82342a41dff1c93a6a",
+      "modified_local": "2026-11-15T13:45:19.687133",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\generate.md",
+      "bytes": 13131,
+      "sha256_now": "dd953992625c240fd1842aaf533a865aabd09487cbc16fa01fe8bb4b4365b843",
+      "modified_local": "2026-11-15T13:45:19.687133",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\harden.md",
+      "bytes": 10748,
+      "sha256_now": "98244db22d907a134cac0c94ffb829ba480ba61cfac67ae155ac2f46444da7c9",
+      "modified_local": "2026-11-15T13:45:19.688771",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\hooks.md",
+      "bytes": 17337,
+      "sha256_now": "a916fdf64287e713efaa682f82a9235e7061ee0fbd74e1fe44b1bb6af3191edb",
+      "modified_local": "2026-11-15T13:45:19.688771",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\init.md",
+      "bytes": 12139,
+      "sha256_now": "68cc1a8e5c94b401084bc0e110309003b82d7d1ab4e71f1ce6153d7d1361945e",
+      "modified_local": "2026-11-15T13:45:19.688771",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\ios.md",
+      "bytes": 3812,
+      "sha256_now": "40c87038b5f75147a5952a96237acf312a327bf70c1bcd8e0a5f064625ae9668",
+      "modified_local": "2026-11-15T13:45:19.688771",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\layout.md",
+      "bytes": 5161,
+      "sha256_now": "904859c8160b02330b04db23a8eeeb4ef55bcaa10f5208b8d73a1718334633e7",
+      "modified_local": "2026-11-15T13:45:19.693665",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\live-setup.md",
+      "bytes": 8447,
+      "sha256_now": "07c03b56edd36941b4ccc13129bcb71730b4a1416e980c5f8913d5453b79edfa",
+      "modified_local": "2026-11-15T13:45:19.693665",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\live.md",
+      "bytes": 40716,
+      "sha256_now": "52dba0492e3a6603250bb17c861df9d668ef453e30aa057acee1b20c18b94596",
+      "modified_local": "2026-11-15T13:45:19.695691",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\mode-operate.md",
+      "bytes": 4716,
+      "sha256_now": "7a52dd7a94ee75f6ae89542c86a1b6e1d306812b16e0d9dbf12d4acad44d148b",
+      "modified_local": "2026-11-15T13:45:19.695691",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\mode-persuade.md",
+      "bytes": 3638,
+      "sha256_now": "21e78c8a77badb3f83290cd4577ed3b24bd4dd3b57136d7da75733d4f3ee9ac0",
+      "modified_local": "2026-11-15T13:45:19.697202",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\mode-read.md",
+      "bytes": 4396,
+      "sha256_now": "a569989e6a3d6453b4c45e9474e162a15cc54e11732ac6baa7990a6e7cccc0b5",
+      "modified_local": "2026-11-15T13:45:19.698954",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\new-work.md",
+      "bytes": 65486,
+      "sha256_now": "75922d7b70e905c8eaa6879ebcce878e31da4983ac2f9554f2b3003e70dc6e66",
+      "modified_local": "2026-11-15T13:45:19.698954",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\onboard.md",
+      "bytes": 7966,
+      "sha256_now": "9fa9e5cd55b00cc17ddf0d8053b8f238ad833d0d4527933257d9f1622833c8de",
+      "modified_local": "2026-11-15T13:45:19.700461",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\operate.md",
+      "bytes": 4145,
+      "sha256_now": "a9d2203acd45ca33a13d5c68b02b23ed512425ac15f0e8438318ed124b43729d",
+      "modified_local": "2026-11-15T13:45:19.700461",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\optimize.md",
+      "bytes": 7577,
+      "sha256_now": "7ecc07226fa99b198eba37ea57f3c3e2465a80cc65093f0098dc888f7ee27273",
+      "modified_local": "2026-11-15T13:45:19.700461",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\overdrive.md",
+      "bytes": 9171,
+      "sha256_now": "daf38041ebf9bc031e3987c827cabb13b6dc2f3b958b79f53b49f59ed8e0ab24",
+      "modified_local": "2026-11-15T13:45:19.702695",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\polish.md",
+      "bytes": 6646,
+      "sha256_now": "0bf6f08bf34d24cd88a78d544add9e4d71478bcf939926cde32f4e164882c775",
+      "modified_local": "2026-11-15T13:45:19.703788",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\quieter.md",
+      "bytes": 4975,
+      "sha256_now": "ab23e5e2cf74224f23b4b0806598320b75700191916fd04e4b25ad9920000530",
+      "modified_local": "2026-11-15T13:45:19.703788",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\region-map.md",
+      "bytes": 3361,
+      "sha256_now": "b3b1d5a4c80ce279d88896601deee9ccfeacdae0d0cd433600985a5f7ac93c72",
+      "modified_local": "2026-11-15T13:45:19.703788",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\routing.md",
+      "bytes": 3336,
+      "sha256_now": "43dbfcb7c2e54c9cca9fce66024f17c06a2f2be645547b718b75c8828a463de2",
+      "modified_local": "2026-11-15T13:45:19.703788",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\shape.md",
+      "bytes": 3547,
+      "sha256_now": "a55f016c046cb6a27c55bd7f346375aeb506a755c4fbca19a5f92dbd42309c23",
+      "modified_local": "2026-11-15T13:45:19.707526",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\typeset.md",
+      "bytes": 6263,
+      "sha256_now": "ba6adf87d0e1bc19e65dc06cc87c306acb0ab41aa5b7982403ba1cd7c86c6fd6",
+      "modified_local": "2026-11-15T13:45:19.707526",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\reference\\visualize.md",
+      "bytes": 14053,
+      "sha256_now": "068b63286d372b29929a49d88a85dadb4f485a360aaf802746917f042e5fe2aa",
+      "modified_local": "2026-11-15T13:45:19.709543",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\bin\\windows-x64\\impeccable.exe",
+      "bytes": 21967248,
+      "sha256_now": "e1364f415a838e080f394604f496bfa7dcc178c9bce62af673d54f2b5cbcd33c",
+      "modified_local": "2026-11-15T13:45:27.518979",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\command-metadata.json",
+      "bytes": 8318,
+      "sha256_now": "c6dcbeed7f13152205ca022c8f24d08683770835083f0a7325261c1c2d5f215c",
+      "modified_local": "2026-11-15T13:45:19.709543",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\data\\font-index-failures.json",
+      "bytes": 2437,
+      "sha256_now": "835f19a0a3812f3652dd6979a2ce5597f654fd01f26e1b420b92d5f42b997ce4",
+      "modified_local": "2026-11-15T13:45:19.709543",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\data\\font-index.json",
+      "bytes": 1100013,
+      "sha256_now": "47edbdfaf27073c47033d1ac7dfee881be49e2dcbda7671d1157300481dde6da",
+      "modified_local": "2026-11-15T13:45:19.714980",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\engine-checksums.txt",
+      "bytes": 787,
+      "sha256_now": "b752474ca856ee366808f94069da7cfd2a1a18159e608c964d692de41d15166e",
+      "modified_local": "2026-11-15T13:45:19.714980",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\impeccable",
+      "bytes": 13724,
+      "sha256_now": "9a82c1d8a5fc34b0edb3040cf25098c7c5a662e703118e99f96bacd543ed6d68",
+      "modified_local": "2026-11-15T13:45:19.717722",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\impeccable.cmd",
+      "bytes": 15459,
+      "sha256_now": "34ce99f691c2380e27108915fe921e3c716bbe532d7a7cfce3b7f0d5c68dccdd",
+      "modified_local": "2026-11-15T13:45:19.717722",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\live-browser-dom.js",
+      "bytes": 12283,
+      "sha256_now": "4b379aff87ce0f485008a2b6a0dc711d00a869f5cf0ec2459279d6364fbf0c9e",
+      "modified_local": "2026-11-15T13:45:19.719689",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\live-browser-ignores.js",
+      "bytes": 10423,
+      "sha256_now": "ba8905ab865fde5162e34fc17eb80eba26cc990b319b14a6eed6ca89fd491897",
+      "modified_local": "2026-11-15T13:45:19.720735",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\live-browser-session.js",
+      "bytes": 5838,
+      "sha256_now": "e042339a54d4521fc47555b602013ed5b51410ec9d7d8878d99a526f5f237f68",
+      "modified_local": "2026-11-15T13:45:19.720735",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\live-browser.js",
+      "bytes": 564400,
+      "sha256_now": "144335146f4f5a3a06be4b5daab24cac82653510c0007ad3786dbd3ef1a02f6e",
+      "modified_local": "2026-11-15T13:45:19.720735",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\modern-screenshot.umd.js",
+      "bytes": 29290,
+      "sha256_now": "bb36665889124a0b6e15f16045265737449c3bdcf2712cdb08af3cfa01563e2b",
+      "modified_local": "2026-11-15T13:45:19.720735",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\scripts\\VERSION",
+      "bytes": 7,
+      "sha256_now": "76f75753f47c5f9a402427e4ee481b463e5a164edabccbfeab33964eea31913e",
+      "modified_local": "2026-11-15T13:45:19.709543",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\SKILL.md",
+      "bytes": 15821,
+      "sha256_now": "68b727f7bbfc293ecabd1abee736be15025f34cb3877d3b087709eba89dfe5c5",
+      "modified_local": "2026-11-15T14:06:56.287542",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\plugins\\impeccable-design-hook\\__init__.py",
+      "bytes": 8252,
+      "sha256_now": "152c083a15c1f71586e435287e9733e06aaeb8555f2b4e4b7b2ad2feacd8fc3b",
+      "modified_local": "2026-11-15T13:45:27.532639",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\plugins\\impeccable-design-hook\\plugin.yaml",
+      "bytes": 624,
+      "sha256_now": "d42ddc964643f3bca9d0cf217ffd2ed5e72e48705cc9ebf055f4a259ee589411",
+      "modified_local": "2026-11-15T13:45:27.532639",
+      "classification": "Installer melaporkan update/instalasi; baru versus tertimpa tidak pasti tanpa baseline."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\agents\\impeccable-asset-producer.md",
+      "bytes": 8207,
+      "sha256_now": "381ce24761836e932444fa2d9642c5c7d343c8540ddbb9cb80ef6a6af279b3bc",
+      "classification": "Ditulis installer; empat agent. Tidak ada baseline isi lama."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\agents\\impeccable-documenter.md",
+      "bytes": 3466,
+      "sha256_now": "3ae2719092c813d531c0f9ee6d001785863636882a9470521ec87611c4b2cb39",
+      "classification": "Ditulis installer; empat agent. Tidak ada baseline isi lama."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\agents\\impeccable-finish-reviewer.md",
+      "bytes": 15997,
+      "sha256_now": "d675ae0bb998f88e58a9726c3a893ff6432ea0c9cab2188d5a5d452635494d92",
+      "classification": "Ditulis installer; empat agent. Tidak ada baseline isi lama."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\agents\\impeccable-manual-edit-applier.md",
+      "bytes": 7380,
+      "sha256_now": "6e606d157f08dac40f2cebec5cda01ea8fd28809cf2985d3db66875610f5e398",
+      "classification": "Ditulis installer; empat agent. Tidak ada baseline isi lama."
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.claude\\settings.json",
+      "classification": "Manifest hook ditulis installer pada 2026-11-15 13:45:27; baru versus merge tidak pasti.",
+      "impeccable_hooks": {
+        "SessionStart": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "[ ! -f \"C:\\\\Users\\\\MyBook Hype AMD\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable\" ] || \"C:\\\\Users\\\\MyBook Hype AMD\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable\" hook",
+                "timeout": 5,
+                "statusMessage": "Preparing build session"
+              }
+            ]
+          }
+        ],
+        "PostToolUse": [
+          {
+            "matcher": "Edit|Write",
+            "hooks": [
+              {
+                "type": "command",
+                "command": "[ ! -f \"C:\\\\Users\\\\MyBook Hype AMD\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable\" ] || \"C:\\\\Users\\\\MyBook Hype AMD\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable\" hook",
+                "timeout": 5,
+                "statusMessage": "Checking UI changes"
+              }
+            ]
+          }
+        ],
+        "Stop": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "[ ! -f \"C:\\\\Users\\\\MyBook Hype AMD\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable\" ] || \"C:\\\\Users\\\\MyBook Hype AMD\\\\.claude\\\\skills\\\\impeccable\\\\scripts\\\\impeccable\" hook",
+                "timeout": 30,
+                "statusMessage": "Design deep pass"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "npm_cache_root": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89",
+  "npm_cache_files": [
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\.bin\\impeccable",
+      "bytes": 822
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\.bin\\impeccable-windows-x64",
+      "bytes": 618
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\.bin\\impeccable-windows-x64.cmd",
+      "bytes": 156
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\.bin\\impeccable-windows-x64.ps1",
+      "bytes": 512
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\.bin\\impeccable.cmd",
+      "bytes": 329
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\.bin\\impeccable.ps1",
+      "bytes": 825
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\.package-lock.json",
+      "bytes": 1324
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\@impeccable\\cli-windows-x64\\bin\\impeccable.exe",
+      "bytes": 22543752
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\@impeccable\\cli-windows-x64\\LICENSE",
+      "bytes": 10766
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\@impeccable\\cli-windows-x64\\package.json",
+      "bytes": 572
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\impeccable\\cli\\bin\\cli.js",
+      "bytes": 7108
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\impeccable\\LICENSE",
+      "bytes": 10766
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\impeccable\\package.json",
+      "bytes": 4177
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\impeccable\\README.md",
+      "bytes": 4386
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\impeccable\\README.npm.md",
+      "bytes": 4386
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\impeccable\\README.repo.md",
+      "bytes": 17379
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\node_modules\\impeccable\\skill\\scripts\\engine-checksums.txt",
+      "bytes": 787
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\package-lock.json",
+      "bytes": 3502
+    },
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\npm-cache\\_npx\\1a4eb60c8f6b0f89\\package.json",
+      "bytes": 115
+    }
+  ],
+  "not_changed_by_first_install": [
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\.gemini\\settings.json",
+      "reason": "Timestamp 2026-10-18, mendahului instalasi. Hook Gemini sudah ada; hook yang ditulis installer pertama berada di D:/PBO-Java/.gemini/settings.json dan telah dihapus pada tugas sebelumnya."
+    }
+  ],
+  "later_changes": [
+    {
+      "path": "C:\\Users\\MyBook Hype AMD\\AppData\\Local\\hermes\\skills\\impeccable\\SKILL.md",
+      "reason": "mtime 14:06:56 setelah instalasi 13:45; berisi tambahan preparation-only. Hash sekarang bukan bukti isi tepat setelah installer."
+    }
+  ],
+  "restoration": "Tidak dilakukan.",
+  "hermes_plugin_enabled": false
+}

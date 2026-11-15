@@ -15,7 +15,7 @@ a { color: var(--warna-primer); }
 .tombol--sekunder { background: transparent; color: var(--warna-primer); }
 .tombol--sekunder:hover { background: var(--warna-primer-lembut); color: var(--warna-primer-gelap); }
 .tombol--bahaya { background: var(--warna-bahaya); border-color: var(--warna-bahaya); }
-.tombol--bahaya:hover { background: #8F3022; border-color: #8F3022; }
+.tombol--bahaya:hover { background: var(--warna-bahaya-gelap); border-color: var(--warna-bahaya-gelap); }
 .tombol--kecil { min-height: 32px; padding: var(--jarak-1) var(--jarak-3); font-size: var(--teks-xs); }
 .tombol:disabled { opacity: .5; cursor: not-allowed; }
 
@@ -68,6 +68,7 @@ a { color: var(--warna-primer); }
 /* Bootstrap punya class .modal sendiri (display:none untuk overlay) dan menimpa
    dialog kita. Aturan ini memaksa <dialog class="modal"> tampil dan di tengah. */
 dialog.modal { display: block; position: fixed; inset: 0; width: min(480px, calc(100% - 32px)); height: auto; max-height: calc(100% - 48px); margin: auto; padding: 0; overflow: visible; background: var(--warna-permukaan); color: var(--warna-teks); border: 0; border-radius: var(--radius-lg); box-shadow: var(--bayangan-lg); pointer-events: auto; }
+dialog.modal:not([open]) { display: none; }
 
 /* ===== Navbar dan footer ===== */
 /* display:block menimpa .navbar milik Bootstrap, supaya isi navbar selebar konten, bukan menyusut di tengah */

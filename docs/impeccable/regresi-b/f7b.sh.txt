@@ -1,0 +1,85 @@
+== 1. akses dasar ==
+    login admin -> 302
+    login owner -> 302
+    login customer -> 302
+OK    - admin membuka /admin/users
+OK    - tabel pengguna menampilkan 6 baris
+OK    - email owner tampil
+OK    - tombol nonaktif tampil
+== 2. cari dan filter ==
+OK    - pencarian email ditemukan
+OK    - pencarian menyaring yang lain
+OK    - filter role CUSTOMER
+OK    - filter role menyaring OWNER
+OK    - pencarian tanpa hasil memakai empty state
+== 3. paginasi ==
+OK    - paginasi halaman 1 dan 2 terbaca
+OK    - paginasi punya tautan
+OK    - halaman di luar jangkauan tetap dirender
+== 4. tambah pengguna ==
+    login akun baru -> 302
+OK    - akun Owner buatan Admin bisa login
+OK    - pengguna baru tampil di daftar
+OK    - email duplikat saat tambah ditolak
+OK    - password awal pendek ditolak
+== 5. ubah pengguna ==
+OK    - ubah nama pengguna
+OK    - pesan sukses ubah
+OK    - password tidak berubah saat ubah (kolom kosong)
+OK    - email duplikat saat ubah ditolak
+== 6. aturan keselamatan Admin ==
+OK    - admin tidak bisa menonaktifkan dirinya
+OK    - akun admin sendiri tetap aktif
+OK    - admin tidak bisa mengubah role dirinya
+OK    - role admin sendiri tetap ADMIN
+OK    - owner ber-bisnis tidak bisa diubah role-nya
+OK    - role owner tetap OWNER
+OK    - owner tanpa bisnis boleh diubah role-nya
+== 7. nonaktif dan sesi ==
+OK    - admin menonaktifkan customer
+    sesi aktif -> http://localhost:8081/login?disabled
+OK    - sesi aktif ikut ditolak pada request berikutnya
+    redirect login -> http://localhost:8081/login?disabled
+OK    - login akun nonaktif ditolak dengan penanda disabled
+OK    - pesan nonaktif jelas di halaman login
+OK    - bisnis owner tetap ada (3) saat owner nonaktif
+OK    - bisnis owner nonaktif tetap tampil di katalog
+OK    - aktifkan kembali customer bisa login
+== 8. profil ==
+302 http://localhost:8081/login?profil=1
+OK    - ubah nama dan email profil
+OK    - email baru bisa dipakai login
+OK    - email lama tidak bisa login lagi
+OK    - pesan masuk ulang setelah email berubah
+OK    - email duplikat saat ubah profil ditolak
+== 9. ganti password ==
+OK    - pesan password lama salah
+OK    - password tidak berubah saat password lama salah
+OK    - konfirmasi tidak sama ditolak
+OK    - password baru pendek ditolak
+OK    - password baru sama dengan lama ditolak
+OK    - hash password berubah di database
+OK    - ganti password berhasil
+OK    - password tersimpan sebagai BCrypt
+OK    - password baru bisa dipakai login
+OK    - password lama tidak bisa dipakai lagi
+OK    - pengguna tetap login setelah ganti password
+== 10. profil untuk role lain ==
+OK    - profil owner menampilkan peran
+OK    - profil admin menampilkan peran
+== 11. akses 403 ==
+    login ulang customer -> 302
+    login ulang owner -> 302
+OK    - buka /admin/users sebagai customer -> 403
+OK    - buka /admin/users sebagai owner -> 403
+== 12. login tidak membocorkan data ==
+OK    - email tidak terdaftar mendapat pesan generik
+OK    - pesan login generik
+OK    - pesan login tidak menyebut email tidak terdaftar
+
+TOTAL OK=57 GAGAL=0
+== bersih ==
+6
+admin@queuecare.id	1
+customer@queuecare.id	1
+owner@queuecare.id	1

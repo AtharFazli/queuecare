@@ -23,6 +23,7 @@ colors:
   warna-sukses: "#2E7D4F"
   warna-sukses-lembut: "#DFF1E5"
   warna-bahaya: "#B3402F"
+  warna-bahaya-gelap: "#8F3022"
   warna-bahaya-lembut: "#FADFDA"
   warna-netral-lembut: "#E8EEEF"
 typography:
@@ -86,6 +87,8 @@ components:
     textColor: "{colors.warna-primer}"
   tombol-bahaya:
     backgroundColor: "{colors.warna-bahaya}"
+  tombol-bahaya-hover:
+    backgroundColor: "{colors.warna-bahaya-gelap}"
   kartu:
     backgroundColor: "{colors.warna-permukaan}"
     rounded: "{rounded.radius-lg}"
@@ -593,3 +596,10 @@ Pola, contoh HTML, pemakaian per halaman, dan catatan fase pada bagian 4–5 tet
 - Don't ubah warna, font, layout, komponen, kelas, ID, JavaScript, atau skrip pengujian dalam persiapan ini.
 - Don't menjadikan literal sekali pakai, bobot warisan Bootstrap, atau bug dialog sebagai token atau keputusan baru.
 - Don't menganggap scan sumber menggantikan uji browser, atau nilai demo sebagai bukti produk dipakai pelanggan nyata.
+
+### Pembaruan document: dialog tertutup dan token hover bahaya
+
+Penambahan ini memperbarui rekaman persiapan di atas; catatan lama tetap disimpan sebagai riwayat. `--warna-bahaya-gelap` mengambil nilai hover tombol bahaya yang sudah ada, bukan memilih warna baru. Frontmatter `colors.warna-bahaya-gelap` dan `components.tombol-bahaya-hover` merekam peran itu. Nilai literal lama pada catatan sebelumnya bukan lagi status implementasi terbaru.
+
+Aturan `dialog.modal` perbaikan B10 tetap utuh. Tambahan `dialog.modal:not([open]) { display: none; }` membatasi dialog tertutup agar tidak terlihat atau menghalangi klik. Saat `[open]` ada, aturan B10 tetap menampilkan dialog. Kontrak browser: klik pemicu asli membuka, tombol Kembali menutup tanpa submit, dan tombol konfirmasi menjalankan POST sesuai alur. Tidak ada perubahan selector, ID, atau urutan Bootstrap, tokens.css, components.css.
+

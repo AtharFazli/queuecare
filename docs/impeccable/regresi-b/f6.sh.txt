@@ -1,0 +1,27 @@
+login dummy2=302 dummy1=302 owner=302
+antrean: 553 554 555 ... 559
+== 1. angka estimasi dari data dummy ==
+<div class="smartwait__menit" id="smartwait-menit">45
+OK    - antrean 7 (3 orang x 30 menit / 2 petugas) = 45 menit
+OK    - tiga orang di depan disebut
+OK    - catatan perkiraan tampil
+json: {"status":"WAITING","posisi":4,"keterangan":"Menunggu dipanggil.","estimasi":45,"pesan":null,"orangDepan":3}
+OK    - JSON memuat estimasi 45
+OK    - JSON memuat orangDepan 3
+OK    - detail reservasi menampilkan estimasi
+== 2. pesan khusus ==
+OK    - WAITING tanpa orang di depan -> Kamu berikutnya
+OK    - CALLED -> pesan sudah dipanggil
+OK    - IN_SERVICE -> tidak ada estimasi
+OK    - COMPLETED -> tidak ada estimasi
+== 3. petugas 0 ==
+OK    - petugas 0 -> Estimasi belum tersedia
+OK    - JSON estimasi null saat petugas 0
+OK    - JSON memuat pesan
+OK    - setelah petugas dikembalikan, estimasi 45 lagi
+== 4. estimasi turun saat antrean di depan selesai ==
+selesai antrean 3: 302
+<div class="smartwait__menit" id="smartwait-menit">30
+OK    - antrean 3 selesai -> (2 x 30) / 2 = 30 menit
+
+TOTAL OK=15 GAGAL=0

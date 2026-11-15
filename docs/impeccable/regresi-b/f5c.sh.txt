@@ -1,0 +1,66 @@
+== 1. login dan pilih bisnis ==
+owner=302
+pilih20=302 http://localhost:8081/owner/business
+owner2=302
+pilih23=302 http://localhost:8081/owner/business
+customer=302
+customer2=302
+antrean: 553 554 555 556 557 558 | lusa 560
+== 2. halaman Owner ==
+OK    - halaman antrean Owner terbuka
+OK    - tabel menampilkan status WAITING
+OK    - bisnis aktif tampil
+OK    - nama pelanggan tampil
+== 3. transisi tidak diizinkan ==
+selesai paksa WAITING=302 http://localhost:8081/owner/queues?tanggal=2026-11-16
+OK    - WAITING langsung COMPLETED ditolak
+selesai paksa CALLED=302 http://localhost:8081/owner/queues?tanggal=2026-11-16
+OK    - CALLED langsung COMPLETED ditolak
+panggil NO_SHOW=302 http://localhost:8081/owner/queues?tanggal=2026-11-16
+OK    - antrean NO_SHOW tidak bisa dipanggil
+mulai CANCELLED=302 http://localhost:8081/owner/queues?tanggal=2026-11-16
+OK    - antrean CANCELLED tidak berubah
+== 4. WAITING -> CALLED -> IN_SERVICE -> COMPLETED ==
+panggil=302 http://localhost:8081/owner/queues?tanggal=2026-11-16
+OK    - status jadi CALLED
+OK    - called_at terisi
+mulai=302 http://localhost:8081/owner/queues?tanggal=2026-11-16
+OK    - status jadi IN_SERVICE
+OK    - started_at terisi
+selesai=302 http://localhost:8081/owner/queues?tanggal=2026-11-16
+OK    - status jadi COMPLETED
+OK    - completed_at terisi
+OK    - reservasi ikut COMPLETED
+selesai lagi COMPLETED=302 http://localhost:8081/owner/queues?tanggal=2026-11-16
+OK    - antrean COMPLETED tidak bisa diubah
+== 5. tidak hadir ==
+tidak-hadir=302 http://localhost:8081/owner/queues?tanggal=2026-11-16
+OK    - status jadi NO_SHOW
+OK    - reservasi ikut CANCELLED (usulan NO_SHOW)
+== 6. dua klik bersamaan ==
+dua klik: 302 | 302
+OK    - hanya satu transisi yang masuk (status CALLED)
+pesan setelah dua klik: role="alert">Antrean 1 dipanggil. / role="alert">Antrean berstatus CALLED tidak bisa diubah menjadi CALLED. Status CALLED hanya bisa menjadi [IN_SERVICE, CANCELLED, NO_SHOW].
+OK    - satu klik ditolak dengan pesan
+== 7. batalkan dari Owner ==
+batalkan=302 http://localhost:8081/owner/queues?tanggal=2026-11-17
+OK    - antrean jadi CANCELLED
+OK    - reservasi ikut CANCELLED
+== 8. kepemilikan Owner ==
+owner2 ubah antrean owner1=403 
+OK    - antrean orang lain tidak berubah
+OK    - daftar antrean owner2 tidak memuat antrean owner1
+== 9. halaman Customer ==
+OK    - halaman monitoring terbuka
+OK    - posisi antrean tampil
+OK    - kode reservasi tampil
+json: {"status":"IN_SERVICE","posisi":1,"keterangan":"Sedang dilayani.","estimasi":null,"pesan":null,"orangDepan":0}
+OK    - JSON memuat status
+antrean aktif di depan nomor 3: 0
+OK    - posisi = 1, status final tidak dihitung
+OK    - customer lain membuka antrean orang lain -> 404
+== 10. tombol Pantau antrean ==
+OK    - tombol pantau di halaman sukses (belum final)
+OK    - tombol pantau hilang kalau antrean final
+
+TOTAL OK=32 GAGAL=0

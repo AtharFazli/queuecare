@@ -1,0 +1,31 @@
+kategori barbershop=1 salon=2
+== publik: katalog ==
+GET /businesses -> 200| | Barbershop Senja Salon Lestari Salon Aurora Servis Laptop Jaya
+  PENDING/INACTIVE bocor? (0=aman) -> 0
+GET /businesses (admin) -> 200| | Barbershop Senja
+GET /businesses (owner) -> 200| | Barbershop Senja
+GET /businesses (customer) -> 200| | Barbershop Senja
+== pencarian ==
+?q=Salon -> 200| | Salon Lestari Salon Aurora
+?q=barber -> 200| | Barbershop Senja
+?q=zzz -> 200| | Bisnis tidak ditemukan
+== filter kategori ==
+?kategori=1 -> 200| | Barbershop Senja
+?q=salon&kategori=2 -> 200| | Salon Lestari Salon Aurora
+?q=salon&kategori=1 (tak cocok) -> 200| | Bisnis tidak ditemukan
+== detail ==
+GET /businesses/20 -> 200| | Jam operasional Cukur rambut
+  layanan nonaktif bocor? (0=aman) -> 0
+  hari libur ditandai? -> Libur
+GET /businesses/21 (INACTIVE) -> 404| | Halaman tidak ditemukan
+GET /businesses/25 (PENDING) -> 404| | Halaman tidak ditemukan
+GET /businesses/9999 -> 404| | Halaman tidak ditemukan
+== reservasi ==
+tanpa login -> 302|http://localhost:8081/login
+customer -> 200| | 
+owner -> 403| | Akses ditolak
+admin -> 403| | Akses ditolak
+== landing ==
+GET / -> 200| | Cari bisnis
+href="/businesses"
+== selesai ==
