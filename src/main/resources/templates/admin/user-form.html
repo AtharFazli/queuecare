@@ -9,6 +9,7 @@
       <div class="kartu__badan">
         <h1 class="kartu__judul" th:text="${judul}">Tambah pengguna</h1>
         <p class="kartu__meta">Password disimpan sebagai hash. Kosongkan password saat ubah bila tidak diganti.</p>
+        <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
 
         <form th:action="${id != null} ? @{/admin/users/{id}/ubah(id=${id})} : @{/admin/users}"
               method="post" th:object="${form}" class="mt-4">

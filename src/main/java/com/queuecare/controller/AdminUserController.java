@@ -46,7 +46,7 @@ public class AdminUserController {
 
     @GetMapping("/tambah")
     public String tambahForm(Model model) {
-        return formulir(model, new AdminUserForm(), "Tambah pengguna", null);
+        return formulir(model, new AdminUserForm(), "Tambah pengguna", null, null);
     }
 
     @PostMapping
@@ -55,12 +55,13 @@ public class AdminUserController {
                          Model model,
                          RedirectAttributes redirect) {
         if (result.hasErrors()) {
-            return formulir(model, form, "Tambah pengguna", null);
+            return formulir(model, form, "Tambah pengguna", null, null);
         }
         try {
             adminUserService.tambah(form);
         } catch (AturanAkunException | EmailAlreadyExistsException ex) {
-            return gagal(redirect, ex.getMessage());
+            // Isian form dikembalikan supaya Admin tidak mengulang dari awal.
+            return formulir(model, form, "Tambah pengguna", null, ex.getMessage());
         }
         redirect.addFlashAttribute("sukses", "Pengguna ditambahkan.");
         return "redirect:/admin/users";
@@ -73,7 +74,7 @@ public class AdminUserController {
         form.setName(target.getName());
         form.setEmail(target.getEmail());
         form.setRole(target.getRole().name());
-        return formulir(model, form, "Ubah pengguna", id);
+        return formulir(model, form, "Ubah pengguna", id, null);
     }
 
     @PostMapping("/{id}/ubah")
@@ -83,12 +84,13 @@ public class AdminUserController {
                        Model model,
                        RedirectAttributes redirect) {
         if (result.hasErrors()) {
-            return formulir(model, form, "Ubah pengguna", id);
+            return formulir(model, form, "Ubah pengguna", id, null);
         }
         try {
             adminUserService.ubah(id, form, userContext.currentUser());
         } catch (AturanAkunException | EmailAlreadyExistsException ex) {
-            return gagal(redirect, ex.getMessage());
+            // Isian form dikembalikan supaya Admin tidak mengulang dari awal.
+            return formulir(model, form, "Ubah pengguna", id, ex.getMessage());
         }
         redirect.addFlashAttribute("sukses", "Pengguna diperbarui.");
         return "redirect:/admin/users";
@@ -109,10 +111,11 @@ public class AdminUserController {
         return "redirect:/admin/users";
     }
 
-    private String formulir(Model model, AdminUserForm form, String judul, Long id) {
+    private String formulir(Model model, AdminUserForm form, String judul, Long id, String pesan) {
         model.addAttribute("form", form);
         model.addAttribute("judul", judul);
         model.addAttribute("id", id);
+        model.addAttribute("error", pesan);
         model.addAttribute("daftarRole", Role.values());
         return "admin/user-form";
     }
