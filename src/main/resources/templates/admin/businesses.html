@@ -28,17 +28,31 @@
               <span class="lencana" th:classappend="${b.status.name() == 'ACTIVE'} ? 'lencana--completed' : (${b.status.name() == 'INACTIVE'} ? 'lencana--cancelled' : 'lencana--waiting')" th:text="${b.status}">PENDING</span>
             </td>
             <td>
-              <form th:action="@{/admin/businesses/{id}/status(id=${b.id})}" method="post">
-                <select class="field__input" name="status">
-                  <option th:each="s : ${T(com.queuecare.enums.BusinessStatus).values()}" th:value="${s}" th:text="${s}" th:selected="${s == b.status}">ACTIVE</option>
-                </select>
-                <button class="tombol tombol--kecil" type="submit">Simpan status</button>
-              </form>
+              <button class="tombol tombol--kecil" type="button"
+                      th:onclick="|document.getElementById('status-bisnis-' + ${b.id}).showModal()|">Ubah status</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+    <dialog class="modal" th:each="b : ${bisnis}" th:id="|status-bisnis-${b.id}|">
+      <div class="modal__kepala"><h3>Ubah status <span th:text="${b.name}">Bisnis</span>?</h3></div>
+      <form th:action="@{/admin/businesses/{id}/status(id=${b.id})}" method="post">
+        <div class="modal__badan">
+          <p>Bisnis nonaktif hilang dari katalog pelanggan. Bisnis pending baru tampil setelah diaktifkan.</p>
+          <div class="field">
+            <label class="field__label" th:for="|pilih-status-${b.id}|">Status baru</label>
+            <select class="field__input" th:id="|pilih-status-${b.id}|" name="status">
+              <option th:each="s : ${T(com.queuecare.enums.BusinessStatus).values()}" th:value="${s}" th:text="${s}" th:selected="${s == b.status}">ACTIVE</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal__kaki">
+          <button class="tombol tombol--sekunder" type="button" onclick="this.closest('dialog').close()">Kembali</button>
+          <button class="tombol" type="submit">Simpan status</button>
+        </div>
+      </form>
+    </dialog>
   </main>
 
   <footer th:replace="~{fragments/layout :: footer}"></footer>

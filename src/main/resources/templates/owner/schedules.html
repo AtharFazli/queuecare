@@ -39,14 +39,23 @@
               </td>
               <td>
                 <a class="tombol tombol--kecil" th:href="@{/owner/schedules/{id}(id=${j.id})}">Ubah</a>
-                <form th:action="@{/owner/schedules/{id}/hapus(id=${j.id})}" method="post">
-                  <button class="tombol tombol--kecil tombol--bahaya" type="submit">Hapus</button>
-                </form>
+                <button class="tombol tombol--kecil tombol--bahaya" type="button"
+                        th:onclick="|document.getElementById('hapus-jadwal-' + ${j.id}).showModal()|">Hapus</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <dialog class="modal" th:each="j : ${jadwal}" th:id="|hapus-jadwal-${j.id}|">
+        <div class="modal__kepala"><h3>Hapus jadwal <span th:text="${j.dayOfWeek}">SENIN</span>?</h3></div>
+        <div class="modal__badan"><p>Pelanggan tidak bisa reservasi pada hari ini sampai jadwal ditambah lagi. Tindakan ini tidak bisa diulang.</p></div>
+        <div class="modal__kaki">
+          <button class="tombol tombol--sekunder" type="button" onclick="this.closest('dialog').close()">Kembali</button>
+          <form th:action="@{/owner/schedules/{id}/hapus(id=${j.id})}" method="post">
+            <button class="tombol tombol--bahaya" type="submit">Hapus jadwal</button>
+          </form>
+        </div>
+      </dialog>
     </div>
   </main>
 

@@ -34,14 +34,23 @@
             <td th:text="${k.name}">Barbershop</td>
             <td>
               <a class="tombol tombol--kecil" th:href="@{/admin/categories(ubah=${k.id})}">Ubah</a>
-              <form th:action="@{/admin/categories/{id}/hapus(id=${k.id})}" method="post">
-                <button class="tombol tombol--kecil tombol--bahaya" type="submit">Hapus</button>
-              </form>
+              <button class="tombol tombol--kecil tombol--bahaya" type="button"
+                      th:onclick="|document.getElementById('hapus-kategori-' + ${k.id}).showModal()|">Hapus</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+    <dialog class="modal" th:each="k : ${kategori}" th:id="|hapus-kategori-${k.id}|">
+      <div class="modal__kepala"><h3>Hapus kategori <span th:text="${k.name}">Barbershop</span>?</h3></div>
+      <div class="modal__badan"><p>Tindakan ini tidak bisa diulang. Kategori yang masih dipakai bisnis tidak bisa dihapus.</p></div>
+      <div class="modal__kaki">
+        <button class="tombol tombol--sekunder" type="button" onclick="this.closest('dialog').close()">Kembali</button>
+        <form th:action="@{/admin/categories/{id}/hapus(id=${k.id})}" method="post">
+          <button class="tombol tombol--bahaya" type="submit">Hapus kategori</button>
+        </form>
+      </div>
+    </dialog>
   </main>
 
   <footer th:replace="~{fragments/layout :: footer}"></footer>
