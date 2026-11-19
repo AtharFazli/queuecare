@@ -102,6 +102,18 @@ dialog.modal:not([open]) { display: none; }
 .sidebar__menu a[aria-current="page"] { background: var(--warna-aksen); color: var(--warna-teks); font-weight: 700; }
 .sidebar__bisnis { display: block; margin: 0 0 var(--jarak-2); padding: var(--jarak-2) var(--jarak-3); border-radius: var(--radius-md); background: var(--warna-aksen); color: var(--warna-teks); font-weight: 700; text-decoration: none; font-size: var(--teks-sm); }
 .sidebar__ganti { display: block; font-size: var(--teks-xs); color: var(--warna-primer-lembut); text-decoration: underline; }
+.sidebar__kepala { display: flex; align-items: center; justify-content: space-between; gap: var(--jarak-2); margin-bottom: var(--jarak-3); }
+.sidebar__kepala .sidebar__judul { margin: 0; }
+/* Tombol lipat di sidebar gelap: teks terang agar kontras 9,08:1, bukan tombol--sekunder biasa. */
+.sidebar__lipat { background: transparent; border-color: var(--warna-primer-lembut); color: var(--warna-primer-lembut); white-space: nowrap; }
+.sidebar__lipat:hover { background: rgba(255, 255, 255, .1); border-color: var(--warna-primer-lembut); color: var(--warna-primer-lembut); }
+/* Dilipat di desktop: rel sempit berlabel teks penuh satu kata (tanpa sistem ikon baru). */
+.dash--lipat { grid-template-columns: 96px 1fr; }
+.dash--lipat .sidebar { padding: var(--jarak-2); }
+.dash--lipat .sidebar__kepala { justify-content: center; margin-bottom: var(--jarak-2); }
+.dash--lipat .sidebar__judul, .dash--lipat .sidebar__bisnis, .dash--lipat .sidebar__ganti { display: none; }
+.dash--lipat .sidebar__lipat { width: 100%; font-size: var(--teks-xs); padding: var(--jarak-1); min-height: 32px; }
+.dash--lipat .sidebar__menu a { font-size: var(--teks-xs); padding: var(--jarak-2) var(--jarak-1); text-align: center; }
 .dash__isi { padding: var(--jarak-6); min-width: 0; }
 .statistik-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--jarak-4); }
 .statistik { padding: var(--jarak-4); background: var(--warna-permukaan); border: 1px solid var(--warna-batas); border-radius: var(--radius-md); }
@@ -129,6 +141,12 @@ dialog.modal:not([open]) { display: none; }
 /* ===== Responsif ===== */
 @media (max-width: 720px) {
   .dash { grid-template-columns: 1fr; }
+  /* Dilipat di HP: menu disembunyikan, kepala sidebar jadi bar tipis; konten tidak tertutup. */
+  .dash--lipat .sidebar__menu, .dash--lipat .sidebar__bisnis, .dash--lipat .sidebar__ganti { display: none; }
+  .dash--lipat .sidebar { padding: var(--jarak-2) var(--jarak-4); }
+  .dash--lipat .sidebar__kepala { justify-content: space-between; margin-bottom: 0; }
+  .dash--lipat .sidebar__judul { display: block; }
+  .dash--lipat .sidebar__lipat { width: auto; min-height: 44px; padding: var(--jarak-2) var(--jarak-3); }
   .navbar__menu { display: none; }
   h1 { font-size: var(--teks-xl); }
 }

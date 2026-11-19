@@ -47,5 +47,36 @@
     <!-- layout.html dipakai lewat fragment, jadi script harus di dalam fragment agar ikut ter-render -->
     <script th:src="@{/js/navbar.js}" defer></script>
   </footer>
+
+  <!-- Sidebar bersama dashboard Owner/Admin. active = kunci halaman untuk aria-current. -->
+  <nav th:fragment="sidebar(role, active)" class="sidebar" id="sidebar" th:attr="aria-label=${role == 'owner'} ? 'Menu Owner' : 'Menu Admin'">
+    <div class="sidebar__kepala">
+      <p class="sidebar__judul" th:text="${role == 'owner'} ? 'Menu Owner' : 'Menu Admin'">Menu Owner</p>
+      <button class="tombol tombol--kecil sidebar__lipat" type="button" aria-expanded="true" aria-controls="sidebar">Lipat menu</button>
+    </div>
+    <ul class="sidebar__menu" th:if="${role == 'owner'}">
+      <li><a th:href="@{/owner}" th:attr="aria-current=${active == 'dashboard' ? 'page' : null}">Dashboard</a></li>
+      <li><a th:href="@{/owner/business}" th:attr="aria-current=${active == 'bisnis' ? 'page' : null}">Bisnis</a></li>
+      <li><a th:href="@{/owner/services}" th:attr="aria-current=${active == 'layanan' ? 'page' : null}">Layanan</a></li>
+      <li><a th:href="@{/owner/schedules}" th:attr="aria-current=${active == 'jadwal' ? 'page' : null}">Jadwal</a></li>
+      <li><a th:href="@{/owner/capacity}" th:attr="aria-current=${active == 'kapasitas' ? 'page' : null}">Kapasitas</a></li>
+      <li><a th:href="@{/owner/queues}" th:attr="aria-current=${active == 'antrean' ? 'page' : null}">Antrean</a></li>
+      <li><a th:href="@{/owner/reports}" th:attr="aria-current=${active == 'laporan' ? 'page' : null}">Laporan</a></li>
+    </ul>
+    <ul class="sidebar__menu" th:if="${role == 'admin'}">
+      <li><a th:href="@{/admin}" th:attr="aria-current=${active == 'dashboard' ? 'page' : null}">Dashboard</a></li>
+      <li><a th:href="@{/admin/users}" th:attr="aria-current=${active == 'pengguna' ? 'page' : null}">Pengguna</a></li>
+      <li><a th:href="@{/admin/businesses}" th:attr="aria-current=${active == 'bisnis' ? 'page' : null}">Bisnis</a></li>
+      <li><a th:href="@{/admin/categories}" th:attr="aria-current=${active == 'kategori' ? 'page' : null}">Kategori</a></li>
+      <li><a th:href="@{/admin/reservations}" th:attr="aria-current=${active == 'reservasi' ? 'page' : null}">Reservasi</a></li>
+      <li><a th:href="@{/admin/reports}" th:attr="aria-current=${active == 'laporan' ? 'page' : null}">Laporan</a></li>
+    </ul>
+    <th:block th:if="${role == 'owner'}">
+      <p class="sidebar__judul" th:if="${bisnisAktif != null}">Bisnis aktif</p>
+      <a class="sidebar__bisnis" th:if="${bisnisAktif != null}" th:href="@{/owner/business}" th:text="${bisnisAktif.name}">Nama bisnis</a>
+      <a class="sidebar__ganti" th:href="@{/owner/businesses}">Ganti bisnis</a>
+    </th:block>
+    <script th:src="@{/js/sidebar.js}"></script>
+  </nav>
 </body>
 </html>
