@@ -58,7 +58,7 @@
     fetch(url)
       .then(function (respon) { return respon.json(); })
       .then(function (data) {
-        statusEl.textContent = data.status;
+        statusEl.textContent = data.status === 'WAITING' ? 'Menunggu' : data.status;
         statusEl.className = 'lencana lencana--' + data.status.toLowerCase().replace(/_/g, '-');
         posisiEl.textContent = data.posisi;
         keteranganEl.textContent = data.keterangan;

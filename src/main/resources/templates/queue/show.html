@@ -18,7 +18,7 @@
           <span th:text="${#temporals.format(antrean.queueDate, 'dd/MM/yyyy')}">16/11/2026</span>,
           <span th:text="${antrean.reservation.reservationTime}">09:00</span>
         </div>
-        <span class="lencana" id="antrean-status" th:classappend="${antrean.status.kelas}" th:text="${antrean.status}">WAITING</span>
+        <span class="lencana" id="antrean-status" th:classappend="${antrean.status.kelas}" th:text="${antrean.status.name() == 'WAITING' ? 'Menunggu' : antrean.status}">Menunggu</span>
       </div>
       <div class="tiket__nomor">
         <span>Antrean</span>

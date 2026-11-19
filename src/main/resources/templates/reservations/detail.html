@@ -41,7 +41,7 @@
     <h2 class="mt-4">Status antrean</h2>
     <p>
       Nomor antrean <b th:text="${antrean.queueNumber}">1</b>
-      <span class="lencana" th:classappend="${antrean.status.kelas}" th:text="${antrean.status}">WAITING</span>
+      <span class="lencana" th:classappend="${antrean.status.kelas}" th:text="${antrean.status.name() == 'WAITING' ? 'Menunggu' : antrean.status}">Menunggu</span>
     </p>
 
     <p class="mt-3" th:if="${reservasi.notes != null and !reservasi.notes.isEmpty()}">

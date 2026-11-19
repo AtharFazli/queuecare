@@ -52,7 +52,7 @@
             <td th:text="${#temporals.format(b.tanggal, 'dd/MM/yyyy')}">16/11/2026</td>
             <td th:text="${b.jam}">10:00</td>
             <td><span class="lencana" th:classappend="${'lencana--' + #strings.toLowerCase(#strings.replace(b.statusReservasi, '_', '-'))}" th:text="${b.statusReservasi}">CONFIRMED</span></td>
-            <td><span class="lencana" th:classappend="${'lencana--' + #strings.toLowerCase(#strings.replace(b.statusAntrean, '_', '-'))}" th:text="${b.statusAntrean}">WAITING</span></td>
+            <td><span class="lencana" th:classappend="${'lencana--' + #strings.toLowerCase(#strings.replace(b.statusAntrean, '_', '-'))}" th:text="${b.statusAntrean == 'WAITING' ? 'Menunggu' : b.statusAntrean}">Menunggu</span></td>
           </tr>
         </tbody>
       </table>

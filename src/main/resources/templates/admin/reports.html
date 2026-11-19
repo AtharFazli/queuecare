@@ -56,7 +56,7 @@
         <thead><tr><th>Status</th><th>Jumlah</th></tr></thead>
         <tbody>
           <tr th:each="s : ${laporan.statusAntrean}">
-            <td><span class="lencana" th:classappend="${s.status.kelas}" th:text="${s.status}">WAITING</span></td>
+            <td><span class="lencana" th:classappend="${s.status.kelas}" th:text="${s.status.name() == 'WAITING' ? 'Menunggu' : s.status}">Menunggu</span></td>
             <td class="tabel__angka" th:text="${s.jumlah}">3</td>
           </tr>
         </tbody>

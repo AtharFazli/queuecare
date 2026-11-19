@@ -45,7 +45,7 @@
               <td th:text="${q.reservation.customer.name}">Pelanggan</td>
               <td th:text="${q.reservation.service.name}">Cukur rambut</td>
               <td th:text="${q.reservation.reservationTime}">09:00</td>
-              <td><span class="lencana" th:classappend="${q.status.kelas}" th:text="${q.status}">WAITING</span></td>
+              <td><span class="lencana" th:classappend="${q.status.kelas}" th:text="${q.status.name() == 'WAITING' ? 'Menunggu' : q.status}">Menunggu</span></td>
               <td>
                 <div class="tabel__aksi">
                   <form th:if="${q.status.name() == 'WAITING'}"
