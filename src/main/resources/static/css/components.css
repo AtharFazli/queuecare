@@ -5,7 +5,7 @@ h1, h2, h3, h4 { font-family: var(--font-judul); line-height: 1.2; margin: 0 0 v
 h1 { font-size: var(--teks-2xl); } h2 { font-size: var(--teks-xl); } h3 { font-size: var(--teks-lg); }
 p { margin: 0 0 var(--jarak-3); }
 a { color: var(--warna-primer); }
-:focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--warna-aksen); outline-offset: 2px; box-shadow: 0 0 0 2px var(--warna-primer-gelap); }
 .wadah { max-width: var(--lebar-konten); margin: 0 auto; padding: 0 var(--jarak-4); }
 .teks-redup { color: var(--warna-teks-redup); }
 
@@ -33,7 +33,7 @@ a { color: var(--warna-primer); }
 .lencana--waiting, .lencana--cancelled { background: var(--warna-netral-lembut); color: var(--warna-teks-redup); }
 .lencana--called { background: var(--warna-aksen-lembut); color: var(--warna-aksen-teks); }
 .lencana--in-service { background: var(--warna-primer-lembut); color: var(--warna-primer-gelap); }
-.lencana--completed { background: var(--warna-sukses-lembut); color: var(--warna-sukses); }
+.lencana--completed { background: var(--warna-sukses-lembut); color: var(--warna-teks); }
 .lencana--no-show { background: var(--warna-bahaya-lembut); color: var(--warna-bahaya); }
 .lencana--cancelled { text-decoration: line-through; }
 /* CONFIRMED beda dari IN_SERVICE: latar putih dengan border primer, bukan isi lembut. */
@@ -43,7 +43,7 @@ a { color: var(--warna-primer); }
 .field { margin-bottom: var(--jarak-4); }
 .field__label { display: block; margin-bottom: var(--jarak-1); font-size: var(--teks-sm); font-weight: 600; }
 .field__input { width: 100%; min-height: 42px; padding: var(--jarak-2) var(--jarak-3); border: 1px solid var(--warna-batas); border-radius: var(--radius-md); background: var(--warna-permukaan); color: var(--warna-teks); font: inherit; }
-.field__input:focus { outline: 3px solid var(--warna-primer-lembut); border-color: var(--warna-primer); }
+.field__input:focus { outline: 3px solid var(--warna-primer); border-color: var(--warna-primer); }
 .field__bantuan { margin: var(--jarak-1) 0 0; font-size: var(--teks-xs); color: var(--warna-teks-redup); }
 .field--galat .field__input { border-color: var(--warna-bahaya); }
 .field--galat .field__bantuan { color: var(--warna-bahaya); }
@@ -94,7 +94,7 @@ dialog.modal:not([open]) { display: none; }
 .sidebar__menu a:hover { background: rgba(255, 255, 255, .1); }
 .sidebar__menu a[aria-current="page"] { background: var(--warna-aksen); color: var(--warna-teks); font-weight: 700; }
 .sidebar__bisnis { display: block; margin: 0 0 var(--jarak-2); padding: var(--jarak-2) var(--jarak-3); border-radius: var(--radius-md); background: var(--warna-aksen); color: var(--warna-teks); font-weight: 700; text-decoration: none; font-size: var(--teks-sm); }
-.sidebar__ganti { display: block; font-size: var(--teks-xs); }
+.sidebar__ganti { display: block; font-size: var(--teks-xs); color: var(--warna-primer-lembut); text-decoration: underline; }
 .dash__isi { padding: var(--jarak-6); min-width: 0; }
 .statistik-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--jarak-4); }
 .statistik { padding: var(--jarak-4); background: var(--warna-permukaan); border: 1px solid var(--warna-batas); border-radius: var(--radius-md); }
@@ -171,7 +171,7 @@ dialog.modal:not([open]) { display: none; }
 .auth__teks { margin: 0; max-width: 44ch; color: var(--warna-primer-lembut); }
 .auth__form { min-width: 0; }
 /* Flash sukses di form auth: teks sukses di latar lembut hanya 4,29:1; latar putih menaikkannya ke 5,05:1 (pola lencana--confirmed). */
-.auth__form .lencana--completed { background: var(--warna-permukaan); border: 1px solid var(--warna-sukses); }
+.auth__form .lencana--completed { background: var(--warna-permukaan); border: 1px solid var(--warna-sukses); color: var(--warna-sukses); }
 
 /* ===== Dashboard: empty state ===== */
 .kosong { margin-top: var(--jarak-6); padding: var(--jarak-6); border: 1px dashed var(--warna-batas); border-radius: var(--radius-lg); text-align: center; }
