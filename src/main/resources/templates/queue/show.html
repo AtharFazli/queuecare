@@ -4,7 +4,7 @@
 <body>
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
-  <main class="wadah my-5">
+  <main class="wadah my-5" th:with="hidup=${antrean.status.name() != 'COMPLETED' and antrean.status.name() != 'CANCELLED' and antrean.status.name() != 'NO_SHOW'}">
     <p><a th:href="@{/reservations}">Kembali ke riwayat</a></p>
     <h1>Pantau antrean</h1>
     <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
@@ -40,8 +40,8 @@
     <h2 class="mt-4">Status antrean</h2>
     <p>Posisi antrean kamu: <b id="antrean-posisi" th:text="${posisi}">1</b></p>
     <p id="antrean-keterangan" th:text="${keterangan}">Menunggu dipanggil.</p>
-    <p class="teks-redup" id="antrean-muat" th:if="${bisaPantau}">Halaman ini memperbarui status dan posisi setiap 10 detik.</p>
-    <p class="teks-redup" th:unless="${bisaPantau}">Status antrean sudah final.</p>
+    <p class="teks-redup" id="antrean-muat" th:if="${hidup}">Halaman ini memperbarui status dan posisi setiap 10 detik.</p>
+    <p class="teks-redup" th:unless="${hidup}">Status antrean sudah final.</p>
   </main>
 
   <footer th:replace="~{fragments/layout :: footer}"></footer>
