@@ -81,6 +81,8 @@ dialog.modal:not([open]) { display: none; }
 /* .navbar__menu a menimpa warna .tombol, jadi tombol di navbar ditegaskan teksnya putih */
 .navbar__menu a.tombol { color: var(--warna-teks-terbalik); }
 .footer { padding: var(--jarak-8) 0; background: var(--warna-primer-gelap); color: var(--warna-primer-lembut); font-size: var(--teks-sm); }
+/* teks-redup global (#546A6F) hanya 1,88:1 di latar footer gelap; pakai token teks latar gelap */
+.footer .teks-redup { color: var(--warna-primer-lembut); }
 .footer a { color: var(--warna-teks-terbalik); }
 
 /* ===== Dashboard: sidebar + statistik ===== */
