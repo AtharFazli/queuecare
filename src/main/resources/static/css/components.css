@@ -156,6 +156,10 @@ dialog.modal:not([open]) { display: none; }
   .hero__isi, .sorotan__isi { grid-template-columns: 1fr; }
   .langkah { grid-template-columns: 1fr; }
   .hero__visual { justify-items: start; }
+  /* Target sentuh nyaman 44px di HP (kritik Impeccable); desktop pointer tetap ukuran semula. */
+  .tombol, .tombol--kecil { min-height: 44px; }
+  .field__input { min-height: 44px; }
+  .navbar__menu a:not(.tombol) { padding: var(--jarak-3) 0; }
 }
 
 /* ===== Autentikasi: dua kolom ===== */
