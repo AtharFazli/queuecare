@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/layout :: head('Riwayat reservasi')}"></head>
-<body>
+<body th:with="active='riwayat'">
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
   <main class="wadah my-5">

@@ -19,14 +19,14 @@
         <a sec:authorize="hasRole('OWNER')" th:unless="${dashMode}" th:href="@{/owner}">Dashboard</a>
         <a sec:authorize="hasRole('ADMIN')" th:unless="${dashMode}" th:href="@{/admin}">Dashboard</a>
         <a sec:authorize="hasRole('CUSTOMER')" th:unless="${dashMode}" th:href="@{/customer}">Dashboard</a>
-        <a sec:authorize="hasRole('CUSTOMER')" th:href="@{/reservations}">Riwayat</a>
+        <a sec:authorize="hasRole('CUSTOMER')" th:href="@{/reservations}" th:attr="aria-current=${active == 'riwayat' ? 'page' : null}">Riwayat</a>
         <a th:href="@{/businesses}" th:attr="aria-current=${active == 'katalog' ? 'page' : null}">Katalog</a>
         <th:block sec:authorize="!isAuthenticated()">
           <a th:href="@{/login}" th:attr="aria-current=${active == 'masuk' ? 'page' : null}">Masuk</a>
           <a class="tombol tombol--kecil" th:href="@{/register}">Daftar</a>
         </th:block>
         <th:block sec:authorize="isAuthenticated()">
-          <a th:href="@{/profile}">Profil</a>
+          <a th:href="@{/profile}" th:attr="aria-current=${active == 'profil' ? 'page' : null}">Profil</a>
           <span class="teks-redup navbar__pengguna">
             <span class="navbar__email" sec:authentication="name">nama@example.com</span>
             <span class="navbar__nama" th:text="${nama}">Nama pengguna</span>
