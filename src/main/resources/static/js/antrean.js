@@ -11,6 +11,7 @@
   var keteranganEl = document.getElementById('antrean-keterangan');
   var muatEl = document.getElementById('antrean-muat');
   var STATUS_FINAL = ['COMPLETED', 'CANCELLED', 'NO_SHOW'];
+  var LABEL = {WAITING: 'Menunggu', CALLED: 'Dipanggil', IN_SERVICE: 'Dilayani', COMPLETED: 'Selesai', CANCELLED: 'Dibatalkan', NO_SHOW: 'Tidak hadir'};
   var timer = null;
 
   function berhenti() {
@@ -58,7 +59,7 @@
     fetch(url)
       .then(function (respon) { return respon.json(); })
       .then(function (data) {
-        statusEl.textContent = data.status === 'WAITING' ? 'Menunggu' : data.status;
+        statusEl.textContent = LABEL[data.status] || data.status;
         statusEl.className = 'lencana lencana--' + data.status.toLowerCase().replace(/_/g, '-');
         posisiEl.textContent = data.posisi;
         keteranganEl.textContent = data.keterangan;

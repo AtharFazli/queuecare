@@ -16,7 +16,7 @@
           <span th:text="${#temporals.format(reservasi.reservationDate, 'dd/MM/yyyy')}">16/11/2026</span>,
           <span th:text="${reservasi.reservationTime}">09:00</span>
         </div>
-        <span class="lencana" th:classappend="${reservasi.status.kelas}" th:text="${reservasi.status}">CONFIRMED</span>
+        <span class="lencana" th:classappend="${reservasi.status.kelas}" th:text="${reservasi.status.name() == 'PENDING' ? 'Menunggu' : reservasi.status.name() == 'CONFIRMED' ? 'Dikonfirmasi' : reservasi.status.name() == 'CANCELLED' ? 'Dibatalkan' : 'Selesai'}">Dikonfirmasi</span>
       </div>
       <div class="tiket__nomor">
         <span>Antrean</span>

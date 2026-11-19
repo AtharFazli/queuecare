@@ -28,7 +28,7 @@
             <td th:text="${#temporals.format(r.reservationDate, 'dd/MM/yyyy')}">16/11/2026</td>
             <td th:text="${r.reservationTime}">09:00</td>
             <td th:text="'Rp ' + ${#numbers.formatInteger(r.service.price, 1, 'POINT')}">Rp 45.000</td>
-            <td><span class="lencana" th:classappend="${r.status.kelas}" th:text="${r.status}">CONFIRMED</span></td>
+            <td><span class="lencana" th:classappend="${r.status.kelas}" th:text="${r.status.name() == 'PENDING' ? 'Menunggu' : r.status.name() == 'CONFIRMED' ? 'Dikonfirmasi' : r.status.name() == 'CANCELLED' ? 'Dibatalkan' : 'Selesai'}">Dikonfirmasi</span></td>
             <td><a class="tombol tombol--kecil" th:href="@{/reservations/{id}(id=${r.id})}">Detail</a></td>
           </tr>
         </tbody>

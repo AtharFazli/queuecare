@@ -9,7 +9,7 @@
     <h1>Pantau antrean</h1>
     <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
 
-    <div class="tiket" th:attr="data-antrean-url=@{/queue/{id}/status(id=${antrean.id})}">
+    <div class="tiket" th:attr="data-antrean-url=${hidup} ? @{/queue/{id}/status(id=${antrean.id})} : null">
       <div class="tiket__info">
         <div class="tiket__kode" th:text="${antrean.reservation.reservationCode}">QC-20261116-0001</div>
         <div class="tiket__nama" th:text="${antrean.business.name}">Barbershop Senja</div>
@@ -18,7 +18,7 @@
           <span th:text="${#temporals.format(antrean.queueDate, 'dd/MM/yyyy')}">16/11/2026</span>,
           <span th:text="${antrean.reservation.reservationTime}">09:00</span>
         </div>
-        <span class="lencana" id="antrean-status" th:classappend="${antrean.status.kelas}" th:text="${antrean.status.name() == 'WAITING' ? 'Menunggu' : antrean.status}">Menunggu</span>
+        <span class="lencana" id="antrean-status" th:classappend="${antrean.status.kelas}" th:text="${antrean.status.name() == 'WAITING' ? 'Menunggu' : antrean.status.name() == 'CALLED' ? 'Dipanggil' : antrean.status.name() == 'IN_SERVICE' ? 'Dilayani' : antrean.status.name() == 'COMPLETED' ? 'Selesai' : antrean.status.name() == 'NO_SHOW' ? 'Tidak hadir' : 'Dibatalkan'}">Menunggu</span>
       </div>
       <div class="tiket__nomor">
         <span>Antrean</span>

@@ -18,7 +18,7 @@
 
       <div class="dash__isi">
         <h1>Profil</h1>
-        <p class="teks-redup">Peran kamu <span th:text="${peran}">CUSTOMER</span>.</p>
+        <p class="teks-redup">Peran kamu <span th:text="${peran == 'CUSTOMER' ? 'Pelanggan' : peran == 'OWNER' ? 'Owner' : 'Administrator'}">Pelanggan</span>.</p>
         <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
 
         <div class="kartu mt-4" style="max-width: 560px;">
