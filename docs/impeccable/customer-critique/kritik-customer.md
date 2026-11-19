@@ -66,3 +66,22 @@ Dicatat sebagai usulan (tidak dikerjakan):
 - Fix landing/dashboard sebelumnya terbukti menjalar konsisten (footer, auth, 44px, nowrap+scroll-shadow, Menunggu di tiket contoh, aria-current Beranda).
 
 Questions skipped: pengguna sudah menetapkan arah dan scope lewat tugas + keputusan clarify (satu perubahan kecil antrean.js untuk peta label polling disetujui; Java tetap beku → usulan).
+
+## Hasil perbaikan (19 November 2026)
+
+Semua P1 yang bisa dikerjakan template/CSS + JS yang disetujui sudah selesai, satu commit per masalah:
+
+| Commit | Perbaikan |
+|---|---|
+| f762bb1 | S2/PR5: navbar customer (Dashboard, Riwayat, Katalog) + sidebar /customer dan /profile bertujuan nyata; teruji 1280/375 tanpa overflow |
+| e4790e2 | C1/C2/C3: stub /customer dibersihkan — statistik 0 palsu dan copy fase dihapus, aksi cepat Cari bisnis + Riwayat reservasi |
+| b072427 | S4/Q1/Q10: teks "sudah final" hanya untuk antrean final (th:with hidup); teruji 553/555 hidup, 557 final |
+| 2cab20a | S1+Q7: label Indonesia di 6 template customer + copy register; data-antrean-url bersyarat (final tanpa polling); peta LABEL antrean.js (disetujui user) |
+
+Bukti akhir (harness full 32 entri): 32/32 HTTP 200; 0 teks gagal kontras; 0 sentuh <44px di 375px; 0 overflow; 0 enum mentah tersisa di semua route customer/publik. Polling teruji 13 detik: 553 Menunggu (aktif), 555 Dilayani (aktif, peta LABEL bekerja), 557 Tidak hadir (0 fetch, atribut polling absen).
+
+Uji alur utama (dummy1, 375px): cari "senja" → Barbershop Senja → detail → Reservasi layanan 42 → Cek slot besok (16 tersedia) → Buat reservasi → sukses/565 "Dikonfirmasi" QC-20261120-0001 nomor 01 → Pantau queue/562 "Menunggu" + teks polling → detail (Dikonfirmasi + Menunggu) → dialog batal terbuka → konfirmasi → flash "Reservasi dibatalkan.", baris "Dibatalkan", tombol batal hilang. LOLOS. Artefak: scratch/alur-customer-hasil.json + alur-setelah-batal-375.png.
+
+Bukti S3 (usulan prioritas tertinggi, butuh Java): anonim klik Reservasi di /businesses/20 → /login → login dummy1 → mendarat di /customer, BUKAN kembali ke /reservation/create/42. SavedRequest diabaikan successHandler.
+
+mvn.cmd -B test: 19 tes, 0 gagal, BUILD SUCCESS (queuecare_test).
