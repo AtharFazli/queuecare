@@ -16,15 +16,13 @@
       </nav>
       <div class="dash__isi">
         <h1>Halo, <span th:text="${nama}">Customer</span></h1>
-        <p class="teks-redup">Peran kamu Customer.</p>
-        <div class="statistik-grid">
-          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Reservasi</span></div>
-          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Antrean aktif</span></div>
-          <div class="statistik"><span class="statistik__angka">0</span><span class="statistik__label">Riwayat</span></div>
-        </div>
         <div class="kosong">
-          <h2 class="kosong__judul">Belum ada data</h2>
-          <p class="kosong__teks">Katalog bisnis dan reservasi menyusul di fase berikutnya.</p>
+          <h2 class="kosong__judul">Mulai dari sini</h2>
+          <p class="kosong__teks">Cari bisnis jasa, buat reservasi, lalu pantau giliran kamu dari riwayat.</p>
+          <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a class="tombol" th:href="@{/businesses}">Cari bisnis</a>
+            <a class="tombol tombol--sekunder" th:href="@{/reservations}">Riwayat reservasi</a>
+          </div>
         </div>
       </div>
     </div>
