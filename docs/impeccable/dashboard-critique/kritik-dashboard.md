@@ -74,3 +74,22 @@ Dicatat sebagai usulan (P2/P3, tidak dikerjakan tugas ini):
 - Sistem token konsisten, tanpa dekorasi berlebih; hierarki angka statistik jelas.
 
 Questions skipped: pengguna sudah menetapkan arah dan scope lewat tugas (perbaiki prioritas tinggi, sisanya catat sebagai usulan; hanya template/CSS; tanpa push/merge).
+
+## Hasil perbaikan (19 November 2026)
+
+Semua P0/P1 dikerjakan, satu commit per masalah:
+
+| Commit | Perbaikan |
+|---|---|
+| a048f2a | S1 P0: .dash__isi min-width 0 — isi 584→341px, 8 kartu statistik terjangkau, tabel scroll internal lagi |
+| cb14fff | S5: lencana--completed 4,289→13,303:1; sidebar__ganti 1,373→9,081:1; outline field 1,188→7,856:1; cincin fokus gelap pendamping amber (5,71:1) |
+| e02d3f6 | Touch: link sidebar HP 38,4→46,4px |
+| 8c18571 | S2 minimal: link Dashboard di navbar per role (owner/admin) |
+| b508a03 | S16: konteks bisnis aktif di /owner/services dan /owner/schedules |
+| 9a4cb1d | S4: sel tabel nowrap (kode 3 baris→1 baris, sel 90→49px) + bayangan penanda scroll |
+| dde6d90 | S6: dialog konfirmasi hapus jadwal/kategori/ubah status bisnis (teruji buka/tutup tanpa POST) + role wajib dipilih (default ADMIN dihapus) |
+| a9e281b | S3: label status/role Indonesia di 10 template dashboard; filter nilai enum tetap berfungsi |
+
+Bukti akhir (harness full, 44 entri): 44/44 HTTP 200; 0 teks gagal kontras (sebelum 20 instance); 0 target sentuh <44px di 375px (sebelum 13); 0 overflow dokumen; /admin@375 tabel scrollWidth 753 > clientWidth 291. Artefak: scratch/dash-final/. Detector statis (34 findings) tidak ditindaklanjuti karena terbukti artefak scan (bertentangan dengan computed style rendered).
+
+Catatan proses: patch label pertama memakai s.name() pada model status yang ternyata List<String> → 500 di /admin/reservations; terdeteksi verifikasi HTTP, diperbaiki ke perbandingan string sebelum commit. S16 untuk form layanan/jadwal tidak bisa template-only (model tanpa atribut bisnis) → usulan.
