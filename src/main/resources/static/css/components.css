@@ -83,10 +83,9 @@ dialog.modal:not([open]) { display: none; }
 .navbar__isi { display: flex; align-items: center; justify-content: space-between; gap: var(--jarak-4); height: 100%; }
 .navbar__merek { font: 800 var(--teks-lg) var(--font-judul); color: var(--warna-primer); text-decoration: none; }
 .navbar__menu { display: flex; gap: var(--jarak-4); list-style: none; margin: 0; padding: 0; }
-.navbar__menu a { color: var(--warna-teks); text-decoration: none; font-size: var(--teks-sm); font-weight: 600; padding: var(--jarak-2) 0; border-bottom: 2px solid transparent; }
-.navbar__menu a:hover, .navbar__menu a[aria-current="page"] { border-bottom-color: var(--warna-aksen); }
-/* .navbar__menu a menimpa warna .tombol, jadi tombol di navbar ditegaskan teksnya putih */
-.navbar__menu a.tombol { color: var(--warna-teks-terbalik); }
+/* Gaya link polos navbar; :not(.tombol) agar padding/border/font tombol CTA (Daftar) tidak tertimpa link. */
+.navbar__menu a:not(.tombol) { color: var(--warna-teks); text-decoration: none; font-size: var(--teks-sm); font-weight: 600; padding: var(--jarak-2) 0; border-bottom: 2px solid transparent; }
+.navbar__menu a:not(.tombol):hover, .navbar__menu a:not(.tombol)[aria-current="page"] { border-bottom-color: var(--warna-aksen); }
 /* Navbar varian dashboard: selebar layar, logo sejajar tepi sidebar, akun sejajar vertikal. */
 .navbar__isi--dash { max-width: none; margin: 0; padding: 0 var(--jarak-4); width: 100%; }
 .navbar--dash .navbar__menu { align-items: center; }
