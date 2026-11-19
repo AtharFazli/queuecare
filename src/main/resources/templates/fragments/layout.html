@@ -16,13 +16,13 @@
       <button class="navbar__tombol-menu tombol tombol--kecil tombol--sekunder" type="button" aria-expanded="false" aria-controls="menu-utama">Menu</button>
       <div class="navbar__menu" id="menu-utama">
         <a th:href="@{/}" th:attr="aria-current=${active == 'beranda' ? 'page' : null}">Beranda</a>
-        <a sec:authorize="hasRole('OWNER')" th:if="${!dashMode}" th:href="@{/owner}">Dashboard</a>
-        <a sec:authorize="hasRole('ADMIN')" th:if="${!dashMode}" th:href="@{/admin}">Dashboard</a>
-        <a sec:authorize="hasRole('CUSTOMER')" th:if="${!dashMode}" th:href="@{/customer}">Dashboard</a>
+        <a sec:authorize="hasRole('OWNER')" th:unless="${dashMode}" th:href="@{/owner}">Dashboard</a>
+        <a sec:authorize="hasRole('ADMIN')" th:unless="${dashMode}" th:href="@{/admin}">Dashboard</a>
+        <a sec:authorize="hasRole('CUSTOMER')" th:unless="${dashMode}" th:href="@{/customer}">Dashboard</a>
         <a sec:authorize="hasRole('CUSTOMER')" th:href="@{/reservations}">Riwayat</a>
-        <a th:href="@{/businesses}">Katalog</a>
+        <a th:href="@{/businesses}" th:attr="aria-current=${active == 'katalog' ? 'page' : null}">Katalog</a>
         <th:block sec:authorize="!isAuthenticated()">
-          <a th:href="@{/login}">Masuk</a>
+          <a th:href="@{/login}" th:attr="aria-current=${active == 'masuk' ? 'page' : null}">Masuk</a>
           <a class="tombol tombol--kecil" th:href="@{/register}">Daftar</a>
         </th:block>
         <th:block sec:authorize="isAuthenticated()">
