@@ -18,6 +18,9 @@
         <a th:href="@{/}" th:attr="aria-current=${active == 'beranda' ? 'page' : null}">Beranda</a>
         <a sec:authorize="hasRole('OWNER')" th:href="@{/owner}">Dashboard</a>
         <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">Dashboard</a>
+        <a sec:authorize="hasRole('CUSTOMER')" th:href="@{/customer}">Dashboard</a>
+        <a sec:authorize="hasRole('CUSTOMER')" th:href="@{/reservations}">Riwayat</a>
+        <a th:href="@{/businesses}">Katalog</a>
         <th:block sec:authorize="!isAuthenticated()">
           <a th:href="@{/login}">Masuk</a>
           <a class="tombol tombol--kecil" th:href="@{/register}">Daftar</a>

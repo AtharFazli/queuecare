@@ -6,9 +6,12 @@
 
   <main class="wadah my-5">
     <div class="dash">
-      <nav class="sidebar" aria-label="Menu">
-        <p class="sidebar__judul">Akun kamu</p>
+      <nav class="sidebar" aria-label="Menu kamu">
+        <p class="sidebar__judul">Menu kamu</p>
         <ul class="sidebar__menu">
+          <li><a th:href="@{/customer}">Dashboard</a></li>
+          <li><a th:href="@{/businesses}">Katalog</a></li>
+          <li><a th:href="@{/reservations}">Riwayat</a></li>
           <li><a th:href="@{/profile}" aria-current="page">Profil</a></li>
         </ul>
       </nav>
