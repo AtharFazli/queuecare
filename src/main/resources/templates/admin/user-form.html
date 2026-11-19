@@ -27,7 +27,7 @@
             <label class="field__label" for="role">Role</label>
             <select class="field__input" id="role" name="role" required>
               <option value="">Pilih role</option>
-              <option th:each="r : ${daftarRole}" th:value="${r}" th:text="${r}" th:selected="${r.name() == form.role}">OWNER</option>
+              <option th:each="r : ${daftarRole}" th:value="${r}" th:text="${r.name() == 'ADMIN' ? 'Administrator' : r.name() == 'OWNER' ? 'Owner' : 'Pelanggan'}" th:selected="${r.name() == form.role}">Owner</option>
             </select>
             <p class="field__bantuan" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></p>
           </div>

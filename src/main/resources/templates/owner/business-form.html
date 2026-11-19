@@ -17,7 +17,7 @@
           <div class="kartu__badan">
             <h1 class="kartu__judul" th:text="${bisnis == null} ? 'Buat bisnis' : 'Ubah bisnis'">Buat bisnis</h1>
             <p th:if="${bisnis != null}" class="kartu__meta">
-              Status: <span th:text="${bisnis.status}">PENDING</span> (diubah oleh Admin)
+              Status: <span th:text="${bisnis.status.name() == 'ACTIVE' ? 'Aktif' : bisnis.status.name() == 'INACTIVE' ? 'Nonaktif' : 'Menunggu verifikasi'}">Menunggu verifikasi</span> (diubah oleh Admin)
             </p>
             <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
 

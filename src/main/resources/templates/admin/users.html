@@ -18,7 +18,7 @@
         <label class="field__label" for="role">Role</label>
         <select class="field__input" id="role" name="role">
           <option value="">Semua role</option>
-          <option th:each="r : ${daftarRole}" th:value="${r}" th:text="${r}" th:selected="${r.name() == role}">ADMIN</option>
+          <option th:each="r : ${daftarRole}" th:value="${r}" th:text="${r.name() == 'ADMIN' ? 'Administrator' : r.name() == 'OWNER' ? 'Owner' : 'Pelanggan'}" th:selected="${r.name() == role}">Administrator</option>
         </select>
       </div>
       <button class="tombol" type="submit">Terapkan</button>
@@ -39,7 +39,7 @@
           <tr th:each="u : ${baris}">
             <td th:text="${u.name}">Owner Demo</td>
             <td th:text="${u.email}">owner@queuecare.id</td>
-            <td th:text="${u.role}">OWNER</td>
+            <td th:text="${u.role.name() == 'ADMIN' ? 'Administrator' : u.role.name() == 'OWNER' ? 'Owner' : 'Pelanggan'}">Owner</td>
             <td>
               <span class="lencana" th:classappend="${u.active} ? 'lencana--completed' : 'lencana--cancelled'"
                     th:text="${u.active} ? 'Aktif' : 'Nonaktif'">Aktif</span>

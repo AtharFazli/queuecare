@@ -26,7 +26,7 @@
             <td th:text="${b.name}">Barbershop Senja</td>
             <td th:text="${b.category.name}">Barbershop</td>
             <td>
-              <span class="lencana" th:classappend="${b.status.name() == 'ACTIVE'} ? 'lencana--completed' : (${b.status.name() == 'INACTIVE'} ? 'lencana--cancelled' : 'lencana--waiting')" th:text="${b.status}">ACTIVE</span>
+              <span class="lencana" th:classappend="${b.status.name() == 'ACTIVE'} ? 'lencana--completed' : (${b.status.name() == 'INACTIVE'} ? 'lencana--cancelled' : 'lencana--waiting')" th:text="${b.status.name() == 'ACTIVE' ? 'Aktif' : b.status.name() == 'INACTIVE' ? 'Nonaktif' : 'Menunggu verifikasi'}">Aktif</span>
             </td>
             <td>
               <form th:action="@{/owner/businesses/{id}/pilih(id=${b.id})}" method="post">

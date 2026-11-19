@@ -25,7 +25,7 @@
             <td th:text="${b.owner.name}">Owner Demo</td>
             <td th:text="${b.category.name}">Barbershop</td>
             <td>
-              <span class="lencana" th:classappend="${b.status.name() == 'ACTIVE'} ? 'lencana--completed' : (${b.status.name() == 'INACTIVE'} ? 'lencana--cancelled' : 'lencana--waiting')" th:text="${b.status}">PENDING</span>
+              <span class="lencana" th:classappend="${b.status.name() == 'ACTIVE'} ? 'lencana--completed' : (${b.status.name() == 'INACTIVE'} ? 'lencana--cancelled' : 'lencana--waiting')" th:text="${b.status.name() == 'ACTIVE' ? 'Aktif' : b.status.name() == 'INACTIVE' ? 'Nonaktif' : 'Menunggu verifikasi'}">Menunggu verifikasi</span>
             </td>
             <td>
               <button class="tombol tombol--kecil" type="button"
@@ -43,7 +43,7 @@
           <div class="field">
             <label class="field__label" th:for="|pilih-status-${b.id}|">Status baru</label>
             <select class="field__input" th:id="|pilih-status-${b.id}|" name="status">
-              <option th:each="s : ${T(com.queuecare.enums.BusinessStatus).values()}" th:value="${s}" th:text="${s}" th:selected="${s == b.status}">ACTIVE</option>
+              <option th:each="s : ${T(com.queuecare.enums.BusinessStatus).values()}" th:value="${s}" th:text="${s.name() == 'ACTIVE' ? 'Aktif' : s.name() == 'INACTIVE' ? 'Nonaktif' : 'Menunggu verifikasi'}" th:selected="${s == b.status}">Aktif</option>
             </select>
           </div>
         </div>

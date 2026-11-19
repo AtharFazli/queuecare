@@ -27,7 +27,7 @@
         <label class="field__label" for="status">Status</label>
         <select class="field__input" id="status" name="status">
           <option value="">Semua status</option>
-          <option th:each="s : ${status}" th:value="${s}" th:text="${s}" th:selected="${s == statusParam}">CONFIRMED</option>
+          <option th:each="s : ${status}" th:value="${s}" th:text="${s == 'PENDING' ? 'Menunggu' : s == 'CONFIRMED' ? 'Dikonfirmasi' : s == 'CANCELLED' ? 'Dibatalkan' : 'Selesai'}" th:selected="${s == statusParam}">Dikonfirmasi</option>
         </select>
       </div>
       <button class="tombol" type="submit">Terapkan</button>
@@ -41,7 +41,7 @@
     <div class="tabel-bungkus mt-4" th:unless="${baris.totalElements == 0}">
       <table class="tabel">
         <thead>
-          <tr><th>Kode</th><th>Customer</th><th>Bisnis</th><th>Layanan</th><th>Tanggal</th><th>Jam</th><th>Reservasi</th><th>Antrean</th></tr>
+          <tr><th>Kode</th><th>Pelanggan</th><th>Bisnis</th><th>Layanan</th><th>Tanggal</th><th>Jam</th><th>Status reservasi</th><th>Status antrean</th></tr>
         </thead>
         <tbody>
           <tr th:each="b : ${baris}">
@@ -51,8 +51,8 @@
             <td th:text="${b.layanan}">Cukur rambut</td>
             <td th:text="${#temporals.format(b.tanggal, 'dd/MM/yyyy')}">16/11/2026</td>
             <td th:text="${b.jam}">10:00</td>
-            <td><span class="lencana" th:classappend="${'lencana--' + #strings.toLowerCase(#strings.replace(b.statusReservasi, '_', '-'))}" th:text="${b.statusReservasi}">CONFIRMED</span></td>
-            <td><span class="lencana" th:classappend="${'lencana--' + #strings.toLowerCase(#strings.replace(b.statusAntrean, '_', '-'))}" th:text="${b.statusAntrean == 'WAITING' ? 'Menunggu' : b.statusAntrean}">Menunggu</span></td>
+            <td><span class="lencana" th:classappend="${'lencana--' + #strings.toLowerCase(#strings.replace(b.statusReservasi, '_', '-'))}" th:text="${b.statusReservasi == 'PENDING' ? 'Menunggu' : b.statusReservasi == 'CONFIRMED' ? 'Dikonfirmasi' : b.statusReservasi == 'CANCELLED' ? 'Dibatalkan' : 'Selesai'}">Dikonfirmasi</span></td>
+            <td><span class="lencana" th:classappend="${'lencana--' + #strings.toLowerCase(#strings.replace(b.statusAntrean, '_', '-'))}" th:text="${b.statusAntrean == 'WAITING' ? 'Menunggu' : b.statusAntrean == 'CALLED' ? 'Dipanggil' : b.statusAntrean == 'IN_SERVICE' ? 'Dilayani' : b.statusAntrean == 'COMPLETED' ? 'Selesai' : b.statusAntrean == 'NO_SHOW' ? 'Tidak hadir' : 'Dibatalkan'}">Menunggu</span></td>
           </tr>
         </tbody>
       </table>

@@ -20,7 +20,7 @@
         <h2 class="kartu__judul" th:text="${bisnis.name}">Nama bisnis</h2>
         <p class="kartu__meta">Kategori: <span th:text="${bisnis.category.name}">Barbershop</span></p>
         <p>Status:
-          <span class="lencana" th:classappend="${bisnis.status.name() == 'ACTIVE'} ? 'lencana--completed' : (${bisnis.status.name() == 'INACTIVE'} ? 'lencana--cancelled' : 'lencana--waiting')" th:text="${bisnis.status}">PENDING</span>
+          <span class="lencana" th:classappend="${bisnis.status.name() == 'ACTIVE'} ? 'lencana--completed' : (${bisnis.status.name() == 'INACTIVE'} ? 'lencana--cancelled' : 'lencana--waiting')" th:text="${bisnis.status.name() == 'ACTIVE' ? 'Aktif' : bisnis.status.name() == 'INACTIVE' ? 'Nonaktif' : 'Menunggu verifikasi'}">Menunggu verifikasi</span>
         </p>
         <p class="teks-redup" th:text="${bisnis.description}">Deskripsi bisnis</p>
         <a class="tombol" th:href="@{/owner/business/{id}(id=${bisnis.id})}">Ubah bisnis</a>

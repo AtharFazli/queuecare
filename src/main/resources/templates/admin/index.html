@@ -22,11 +22,11 @@
         <p class="teks-redup">Peran kamu Admin.</p>
         <div class="statistik-grid">
           <div class="statistik"><span class="statistik__angka" th:text="${stats.totalPengguna}">0</span><span class="statistik__label">Pengguna</span></div>
-          <div class="statistik"><span class="statistik__angka" th:text="${stats.customer}">0</span><span class="statistik__label">Customer</span></div>
+          <div class="statistik"><span class="statistik__angka" th:text="${stats.customer}">0</span><span class="statistik__label">Pelanggan</span></div>
           <div class="statistik"><span class="statistik__angka" th:text="${stats.owner}">0</span><span class="statistik__label">Owner</span></div>
           <div class="statistik"><span class="statistik__angka" th:text="${stats.totalBisnis}">0</span><span class="statistik__label">Bisnis</span></div>
           <div class="statistik"><span class="statistik__angka" th:text="${stats.bisnisActive}">0</span><span class="statistik__label">Bisnis aktif</span></div>
-          <div class="statistik"><span class="statistik__angka" th:text="${stats.bisnisPending}">0</span><span class="statistik__label">Bisnis pending</span></div>
+          <div class="statistik"><span class="statistik__angka" th:text="${stats.bisnisPending}">0</span><span class="statistik__label">Bisnis menunggu verifikasi</span></div>
           <div class="statistik"><span class="statistik__angka" th:text="${stats.bisnisInactive}">0</span><span class="statistik__label">Bisnis nonaktif</span></div>
           <div class="statistik"><span class="statistik__angka" th:text="${stats.totalReservasi}">0</span><span class="statistik__label">Reservasi</span></div>
         </div>
@@ -38,14 +38,14 @@
         </div>
         <div class="tabel-bungkus mt-3" th:unless="${#lists.isEmpty(stats.aktivitasTerbaru)}">
           <table class="tabel">
-            <thead><tr><th>Kode</th><th>Customer</th><th>Bisnis</th><th>Tanggal</th><th>Reservasi</th></tr></thead>
+            <thead><tr><th>Kode</th><th>Pelanggan</th><th>Bisnis</th><th>Tanggal</th><th>Status reservasi</th></tr></thead>
             <tbody>
               <tr th:each="r : ${stats.aktivitasTerbaru}">
                 <td th:text="${r.reservationCode}">QC-20261116-0001</td>
                 <td th:text="${r.customer.name}">Dummy Satu</td>
                 <td th:text="${r.business.name}">Barbershop Senja</td>
                 <td th:text="${#temporals.format(r.reservationDate, 'dd/MM/yyyy')}">16/11/2026</td>
-                <td><span class="lencana" th:classappend="${r.status.kelas}" th:text="${r.status}">CONFIRMED</span></td>
+                <td><span class="lencana" th:classappend="${r.status.kelas}" th:text="${r.status.name() == 'PENDING' ? 'Menunggu' : r.status.name() == 'CONFIRMED' ? 'Dikonfirmasi' : r.status.name() == 'CANCELLED' ? 'Dibatalkan' : 'Selesai'}">Dikonfirmasi</span></td>
               </tr>
             </tbody>
           </table>
