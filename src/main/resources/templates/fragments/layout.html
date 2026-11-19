@@ -16,6 +16,8 @@
       <button class="navbar__tombol-menu tombol tombol--kecil tombol--sekunder" type="button" aria-expanded="false" aria-controls="menu-utama">Menu</button>
       <div class="navbar__menu" id="menu-utama">
         <a th:href="@{/}" th:attr="aria-current=${active == 'beranda' ? 'page' : null}">Beranda</a>
+        <a sec:authorize="hasRole('OWNER')" th:href="@{/owner}">Dashboard</a>
+        <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">Dashboard</a>
         <th:block sec:authorize="!isAuthenticated()">
           <a th:href="@{/login}">Masuk</a>
           <a class="tombol tombol--kecil" th:href="@{/register}">Daftar</a>
