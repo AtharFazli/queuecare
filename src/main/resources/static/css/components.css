@@ -82,7 +82,7 @@ dialog.modal:not([open]) { display: none; }
 .navbar { display: block; position: sticky; top: 0; z-index: 10; height: var(--tinggi-navbar); background: var(--warna-permukaan); border-bottom: 1px solid var(--warna-batas); }
 .navbar__isi { display: flex; align-items: center; justify-content: space-between; gap: var(--jarak-4); height: 100%; }
 .navbar__merek { font: 800 var(--teks-lg) var(--font-judul); color: var(--warna-primer); text-decoration: none; }
-.navbar__menu { display: flex; gap: var(--jarak-4); list-style: none; margin: 0; padding: 0; }
+.navbar__menu { display: flex; align-items: center; gap: var(--jarak-4); list-style: none; margin: 0; padding: 0; }
 /* Gaya link polos navbar; :not(.tombol) agar padding/border/font tombol CTA (Daftar) tidak tertimpa link. */
 .navbar__menu a:not(.tombol) { color: var(--warna-teks); text-decoration: none; font-size: var(--teks-sm); font-weight: 600; padding: var(--jarak-2) 0; border-bottom: 2px solid transparent; }
 .navbar__menu a:not(.tombol):hover, .navbar__menu a:not(.tombol)[aria-current="page"] { border-bottom-color: var(--warna-aksen); }
@@ -228,7 +228,7 @@ dialog.modal:not([open]) { display: none; }
   .navbar__tombol-menu { display: inline-flex; margin-left: auto; }
   .navbar__email { display: none; }
   .navbar__nama { display: inline; }
-  .navbar__menu { display: none; flex-basis: 100%; flex-direction: column; gap: var(--jarak-1); margin-top: var(--jarak-3); padding-top: var(--jarak-3); border-top: 1px solid var(--warna-batas); }
+  .navbar__menu { display: none; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: var(--jarak-1); margin-top: var(--jarak-3); padding-top: var(--jarak-3); border-top: 1px solid var(--warna-batas); }
   .navbar__menu--terbuka { display: flex; }
   .auth__isi { grid-template-columns: 1fr; }
   .auth__form { order: 1; }
