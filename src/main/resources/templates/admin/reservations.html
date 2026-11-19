@@ -5,6 +5,9 @@
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
   <main class="wadah my-5">
+    <div class="dash">
+      <nav th:replace="~{fragments/layout :: sidebar('admin','reservasi')}"></nav>
+      <div class="dash__isi">
     <h1>Reservasi</h1>
 
     <form th:action="@{/admin/reservations}" method="get" class="mt-3">
@@ -67,6 +70,8 @@
          th:href="@{/admin/reservations(hal=${baris.number}, dari=${dari}, sampai=${sampai}, bisnis=${bisnisId}, status=${statusParam})}">Sebelumnya</a>
       <a class="tombol tombol--kecil" th:if="${!baris.last}"
          th:href="@{/admin/reservations(hal=${baris.number + 2}, dari=${dari}, sampai=${sampai}, bisnis=${bisnisId}, status=${statusParam})}">Berikutnya</a>
+    </div>
+      </div>
     </div>
   </main>
 

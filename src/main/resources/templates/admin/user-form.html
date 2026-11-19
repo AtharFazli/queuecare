@@ -5,6 +5,9 @@
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
   <main class="wadah my-5">
+    <div class="dash">
+      <nav th:replace="~{fragments/layout :: sidebar('admin','pengguna')}"></nav>
+      <div class="dash__isi">
     <div class="kartu" style="max-width: 560px;">
       <div class="kartu__badan">
         <h1 class="kartu__judul" th:text="${judul}">Tambah pengguna</h1>
@@ -43,6 +46,8 @@
             <a class="tombol tombol--sekunder" th:href="@{/admin/users}">Kembali</a>
           </div>
         </form>
+      </div>
+    </div>
       </div>
     </div>
   </main>

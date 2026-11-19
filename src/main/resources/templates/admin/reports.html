@@ -5,6 +5,9 @@
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
   <main class="wadah my-5">
+    <div class="dash">
+      <nav th:replace="~{fragments/layout :: sidebar('admin','laporan')}"></nav>
+      <div class="dash__isi">
     <h1>Laporan Admin</h1>
     <p class="teks-redup">
       Rentang <span th:text="${laporan.dari}">2026-10-17</span> sampai <span th:text="${laporan.sampai}">2026-11-16</span>
@@ -61,6 +64,8 @@
           </tr>
         </tbody>
       </table>
+    </div>
+      </div>
     </div>
   </main>
 
