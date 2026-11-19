@@ -4,12 +4,11 @@
 <body>
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
-  <main class="wadah my-5">
+  <main class="dash-luar">
     <div class="dash">
       <nav th:replace="~{fragments/layout :: sidebar('admin','dashboard')}"></nav>
       <div class="dash__isi">
         <h1>Halo, <span th:text="${nama}">Admin</span></h1>
-        <p class="teks-redup">Peran kamu Admin.</p>
         <div class="statistik-grid">
           <div class="statistik"><span class="statistik__angka" th:text="${stats.totalPengguna}">0</span><span class="statistik__label">Pengguna</span></div>
           <div class="statistik"><span class="statistik__angka" th:text="${stats.customer}">0</span><span class="statistik__label">Pelanggan</span></div>

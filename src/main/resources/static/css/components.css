@@ -92,33 +92,42 @@ dialog.modal:not([open]) { display: none; }
 .footer .teks-redup { color: var(--warna-primer-lembut); }
 .footer a { color: var(--warna-teks-terbalik); }
 
-/* ===== Dashboard: sidebar + statistik ===== */
-.dash { display: grid; grid-template-columns: var(--lebar-sidebar) 1fr; min-height: 360px; border: 1px solid var(--warna-batas); border-radius: var(--radius-lg); overflow: hidden; background: var(--warna-latar); }
-.sidebar { background: var(--warna-primer-gelap); padding: var(--jarak-4); }
-.sidebar__judul { margin: 0 0 var(--jarak-3); color: var(--warna-primer-lembut); font-size: var(--teks-xs); }
-.sidebar__menu { list-style: none; margin: 0; padding: 0; }
-.sidebar__menu a { display: block; padding: var(--jarak-2) var(--jarak-3); border-radius: var(--radius-md); color: var(--warna-primer-lembut); text-decoration: none; font-size: var(--teks-sm); }
-.sidebar__menu a:hover { background: rgba(255, 255, 255, .1); }
-.sidebar__menu a[aria-current="page"] { background: var(--warna-aksen); color: var(--warna-teks); font-weight: 700; }
-.sidebar__bisnis { display: block; margin: 0 0 var(--jarak-2); padding: var(--jarak-2) var(--jarak-3); border-radius: var(--radius-md); background: var(--warna-aksen); color: var(--warna-teks); font-weight: 700; text-decoration: none; font-size: var(--teks-sm); }
-.sidebar__ganti { display: block; font-size: var(--teks-xs); color: var(--warna-primer-lembut); text-decoration: underline; }
+/* ===== Dashboard: layout full-width + sidebar terang berikon ===== */
+.dash-luar { width: 100%; margin: 0; padding: 0; }
+.dash-luar h1 { font-size: var(--teks-xl); }
+.dash { display: grid; grid-template-columns: var(--lebar-sidebar) 1fr; min-height: calc(100vh - var(--tinggi-navbar)); background: var(--warna-latar); }
+.sidebar { position: sticky; top: var(--tinggi-navbar); align-self: start; height: calc(100vh - var(--tinggi-navbar)); overflow-y: auto; background: var(--warna-permukaan); border-right: 1px solid var(--warna-batas); padding: var(--jarak-4); }
+.sidebar__judul { margin: 0 0 var(--jarak-3); color: var(--warna-teks-redup); font-size: var(--teks-xs); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.sidebar__menu { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--jarak-1); }
+.sidebar__menu a { display: flex; align-items: center; gap: var(--jarak-3); padding: var(--jarak-2) var(--jarak-3); border-radius: var(--radius-md); color: var(--warna-teks); text-decoration: none; font-size: var(--teks-sm); }
+.sidebar__menu a:hover { background: var(--warna-latar); }
+/* Item aktif: latar tint primer-lembut, tanpa strip tepi (side-tab). */
+.sidebar__menu a[aria-current="page"] { background: var(--warna-primer-lembut); color: var(--warna-primer-gelap); font-weight: 700; }
+.sidebar__ikon { flex: 0 0 auto; width: 20px; height: 20px; }
+.sidebar__label { min-width: 0; }
+.sidebar__bisnis { display: block; margin: 0 0 var(--jarak-2); padding: var(--jarak-2) var(--jarak-3); border-radius: var(--radius-md); background: var(--warna-primer-lembut); color: var(--warna-primer-gelap); font-weight: 600; text-decoration: none; font-size: var(--teks-sm); }
+.sidebar__ganti { display: block; font-size: var(--teks-xs); color: var(--warna-primer); text-decoration: underline; }
 .sidebar__kepala { display: flex; align-items: center; justify-content: space-between; gap: var(--jarak-2); margin-bottom: var(--jarak-3); }
 .sidebar__kepala .sidebar__judul { margin: 0; }
-/* Tombol lipat di sidebar gelap: teks terang agar kontras 9,08:1, bukan tombol--sekunder biasa. */
-.sidebar__lipat { background: transparent; border-color: var(--warna-primer-lembut); color: var(--warna-primer-lembut); white-space: nowrap; }
-.sidebar__lipat:hover { background: rgba(255, 255, 255, .1); border-color: var(--warna-primer-lembut); color: var(--warna-primer-lembut); }
-/* Dilipat di desktop: rel sempit berlabel teks penuh satu kata (tanpa sistem ikon baru). */
-.dash--lipat { grid-template-columns: 96px 1fr; }
+/* Tombol lipat: ikon chevron kecil, bukan pill teks. */
+.sidebar__lipat { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; background: transparent; border: 1px solid var(--warna-batas); border-radius: var(--radius-md); color: var(--warna-teks-redup); cursor: pointer; }
+.sidebar__lipat:hover { background: var(--warna-primer-lembut); border-color: var(--warna-primer-lembut); color: var(--warna-primer-gelap); }
+.sidebar__lipat svg { width: 18px; height: 18px; transition: transform .15s ease; }
+.dash--lipat .sidebar__lipat svg { transform: rotate(180deg); }
+/* Dilipat di desktop: rel ikon sempit; label disembunyikan visual tapi tetap untuk pembaca layar + tooltip title. */
+.dash--lipat { grid-template-columns: 64px 1fr; }
 .dash--lipat .sidebar { padding: var(--jarak-2); }
 .dash--lipat .sidebar__kepala { justify-content: center; margin-bottom: var(--jarak-2); }
 .dash--lipat .sidebar__judul, .dash--lipat .sidebar__bisnis, .dash--lipat .sidebar__ganti { display: none; }
-.dash--lipat .sidebar__lipat { width: 100%; font-size: var(--teks-xs); padding: var(--jarak-1); min-height: 32px; }
-.dash--lipat .sidebar__menu a { font-size: var(--teks-xs); padding: var(--jarak-2) var(--jarak-1); text-align: center; }
+.dash--lipat .sidebar__menu a { justify-content: center; padding: var(--jarak-2); }
+.dash--lipat .sidebar__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .dash__isi { padding: var(--jarak-6); min-width: 0; }
-.statistik-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--jarak-4); }
-.statistik { padding: var(--jarak-4); background: var(--warna-permukaan); border: 1px solid var(--warna-batas); border-radius: var(--radius-md); }
+.kartu--form { max-width: 720px; }
+.statistik-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 1fr; gap: var(--jarak-4); }
+.statistik { display: flex; flex-direction: column; justify-content: center; gap: var(--jarak-1); padding: var(--jarak-4); background: var(--warna-permukaan); border: 1px solid var(--warna-batas); border-radius: var(--radius-md); }
 .statistik__angka { display: block; font: 800 var(--teks-xl) var(--font-judul); font-variant-numeric: tabular-nums; }
 .statistik__label { font-size: var(--teks-sm); color: var(--warna-teks-redup); }
+@media (min-width: 1024px) { .statistik-grid { grid-template-columns: repeat(4, 1fr); } }
 
 /* ===== Tiket antrean (ciri khas QueueCare) ===== */
 .tiket { display: grid; grid-template-columns: 1fr auto; max-width: 440px; background: var(--warna-permukaan); border: 2px solid var(--warna-primer); border-radius: var(--radius-lg); position: relative; }
@@ -140,13 +149,15 @@ dialog.modal:not([open]) { display: none; }
 
 /* ===== Responsif ===== */
 @media (max-width: 720px) {
-  .dash { grid-template-columns: 1fr; }
+  .dash { grid-template-columns: 1fr; min-height: 0; }
+  .sidebar { position: static; height: auto; overflow-y: visible; border-right: 0; border-bottom: 1px solid var(--warna-batas); }
+  .dash__isi { padding: var(--jarak-4); }
   /* Dilipat di HP: menu disembunyikan, kepala sidebar jadi bar tipis; konten tidak tertutup. */
   .dash--lipat .sidebar__menu, .dash--lipat .sidebar__bisnis, .dash--lipat .sidebar__ganti { display: none; }
   .dash--lipat .sidebar { padding: var(--jarak-2) var(--jarak-4); }
   .dash--lipat .sidebar__kepala { justify-content: space-between; margin-bottom: 0; }
   .dash--lipat .sidebar__judul { display: block; }
-  .dash--lipat .sidebar__lipat { width: auto; min-height: 44px; padding: var(--jarak-2) var(--jarak-3); }
+  .sidebar__lipat { width: 44px; height: 44px; }
   .navbar__menu { display: none; }
   h1 { font-size: var(--teks-xl); }
 }

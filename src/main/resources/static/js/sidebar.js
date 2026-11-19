@@ -16,7 +16,8 @@
   function terapkan(lipat) {
     dash.classList.toggle('dash--lipat', lipat);
     tombol.setAttribute('aria-expanded', lipat ? 'false' : 'true');
-    tombol.textContent = lipat ? 'Buka menu' : 'Lipat menu';
+    tombol.setAttribute('aria-label', lipat ? 'Buka menu' : 'Lipat menu');
+    tombol.setAttribute('title', lipat ? 'Buka menu' : 'Lipat menu');
   }
   var tersimpan = baca();
   var awal = tersimpan !== null ? tersimpan === '1' : window.matchMedia('(max-width: 720px)').matches;

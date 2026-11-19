@@ -4,11 +4,11 @@
 <body>
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
-  <main class="wadah my-5">
+  <main class="dash-luar">
     <div class="dash">
       <nav th:replace="~{fragments/layout :: sidebar('owner','layanan')}"></nav>
       <div class="dash__isi">
-    <div class="kartu">
+    <div class="kartu kartu--form">
       <div class="kartu__badan">
         <h1 class="kartu__judul" th:text="${layanan == null} ? 'Tambah layanan' : 'Ubah layanan'">Tambah layanan</h1>
         <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>

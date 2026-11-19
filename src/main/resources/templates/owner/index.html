@@ -4,12 +4,11 @@
 <body>
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
-  <main class="wadah my-5">
+  <main class="dash-luar">
     <div class="dash">
       <nav th:replace="~{fragments/layout :: sidebar('owner','dashboard')}"></nav>
       <div class="dash__isi">
         <h1>Halo, <span th:text="${nama}">Owner</span></h1>
-        <p class="teks-redup">Peran kamu Owner.</p>
         <div th:if="${stats == null}" class="kosong">
           <h2 class="kosong__judul">Belum ada bisnis aktif</h2>
           <p class="kosong__teks">Pilih atau buat bisnis dulu, statistik diisi otomatis dari data bisnis itu.</p>
