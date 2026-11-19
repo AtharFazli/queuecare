@@ -160,6 +160,7 @@ dialog.modal:not([open]) { display: none; }
   .tombol, .tombol--kecil { min-height: 44px; }
   .field__input { min-height: 44px; }
   .navbar__menu a:not(.tombol) { padding: var(--jarak-3) 0; }
+  .sidebar__menu a { padding: var(--jarak-3); }
 }
 
 /* ===== Autentikasi: dua kolom ===== */
