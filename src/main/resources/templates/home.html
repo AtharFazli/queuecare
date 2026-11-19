@@ -10,10 +10,14 @@
         <div class="hero__teks">
           <h1 class="hero__judul">Tahu giliranmu tanpa bertanya.</h1>
           <p class="hero__subteks">QueueCare memberi kode reservasi dan nomor antrean untuk barbershop, salon, servis, dan klinik. Cek estimasi tunggu sebelum kamu datang.</p>
-          <div class="hero__tindakan">
-            <a class="tombol" th:href="@{/businesses}">Cari bisnis</a>
-            <a class="tombol tombol--sekunder" th:href="@{/register}">Daftar</a>
-          </div>
+          <form th:action="@{/businesses}" method="get" class="pencarian hero__tindakan">
+            <div class="field">
+              <label class="field__label" for="q">Nama bisnis</label>
+              <input class="field__input" id="q" name="q" type="text" placeholder="misal barbershop">
+            </div>
+            <button class="tombol" type="submit">Cari bisnis</button>
+          </form>
+          <p class="hero__catatan">Lihat bisnis dan layanan tanpa masuk. Masuk saat membuat reservasi. <a th:href="@{/register}">Daftar</a> kalau belum punya akun.</p>
         </div>
         <div class="hero__visual">
           <p class="contoh">Contoh</p>

@@ -131,6 +131,7 @@ dialog.modal:not([open]) { display: none; }
 .hero__judul { font-size: var(--teks-2xl); margin: 0 0 var(--jarak-4); }
 .hero__subteks { margin: 0; max-width: 56ch; color: var(--warna-teks-redup); }
 .hero__tindakan { display: flex; flex-wrap: wrap; gap: var(--jarak-3); margin-top: var(--jarak-6); }
+.hero__catatan { margin: var(--jarak-3) 0 0; font-size: var(--teks-sm); color: var(--warna-teks-redup); }
 .hero__visual { display: grid; gap: var(--jarak-4); justify-items: center; }
 .contoh { margin: 0; font-size: var(--teks-xs); color: var(--warna-teks-redup); }
 
