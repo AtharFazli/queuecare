@@ -16,6 +16,7 @@
     </div>
 
     <div th:if="${bisnis != null}">
+      <p class="teks-redup">Bisnis: <span th:text="${bisnis.name}">Nama bisnis</span> · <a th:href="@{/owner/businesses}">Ganti bisnis</a></p>
       <p><a class="tombol" th:href="@{/owner/schedules/baru}">Tambah jadwal</a></p>
 
       <div th:if="${#lists.isEmpty(jadwal)}" class="kosong">
