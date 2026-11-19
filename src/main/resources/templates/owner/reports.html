@@ -5,6 +5,9 @@
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
   <main class="wadah my-5">
+    <div class="dash">
+      <nav th:replace="~{fragments/layout :: sidebar('owner','laporan')}"></nav>
+      <div class="dash__isi">
     <h1>Laporan</h1>
     <p class="teks-redup">
       Bisnis: <span th:text="${bisnis.name}">Barbershop Senja</span>
@@ -54,6 +57,8 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
       </div>
     </div>
   </main>

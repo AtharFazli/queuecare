@@ -5,6 +5,9 @@
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
   <main class="wadah my-5">
+    <div class="dash">
+      <nav th:replace="~{fragments/layout :: sidebar('owner','kapasitas')}"></nav>
+      <div class="dash__isi">
     <h1>Kapasitas dan petugas aktif</h1>
     <p th:if="${sukses}" class="lencana lencana--completed" role="alert" th:text="${sukses}"></p>
     <p th:if="${error}" class="lencana lencana--no-show" role="alert" th:text="${error}"></p>
@@ -31,6 +34,8 @@
           </div>
           <button class="tombol" type="submit">Simpan</button>
         </form>
+      </div>
+    </div>
       </div>
     </div>
   </main>

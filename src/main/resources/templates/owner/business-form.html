@@ -4,15 +4,10 @@
 <body>
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
-  <main class="auth">
-    <div class="wadah auth__isi">
-      <div class="auth__panel">
-        <p class="contoh">Contoh</p>
-        <div th:replace="~{fragments/contoh :: tiket}"></div>
-        <h2 class="auth__judul">Tahu giliranmu tanpa bertanya.</h2>
-        <p class="auth__teks">Kode reservasi dan nomor antrean datang bersamaan, jadi kamu tidak perlu menebak giliran.</p>
-      </div>
-      <div class="auth__form">
+  <main class="wadah my-5">
+    <div class="dash">
+      <nav th:replace="~{fragments/layout :: sidebar('owner','bisnis')}"></nav>
+      <div class="dash__isi">
         <div class="kartu">
           <div class="kartu__badan">
             <h1 class="kartu__judul" th:text="${bisnis == null} ? 'Buat bisnis' : 'Ubah bisnis'">Buat bisnis</h1>

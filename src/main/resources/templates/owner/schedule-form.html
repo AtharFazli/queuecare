@@ -5,6 +5,9 @@
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
   <main class="wadah my-5">
+    <div class="dash">
+      <nav th:replace="~{fragments/layout :: sidebar('owner','jadwal')}"></nav>
+      <div class="dash__isi">
     <div class="kartu">
       <div class="kartu__badan">
         <h1 class="kartu__judul" th:text="${jadwal == null} ? 'Tambah jadwal' : 'Ubah jadwal'">Tambah jadwal</h1>
@@ -41,6 +44,8 @@
           <button class="tombol" type="submit">Simpan jadwal</button>
           <p class="field__bantuan mt-3"><a th:href="@{/owner/schedules}">Kembali ke daftar jadwal</a></p>
         </form>
+      </div>
+    </div>
       </div>
     </div>
   </main>

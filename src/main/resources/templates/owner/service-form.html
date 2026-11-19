@@ -5,6 +5,9 @@
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
   <main class="wadah my-5">
+    <div class="dash">
+      <nav th:replace="~{fragments/layout :: sidebar('owner','layanan')}"></nav>
+      <div class="dash__isi">
     <div class="kartu">
       <div class="kartu__badan">
         <h1 class="kartu__judul" th:text="${layanan == null} ? 'Tambah layanan' : 'Ubah layanan'">Tambah layanan</h1>
@@ -43,6 +46,8 @@
           <button class="tombol" type="submit">Simpan layanan</button>
           <p class="field__bantuan mt-3"><a th:href="@{/owner/services}">Kembali ke daftar layanan</a></p>
         </form>
+      </div>
+    </div>
       </div>
     </div>
   </main>
