@@ -10,15 +10,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&amp;family=Public+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
 </head>
 <body>
-  <nav th:fragment="navbar" class="navbar">
-    <div class="navbar__isi wadah">
+  <nav th:fragment="navbar" class="navbar" th:classappend="${dashMode} ? 'navbar--dash' : ''">
+    <div class="navbar__isi" th:classappend="${dashMode} ? 'navbar__isi--dash' : 'wadah'">
       <a class="navbar__merek" th:href="@{/}">QueueCare</a>
       <button class="navbar__tombol-menu tombol tombol--kecil tombol--sekunder" type="button" aria-expanded="false" aria-controls="menu-utama">Menu</button>
       <div class="navbar__menu" id="menu-utama">
         <a th:href="@{/}" th:attr="aria-current=${active == 'beranda' ? 'page' : null}">Beranda</a>
-        <a sec:authorize="hasRole('OWNER')" th:href="@{/owner}">Dashboard</a>
-        <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}">Dashboard</a>
-        <a sec:authorize="hasRole('CUSTOMER')" th:href="@{/customer}">Dashboard</a>
+        <a sec:authorize="hasRole('OWNER')" th:if="${!dashMode}" th:href="@{/owner}">Dashboard</a>
+        <a sec:authorize="hasRole('ADMIN')" th:if="${!dashMode}" th:href="@{/admin}">Dashboard</a>
+        <a sec:authorize="hasRole('CUSTOMER')" th:if="${!dashMode}" th:href="@{/customer}">Dashboard</a>
         <a sec:authorize="hasRole('CUSTOMER')" th:href="@{/reservations}">Riwayat</a>
         <a th:href="@{/businesses}">Katalog</a>
         <th:block sec:authorize="!isAuthenticated()">

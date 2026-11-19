@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="id" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/layout :: head('Laporan Admin')}"></head>
-<body>
+<body th:with="dashMode=true">
   <nav th:replace="~{fragments/layout :: navbar}"></nav>
 
   <main class="dash-luar">
