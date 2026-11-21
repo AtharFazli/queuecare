@@ -31,6 +31,8 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/", "/login", "/register", "/businesses", "/businesses/**", "/css/**", "/js/**", "/error", "/403").permitAll()
+                // Aset merek (logo, favicon, ikon PWA) harus bisa diambil anonim di semua halaman.
+                .requestMatchers("/images/**", "/favicon.ico", "/favicon.svg", "/favicon-*.png", "/apple-touch-icon.png", "/icon-*.png", "/maskable-*.png", "/site.webmanifest").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/owner/**").hasRole("OWNER")
                 .requestMatchers("/reservation/**", "/reservations/**", "/queue/**").hasRole("CUSTOMER")
