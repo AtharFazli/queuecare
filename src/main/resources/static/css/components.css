@@ -115,7 +115,7 @@ dialog.modal:not([open]) { display: none; }
 .sidebar__kepala { display: flex; align-items: center; justify-content: space-between; gap: var(--jarak-2); margin-bottom: var(--jarak-3); }
 .sidebar__kepala .sidebar__judul { margin: 0; }
 /* Tombol lipat: ikon chevron kecil, bukan pill teks. */
-.sidebar__lipat { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; background: transparent; border: 1px solid var(--warna-batas); border-radius: var(--radius-md); color: var(--warna-teks-redup); cursor: pointer; }
+.sidebar__lipat { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; background: transparent; border: 1px solid var(--warna-batas); border-radius: var(--radius-md); color: var(--warna-teks-redup); cursor: pointer; }
 .sidebar__lipat:hover { background: var(--warna-primer-lembut); border-color: var(--warna-primer-lembut); color: var(--warna-primer-gelap); }
 .sidebar__lipat svg { width: 18px; height: 18px; transition: transform .15s ease; }
 .dash--lipat .sidebar__lipat svg { transform: rotate(180deg); }
