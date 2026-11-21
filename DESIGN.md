@@ -666,3 +666,13 @@ Penambahan ini merekam perombakan tampilan dashboard Owner/Admin (commit 7b6a913
 - Navbar varian dashboard: `dashMode=true` via th:with di body 18 template; fragment navbar menambah kelas navbar--dash + navbar__isi--dash (max-width none, padding 16px, width 100%) sehingga logo sejajar tepi sidebar (16px) dan akun di kanan; link Dashboard dobel disembunyikan (th:if="${!dashMode}") karena sudah ada di sidebar; email + Keluar sejajar vertikal (align-items center, centerY 31=31 terukur). Halaman publik tanpa dashMode tetap wadah terpusat + link Dashboard normal.
 - Bukti: 132/132 pengukuran (22 route × 375/1024/1920 × terbuka/dilipat) LOLOS — full-width, 0 overflow, aria-current benar, sidebar sticky, ikon ada, grid 4/2 kolom, tinggi kartu seragam, form ≤720, kontras minimum 4,506:1, sentuh minimum @375 44px, rel 64px label tersembunyi ikon tampil, aria-expanded benar, tombol lipat 44px di HP. Persistence reload + lintas halaman + keyboard Enter LOLOS. Publik tidak berubah. Alur owner (navigasi sidebar + dialog antrean) dan admin (nonaktif→aktifkan dummy2 via dialog, net zero) LOLOS. mvn test 19/19. Screenshot sebelum (sb-sebelum/) dan sesudah (sb-final/) tersedia di scratch.
 
+### Pembaruan document: identitas logo QueueCare terpasang
+
+Penambahan ini merekam pemasangan kit identitas QueueCare (commit 6d562a2, 872bc60, ca896ad, 43ab2f2, d8a9bbd, f950413 di branch logo-queuecare). Tidak ada token warna baru; teal #0E5A66, teal gelap #0A444D, amber #F2B134 tetap.
+
+- Berkas logo di `static/images/logo/`: `queuecare-horizontal.svg` (navbar), `queuecare-horizontal-putih-amber.svg` (footer di atas teal gelap), `queuecare-symbol.svg` (login/register), plus versi putih penuh dan bertumpuk. Ikon di akar `static/`: `favicon.ico`, `favicon.svg`, `favicon-16/32.png`, `apple-touch-icon.png`, `icon-192/512.png`, `maskable-512.png`, `site.webmanifest`. Arsip lengkap kit dan panduan di `docs/branding/`.
+- Ukuran pakai: lockup horizontal/terbalik 28px tinggi di navbar dan footer; tanda simbol 32px di atas judul form auth. Ukuran minimum tanda: 16px (favicon memakai versi bar lebih tebal `favicon-small`), lockup jangan di bawah 24px tinggi.
+- Aturan amber: amber hanya aksen yang menempel pada bar teal (titik pada tanda). Amber di atas putih hanya 1,89:1, jadi jangan dipakai sendirian untuk elemen grafis/teks di latar terang. Di atas teal gelap, bar putih 10,79:1 dan titik amber 5,71:1 — versi terbalik berwarna inilah yang dipakai footer. Teal di putih 7,86:1.
+- Sumber aturan lengkap (ruang aman, larangan, tabel kontras): `docs/branding/PANDUAN-PEMAKAIAN.md`.
+- Aset bisa diambil anonim: SecurityConfig mengizinkan `/images/**`, favicon, ikon PWA, dan manifest (commit 872bc60), jadi favicon/logo tidak dialihkan ke login.
+
