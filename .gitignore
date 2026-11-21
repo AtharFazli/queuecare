@@ -11,3 +11,6 @@ application-local.properties
 
 # Impeccable mengunduh engine sesuai OS; bukan sumber proyek.
 .hermes/skills/impeccable/scripts/bin/
+
+# Analisis SonarQube menghasilkan cache scanner di root proyek.
+.scannerwork/
