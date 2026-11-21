@@ -1,0 +1,98 @@
+{
+  "workers": 12,
+  "date": "2026-11-23",
+  "jam": "09:00",
+  "service": 42,
+  "responses": [
+    {
+      "i": 0,
+      "email": "dummy1@queuecare.id",
+      "status": 500,
+      "location": "",
+      "ms": 542.4
+    },
+    {
+      "i": 1,
+      "email": "dummy2@queuecare.id",
+      "status": 302,
+      "location": "http://localhost:8081/reservation/success/586",
+      "ms": 447.4
+    },
+    {
+      "i": 2,
+      "email": "customer@queuecare.id",
+      "status": 500,
+      "location": "",
+      "ms": 542.0
+    },
+    {
+      "i": 3,
+      "email": "dummy1@queuecare.id",
+      "status": 500,
+      "location": "",
+      "ms": 542.4
+    },
+    {
+      "i": 4,
+      "email": "dummy2@queuecare.id",
+      "status": 500,
+      "location": "",
+      "ms": 542.2
+    },
+    {
+      "i": 5,
+      "email": "customer@queuecare.id",
+      "status": 500,
+      "location": "",
+      "ms": 542.2
+    },
+    {
+      "i": 6,
+      "email": "dummy1@queuecare.id",
+      "status": 302,
+      "location": "http://localhost:8081/reservation/success/576",
+      "ms": 370.4
+    },
+    {
+      "i": 7,
+      "email": "dummy2@queuecare.id",
+      "status": 500,
+      "location": "",
+      "ms": 540.9
+    },
+    {
+      "i": 8,
+      "email": "customer@queuecare.id",
+      "status": 302,
+      "location": "http://localhost:8081/reservation/success/596",
+      "ms": 515.4
+    },
+    {
+      "i": 9,
+      "email": "dummy1@queuecare.id",
+      "status": 302,
+      "location": "http://localhost:8081/reservation/success/566",
+      "ms": 192.8
+    },
+    {
+      "i": 10,
+      "email": "dummy2@queuecare.id",
+      "status": 500,
+      "location": "",
+      "ms": 541.7
+    },
+    {
+      "i": 11,
+      "email": "customer@queuecare.id",
+      "status": 500,
+      "location": "",
+      "ms": 542.9
+    }
+  ],
+  "status_counts": {
+    "302": 4,
+    "500": 8
+  },
+  "http500": 8,
+  "db": "reservations\t14\nqueues\t14\ntarget_reservations\t4\ntarget_queues\t4\ndup_queue_number\t0\ndup_reservation_code\t0\nnomor_urut\t1,2,3,4\nqueues\t0\tuk_queues_nomor\t1\tbusiness_id\tA\t2\tNULL\tNULL\t\tBTREE\t\t\tYES\tNULL\nqueues\t0\tuk_queues_nomor\t2\tqueue_date\tA\t4\tNULL\tNULL\t\tBTREE\t\t\tYES\tNULL\nqueues\t0\tuk_queues_nomor\t3\tqueue_number\tA\t10\tNULL\tNULL\t\tBTREE\t\t\tYES\tNULL"
+}
