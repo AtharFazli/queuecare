@@ -210,6 +210,7 @@ dialog.modal:not([open]) { display: none; }
 .auth__panel { display: grid; gap: var(--jarak-4); justify-items: center; text-align: center; padding: var(--jarak-8); background: var(--warna-primer-gelap); border-radius: var(--radius-lg); }
 .auth__panel .contoh { color: var(--warna-primer-lembut); }
 .auth__judul { font: 800 var(--teks-xl) var(--font-judul); color: var(--warna-teks-terbalik); margin: 0; }
+.auth__logo { height: 32px; width: auto; display: block; margin-bottom: var(--jarak-3); }
 .auth__teks { margin: 0; max-width: 44ch; color: var(--warna-primer-lembut); }
 .auth__form { min-width: 0; }
 /* Flash sukses di form auth: teks sukses di latar lembut hanya 4,29:1; latar putih menaikkannya ke 5,05:1 (pola lencana--confirmed). */
