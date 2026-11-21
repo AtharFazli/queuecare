@@ -18,6 +18,8 @@ import com.queuecare.repository.QueueRepository;
 import com.queuecare.repository.ReservationRepository;
 import com.queuecare.repository.ServiceRepository;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.time.LocalDate;
@@ -41,6 +43,7 @@ public class ReservationService {
     private final BusinessScheduleRepository scheduleRepository;
     private final UserContext userContext;
     private final TransactionTemplate transactionTemplate;
+    private final TransactionTemplate reservasiTemplate;
 
     public ReservationService(ReservationRepository reservationRepository,
                               QueueRepository queueRepository,
@@ -48,14 +51,19 @@ public class ReservationService {
                               BusinessRepository businessRepository,
                               BusinessScheduleRepository scheduleRepository,
                               UserContext userContext,
-                              TransactionTemplate transactionTemplate) {
+                              PlatformTransactionManager transactionManager) {
         this.reservationRepository = reservationRepository;
         this.queueRepository = queueRepository;
         this.serviceRepository = serviceRepository;
         this.businessRepository = businessRepository;
         this.scheduleRepository = scheduleRepository;
         this.userContext = userContext;
-        this.transactionTemplate = transactionTemplate;
+        this.transactionTemplate = new TransactionTemplate(transactionManager);
+        this.reservasiTemplate = new TransactionTemplate(transactionManager);
+        // Kunci baris bisnis diambil setelah beberapa pembacaan. READ_COMMITTED membuat
+        // hitung kapasitas, kode, dan nomor antrean membaca data yang sudah ter-commit
+        // setelah kunci dilepas, bukan snapshot lama dari REPEATABLE-READ.
+        this.reservasiTemplate.setIsolationLevel(TransactionDefinition.ISOLATION_READ_COMMITTED);
     }
 
     // ===== halaman form =====
@@ -115,7 +123,7 @@ public class ReservationService {
     public Reservation buat(Long serviceId, ReservationForm form, User customer) {
         for (int coba = 1; coba <= MAKS_COBA; coba++) {
             try {
-                return transactionTemplate.execute(status -> buatTransaksi(customer, serviceId, form));
+                return reservasiTemplate.execute(status -> buatTransaksi(customer, serviceId, form));
             } catch (RuntimeException ex) {
                 if (coba < MAKS_COBA && karenaUnik(ex)) {
                     continue;

@@ -6,6 +6,7 @@ import com.queuecare.entity.Service;
 import com.queuecare.service.QueueService;
 import com.queuecare.service.ReservationService;
 import jakarta.validation.Valid;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -60,6 +61,10 @@ public class ReservationController {
             return "redirect:/reservation/success/" + reservation.getId();
         } catch (IllegalArgumentException | IllegalStateException ex) {
             model.addAttribute("error", ex.getMessage());
+            isiModel(model, service, form.getTanggal(), form);
+            return "reservation/create";
+        } catch (DataIntegrityViolationException ex) {
+            model.addAttribute("error", "Reservasi bentrok dengan pelanggan lain. Silakan coba lagi.");
             isiModel(model, service, form.getTanggal(), form);
             return "reservation/create";
         }
