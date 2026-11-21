@@ -291,5 +291,34 @@ Status: **LOLOS** — analisis selesai dan semua angka diambil langsung dari API
 - Kredensial: `git grep` hanya menemukan placeholder `TOKEN`/`TOKEN_DARI_LANGKAH_3` di dokumentasi, bukan token atau kata sandi asli. `git diff` tidak memuat rahasia.
 - Container tetap berjalan; bila perlu dijalankan lagi: perintah `docker run` di atas dengan volume bernama yang sama (data analisis tetap tersimpan).
 - Database demo tidak berubah: users 6, reservations 10, queues 10, businesses 6, services 19, schedules 42.
+## Uji ulang C28 tulis setelah perbaikan konkurensi (21 November 2026)
+
+Catatan GAGAL di bagian C28 sebelumnya sengaja tidak dihapus; tambahan ini adalah riwayat lanjutan. Cabang `perbaikan-konkurensi` dibuat dari `penutupan-pengujian` (`014a01d`), commit perbaikan `2c197bb`. Tidak ada push atau merge.
+
+Penyebab terbukti: tes integrasi `ReservationConcurrencyTest` (12 thread, kapasitas 3) pada kode lama gagal dengan 9 `DataIntegrityViolationException` berisi `Duplicate entry 'QC-20261122-0003'`. MySQL memakai `REPEATABLE-READ`; transaksi melakukan beberapa pembacaan (`layananAktif`) sebelum mengunci baris bisnis, sehingga `countByReservationDate` dan `maxNomor` membaca snapshot lama meski kunci sudah didapat. Retry 3 kali di transaksi baru belum cukup untuk 12 thread yang bersamaan, dan `DataIntegrityViolationException` yang tersisa lolos sebagai HTTP 500.
+
+Perbaikan terkecil: transaksi pemesanan memakai `READ_COMMITTED`, sehingga hitung kapasitas, kode, dan nomor antrean dibaca setelah kunci bisnis dilepas dan melihat data yang sudah ter-commit. Kunci baris bisnis yang sudah ada dipertahankan; tidak ada perubahan entity atau skema. Sebagai pengaman, `DataIntegrityViolationException` yang tersisa ditangkap controller dengan pesan "Reservasi bentrok dengan pelanggan lain. Silakan coba lagi." bukan 500.
+
+Bukti:
+
+- Tes integrasi lama (sebelum perbaikan): `Tests run: 1, Failures: 1` dengan duplikat kode reservasi.
+- Tes integrasi baru (sesudah perbaikan): `Tests run: 25, Failures: 0, Errors: 0, Skipped: 0` (`mvn.cmd -B test`); `ReservationConcurrencyTest` dijalankan ulang 5 kali berturut-turut, 5/5 lolos.
+- Uji HTTP tulis ulang di database terpisah `queuecare_load` port 8081, 6 putaran:
+
+  | Pemesan | Tanggal | 302 sukses | 200 slot penuh | 500 | Nomor antrean | Duplikat kode/nomor |
+  |---|---|---|---|---|---|---|
+  | 12 | 2026-11-23 | 6 | 6 | 0 | 1–6 | 0 |
+  | 12 | 2026-11-24 | 6 | 6 | 0 | 1–6 | 0 |
+  | 12 | 2026-11-25 | 6 | 6 | 0 | 1–6 | 0 |
+  | 30 | 2026-11-26 | 6 | 24 | 0 | 1–6 | 0 |
+  | 30 | 2026-11-27 | 6 | 24 | 0 | 1–6 | 0 |
+  | 30 | 2026-11-28 | 6 | 24 | 0 | 1–6 | 0 |
+
+  Jumlah sukses selalu `min(N, kapasitas 6)` dan tidak ada HTTP 500.
+
+- Alur satu pengguna di database terpisah: cari bisnis 200, detail 200, form 200, pesan 302, halaman sukses 200, riwayat 200, detail 200, pantau antrean 200, `/status` JSON valid, batal 302; status DB akhir `CANCELLED` untuk reservasi dan antrean.
+- Database `queuecare_load` di-drop setelah uji. Database demo `queuecare` tidak disentuh: users 6, reservations 10, queues 10, businesses 6, services 19, schedules 42 (sama sebelum dan sesudah).
+- Uji asap ulang: `total sel: 191 | DEVIASI: 0 | SEMUA SESUAI HARAPAN`.
+
 
 
