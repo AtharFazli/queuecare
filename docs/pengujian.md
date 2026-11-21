@@ -190,3 +190,76 @@ Status: LOLOS.
 3. Hasil: 9 antrean dan 9 reservasi dengan `queue_date` hari ini (atau hari buka berikutnya), status campur WAITING, CALLED, IN_SERVICE, COMPLETED, NO_SHOW, CANCELLED.
 
 Status: LOLOS. Diuji pada Minggu, 15 November 2026 pukul 13.28; karena Minggu libur pada jadwal demo, `queue_date` jatuh pada Senin 16 November 2026 (7 antrean) dan Selasa 17 November 2026 (2 antrean). Perilaku ini memang aturan `DummyDataSeeder`.
+
+## Penutupan pengujian C27–C30 dan SonarQube (21 November 2026)
+
+Bagian ini menambah hasil terbaru. Baris C25 dan C27–C30 di tabel checklist di atas tidak diubah; status di bawah ini yang terbaru. Cabang `penutupan-pengujian` dibuat dari `main` (`bb49d41`), tidak di-push dan tidak di-merge.
+
+Status ringkas: C27 LOLOS, C28 GAGAL, C29 LOLOS, C30 LOLOS, SonarQube TIDAK DAPAT DIJALANKAN.
+
+### C27 — unit test `AkunNonaktifFilter` — LOLOS
+
+- Berkas baru: `src/test/java/com/queuecare/config/AkunNonaktifFilterTest.java` (5 tes, tanpa mengubah kode produksi).
+- `mvn.cmd -B test` → `Tests run: 24, Failures: 0, Errors: 0` (19 tes lama + 5 baru), `BUILD SUCCESS`.
+- Bukti tes tidak kosong: kondisi produksi diubah sementara dari `.map(user -> !user.isActive())` menjadi `.map(user -> user.isActive())`, lalu `mvn.cmd -B test` → `Tests run: 24, Failures: 2`. Berkas produksi dikembalikan persis dari cadangan; `git diff` produksi kosong dan `mvn.cmd -B test` kembali 24/24.
+- Perilaku yang diuji: akun nonaktif ditolak + sesi diputus + redirect `/login?disabled` + rantai dihentikan; akun aktif, tidak login, anonymous, dan email tidak ditemukan tetap lanjut.
+- Catatan temuan (tidak diubah): filter memeriksa `getSession(false)` lalu memutus sesi lewat `getSession()` tanpa argumen.
+
+### C28 — uji beban — GAGAL
+
+Bagian (a) baca-only LOLOS. Skrip Python `requests` + `ThreadPoolExecutor`, 10/25/50 worker serentak, 340 request total, login customer valid (dashboard `GET /customer` = 200). Semua response 200, laju error 0,000.
+
+| Route | p50 10 / p95 10 | p50 25 / p95 25 | p50 50 / p95 50 | Error |
+|---|---|---|---|---|
+| `/` | 11,2 / 14,2 ms | 17,6 / 22,0 ms | 25,4 / 35,7 ms | 0/10, 0/25, 0/50 |
+| `/businesses` | 15,2 / 16,3 ms | 23,8 / 32,5 ms | 35,5 / 53,1 ms | 0/10, 0/25, 0/50 |
+| `/login` | 9,8 / 12,8 ms | 17,0 / 21,7 ms | 27,1 / 40,0 ms | 0/10, 0/25, 0/50 |
+| `/customer` (login) | 15,8 / 18,1 ms | 24,6 / 31,9 ms | 33,8 / 48,6 ms | 0/10, 0/25, 0/50 |
+
+Bukti mentah: `docs/bukti-pengujian/c28-baca.json`.
+
+Bagian (b) tulis GAGAL. 12 sesi pelanggan bersamaan memesan layanan 42 (bisnis 20), tanggal 2026-11-23 jam 09:00, pada database terpisah `queuecare_load` di port 8081 (kapasitas slot 6). Hasil: `302` = 4, `500` = 8 (laju error 8/12 = 66,7%). Syarat "tidak ada error 500" tidak terpenuhi, sehingga C28 berstatus GAGAL meski dua syarat lain terpenuhi:
+
+- Nomor antrean unik: `dup_queue_number = 0`; urutan `1,2,3,4`; constraint `uk_queues_nomor (business_id, queue_date, queue_number)` ada di DB.
+- Tidak ada reservasi ganda: `dup_reservation_code = 0`; hanya 4 reservasi berhasil (di bawah kapasitas 6), total `reservations` 10 → 14 dan `queues` 10 → 14 di DB uji.
+- Penyebab 500 (dari log aplikasi): `Duplicate entry 'QC-20261123-0002'`/`'0003' for key 'reservations.UK6g1uj544xgjuyhj6kjh6pka6l'`. Percobaan ulang pada `ReservationService.buat` habis, `DataIntegrityViolationException` tidak ditangkap `ReservationController.buat`, sehingga keluar sebagai HTTP 500.
+
+Bukti mentah: `docs/bukti-pengujian/c28-tulis.json`. Setelah uji, database `queuecare_load` di-drop. Database demo `queuecare` tidak pernah dipakai untuk uji tulis; jumlah baris sebelum dan sesudah identik: users 6, reservations 10, queues 10, businesses 6, services 19, schedules 42.
+
+### C29 — tampilan tablet 768px — LOLOS
+
+- Harness Playwright/Edge pada route dan role yang sama dengan uji asap: 38 route × 4 role = 152 sel, lebar 768×1024 → 152 sesuai harapan, 0 deviasi.
+- Dari 58 halaman yang diharapkan 200: overflow horizontal 0, tabel sempit 0, grid sempit 0.
+- Layout 768px memakai desktop: `.dash` = `248px 1fr` (sidebar 248px, konten 488–520px), menu sidebar terlihat, navbar 3–5 tautan dan tombol akun hadir. `statistik-grid` 2 kolom, `kartu-grid` 2 kolom.
+- Target sentuh: 57 dari 58 halaman masih memiliki elemen <44px (terutama tautan navbar 40px) — dicatat sebagai temuan, tidak diubah karena menyentuh tinggi navbar global. Satu masalah jelas diperbaiki: tombol lipat sidebar 32×32px di 768px padahal aturan ≤720px sudah menetapkan 44×44px → `components.css` diubah ke 44×44px.
+- Bukti: 10 screenshot di `docs/screenshots/tablet-768/`.
+- Uji asap ulang setelah perubahan CSS dan JS: `total sel: 191 | DEVIASI: 0 | SEMUA SESUAI HARAPAN`.
+
+### C30 — linter selain SonarQube — LOLOS
+
+- Checkstyle (plugin dijalankan dari CLI, `pom.xml` tidak diubah):
+  `mvn.cmd -B org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0:check -Dcheckstyle.config.location=google_checks.xml -Dcheckstyle.failOnViolation=false -Dcheckstyle.consoleOutput=true`
+  → 0 error, 2.907 warning: Indentation 2.618, CustomImportOrder 99, MissingJavadocMethod 78, LineLength 63, MissingJavadocType 42, VariableDeclarationUsageDistance 5, OverloadMethodsDeclarationOrder 2. Mayoritas adalah beda konvensi (proyek 4 spasi vs Google 2 spasi), tidak diubah.
+- ESLint 9 via `npx` dengan konfigurasi sementara di luar repo: awalnya 2 warning `no-unused-vars` (`catch (e)` tak terpakai di `sidebar.js`). Keduanya diperbaiki menjadi `catch {}`; ulang → 0 temuan.
+- Stylelint 16 via `npx` dengan konfigurasi sementara di luar repo untuk `src/main/resources/static/**/*.css` → 0 temuan.
+- `mvn.cmd -B test` setelah perubahan JS → 24/24 lolos; uji asap 191 sel, 0 deviasi.
+
+### SonarQube — TIDAK DAPAT DIJALANKAN
+
+- `docker version`: client 28.3.2 tersedia, tetapi server error `open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified`. `Get-Service DockerDesktopService` tidak mengembalikan layanan. Tidak ada server SonarQube dan tidak ada token; tidak ada angka quality gate, bug, vulnerability, code smell, security hotspot, coverage, atau duplikasi yang bisa dilaporkan tanpa dibuat-buat.
+- Langkah persis yang perlu dilakukan pemilik mesin:
+  1. Jalankan Docker Desktop dan tunggu sampai `docker info` berhasil (butuh WSL2).
+  2. `docker run -d --name sonarqube -p 9000:9000 sonarqube:community`, lalu buka `http://localhost:9000`.
+  3. Login dengan kredensial administrator SonarQube yang Anda tetapkan, lalu buat token di My Account → Security. Jangan simpan token atau kata sandi di repo.
+  4. Hasilkan coverage: `mvn.cmd -B org.jacoco:jacoco-maven-plugin:prepare-agent test org.jacoco:jacoco-maven-plugin:report` (dibutuhkan oleh `sonar.coverage.jacoco.xmlReportPaths` di `docs/sonarqube/sonar-project.properties`).
+  5. Jalankan analisis dengan token yang dibuat di langkah 3: `mvn.cmd -B sonar:sonar -Dsonar.projectKey=queuecare -Dsonar.host.url=http://localhost:9000 -Dsonar.token=TOKEN_DARI_LANGKAH_3`.
+  6. Baca status quality gate dan jumlah issue di UI SonarQube, lalu catat di berkas ini.
+
+### Commit pada cabang ini
+
+- `b76b013` — test(config): uji unit AkunNonaktifFilter untuk akun nonaktif, aktif, anonim, dan sesi.
+- `fb7f1c7` — test(ui): bukti screenshot tampilan tablet 768px untuk semua role.
+- `190ecb4` — fix(ui): target sentuh tombol lipat sidebar 44px juga di lebar tablet 768.
+- `a8a3600` — test(beban): bukti uji beban baca 340 request dan uji tulis 12 pemesanan bersamaan.
+- `8d3e9c7` — refactor(js): hapus binding catch tak terpakai di sidebar.js.
+
