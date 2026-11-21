@@ -320,5 +320,40 @@ Bukti:
 - Database `queuecare_load` di-drop setelah uji. Database demo `queuecare` tidak disentuh: users 6, reservations 10, queues 10, businesses 6, services 19, schedules 42 (sama sebelum dan sesudah).
 - Uji asap ulang: `total sel: 191 | DEVIASI: 0 | SEMUA SESUAI HARAPAN`.
 
+## Analisis ulang SonarQube pada hasil gabungan (21 November 2026)
+
+`perbaikan-konkurensi` digabung ke `penutupan-pengujian` sebagai merge commit `5f999fb` (bukan rebase). Konflik hanya di `docs/pengujian.md`; kedua penambahan (bagian SonarQube dan bagian uji ulang C28) dipertahankan utuh, marker konflik dihapus. Tidak ada konflik pada berkas kode.
+
+Status analisis ulang: **LOLOS** — `ANALYSIS SUCCESSFUL`, tugas CE `SUCCESS`, quality gate `Passed`. Angka langsung dari API dengan token di luar repo.
+
+  Metrik                     | Sebelum (`cfa6215`) | Sesudah gabungan (`5f999fb`)
+  ---------------------------+--------------------+-----------------------------
+  ncloc                      | 4252               | 4262
+  Coverage                   | 28,1%              | 28,6%
+  Duplikasi                  | 5,0% (12 blok)     | 5,0% (12 blok)
+  Komentar                   | 4,5%               | 4,6%
+  Bugs / Reliability         | 0 / A              | 0 / A
+  Vulnerabilities / Security | 2 / E              | 2 / E
+  Code smells / Maintain.    | 0 / A              | 0 / A
+  Security hotspots          | 0                  | 0
+  Quality gate               | Passed             | Passed
+
+Pemeriksaan kewajaran angka 0 smell dan 0 hotspot:
+
+- Profil kualitas Java yang dipakai proyek adalah **Sonar way core** (default). Jumlah aturan aktif untuk profil ini: **263**, terdiri dari 172 BUG, 59 VULNERABILITY, 32 CODE_SMELL, dan **0 SECURITY_HOTSPOT** (severitas: MAJOR 142, CRITICAL 81, BLOCKER 29, MINOR 11). Angka 4.333 dari pencarian `activation=true&language=java` tanpa filter profil mencakup semua profil yang terpasang, bukan yang dipakai proyek.
+- Daftar berkas yang dianalisis: **82 berkas `src/main/java` + 6 berkas `src/test/java` = 88 berkas Java**, sama persis dengan `git ls-files`. Tidak ada pengecualian: `docs/sonarqube/sonar-project.properties` tidak memuat `sonar.exclusions`/`sonar.coverage.exclusions`, dan `/api/settings/values` untuk proyek maupun global tidak mengembalikan nilai pengecualian.
+- Jumlah issue menurut semua status: **2**, keduanya `OPEN`, tipenya `VULNERABILITY` (BLOCKER 1, MINOR 1). Tidak ada issue berstatus RESOLVED/CLOSED, dan tidak ada tipe BUG/CODE_SMELL/SECURITY_HOTSPOT.
+- Kesimpulan: 0 hotspot bukan tanda kode bersih, melainkan karena profil tidak mengaktifkan aturan hotspot sama sekali (fitur ini deprecated di SonarQube 26.11) dan dasbor menampilkan "Limited security analysis" akibat database H2 bawaan. 0 smell juga bukan karena berkas dilewati — semua berkas ikut terhitung — tetapi hanya 32 aturan smell aktif untuk 4.262 baris kode, sehingga angka 0 wajar secara konfigurasi, bukan bukti tidak ada masalah kualitas. Profil aturan dan quality gate tidak saya ubah.
+
+Dua vulnerability (BLOCKER `java:S6437` di `DummyDataSeeder.java:231` dan MINOR `java:S3752` di `ErrorController.java:10`) sengaja tidak diubah. Dua opsi untuk pemilik proyek:
+
+1. Tandai issue sebagai **Accepted** di Sonar dengan alasan kata sandi tersebut hanya untuk akun demo lokal. Trade-off: cepat dan tidak mengubah perilaku, tetapi kata sandi tetap tertanam di kode dan tetap terlihat oleh siapa pun yang membaca repo.
+2. Pindahkan kata sandi demo ke properti lingkungan/konfigurasi yang disuntikkan saat aplikasi berjalan. Trade-off: menghapus temuan dan mengurangi risiko, tetapi mengubah cara seed berjalan dan perlu koordinasi dengan anggota kelompok serta pembaruan dokumentasi akun demo.
+
+Keputusan diserahkan kepada pemilik proyek; tidak ada kode, seed, profil, atau gate yang diubah untuk menurunkan temuan.
+
+Hasil uji gabungan: `mvn.cmd -B test` → 25/25 lolos; uji asap 191 sel, 0 deviasi; alur satu pengguna (cari, pesan, pantau, batal) lolos dengan status akhir `CANCELLED`. Database demo tetap users 6, reservations 10, queues 10, businesses 6, services 19, schedules 42.
+
+
 
 
