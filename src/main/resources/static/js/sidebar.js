@@ -8,10 +8,10 @@
   }
   var KUNCI = 'queuecare.sidebar.lipat';
   function baca() {
-    try { return localStorage.getItem(KUNCI); } catch (e) { return null; }
+    try { return localStorage.getItem(KUNCI); } catch { return null; }
   }
   function simpan(nilai) {
-    try { localStorage.setItem(KUNCI, nilai); } catch (e) { /* penyimpanan diblokir: abaikan */ }
+    try { localStorage.setItem(KUNCI, nilai); } catch { /* penyimpanan diblokir: abaikan */ }
   }
   function terapkan(lipat) {
     dash.classList.toggle('dash--lipat', lipat);
