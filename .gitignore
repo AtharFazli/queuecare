@@ -14,3 +14,4 @@ application-local.properties
 
 # Analisis SonarQube menghasilkan cache scanner di root proyek.
 .scannerwork/
+.sonar/

@@ -263,3 +263,33 @@ Bukti mentah: `docs/bukti-pengujian/c28-tulis.json`. Setelah uji, database `queu
 - `a8a3600` — test(beban): bukti uji beban baca 340 request dan uji tulis 12 pemesanan bersamaan.
 - `8d3e9c7` — refactor(js): hapus binding catch tak terpakai di sidebar.js.
 
+## Analisis SonarQube lokal (21 November 2026)
+
+Status: **LOLOS** — analisis selesai dan semua angka diambil langsung dari API SonarQube, bukan perkiraan. Quality gate: **Passed** (API mengembalikan status `OK` dengan daftar kondisi kosong; dasbor menampilkan "Passed"). Catatan: quality gate lolos walaupun ada 2 vulnerability; laporan ini tidak menyembunyikannya. Branch `perbaikan-konkurensi` (`a90b5de`) memang ada dan tidak disentuh; pekerjaan ini di `penutupan-pengujian` (`014a01d`).
+
+- Versi: SonarQube Community **26.11.0.134175** (H2 embedded, hanya untuk evaluasi), container `sonarqube-qc`, status `Up`, port `9000`. `vm.max_map_count = 262144`; tidak ada masalah start.
+- Perintah tanpa token (token dan kata sandi hanya ada di variabel lingkungan sesi dan berkas `C:\Users\MyBook Hype AMD\AppData\Local\hermes\cache\scratch\sonar\creds.env`, di luar repo):
+
+  1. `docker run -d --name sonarqube-qc -p 9000:9000 -v sonarqube-qc-data:/opt/sonarqube/data -v sonarqube-qc-logs:/opt/sonarqube/logs -v sonarqube-qc-ext:/opt/sonarqube/extensions sonarqube:community`
+  2. Tunggu `GET /api/system/status` mengembalikan `UP` (sekitar 40 detik).
+  3. Ganti kata sandi admin dan buat token lewat `/api/users/change_password` serta `/api/user_tokens/generate`.
+  4. `mvn.cmd -B org.jacoco:jacoco-maven-plugin:0.8.12:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.12:report` → 24 tes lolos, `target/site/jacoco/jacoco.xml` terbentuk.
+  5. `mvn.cmd -B org.sonarsource.scanner.maven:sonar-maven-plugin:5.9.0.7382:sonar` dengan properti dari `docs/sonarqube/sonar-project.properties` lewat argumen `-D` (`sonar.projectKey=queuecare`, `sonar.sources=src/main/java`, `sonar.java.binaries=target/classes`, `sonar.tests=src/test/java`, `sonar.java.test.binaries=target/test-classes`, `sonar.sourceEncoding=UTF-8`, `sonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml`, `sonar.host.url=http://localhost:9000`, dan `-Dsonar.token` dari variabel lingkungan). `ANALYSIS SUCCESSFUL`; tugas CE berstatus `SUCCESS`.
+
+  Catatan: `mvn.cmd -B sonar:sonar` gagal karena prefiks plugin tidak dikenal, dan versi `5.1.0.4388` tidak tersedia di Maven Central; analisis berhasil dengan koordinat eksplisit `5.9.0.7382`.
+
+- Angka hasil (API): ncloc 4252; coverage **28,1%**; duplikasi **5,0%** (12 blok duplikat); komentar 4,5%. Bugs **0** (Reliability A / 1,0); vulnerabilities **2** (Security **E / 5,0**); code smells **0** (Maintainability A / 1,0); security hotspots **0** (UI menandainya deprecated). Jumlah issue OPEN: 2.
+- Temuan terparah: hanya ada **dua** issue, bukan lima, jadi berikut semua yang ada:
+
+  | Severity | Aturan | Berkas:baris | Pesan |
+  |---|---|---|---|
+  | BLOCKER | `java:S6437` | `src/main/java/com/queuecare/config/DummyDataSeeder.java:231` | Revoke and change this password, as it is compromised. |
+  | MINOR | `java:S3752` | `src/main/java/com/queuecare/controller/ErrorController.java:10` | Explicitly specify the HTTP methods this endpoint accepts. |
+
+- Tidak ada perbaikan kode: satu-satunya Blocker adalah kata sandi akun demo di seed, yang sesuai instruksi tidak diubah; temuan MINOR bukan Blocker/Critical. Karena itu tidak ada analisis "sesudah" untuk dibandingkan. Perubahan hanya `.gitignore` (`.scannerwork/` dan `.sonar/`) dan bukti screenshot.
+- Bukti: `docs/bukti-pengujian/sonar-dashboard.png` (dasbor QueueCare, terverifikasi menampilkan QG Passed, coverage 28,1%, duplikasi 5,0%, 2 security issue). Angka mentah: berkas `results-first.json` di direktori scratch `sonar/` di luar repo.
+- Kredensial: `git grep` hanya menemukan placeholder `TOKEN`/`TOKEN_DARI_LANGKAH_3` di dokumentasi, bukan token atau kata sandi asli. `git diff` tidak memuat rahasia.
+- Container tetap berjalan; bila perlu dijalankan lagi: perintah `docker run` di atas dengan volume bernama yang sama (data analisis tetap tersimpan).
+- Database demo tidak berubah: users 6, reservations 10, queues 10, businesses 6, services 19, schedules 42.
+
+
