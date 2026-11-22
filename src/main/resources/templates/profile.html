@@ -35,6 +35,7 @@
                 <input class="field__input" id="email" name="email" type="email" th:value="*{email}">
                 <p class="field__bantuan" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
               </div>
+              <p class="field__bantuan">Email dipakai untuk masuk. Kalau email diubah, kamu akan diminta masuk lagi.</p>
               <button class="tombol" type="submit">Simpan profil</button>
             </form>
           </div>
