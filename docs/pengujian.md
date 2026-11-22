@@ -337,6 +337,22 @@ Bukti:
 - Database `queuecare_load` di-drop setelah uji. Database demo `queuecare` tidak disentuh: users 6, reservations 10, queues 10, businesses 6, services 19, schedules 42 (sama sebelum dan sesudah).
 - Uji asap ulang: `total sel: 191 | DEVIASI: 0 | SEMUA SESUAI HARAPAN`.
 
+## Sonar 22 Nov 2026 — dua temuan ditandai Accepted (WONTFIX)
+
+Bagian ini menambah; isi lama di atas tidak dihapus. Dua temuan di cabang `penutupan-pengujian` ditandai Accepted lewat API SonarQube pada 22 Nov 2026.
+
+- Versi: SonarQube Community **26.11.0.134175** (container `sonarqube-qc`, port 9000, `/api/system/status` = `UP`).
+- **Catatan transisi:** versi SonarQube ini **tidak mendukung transisi `accept`** (daftar transisi yang tersedia tidak memuatnya). Padanan Accepted yang dipakai ialah transisi **`wontfix`** → status `RESOLVED`, resolusi `WONTFIX`, ditambah komentar alasan. Profil aturan dan quality gate **tidak** diubah.
+
+| Rule | Berkas:baris | Status akhir | Resolution | Komentar alasan |
+|---|---|---|---|---|
+| `java:S6437` (BLOCKER) | `src/main/java/com/queuecare/config/DummyDataSeeder.java:231` | RESOLVED | WONTFIX | akun demo lokal untuk pengembangan dan demo, bukan kredensial produksi |
+| `java:S3752` (MINOR) | `src/main/java/com/queuecare/controller/ErrorController.java:10` | RESOLVED | WONTFIX | endpoint /error harus menerima semua metode HTTP karena meneruskan error dari request POST; membatasi ke GET akan merusak halaman error |
+
+- Verifikasi lewat API: `GET /api/issues/search?componentKeys=queuecare` mengembalikan 2 issue, keduanya `RESOLVED`/`WONTFIX` dengan komentar di atas; `GET /api/qualitygates/project_status?projectKey=queuecare` = `OK`.
+- Bukti mentah (key issue, status, komentar): `results-sonar-22nov.json` di direktori scratch `sonar/` di luar repo.
+- Tidak ada token/kata sandi di repo; kredensial ada di scratch `sonar/creds.env` (di luar repo).
+
 ## Analisis ulang SonarQube pada hasil gabungan (21 November 2026)
 
 `perbaikan-konkurensi` digabung ke `penutupan-pengujian` sebagai merge commit `5f999fb` (bukan rebase). Konflik hanya di `docs/pengujian.md`; kedua penambahan (bagian SonarQube dan bagian uji ulang C28) dipertahankan utuh, marker konflik dihapus. Tidak ada konflik pada berkas kode.
