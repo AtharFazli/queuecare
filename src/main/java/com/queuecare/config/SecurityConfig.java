@@ -15,6 +15,8 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
 @Configuration
@@ -25,6 +27,11 @@ public class SecurityConfig {
 
     public SecurityConfig(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @Bean
+    public RequestCache requestCache() {
+        return new HttpSessionRequestCache();
     }
 
     // R1: hak akses diperiksa di backend, bukan hanya disembunyikan di tampilan.
@@ -41,9 +48,12 @@ public class SecurityConfig {
                 .anyRequest().authenticated())
             .formLogin(form -> form
                 .loginPage("/login")
+                // Tujuan tersimpan disimpan RequestCache bawaan Spring Security.
                 .successHandler(roleBasedSuccessHandler())
                 .failureHandler(pesanGagalLogin())
                 .permitAll())
+            .requestCache(cache -> cache
+                .requestCache(requestCache()))
             .logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout")
@@ -100,13 +110,29 @@ public class SecurityConfig {
             return null;
         }
         String tujuan = ((SavedRequest) tersimpan).getRedirectUrl();
-        String jalur = tujuan == null ? null : tujuan;
-        if (jalur != null && jalur.startsWith(request.getContextPath() + "/")) {
-            jalur = jalur.substring(request.getContextPath().length());
-        } else if (jalur != null && !jalur.startsWith("/")) {
+        if (tujuan == null || tujuan.isBlank()) {
             return null;
         }
-        if (jalur == null || jalur.isBlank() || !jalur.startsWith("/") || jalur.contains("//") || jalur.contains("/../")) {
+        // HttpSessionRequestCache menyimpan URL penuh; terima hanya bila host-nya sama.
+        String jalur;
+        try {
+            java.net.URI uri = java.net.URI.create(tujuan);
+            if (uri.isAbsolute()) {
+                if (uri.getHost() == null || !uri.getHost().equalsIgnoreCase(request.getServerName())) {
+                    return null;
+                }
+                jalur = uri.getPath();
+            } else {
+                jalur = tujuan;
+            }
+        } catch (IllegalArgumentException ex) {
+            return null;
+        }
+        String konteks = request.getContextPath();
+        if (!konteks.isEmpty() && jalur.startsWith(konteks + "/")) {
+            jalur = jalur.substring(konteks.length());
+        }
+        if (!jalur.startsWith("/") || jalur.contains("//") || jalur.contains("/../")) {
             return null;
         }
         return jalur;

@@ -54,6 +54,14 @@ class SecurityConfigTest {
     }
 
     @Test
+    void tujuanTersimpanUrlPenuhHostSamaDiikuti() throws Exception {
+        MockHttpServletRequest request = request();
+        simpan(request, "http://localhost:8080/reservation/create/42");
+
+        assertEquals("/reservation/create/42", redirect("ROLE_CUSTOMER", request));
+    }
+
+    @Test
     void ownerDanAdminSelaluKeDashboardRole() throws Exception {
         MockHttpServletRequest request = request();
         simpan(request, "/reservation/create/42");
