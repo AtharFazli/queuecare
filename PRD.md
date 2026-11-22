@@ -44,16 +44,20 @@ QueueCare adalah website reservasi dan antrean untuk banyak bisnis jasa (barbers
 
 **Keputusan terbuka (kelompok harus memilih sebelum modul terkait dikerjakan)**
 
+Diperbarui 22 Nov 2026: semua pertanyaan K1–K6 sudah diputuskan pemilik proyek; jawaban ada di kolom "Jawaban kelompok" dan dirangkum di bagian 8.1.
+
 | # | Pertanyaan | Usulan awal | Jawaban kelompok |
 |---|---|---|---|
-| K1 | Reservasi pakai slot waktu atau antrean berjalan? | Pilih satu saja agar sederhana | [isi: slot / antrean berjalan] |
-| K2 | Bagaimana kapasitas dan petugas aktif disimpan? | Simpan sebagai angka di data bisnis | [isi: setuju atau pakai tabel terpisah] |
-| K3 | Owner daftar sendiri atau dibuatkan Administrator? | Owner daftar, bisnis menunggu verifikasi | [isi: keputusan kelompok] |
-| K4 | Perlu dukung walk-in? | Tidak di versi pertama | [isi: ya / tidak] |
-| K5 | Kategori disimpan sebagai teks atau tabel `categories`? | Tabel `categories`, karena Admin mengelola kategori (R12) | [isi: keputusan kelompok] |
-| K6 | Aturan batas waktu pembatalan | Boleh sebelum status IN_SERVICE | [isi: misal minimal berapa jam sebelum jadwal] |
+| K1 | Reservasi pakai slot waktu atau antrean berjalan? | Pilih satu saja agar sederhana | Antrean berjalan + grid slot 30 menit. Reservasi memesan slot, sistem memberi nomor antrean; SmartWait memakai nomor antrean. Tidak ada opsi walk-in (lihat K4). |
+| K2 | Bagaimana kapasitas dan petugas aktif disimpan? | Simpan sebagai angka di data bisnis | Setuju — dua angka (active_staff_count, max_capacity) disimpan di tabel businesses, diatur Owner di halaman Kapasitas. |
+| K3 | Owner daftar sendiri atau dibuatkan Administrator? | Owner daftar, bisnis menunggu verifikasi | Owner dibuat oleh Administrator (Fase 7b). Registrasi publik hanya membuat Customer. Bisnis baru menunggu verifikasi Admin. Catatan Fase 2 di baris 56 sudah tidak berlaku. |
+| K4 | Perlu dukung walk-in? | Tidak di versi pertama | Tidak. Walk-in sengaja di luar cakupan versi pertama (lihat bagian Di luar cakupan). |
+| K5 | Kategori disimpan sebagai teks atau tabel `categories`? | Tabel categories, karena Admin mengelola kategori (R12) | Tabel categories. businesses.category_id adalah FK NOT NULL; Admin mengelola kategori lewat R12. |
+| K6 | Aturan batas waktu pembatalan | Boleh sebelum status IN_SERVICE | Customer hanya dapat membatalkan saat antrean WAITING; Owner dapat membatalkan sampai CALLED. Tidak ada batas minimal jam (versi pertama). |
 
 Catatan revisi (Fase 2): satu Owner boleh mengelola lebih dari satu bisnis (asumsi operasional nomor 3). K3 tetap memakai usulan awal, yaitu Owner mendaftar dan membuat bisnisnya sendiri, lalu bisnis menunggu verifikasi Admin. Owner memilih salah satu bisnis sebagai "bisnis aktif" untuk mengisi layanan, jadwal, dan kapasitas.
+
+Diperbarui 22 Nov 2026 (K3): kalimat "K3 tetap memakai usulan awal, yaitu Owner mendaftar dan membuat bisnisnya sendiri" sudah tidak berlaku. Fase 7b memutuskan akun Owner dibuat oleh Administrator (`AuthService.register()` selalu membuat role CUSTOMER), dan bisnis baru menunggu verifikasi Admin. Lihat jawaban K3 di atas dan `PRD.md` catatan Fase 7b. Kalimat asli di atas sengaja tidak dihapus.
 
 ## 3. Core Features
 
@@ -75,6 +79,8 @@ Estimasi Waktu Tunggu = (total durasi layanan pelanggan di depan) ÷ (jumlah pet
 ```
 
 Contoh: 4 pelanggan di depan × 15 menit ÷ 2 petugas = 30 menit. Jika petugas aktif = 0, jangan bagi dengan nol. Tampilkan pesan seperti "Estimasi belum tersedia". Pelanggan di depan dihitung dari antrean berstatus WAITING, CALLED, dan IN_SERVICE di bisnis dan tanggal yang sama. Durasi tiap pelanggan diambil dari layanan yang dipilihnya, jadi layanan dengan durasi berbeda tetap terhitung. Status ini perlu dikonfirmasi kelompok: [isi: status mana yang dihitung].
+
+Diperbarui 22 Nov 2026 (K1, M7): pertanyaan "status mana yang dihitung" sudah dijawab Keputusan Fase 6 (2026-11-15): pelanggan di depan adalah antrean sebisnis/se-tanggal dengan nomor lebih kecil dan status WAITING, CALLED, atau IN_SERVICE. Lihat catatan Fase 6 di bawah. Teks asli di atas sengaja tidak dihapus.
 
 ## 4. User Flow
 
@@ -101,6 +107,9 @@ Contoh: 4 pelanggan di depan × 15 menit ÷ 2 petugas = 30 menit. Jika petugas a
 
 **Fase 4**
 1. Customer klik tombol reservasi pada satu layanan. Jika belum login, diarahkan ke login lalu kembali.
+
+Diperbarui 22 Nov 2026 (SavedRequest): "kembali" di atas kini benar-benar terjadi. Sebelum login, Spring Security menyimpan request tujuan (RequestCache). Setelah login, Customer diarahkan ke halaman yang tadi dituju (misalnya form reservasi), bukan ke dashboard. Owner dan Admin selalu ke dashboard perannya. Kunjungan langsung ke `/login` tanpa tujuan tersimpan juga ke dashboard perannya. Tujuan tersimpan yang menunjuk ke domain luar tidak diikuti (anti open redirect). Lihat catatan SavedRequest di akhir dokumen ini.
+
 2. Customer memilih tanggal dan waktu, mengisi catatan, lalu klik "Buat Reservasi".
 3. Sistem memeriksa jadwal dan kapasitas, lalu menyimpan reservasi dan antrean dalam satu transaksi.
 4. Customer melihat halaman sukses berisi kode reservasi dan nomor antrean.
@@ -156,6 +165,8 @@ flowchart LR
 
 Database: MySQL. Tabel berikut diambil dari master planning. Field bertanda **(usulan)** belum ada di dokumen dan bergantung pada keputusan terbuka K2 dan K5.
 
+Diperbarui 22 Nov 2026 (K2, K5): penanda **(usulan)** dan "bergantung pada keputusan terbuka K2 dan K5" sudah tidak berlaku — K2 dan K5 sudah diputuskan (lihat bagian 8.1). Label usulan pada baris tabel di bawah sengaja dibiarkan dan dicatat di 8.2 (M3).
+
 **users**
 
 | Field | Tipe | Arti | Fase |
@@ -175,6 +186,8 @@ Database: MySQL. Tabel berikut diambil dari master planning. Field bertanda **(u
 | id | BIGINT PK | ID kategori | 2 |
 | name | VARCHAR(100) UNIQUE | Nama kategori | 2 |
 
+Diperbarui 22 Nov 2026 (K5): label "usulan" sudah tidak berlaku. Tabel `categories` dan kolom `businesses.category_id` FK NOT NULL sudah ada di kode (`Business.java:36-38`) dan skema (`database/queuecare.sql`), dan Admin mengelola kategori lewat R12. Judul asli di atas sengaja tidak dihapus.
+
 **businesses**
 
 | Field | Tipe | Arti | Fase |
@@ -190,6 +203,8 @@ Database: MySQL. Tabel berikut diambil dari master planning. Field bertanda **(u
 | active_staff_count | INT | Jumlah petugas aktif **(usulan, K2)** | 2 |
 | max_capacity | INT | Batas kapasitas pelayanan **(usulan, K1 dan K2)** | 2 |
 | created_at, updated_at | DATETIME | Waktu dibuat dan diubah | 2 |
+
+Diperbarui 22 Nov 2026 (K2, K5, M3): kolom `category` VARCHAR(100) sudah diganti di kode dan skema menjadi kolom `category_id` FK NOT NULL ke tabel `categories` (`Business.java`, `database/queuecare.sql`). Label **(usulan, K2)** dan **(usulan, K1 dan K2)** sudah tidak berlaku: kapasitas (`max_capacity`) dan petugas aktif (`active_staff_count`) memang disimpan sebagai dua angka di tabel `businesses`. Teks berlabel di atas sengaja tidak dihapus.
 
 **services**
 
@@ -246,9 +261,13 @@ Database: MySQL. Tabel berikut diambil dari master planning. Field bertanda **(u
 
 Catatan: karena `queues` tidak punya `business_id`, keunikan nomor antrean per bisnis harus lewat `reservation_id` ke `reservations.business_id`. Kelompok bisa memilih menambah `business_id` ke `queues` agar pengecekan lebih mudah: [isi: keputusan kelompok].
 
+Diperbarui 22 Nov 2026 (M4): catatan di atas sudah kedaluwarsa. `queues` sekarang punya `business_id`, dan Keputusan Fase 4 (2026-11-15) menambahkan constraint unik `(business_id, queue_date, queue_number)` bernama `uk_queues_nomor`. Lihat Keputusan Fase 4 di bawah. Teks asli sengaja tidak dihapus.
+
 Keputusan Fase 4 (2026-11-15): `business_id` ditambahkan ke `queues`, dan dibuat constraint unik `(business_id, queue_date, queue_number)` bernama `uk_queues_nomor` supaya aturan nomor berurutan per bisnis per tanggal dijaga database, bukan hanya aplikasi. Isi lama di atas sengaja tidak dihapus.
 
 Keputusan Fase 5 (2026-11-15): transisi antrean yang diizinkan hanya WAITING → CALLED, WAITING → CANCELLED, CALLED → IN_SERVICE, CALLED → NO_SHOW, CALLED → CANCELLED, dan IN_SERVICE → COMPLETED. Status COMPLETED, CANCELLED, dan NO_SHOW tidak bisa diubah lagi. Setiap perubahan antrean menyelaraskan status reservasi dalam transaksi yang sama: antrean COMPLETED membuat reservasi COMPLETED, antrean CANCELLED membuat reservasi CANCELLED, dan antrean NO_SHOW membuat reservasi CANCELLED (jalur NO_SHOW ini usulan, perlu persetujuan kelompok). `called_at`, `started_at`, dan `completed_at` diisi saat status yang bersangkutan ditetapkan. Isi lama di atas sengaja tidak dihapus.
+
+Diperbarui 22 Nov 2026 (M8): jalur NO_SHOW → CANCELLED sudah disetujui pemilik proyek dan diimplementasikan (`QueueService.java`, diuji di `docs/pengujian.md`). Label "usulan, perlu persetujuan kelompok" di atas sudah tidak berlaku. Teks asli sengaja tidak dihapus.
 
 Keputusan Fase 6 (2026-11-15): SmartWait bukan AI, melainkan rumus aturan. Estimasi menit = pembulatan ke atas dari total `estimated_duration_minutes` layanan semua pelanggan di depan dibagi `active_staff_count` bisnis. Pelanggan di depan adalah antrean sebisnis/se-tanggal dengan nomor lebih kecil dan status WAITING, CALLED, atau IN_SERVICE (sama dengan aturan posisi antrean), dan durasi tiap pelanggan diambil dari layanan yang dipilihnya. Kondisi khusus: petugas 0 menampilkan "Estimasi belum tersedia" (tidak ada pembagian nol); tidak ada pelanggan di depan dan antrean sendiri WAITING menampilkan "Kamu berikutnya"; antrean sendiri CALLED menampilkan "Kamu sudah dipanggil, silakan menuju lokasi"; antrean IN_SERVICE atau final tidak menampilkan estimasi. Perhitungan ada di `SmartWaitService.hitungMenit` sebagai fungsi murni supaya mudah diuji tanpa database. Isi lama di atas sengaja tidak dihapus.
 
@@ -296,3 +315,68 @@ queues: { id: 1, reservation_id: 1, queue_number: 1,
 | Miftah | Reservation Management | 4 |
 | Khalisa | Queue Operation & Monitoring | 5 |
 | Rizki | SmartWait & statistik monitoring | 6, 7 |
+
+---
+
+## 8. Keputusan implementasi 22 Nov 2026
+
+Bagian ini ditambahkan setelah keputusan K1–K6, D1–D3, jalur NO_SHOW→CANCELLED, dan SavedRequest disetujui pemilik proyek. Isi teks lama di atas tidak dihapus; yang berubah hanya diberi catatan "Diperbarui 22 Nov 2026" tepat setelahnya.
+
+### 8.1 Ringkasan keputusan
+
+- **K1** — Tetap keduanya: antrean berjalan + grid slot 30 menit.
+- **K2** — Setuju: kapasitas dan petugas aktif berupa angka di tabel `businesses`.
+- **K3** — Owner dibuat oleh Administrator; catatan Fase 2 di baris 56 sudah tidak berlaku.
+- **K4** — Walk-in tetap di luar cakupan versi pertama.
+- **K5** — Tabel `categories` + `businesses.category_id` FK NOT NULL.
+- **K6** — Status quo: Customer hanya saat antrean WAITING, Owner sampai CALLED, tanpa batas jam. Batas jam dicatat sebagai pengembangan lanjutan (lihat 8.5).
+- **D1** — Diterima dan didokumentasikan, aturan tidak diubah.
+- **D2** — Diterima, ditambah teks bantuan di `templates/profile.html`.
+- **D3** — Reset password oleh Admin wajib berbeda dari password lama (samakan dengan aturan ganti password sendiri).
+- **Jalur NO_SHOW→CANCELLED** — Disetujui.
+- **SavedRequest** — Setelah login, Customer kembali ke halaman yang tadi dituju (misalnya form reservasi). Owner dan Admin tetap ke dashboard role-nya. Kunjungan langsung ke `/login` tanpa tujuan tersimpan tetap ke dashboard role.
+- **Sonar S6437** (kata sandi demo) — Accepted, alasan: "akun demo lokal untuk pengembangan dan demo, bukan kredensial produksi".
+- **Sonar S3752** (`ErrorController`) — Accepted, alasan: "endpoint /error harus menerima semua metode HTTP karena meneruskan error dari request POST; membatasi ke GET akan merusak halaman error".
+
+### 8.2 Catatan pembaruan M1–M8
+
+- **M1** (`PRD.md` baris K1, "pilih satu saja") — Diperbarui 22 Nov 2026: K1 memutuskan memakai keduanya (antrean berjalan + grid slot 30 menit), jadi permintaan "pilih satu saja" dianggap selesai dengan menjaga dua mekanisme. Lihat jawaban K1 dan catatan K1 di bagian 4.
+- **M2** (K3 di catatan Fase 2) — Diperbarui 22 Nov 2026: lihat catatan K3 tepat setelah baris catatan Fase 2.
+- **M3** (`category VARCHAR(100)`, label K2/K5) — Diperbarui 22 Nov 2026: lihat catatan setelah tabel `categories` dan tabel `businesses`.
+- **M4** (catatan "karena `queues` tidak punya `business_id`") — Diperbarui 22 Nov 2026: lihat catatan tepat sebelum Keputusan Fase 4.
+- **M5** (K6 "boleh sebelum IN_SERVICE") — Diperbarui 22 Nov 2026: status quo diterima; Customer hanya WAITING, Owner sampai CALLED, tanpa batas jam. Lihat jawaban K6.
+- **M6** (user flow "diarahkan ke login lalu kembali") — Diperbarui 22 Nov 2026: lihat catatan SavedRequest di bawah dan catatan di user flow Fase 4.
+- **M7** (placeholder "status mana yang dihitung") — Diperbarui 22 Nov 2026: lihat catatan setelah rumus SmartWait.
+- **M8** (NO_SHOW→CANCELLED "usulan, perlu persetujuan kelompok") — Diperbarui 22 Nov 2026: lihat catatan setelah Keputusan Fase 5.
+
+### 8.3 SavedRequest (pengalihan setelah login)
+
+Perilaku yang diterapkan dan diuji:
+
+- Sebelum login, Spring Security menyimpan request tujuan dengan `RequestCache` bawaan.
+- Setelah login, Customer diarahkan ke halaman yang tadi dituju bila tujuan tersimpan dan masih berada di aplikasi sendiri (hanya jalur relatif internal — tujuan ke domain luar tidak diikuti, anti open redirect).
+- Owner dan Admin diarahkan ke dashboard role-nya (`/owner`, `/admin`) walaupun ada tujuan tersimpan.
+- Kunjungan langsung ke `/login` tanpa tujuan tersimpan mendarat di dashboard role.
+- Owner dan Admin yang mencoba halaman di luar role-nya tetap mendapat 403, tidak diarahkan ke halaman yang dituju.
+
+Implementasi: `SecurityConfig` (success handler login) memakai `RequestCache` + pengecekan jalur internal. Tidak ada perubahan entity, skema, atau logika reservasi.
+
+### 8.4 D3 — reset password oleh Admin
+
+Reset password oleh Admin (`AdminUserService`) kini wajib berbeda dari password lama, samanya aturan dengan ganti password oleh pemilik akun (`AuthService.gantiPassword`). Pesan konsisten: "Password baru tidak boleh sama dengan password lama." Diuji di `AdminUserServiceTest`.
+
+### 8.5 Batasan yang diketahui dan pengembangan lanjutan
+
+Hal-hal berikut sengaja **tidak dikerjakan** pada implementasi ini dan dicatat sebagai batasan yang diketahui / kandidat pengembangan lanjutan:
+
+- **Batas jam pembatalan (K6)** — Versi ini masih status quo tanpa batas jam (Customer WAITING, Owner sampai CALLED). Batas minimal N jam sebelum jadwal belum dibuat; bila kelompok menginginkannya, N harus diputuskan dan UI + validasi + uji disesuaikan.
+- **Statistik customer nyata** — Belum ada metrik pengganti kartu "customer nyata" (sebelumnya angka 0 dihapus). Metrik apa yang ingin ditampilkan belum diputuskan.
+- **Double-book layanan lebih dari 30 menit** — Okupansi slot masih bisa bertumpuk untuk layanan berdurasi > 30 menit. Mengubah aturan kapasitas perlu keputusan kelompok.
+- **Tabel riwayat status** — `reservation_status_histories` dan `queue_status_histories` masih opsional, belum dibuat.
+- **Polesan desain P3** — Daftar P2/P3 desain (dashboard S7–S15, hierarki aksi customer, SmartWait tanpa dasbor, alamat/telepon hari-H, aria-live, format tanggal, a11y kecil, landing P2) belum dikerjakan.
+- **Sonar** — Dua temuan (`java:S6437`, `java:S3752`) ditandai Accepted dengan alasan di 8.1; profil aturan dan quality gate tidak diubah.
+- **Placeholder yang masih butuh data dari pemilik proyek** (sengaja tidak diisi, jangan dikarang):
+  - Deadline: `[isi: tanggal pengumpulan proyek]` (bagian 2, Batasan).
+  - Hosting/cara demo: `[isi: dijalankan lokal saat presentasi atau di-hosting]` (bagian 2, Batasan).
+  - Metode hosting: `[isi: lokal atau layanan hosting]` (bagian 7, Tech Stack).
+  - `[isi: keputusan kelompok]` pada catatan tabel `queues` (bagian 6) — sudah dijawab oleh Keputusan Fase 4 (sudah ada `business_id`), tapi placeholder asli dibiarkan dan dicatat di sini.

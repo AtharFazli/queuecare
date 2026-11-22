@@ -31,3 +31,9 @@ Catatan bug yang ditemukan saat pengujian. Bug kecil sudah diperbaiki dan diuji 
 | D1 | Aturan "Admin aktif terakhir tidak boleh dinonaktifkan atau diturunkan" tidak dapat dibuktikan lewat antarmuka | Aktor selalu ikut dihitung sebagai Admin aktif, sehingga aturan akun-sendiri lebih dulu menolak. Mengubah hitungan berarti mengubah aturan bisnis, jadi tidak diubah tanpa persetujuan. Aturan tetap ada sebagai jaring pengaman dan diuji di `AdminUserServiceTest`. |
 | D2 | Mengubah email profil memaksa masuk ulang | Pilihan paling sederhana. Alternatifnya membangun ulang `UserDetails` di `SecurityContext`, lebih banyak kode dan risiko. |
 | D3 | Reset password oleh Admin tidak mewajibkan password baru berbeda dari yang lama | Hanya ganti password oleh pemilik akun yang mewajibkan itu, sesuai instruksi Fase 7b. |
+
+Diperbarui 22 Nov 2026 — keputusan D1–D3 (pemilik proyek):
+
+- **D1** — Diterima dan didokumentasikan, aturan tidak diubah. Aturan "Admin aktif terakhir" tetap sebagai jaring pengaman di `AdminUserService` dan diuji di `AdminUserServiceTest`; keterbatasan UI (pesan "Admin aktif terakhir…" tidak pernah muncul karena pemeriksaan akun-sendiri lebih dulu menang) dicatat di sini, bukan diperbaiki.
+- **D2** — Diterima. Ditambah kalimat bantuan di `templates/profile.html`: email dipakai untuk masuk, dan perubahan email membuat pengguna masuk lagi. Logika tidak diubah.
+- **D3** — Diterima opsi (a): reset password oleh Admin kini wajib berbeda dari password lama, samakan dengan aturan `AuthService.gantiPassword`. Pesan konsisten: "Password baru tidak boleh sama dengan password lama." Diuji di `AdminUserServiceTest` (password sama ditolak, password berbeda diterima).
