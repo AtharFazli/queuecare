@@ -33,7 +33,7 @@ import java.util.List;
 public class ReservationService {
 
     private static final int DURASI_SLOT_MENIT = 30;
-    private static final int MAKS_HARI_DEPAN = 14;
+    public static final int MAKS_HARI_DEPAN = 14;
     private static final int MAKS_COBA = 3;
 
     private final ReservationRepository reservationRepository;

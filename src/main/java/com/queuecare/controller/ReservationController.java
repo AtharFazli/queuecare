@@ -90,6 +90,9 @@ public class ReservationController {
         model.addAttribute("tanggal", tanggal);
         model.addAttribute("slot", reservationService.slotUntuk(service.getBusiness(), tanggal));
         model.addAttribute("form", form == null ? new ReservationForm() : form);
+        // Batas tanggal yang sama dengan aturan di service: hari ini s.d. 14 hari.
+        model.addAttribute("tanggalMin", LocalDate.now());
+        model.addAttribute("tanggalMax", LocalDate.now().plusDays(ReservationService.MAKS_HARI_DEPAN));
     }
 
     /** Tanggal GET diparse sebagai yyyy-MM-dd. Nilai kosong atau salah memakai hari ini. */

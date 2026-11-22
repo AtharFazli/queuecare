@@ -21,13 +21,14 @@
       <form th:action="@{/reservation/create/{id}(id=${layanan.id})}" method="get" class="mt-4">
         <div class="field">
           <label class="field__label" for="tanggal">Pilih tanggal</label>
-          <input class="field__input" id="tanggal" name="tanggal" type="date" th:value="${tanggal}">
-          <p class="field__bantuan">Tanggal bisa hari ini sampai 14 hari ke depan.</p>
+          <input class="field__input" id="tanggal" name="tanggal" type="date" th:value="${tanggal}"
+                 th:min="${#temporals.format(tanggalMin, 'yyyy-MM-dd')}" th:max="${#temporals.format(tanggalMax, 'yyyy-MM-dd')}">
+          <p class="field__bantuan">Tanggal bisa hari ini sampai 14 hari ke depan (format dd/MM/yyyy).</p>
         </div>
         <button class="tombol" type="submit">Cek slot</button>
       </form>
 
-      <h2 class="mt-4">Slot pada <span th:text="${tanggal}">16/11/2026</span></h2>
+      <h2 class="mt-4">Slot pada <span th:text="${tanggal != null ? #temporals.format(tanggal, 'dd/MM/yyyy') : ''}">16/11/2026</span></h2>
       <div th:if="${#lists.isEmpty(slot)}" class="kosong">
         <h2 class="kosong__judul">Tidak ada slot</h2>
         <p class="kosong__teks">Bisnis libur atau belum mengatur jam operasional pada hari itu. Coba tanggal lain.</p>
@@ -37,7 +38,7 @@
         <input type="hidden" name="tanggal" th:value="${tanggal}">
         <div class="field">
           <label class="field__label" for="jam">Pilih jam</label>
-          <select class="field__input" id="jam" th:field="*{jam}">
+          <select class="field__input" id="jam" th:field="*{jam}" required>
             <option value="">Pilih jam</option>
             <option th:each="s : ${slot}" th:value="${s.jam}" th:text="${s.label}" th:disabled="${s.penuh or s.lewat}">09:00</option>
           </select>
@@ -49,6 +50,7 @@
           <textarea class="field__input" id="catatan" rows="2" th:field="*{catatan}"></textarea>
         </div>
         <button class="tombol" type="submit">Buat reservasi</button>
+        <a class="tombol tombol--sekunder" th:href="@{/businesses/{id}(id=${bisnis.id})}">Batal, kembali ke bisnis</a>
       </form>
     </div>
   </main>
