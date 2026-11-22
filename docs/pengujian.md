@@ -337,7 +337,57 @@ Bukti:
 - Database `queuecare_load` di-drop setelah uji. Database demo `queuecare` tidak disentuh: users 6, reservations 10, queues 10, businesses 6, services 19, schedules 42 (sama sebelum dan sesudah).
 - Uji asap ulang: `total sel: 191 | DEVIASI: 0 | SEMUA SESUAI HARAPAN`.
 
-## Sonar 22 Nov 2026 — dua temuan ditandai Accepted (WONTFIX)
+## Keputusan implementasi 22 Nov 2026 — uji lintas bisnis, SavedRequest, guardrail, asap
+
+Bagian ini menambah; isi lama di atas tidak dihapus. Cabang `keputusan-implementasi` dari `dokumen-keputusan` (`d9c175a`), tidak di-push dan tidak di-merge.
+
+### Uji konkurensi lintas bisnis — LOLOS
+
+- Berkas: `src/test/java/com/queuecare/service/ReservationCrossBusinessConcurrencyTest.java`.
+- Skenario: dua bisnis berbeda (kapasitas masing-masing 4), tanggal sama, 8 thread per bisnis (16 thread) memesan jam 09:00 bersamaan.
+- Dijalankan **5 kali berturut-turut: 5/5 lolos**.
+- Pemeriksaan: tidak ada galat bocor (hanya "Slot ini sudah penuh."), kode reservasi unik, nomor antrean unik dan berurutan per bisnis, jumlah sukses = kapasitas kedua bisnis (8).
+
+### SavedRequest — LOLOS (browser)
+
+Bukti browser (`scripts` salinan di scratch `bukti_22nov.py`, hasil `bukti-22nov/hasil.json`):
+
+| Skenario | Hasil |
+|---|---|
+| Anonim buka `/reservation/create/42` → login Customer | mendarat di `/reservation/create/42` (form tadi) |
+| Login langsung dari `/login` (Customer) | `/customer` |
+| Login langsung (Owner) | `/owner` |
+| Owner buka `/reservation/create/42` | HTTP 403 |
+| Login langsung (Admin) | `/admin` |
+| Admin buka `/reservation/create/42` | HTTP 403 |
+| Tujuan luar (`?continue=http://evil.example.com/...`) | tidak diikuti, ke `/customer` |
+
+Catatan: `HttpSessionRequestCache` menyimpan **URL penuh**; `SecurityConfig` menerima URL absolut hanya bila `host` sama dengan request, lalu mengambil path-nya. Host luar ditolak (uji unit `tujuanTersimpanDomainLuarTidakDiikuti`). Screenshot: `docs/screenshots/22nov-savedrequest-form.png`.
+
+### Guardrail form reservasi — LOLOS
+
+`templates/reservation/create.html`: input tanggal `min` = hari ini dan `max` = hari ini + 14 hari (konstanta `ReservationService.MAKS_HARI_DEPAN` yang sama dengan aturan server); select jam `required`; tombol "Batal, kembali ke bisnis"; judul slot diformat `dd/MM/yyyy`.
+
+| Cek | 1280px | 375px |
+|---|---|---|
+| `min` / `max` | 2026-11-22 / 2026-12-06 | 2026-11-22 / 2026-12-06 |
+| `jam.required` | true | true |
+| Tombol Batal | ada | ada |
+| Overflow horizontal | 0 | 0 |
+
+Screenshot: `docs/screenshots/22nov-form-1280.png`, `22nov-form-375.png`. Validasi server tidak diubah; alur pesan tetap 302 ke halaman sukses.
+
+### Profil (D2) — LOLOS
+
+`templates/profile.html` memuat kalimat "Email dipakai untuk masuk. Kalau email diubah, kamu akan diminta masuk lagi." Screenshot: `docs/screenshots/22nov-profil-bantuan.png`.
+
+### Uji asap, alur satu pengguna, data demo — LOLOS
+
+- Uji asap: `total sel: 191 | DEVIASI: 0 | SEMUA SESUAI HARAPAN`.
+- Alur satu pengguna di database terpisah (port 8081, DB `queuecare_uji22` dari dump demo): login 200, cari 200, detail 200, form 200, pesan 302, halaman sukses 200, riwayat 200, detail 200, pantau 200, `/status` JSON valid, batal 302; status DB akhir `CANCELLED` untuk reservasi dan antrean.
+- Database demo `queuecare` tidak berubah (sebelum = sesudah): users 6, reservations 10, queues 10, businesses 6, services 19, business_schedules 42.
+
+### Sonar 22 Nov 2026 — dua temuan ditandai Accepted (WONTFIX)
 
 Bagian ini menambah; isi lama di atas tidak dihapus. Dua temuan di cabang `penutupan-pengujian` ditandai Accepted lewat API SonarQube pada 22 Nov 2026.
 
