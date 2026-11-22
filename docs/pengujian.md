@@ -291,6 +291,23 @@ Status: **LOLOS** — analisis selesai dan semua angka diambil langsung dari API
 - Kredensial: `git grep` hanya menemukan placeholder `TOKEN`/`TOKEN_DARI_LANGKAH_3` di dokumentasi, bukan token atau kata sandi asli. `git diff` tidak memuat rahasia.
 - Container tetap berjalan; bila perlu dijalankan lagi: perintah `docker run` di atas dengan volume bernama yang sama (data analisis tetap tersimpan).
 - Database demo tidak berubah: users 6, reservations 10, queues 10, businesses 6, services 19, schedules 42.
+
+## Keputusan implementasi 22 Nov 2026 — D3 dan SavedRequest
+
+Bagian ini menambah hasil terbaru; isi lama di atas tidak dihapus. Cabang `keputusan-implementasi` dibuat dari `dokumen-keputusan` (`d9c175a`), tidak di-push dan tidak di-merge.
+
+### D3 — reset password oleh Admin wajib berbeda dari password lama — LOLOS
+
+- Perubahan: `AdminUserService.ubah` menambah pemeriksaan `passwordEncoder.matches(form.getPassword(), target.getPasswordHash())`; bila sama, ditolak dengan pesan "Password baru tidak boleh sama dengan password lama." (sama dengan pesan `AuthService.gantiPassword`).
+- Tes baru di `AdminUserServiceTest`: `resetAdminMenolakPasswordSamaDenganLama` (ditolak, pesan cocok) dan `resetAdminMenerimaPasswordBerbedaDariLama` (hash baru tersimpan).
+- `mvn.cmd -B test` → **27 tes lolos, 0 gagal** (25 tes lama + 2 baru).
+
+### SavedRequest — pengalihan setelah login
+
+- Perubahan: `SecurityConfig` memakai `RequestCache` bawaan Spring Security; success handler mengarahkan Customer ke tujuan tersimpan bila ada dan masih jalur relatif internal, dan mengarahkan Owner/Admin ke dashboard role-nya.
+- Tes: `SecurityConfigTest` (baru) membuktikan pilihan target dan anti open redirect.
+- Bukti browser dan detail langkah ada di bagian berikut pada dokumen ini.
+
 ## Uji ulang C28 tulis setelah perbaikan konkurensi (21 November 2026)
 
 Catatan GAGAL di bagian C28 sebelumnya sengaja tidak dihapus; tambahan ini adalah riwayat lanjutan. Cabang `perbaikan-konkurensi` dibuat dari `penutupan-pengujian` (`014a01d`), commit perbaikan `2c197bb`. Tidak ada push atau merge.

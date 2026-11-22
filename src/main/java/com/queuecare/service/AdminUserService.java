@@ -71,6 +71,9 @@ public class AdminUserService {
             if (form.getPassword().length() < 8) {
                 throw new AturanAkunException("Password baru minimal 8 karakter.");
             }
+            if (passwordEncoder.matches(form.getPassword(), target.getPasswordHash())) {
+                throw new AturanAkunException("Password baru tidak boleh sama dengan password lama.");
+            }
             target.setPasswordHash(passwordEncoder.encode(form.getPassword()));
         }
         return target;

@@ -19,6 +19,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
@@ -139,5 +140,40 @@ class AdminUserServiceTest {
         service.ubah(3L, form("Owner Baru", "owner@queuecare.id", Role.OWNER), pelaku);
 
         assertEquals("hash", target.getPasswordHash(), "password kosong berarti tidak diubah");
+    }
+
+    @Test
+    void resetAdminMenolakPasswordSamaDenganLama() {
+        AdminUserForm form = form("Owner", "owner@queuecare.id", Role.OWNER);
+        form.setPassword("password123");
+        User target = new User("Owner", "owner@queuecare.id",
+                new BCryptPasswordEncoder().encode("password123"), Role.OWNER);
+        ReflectionTestUtils.setField(target, "id", 3L);
+        User pelaku = user(2L, Role.ADMIN, true);
+        when(userRepository.findById(3L)).thenReturn(Optional.of(target));
+        when(userRepository.existsByEmailAndIdNot("owner@queuecare.id", 3L)).thenReturn(false);
+        lenient().when(businessRepository.existsByOwner(any())).thenReturn(false);
+
+        AturanAkunException ex = assertThrows(AturanAkunException.class,
+                () -> service.ubah(3L, form, pelaku));
+        assertEquals("Password baru tidak boleh sama dengan password lama.", ex.getMessage());
+    }
+
+    @Test
+    void resetAdminMenerimaPasswordBerbedaDariLama() {
+        AdminUserForm form = form("Owner", "owner@queuecare.id", Role.OWNER);
+        form.setPassword("passwordBaru123");
+        User target = new User("Owner", "owner@queuecare.id",
+                new BCryptPasswordEncoder().encode("passwordLama123"), Role.OWNER);
+        ReflectionTestUtils.setField(target, "id", 3L);
+        User pelaku = user(2L, Role.ADMIN, true);
+        when(userRepository.findById(3L)).thenReturn(Optional.of(target));
+        when(userRepository.existsByEmailAndIdNot("owner@queuecare.id", 3L)).thenReturn(false);
+        lenient().when(businessRepository.existsByOwner(any())).thenReturn(false);
+
+        service.ubah(3L, form, pelaku);
+
+        assertTrue(new BCryptPasswordEncoder().matches("passwordBaru123", target.getPasswordHash()),
+                "password baru harus tersimpan sebagai hash");
     }
 }
