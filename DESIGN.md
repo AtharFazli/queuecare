@@ -676,3 +676,12 @@ Penambahan ini merekam pemasangan kit identitas QueueCare (commit 6d562a2, 872bc
 - Sumber aturan lengkap (ruang aman, larangan, tabel kontras): `docs/branding/PANDUAN-PEMAKAIAN.md`.
 - Aset bisa diambil anonim: SecurityConfig mengizinkan `/images/**`, favicon, ikon PWA, dan manifest (commit 872bc60), jadi favicon/logo tidak dialihkan ke login.
 
+### Pembaruan implementasi: landing diberi ruang napas (24 Nov 2026)
+
+Penambahan ini merekam penyegaran `templates/home.html` dan aturan landing di `static/css/components.css`; catatan lama tetap riwayat. Tidak ada token baru, tidak ada perubahan komponen lain, dan urutan stylesheet Bootstrap lalu tokens.css lalu components.css tidak berubah.
+
+- Hero: padding bawah 48px (sebelumnya 32px). `.hero__teks` dibatasi `max-width: 34rem` supaya kolom teks tidak mengorbit; `.hero__subteks` dipangkas dari 56ch ke 40ch dan copy-nya dipendekkan ("Kode reservasi, nomor antrean, dan estimasi tunggu sebelum kamu datang."). Jarak judul ke subteks 24px (dari 16px), form pencarian 32px di atas, catatan 24px di atas dan dibatasi 44ch. Label field "Nama bisnis" menjadi "Cari bisnis", input `type="search"` dengan `autocomplete="off"`, placeholder "barbershop, salon, servis...".
+- Langkah: section dapat wrapper baru `.langkah-luar` (padding 48px atas dan bawah, judul terpusat) sehingga garis pembatas pindah dari atas grid ke atas tiap `.langkah__item`. Padding item 24px atas, 8px bawah — tiga langkah punya ketinggian sama di desktop (105px).
+- Sorotan: `margin` dihapus, jadi band mint menempel pada akhir section langkah dan margin itu berpindah ke padding (`--jarak-12`). Ini menghilangkan dua kali jarak 48px yang bertumpuk; celah antar-section sekarang seragam 48px.
+- Copy dipendekkan: catatan SmartWait contoh "Ini perkiraan, bukan jaminan waktu." menjadi "Perkiraan, bukan jaminan waktu."; langkah 2 "Dapat kode reservasi dan nomor antrean dalam satu langkah." menjadi "Kode reservasi dan nomor antrean keluar dalam satu langkah."
+- Bukti: detector Impeccable pada `home.html` + `components.css` = 2 hasil, keduanya artefak Thymeleaf yang sudah diketahui (`rgb(0,0,0)` line 0 dan `flat-type-hierarchy` line 0; rendered H1 40px/1.12 vs body 16px). Pengukuran DOM Playwright di 375/768/1280px: lebar dokumen = viewport (0 overflow) di ketiganya; tinggi halaman turun 1777→1885px (375), 1022→1139px (1280) dengan jarak antar-section 48px yang konsisten. `mvn.cmd -B test` 35 tes lolos.

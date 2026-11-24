@@ -9,15 +9,15 @@
       <div class="wadah hero__isi">
         <div class="hero__teks">
           <h1 class="hero__judul">Tahu giliranmu tanpa bertanya.</h1>
-          <p class="hero__subteks">QueueCare memberi kode reservasi dan nomor antrean untuk barbershop, salon, servis, dan klinik. Cek estimasi tunggu sebelum kamu datang.</p>
+          <p class="hero__subteks">Kode reservasi, nomor antrean, dan estimasi tunggu sebelum kamu datang.</p>
           <form th:action="@{/businesses}" method="get" class="pencarian hero__tindakan">
             <div class="field">
-              <label class="field__label" for="q">Nama bisnis</label>
-              <input class="field__input" id="q" name="q" type="text" placeholder="misal barbershop">
+              <label class="field__label" for="q">Cari bisnis</label>
+              <input class="field__input" id="q" name="q" type="search" placeholder="barbershop, salon, servis..." autocomplete="off">
             </div>
             <button class="tombol" type="submit">Cari bisnis</button>
           </form>
-          <p class="hero__catatan">Lihat bisnis dan layanan tanpa masuk. Masuk saat membuat reservasi. <a th:href="@{/register}">Daftar</a> kalau belum punya akun.</p>
+          <p class="hero__catatan">Tanpa akun kamu bisa lihat bisnis dan layanan. Masuk saat membuat reservasi. <a th:href="@{/register}">Daftar</a>.</p>
         </div>
         <div class="hero__visual">
           <p class="contoh">Contoh</p>
@@ -34,15 +34,15 @@
             <div class="smartwait__menit">30</div>
             <div>
               <p class="smartwait__teks"><b>menit lagi</b> sampai giliran kamu. 4 orang di depan.</p>
-              <p class="smartwait__catatan">Ini perkiraan, bukan jaminan waktu.</p>
+              <p class="smartwait__catatan">Perkiraan, bukan jaminan waktu.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="wadah" id="cara-kerja">
-      <h2>Cara kerja</h2>
+    <section class="wadah langkah-luar" id="cara-kerja">
+      <h2 class="langkah-luar__judul">Cara kerja</h2>
       <div class="langkah">
         <div class="langkah__item">
           <h3 class="langkah__judul">Pilih layanan</h3>
@@ -50,7 +50,7 @@
         </div>
         <div class="langkah__item">
           <h3 class="langkah__judul">Ambil nomor</h3>
-          <p class="langkah__teks">Dapat kode reservasi dan nomor antrean dalam satu langkah.</p>
+          <p class="langkah__teks">Kode reservasi dan nomor antrean keluar dalam satu langkah.</p>
         </div>
         <div class="langkah__item">
           <h3 class="langkah__judul">Pantau giliran</h3>
@@ -63,7 +63,7 @@
       <div class="wadah sorotan__isi">
         <div>
           <h2>Estimasi tunggu yang masuk akal</h2>
-          <p class="sorotan__teks">SmartWait menjumlahkan durasi layanan orang di depanmu, lalu membaginya dengan jumlah petugas aktif. Hasilnya perkiraan, bukan jaminan.</p>
+          <p class="sorotan__teks">SmartWait menjumlahkan durasi layanan orang di depanmu, lalu membaginya dengan jumlah petugas aktif. Perkiraan, bukan jaminan.</p>
         </div>
         <div class="sorotan__aksi">
           <a class="tombol" th:href="@{/businesses}">Cari bisnis</a>
