@@ -530,7 +530,7 @@ Catatan Fase 8: Bootstrap 5 mempunyai class `.modal` sendiri dengan `display: no
 
 ## 9. Data dummy
 
-Seed data dummy untuk demo diatur lewat properti `app.seed-dummy` di `application.properties` (nilai awal `true`). Set `app.seed-dummy=false` untuk menonaktifkannya. Seed hanya jalan bila tabel `businesses` masih kosong, jadi aman dijalankan berulang tanpa menggandakan data.
+Seed data dummy untuk demo diatur lewat properti `app.seed-dummy` di `application.properties` (nilai awal `true`). Set `app.seed-dummy=false` untuk menonaktifkannya. Seed punya dua guard (`DummyDataSeeder.java:89,92`): bisnis/layanan/jadwal diisi bila tabel `businesses` masih kosong, dan reservasi/antrean diisi bila tabel `reservations` masih kosong, jadi aman dijalankan berulang tanpa menggandakan data. (Diperbarui 24 Nov 2026: kalimat lama hanya menyebut tabel `businesses`; deskripsi lengkap diambil dari kode.)
 
 <!-- impeccable:document scan; isi lama di atas dipertahankan utuh -->
 
