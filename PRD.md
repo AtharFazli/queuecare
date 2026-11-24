@@ -380,3 +380,10 @@ Hal-hal berikut sengaja **tidak dikerjakan** pada implementasi ini dan dicatat s
   - Hosting/cara demo: `[isi: dijalankan lokal saat presentasi atau di-hosting]` (bagian 2, Batasan).
   - Metode hosting: `[isi: lokal atau layanan hosting]` (bagian 7, Tech Stack).
   - `[isi: keputusan kelompok]` pada catatan tabel `queues` (bagian 6) — sudah dijawab oleh Keputusan Fase 4 (sudah ada `business_id`), tapi placeholder asli dibiarkan dan dicatat di sini.
+- **Audit keamanan (24 Nov 2026)** — Hasil audit read-only dicatat di `docs/audit-keamanan.md`; laporan lengkap ada di luar repository (`D:\audits\PBO-Java`). Batas yang diketahui dari audit:
+  - Akun admin demo (`admin@queuecare.id`) dibuat pada setiap startup oleh `DataInitializer` tanpa pembatasan profil; perbaikannya ditunda sampai ada rencana hosting.
+  - Login tidak dibatasi percobaannya di source (rate limit/lockout); status ini "belum divalidasi" dan bisa ditutupi proteksi deployment yang belum diamati.
+  - Pesan login membedakan akun nonaktif (`/login?disabled`) dari kegagalan lain (`/login?error`); diterima sebagai pilihan UX.
+  - Bootstrap dan Google Fonts dimuat dari CDN tanpa SRI dan tanpa Content-Security-Policy.
+  - Lima kandidat lain ditolak setelah diperiksa (CSRF dimatikan, open redirect backslash, injeksi SQL, IDOR, stored XSS); rincian alasannya di `docs/audit-keamanan.md`.
+  - Audit tidak menjalankan build atau eksekusi kode karena host audit tidak menyediakan sandbox yang diminta kerangka audit.
