@@ -6,6 +6,8 @@ Cara mengulang: lihat kolom "Cara menguji". Skrip ada di `scripts/pengujian/` (s
 
 Status: LOLOS, GAGAL, atau BELUM DIUJI. Tidak ada hasil yang dibuat-buat; yang tidak dijalankan ditulis BELUM DIUJI.
 
+Status terakhir (diperbarui 24 Nov 2026): `mvn.cmd -B test` 35 tes lolos, 0 gagal; checklist C1–C33 seluruhnya LOLOS (C28 LOLOS sesudah perbaikan konkurensi dan uji ulang). Baris lama di tabel di bawah sengaja dipertahankan sebagai riwayat.
+
 ## Enam skenario pengujian
 
 ### S1 Autentikasi
@@ -153,11 +155,14 @@ Master planning bagian 11 tidak ada di repository, jadi daftar ini disusun ulang
 | C32 | Reset data demo | `scripts/reset-demo.sh` berjalan, seed terisi untuk hari ini | Terverifikasi | LOLOS | `docs/pengujian.md` bagian reset |
 | C33 | Impor `database/queuecare.sql` | Database kosong bisa diimpor dan aplikasi jalan | Diimpor ke `queuecare_import`, aplikasi jalan di port 8081, login admin berhasil | LOLOS | `docs/pengujian.md` bagian impor |
 
+Catatan 24 Nov 2026 untuk baris C28 di atas: baris itu adalah status lama. Sesudah perbaikan konkurensi `2c197bb`, C28 diuji ulang enam putaran tulis: 0 HTTP 500 dan jumlah sukses = min(N, kapasitas 6); lihat bagian "Uji ulang C28 tulis setelah perbaikan konkurensi". Baris lama sengaja tidak diubah.
+
 ## Ringkasan
 
 - LOLOS: 6 skenario utama, 28 butir checklist (C1–C24, C26, C31, C32, C33).
 - GAGAL: 0.
 - BELUM DIUJI: 5 butir (C25, C27, C28, C29, C30).
+- Diperbarui 24 Nov 2026: C27 LOLOS, C28 LOLOS (uji ulang), C29 LOLOS, C30 LOLOS, SonarQube Passed. Checklist C1–C33 seluruhnya LOLOS; 0 GAGAL; 0 BELUM DIUJI.
 
 ## Uji regresi
 
@@ -197,6 +202,8 @@ Bagian ini menambah hasil terbaru. Baris C25 dan C27–C30 di tabel checklist di
 
 Status ringkas: C27 LOLOS, C28 GAGAL, C29 LOLOS, C30 LOLOS, SonarQube TIDAK DAPAT DIJALANKAN.
 
+Diperbarui 24 Nov 2026: C28 yang tercatat GAGAL di sini sudah diperbaiki (`2c197bb`) lalu diuji ulang enam putaran tulis — 0 HTTP 500, sukses = min(N, kapasitas 6) — sehingga status terakhirnya LOLOS. SonarQube kemudian dijalankan dan quality gate Passed; lihat bagian analisis SonarQube di dokumen ini. Isi lama di atas sengaja tidak dihapus.
+
 ### C27 — unit test `AkunNonaktifFilter` — LOLOS
 
 - Berkas baru: `src/test/java/com/queuecare/config/AkunNonaktifFilterTest.java` (5 tes, tanpa mengubah kode produksi).
@@ -206,6 +213,8 @@ Status ringkas: C27 LOLOS, C28 GAGAL, C29 LOLOS, C30 LOLOS, SonarQube TIDAK DAPA
 - Catatan temuan (tidak diubah): filter memeriksa `getSession(false)` lalu memutus sesi lewat `getSession()` tanpa argumen.
 
 ### C28 — uji beban — GAGAL
+
+> Catatan 24 Nov 2026: bagian ini menyimpan hasil pertama (GAGAL). Status terakhir C28 adalah LOLOS setelah perbaikan `2c197bb` dan uji ulang; lihat bagian "Uji ulang C28 tulis setelah perbaikan konkurensi" di bawah.
 
 Bagian (a) baca-only LOLOS. Skrip Python `requests` + `ThreadPoolExecutor`, 10/25/50 worker serentak, 340 request total, login customer valid (dashboard `GET /customer` = 200). Semua response 200, laju error 0,000.
 
@@ -301,6 +310,7 @@ Bagian ini menambah hasil terbaru; isi lama di atas tidak dihapus. Cabang `keput
 - Perubahan: `AdminUserService.ubah` menambah pemeriksaan `passwordEncoder.matches(form.getPassword(), target.getPasswordHash())`; bila sama, ditolak dengan pesan "Password baru tidak boleh sama dengan password lama." (sama dengan pesan `AuthService.gantiPassword`).
 - Tes baru di `AdminUserServiceTest`: `resetAdminMenolakPasswordSamaDenganLama` (ditolak, pesan cocok) dan `resetAdminMenerimaPasswordBerbedaDariLama` (hash baru tersimpan).
 - `mvn.cmd -B test` → **27 tes lolos, 0 gagal** (25 tes lama + 2 baru).
+  Diperbarui 24 Nov 2026: `mvn.cmd -B test` sekarang **35 tes lolos, 0 gagal** (dijalankan 24 Nov 2026); angka 27 di atas adalah hitungan saat D3 dicatat, sengaja tidak dihapus.
 
 ### SavedRequest — pengalihan setelah login
 
