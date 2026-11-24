@@ -11,8 +11,6 @@ SmartWait menghitung estimasi waktu tunggu dari durasi layanan pelanggan di depa
 - MySQL 8 (diuji dengan Laragon 8.0.30)
 - Browser modern (Chrome atau Edge)
 
-Perintah Maven di dokumen ini memakai `mvn.cmd` (Maven 3.9.16). Pada mesin uji, perintah `mvn` polos gagal memuat launcher Maven di Git Bash; `mvn.cmd` berhasil (terbukti dengan `mvn.cmd -v`).
-
 ## Instalasi dan menjalankan
 
 1. Buat database kosong bernama `queuecare` (utf8mb4_unicode_ci). Hibernate menyesuaikan tabel dari entity saat aplikasi pertama jalan (`spring.jpa.hibernate.ddl-auto=update`).
@@ -31,7 +29,7 @@ Perintah Maven di dokumen ini memakai `mvn.cmd` (Maven 3.9.16). Pada mesin uji, 
 3. Jalankan.
 
    ```bash
-   mvn.cmd spring-boot:run
+   mvn spring-boot:run
    ```
 
    Aplikasi ada di http://localhost:8080.
@@ -56,7 +54,7 @@ Owner demo memiliki enam bisnis (4 ACTIVE, 1 PENDING, 1 INACTIVE). Satu bisnis d
 `app.seed-dummy=false` di `src/main/resources/application.properties`, atau jalankan dengan:
 
 ```bash
-mvn.cmd spring-boot:run -Dspring-boot.run.arguments=--app.seed-dummy=false
+mvn spring-boot:run -Dspring-boot.run.arguments=--app.seed-dummy=false
 ```
 
 Seed dummy berisi enam bisnis, 19 layanan, jadwal, dan sembilan antrean (diperbarui 24 Nov 2026: sebelumnya tertulis 21 layanan; `database/queuecare.sql` dan `DummyDataSeeder.java` sama-sama menghasilkan 19 layanan). Semua data dummy bertanda "(Data dummy)".
@@ -101,7 +99,7 @@ Token warna, font, dan radius ada di `src/main/resources/static/css/tokens.css`.
 ## Build
 
 ```bash
-mvn.cmd clean package
+mvn clean package
 ```
 
 Hasil ada di `target/queuecare-0.1.0.jar`. Folder `target/` tidak masuk Git.
