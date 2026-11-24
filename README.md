@@ -11,6 +11,8 @@ SmartWait menghitung estimasi waktu tunggu dari durasi layanan pelanggan di depa
 - MySQL 8 (diuji dengan Laragon 8.0.30)
 - Browser modern (Chrome atau Edge)
 
+Perintah Maven di dokumen ini memakai `mvn.cmd` (Maven 3.9.16). Pada mesin uji, perintah `mvn` polos gagal memuat launcher Maven di Git Bash; `mvn.cmd` berhasil (terbukti dengan `mvn.cmd -v`).
+
 ## Instalasi dan menjalankan
 
 1. Buat database kosong bernama `queuecare` (utf8mb4_unicode_ci). Hibernate menyesuaikan tabel dari entity saat aplikasi pertama jalan (`spring.jpa.hibernate.ddl-auto=update`).
@@ -29,7 +31,7 @@ SmartWait menghitung estimasi waktu tunggu dari durasi layanan pelanggan di depa
 3. Jalankan.
 
    ```bash
-   mvn spring-boot:run
+   mvn.cmd spring-boot:run
    ```
 
    Aplikasi ada di http://localhost:8080.
@@ -54,10 +56,12 @@ Owner demo memiliki enam bisnis (4 ACTIVE, 1 PENDING, 1 INACTIVE). Satu bisnis d
 `app.seed-dummy=false` di `src/main/resources/application.properties`, atau jalankan dengan:
 
 ```bash
-mvn spring-boot:run -Dspring-boot.run.arguments=--app.seed-dummy=false
+mvn.cmd spring-boot:run -Dspring-boot.run.arguments=--app.seed-dummy=false
 ```
 
-Seed dummy berisi enam bisnis, 21 layanan, jadwal, dan sembilan antrean. Seed hanya jalan bila tabel `reservations` masih kosong, dan semua data dummy bertanda "(Data dummy)".
+Seed dummy berisi enam bisnis, 19 layanan, jadwal, dan sembilan antrean (diperbarui 24 Nov 2026: sebelumnya tertulis 21 layanan; `database/queuecare.sql` dan `DummyDataSeeder.java` sama-sama menghasilkan 19 layanan). Semua data dummy bertanda "(Data dummy)".
+
+Diperbarui 24 Nov 2026 soal guard seed: kode punya dua guard (`DummyDataSeeder.java:89,92`) — bisnis/layanan/jadwal diisi bila tabel `businesses` masih kosong, dan reservasi/antrean diisi bila tabel `reservations` masih kosong. Karena itu seed aman dijalankan berulang tanpa menggandakan data.
 
 ### Reset data demo sebelum presentasi
 
@@ -65,7 +69,7 @@ Seed dummy berisi enam bisnis, 21 layanan, jadwal, dan sembilan antrean. Seed ha
 bash scripts/reset-demo.sh
 ```
 
-Skrip ini mengosongkan `queues` dan `reservations`, membuang dan membuat ulang akun dummy, lalu anda restart aplikasi supaya `DummyDataSeeder` mengisi antrean demo untuk hari ini. Lihat `scripts/reset-demo.sql`.
+Skrip ini mengosongkan `queues` dan `reservations`, membuang dan membuat ulang akun dummy, lalu anda restart aplikasi supaya `DummyDataSeeder` mengisi antrean demo untuk hari ini. Skripnya `scripts/reset-demo.sh` (yang memanggil `scripts/reset-demo.sql`); berkas `.sql` bukan perintah yang dijalankan langsung.
 
 Catatan: jadwal demo adalah Senin sampai Sabtu pukul 09.00-17.00, Minggu libur. Bila reset dilakukan pada hari Minggu atau setelah jam tutup, antrean demo dibuat pada hari buka berikutnya, bukan tanggal hari ini. Ini perilaku `DummyDataSeeder`, bukan kerusakan.
 
@@ -97,7 +101,7 @@ Token warna, font, dan radius ada di `src/main/resources/static/css/tokens.css`.
 ## Build
 
 ```bash
-mvn clean package
+mvn.cmd clean package
 ```
 
 Hasil ada di `target/queuecare-0.1.0.jar`. Folder `target/` tidak masuk Git.
